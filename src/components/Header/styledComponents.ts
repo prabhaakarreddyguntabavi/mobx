@@ -39,6 +39,12 @@ export const AddTransactionButton = styled.button`
   line-height: normal;
   border-width: 0px;
   cursor: pointer;
+
+  &:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: transparent; /* Set border color to transparent */
+  }
+
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -69,9 +75,9 @@ export const AddTransctionMainContainer = styled.div`
   background: rgba(52, 64, 84, 0.7);
   backdrop-filter: blur(8px);
   overflow: auto;
-  position:fixed;
-  top:0px;
-  left:0px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 `;
 
 export const AddTransctionContainer = styled.form`
@@ -250,13 +256,11 @@ export const MobilePopupContainer = styled.div`
     flex-shrink: 0;
     background: rgba(52, 64, 84, 0.7);
     backdrop-filter: blur(8px);
-    position:fixed;
-    top:0px;
-    left:0px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
   }
 `;
-
-
 
 export const MobileParagraph = styled.p`
   font-size: 25px;
@@ -300,4 +304,4 @@ export const NotificationMessage = styled.p`
   margin: 0px;
 `;
 
-export const PopupContainer = styled.div``
+export const PopupContainer = styled.div``;

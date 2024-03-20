@@ -18,8 +18,6 @@ import {
   BarChartContainer,
 } from "./styledComponents";
 
-import "./index.css";
-
 const Dashboard = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
   const { selectOption, onChangeSelectOption } = transactionStore;

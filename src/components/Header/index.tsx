@@ -290,7 +290,6 @@ const Header = (): JSX.Element => {
                     Date*
                   </AddTransctionLabel>
                   <AddTransctionNameInput
-                    className="date-time-field"
                     required
                     type="datetime-local"
                     readOnly
