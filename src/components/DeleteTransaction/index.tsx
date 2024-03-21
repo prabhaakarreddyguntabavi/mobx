@@ -26,9 +26,7 @@ const UpdateTransaction = (props: PropsValue): JSX.Element => {
   const { id, close }: PropsValue = props;
 
   const transactionStore = useContext(TransactionContext);
-  const { totalTransactionDetails } = transactionStore;
-
-  const jwtToken: string = Cookies.get("jwt_token")!;
+  const { totalTransactionDetails, userId } = transactionStore;
 
   const [errorMessage, updateErrorMessage] = useState<boolean>(false);
 
@@ -45,7 +43,7 @@ const UpdateTransaction = (props: PropsValue): JSX.Element => {
       "x-hasura-role": "user",
       "x-hasura-admin-secret":
         "g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
-      "x-hasura-user-id": jwtToken,
+      "x-hasura-user-id": userId.toString(),
     };
     url = "https://bursting-gelding-24.hasura.app/api/rest/delete-transaction";
 

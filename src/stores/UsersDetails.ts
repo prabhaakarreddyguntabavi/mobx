@@ -1,5 +1,4 @@
-import { makeAutoObservable } from "mobx";
-import Cookies from "js-cookie";
+import { action, makeAutoObservable, observable } from "mobx";
 
 interface UserDetail {
   id?: number;
@@ -21,17 +20,27 @@ interface FetchOutPut {
   users: UserDetail[];
 }
 
-const jwtToken: string = Cookies.get("jwt_token")!;
+interface UserEmailAndPassword {
+  email?: string;
+  password?: string;
+}
 
 export class UsersData {
+  userId: number = 0;
   loading: boolean = false;
   error: string = "";
   users: UserDetail[] = [];
   loginUser: UserDetail = { name: "Admin" };
 
   constructor() {
-    makeAutoObservable(this);
-    this.fetchData();
+    makeAutoObservable(this, {
+      userId: observable,
+      users: observable,
+      loginUser: observable,
+      getUserId: action,
+      fetchData: action,
+      loginUserDetails: action,
+    });
   }
 
   async fetchData() {
@@ -40,10 +49,10 @@ export class UsersData {
       "x-hasura-role": "user",
       "x-hasura-admin-secret":
         "g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
-      "x-hasura-user-id": jwtToken,
+      "x-hasura-user-id": this.userId.toString(),
     };
 
-    if (jwtToken === "3") {
+    if (this.userId === 3) {
       headers["x-hasura-role"] = "admin";
     }
 
@@ -81,7 +90,33 @@ export class UsersData {
 
   loginUserDetails() {
     this.loginUser = this.users.find(
-      (findUser: UserDetail) => findUser.id === parseInt(jwtToken)
+      (findUser: UserDetail) => findUser.id === this.userId
     )!;
+  }
+
+  async getUserId() {
+    const emailAndPassword: UserEmailAndPassword = JSON.parse(
+      localStorage.getItem("userDetails")!
+    );
+
+    let url: string =
+      "https://bursting-gelding-24.hasura.app/api/rest/get-user-id";
+    let headers: HeadersInit = {
+      "Content-Type": "application/json",
+      "x-hasura-admin-secret":
+        "g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
+    };
+    const options: RequestInit = {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(emailAndPassword),
+    };
+
+    const response: Response = await fetch(url, options);
+    const responseData = await response.json();
+
+    if (response.ok) {
+      this.userId = responseData.get_user_id[0].id;
+    }
   }
 }

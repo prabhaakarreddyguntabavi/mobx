@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import ReactLoading from "react-loading";
-import Cookies from "js-cookie";
-import { useNavigate, NavigateFunction } from "react-router-dom";
 import { observe } from "mobx";
 import { observer } from "mobx-react";
 
@@ -49,10 +47,8 @@ const apiStatusConstants: ApiStatus = {
 
 const TransactionPage = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
-  const { totalTransactionDetails, userDict } = transactionStore;
-
-  const jwtToken: string = Cookies.get("jwt_token")!;
-  const navigate: NavigateFunction = useNavigate();
+  const { totalTransactionDetails, userDict, isUserAdmin, userId } =
+    transactionStore;
 
   const [apiResponse, setApiResponse] = useState<ApiStatusAndData>({
     status: apiStatusConstants.inProgress,
@@ -71,32 +67,28 @@ const TransactionPage = (): JSX.Element => {
   });
 
   useEffect(() => {
-    if (!jwtToken) {
-      navigate("/login");
-    } else {
-      const getTransactionData = async () => {
-        try {
-          await totalTransactionDetails.fetchData();
-          if (jwtToken === "3") {
-            await userDict.fetchData();
-            setProfileDetailsApiResponse(userDict.users);
-          }
-
-          setApiResponse({
-            status: apiStatusConstants.success,
-            data: totalTransactionDetails.transactionData.slice(0, 3),
-          });
-        } catch (error) {
-          setApiResponse({
-            status: apiStatusConstants.failure,
-            data: [],
-            errorMsg: totalTransactionDetails.transactionErrorMes,
-          });
+    const getTransactionData = async () => {
+      try {
+        await totalTransactionDetails.fetchData(userId);
+        if (isUserAdmin) {
+          await userDict.fetchData();
+          setProfileDetailsApiResponse(userDict.users);
         }
-      };
-      getTransactionData();
-    }
-  }, [jwtToken]);
+
+        setApiResponse({
+          status: apiStatusConstants.success,
+          data: totalTransactionDetails.transactionData.slice(0, 3),
+        });
+      } catch (error) {
+        setApiResponse({
+          status: apiStatusConstants.failure,
+          data: [],
+          errorMsg: totalTransactionDetails.transactionErrorMes,
+        });
+      }
+    };
+    getTransactionData();
+  }, [isUserAdmin, userId]);
 
   const renderSuccessView = (): JSX.Element => {
     const { data } = apiResponse;
@@ -124,7 +116,7 @@ const TransactionPage = (): JSX.Element => {
                     transactionsData={transactionsData}
                     eachTransaction={eachTransaction}
                     index={index}
-                    jwtToken={jwtToken}
+                    isUserAdmin={isUserAdmin}
                     user={user}
                     isThisLastThreeTransactions={true}
                   />

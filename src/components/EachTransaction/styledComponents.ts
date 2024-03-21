@@ -8,7 +8,7 @@ interface TextParagraphLengthProps {
   length: boolean;
 }
 
-export const DashTransactionContainer = styled.tr<TextParagraphLengthProps>`
+export const DashTransactionContainer = styled.div<TextParagraphLengthProps>`
   width: 100%;
   // height: 58px;
   flex-shrink: 0;

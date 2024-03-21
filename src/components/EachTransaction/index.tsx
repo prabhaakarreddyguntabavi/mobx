@@ -56,7 +56,7 @@ interface UserDetail {
 }
 interface PropsValues {
   transactionsData: DataValues[];
-  jwtToken: string;
+  isUserAdmin: boolean;
   index: number;
   eachTransaction: DataValues;
   user: UserDetail;
@@ -66,7 +66,7 @@ interface PropsValues {
 const EachTransaction = (props: PropsValues) => {
   const {
     transactionsData,
-    jwtToken,
+    isUserAdmin,
     index,
     eachTransaction,
     user,
@@ -109,11 +109,11 @@ const EachTransaction = (props: PropsValues) => {
       length={transactionsData.length - 1 === index}
       key={eachTransaction.id}
     >
-      {jwtToken === "3" ? (
-        <AdminContainer isAdmin={jwtToken === "3"}>
+      {isUserAdmin ? (
+        <AdminContainer isAdmin={isUserAdmin}>
           {eachTransaction.type === "credit" ? (
             <CreditDebitImage
-              isAdmin={jwtToken === "3"}
+              isAdmin={isUserAdmin}
               src={
                 isThisLastThreeTransactions
                   ? "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706166669/Ellipse_21_bdfznp.png"
@@ -123,7 +123,7 @@ const EachTransaction = (props: PropsValues) => {
             />
           ) : (
             <CreditDebitImage
-              isAdmin={jwtToken === "3"}
+              isAdmin={isUserAdmin}
               src={
                 isThisLastThreeTransactions
                   ? "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705900717/Group_328_hbywun.png"
@@ -134,7 +134,7 @@ const EachTransaction = (props: PropsValues) => {
           )}
 
           <UserProfileDetails>
-            <AdminProfileContainer isAdmin={jwtToken === "3"}>
+            <AdminProfileContainer isAdmin={isUserAdmin}>
               {user?.name !== undefined ? user.name[0].toUpperCase() : ""}
             </AdminProfileContainer>
             <TitleUserParagraph>
@@ -146,20 +146,28 @@ const EachTransaction = (props: PropsValues) => {
         ""
       )}
 
-      <UserContainer isAdmin={jwtToken === "3"}>
-        {jwtToken !== "3" ? (
+      <UserContainer isAdmin={isUserAdmin}>
+        {!isUserAdmin ? (
           <>
             {" "}
             {eachTransaction.type === "credit" ? (
               <CreditDebitImage
-                isAdmin={jwtToken === "3"}
-                src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706182841/Group_73_1_idrnjp.png"
+                isAdmin={isUserAdmin}
+                src={
+                  isThisLastThreeTransactions
+                    ? "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706166669/Ellipse_21_bdfznp.png"
+                    : "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706182841/Group_73_1_idrnjp.png"
+                }
                 alt="image"
               />
             ) : (
               <CreditDebitImage
-                isAdmin={jwtToken === "3"}
-                src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706182841/Group_73_oztkbu.png"
+                isAdmin={isUserAdmin}
+                src={
+                  isThisLastThreeTransactions
+                    ? "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705900717/Group_328_hbywun.png"
+                    : "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706182841/Group_73_oztkbu.png"
+                }
                 alt="image"
               />
             )}
@@ -175,7 +183,7 @@ const EachTransaction = (props: PropsValues) => {
           </TransactionParagraphMobile>
         </TextContainer>
       </UserContainer>
-      <CategoryParagraph isAdmin={jwtToken === "3"}>
+      <CategoryParagraph isAdmin={isUserAdmin}>
         {eachTransaction.category}
       </CategoryParagraph>
       <DateOfTransactionParagraph>
@@ -183,16 +191,16 @@ const EachTransaction = (props: PropsValues) => {
       </DateOfTransactionParagraph>
 
       {eachTransaction.type === "credit" ? (
-        <CreditAmount isAdmin={jwtToken === "3"}>
+        <CreditAmount isAdmin={isUserAdmin}>
           +${eachTransaction.amount}
         </CreditAmount>
       ) : (
-        <DebitAmount isAdmin={jwtToken === "3"}>
+        <DebitAmount isAdmin={isUserAdmin}>
           -${eachTransaction.amount}
         </DebitAmount>
       )}
-      <EditDeleteContainer isAdmin={jwtToken === "3"}>
-        {jwtToken === "3" ? (
+      <EditDeleteContainer isAdmin={isUserAdmin}>
+        {isUserAdmin ? (
           ""
         ) : (
           <>

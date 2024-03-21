@@ -8,7 +8,7 @@ export const NoTransactionsFountHeading = styled.h1`
   margin: auto;
 `;
 
-export const GraphPrargraph = styled.p`
+export const GraphPrargraph = styled.div`
   color: #718ebf;
   font-family: Inter;
   font-size: 16px;
@@ -16,6 +16,7 @@ export const GraphPrargraph = styled.p`
   font-weight: 400;
   line-height: normal;
   margin-left: 30px;
+  margin-top: 10px;
 `;
 
 export const GraphPrargraphSpan = styled.span`

@@ -8,10 +8,9 @@ const TransactionContext = React.createContext({
   transactionOption: "ALLTRANSACTION",
   onChangeTransactionOption: (id: string) => {},
   isUserAdmin: false,
-  onChangeAdmin: () => {},
   totalTransactionDetails: new TransctionStore(),
   userDict: new UsersData(),
-  createNewInstance: () => {},
+  userId: 0,
 });
 
 export default TransactionContext;

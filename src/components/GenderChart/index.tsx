@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ReactLoading from "react-loading";
-import Cookies from "js-cookie";
 
 import { ApiStatus, CrediteAndDebitList } from "../InterfaceDefining";
+import TransactionContext from "../../context/TransactionContext";
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
@@ -66,7 +66,8 @@ interface ApiStatusAndData {
 }
 
 const GenderChart = (): JSX.Element => {
-  const jwtToken: string = Cookies.get("jwt_token")!;
+  const transactionStore = useContext(TransactionContext);
+  const { isUserAdmin, userId } = transactionStore;
 
   const [apiResponse, setApiResponse] = useState<ApiStatusAndData>({
     status: apiStatusConstants.initial,
@@ -83,7 +84,7 @@ const GenderChart = (): JSX.Element => {
       let headers: HeadersInit = {};
       let url: string = "";
 
-      if (jwtToken === "3") {
+      if (isUserAdmin) {
         headers = {
           "Content-Type": "application/json",
           "x-hasura-role": "admin",
@@ -99,7 +100,7 @@ const GenderChart = (): JSX.Element => {
           "x-hasura-role": "user",
           "x-hasura-admin-secret":
             "g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
-          "x-hasura-user-id": jwtToken || "",
+          "x-hasura-user-id": userId.toString(),
         };
         url =
           "https://bursting-gelding-24.hasura.app/api/rest/daywise-totals-7-days";
@@ -115,7 +116,7 @@ const GenderChart = (): JSX.Element => {
       if (response.ok) {
         setApiResponse({
           status: apiStatusConstants.success,
-          data: (jwtToken === "3"
+          data: (isUserAdmin
             ? responseData.last_7_days_transactions_totals_admin
             : responseData.last_7_days_transactions_credit_debit_totals)!,
         });
@@ -129,7 +130,7 @@ const GenderChart = (): JSX.Element => {
     };
 
     getLeaderboardData();
-  }, [jwtToken]);
+  }, [isUserAdmin, userId]);
 
   const renderSuccessView = (): JSX.Element => {
     const { data } = apiResponse;

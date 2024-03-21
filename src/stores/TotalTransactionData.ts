@@ -1,5 +1,4 @@
 import { makeAutoObservable, observable, action } from "mobx";
-import Cookies from "js-cookie";
 
 interface DataValues {
   id?: number;
@@ -27,8 +26,6 @@ interface FetchedOutput {
   transaction_totals_admin?: CreditAndDebit[];
 }
 
-const jwtToken: string = Cookies.get("jwt_token")!;
-
 export class TransctionStore {
   transactionData: DataValues[] = [];
   transactionLoading: boolean = false;
@@ -41,14 +38,18 @@ export class TransctionStore {
   constructor() {
     makeAutoObservable(this, {
       transactionData: observable,
+      creditAndDebit: observable,
       updateData: action,
       deleteTransaction: action,
       updateTransaction: action,
       addTransaction: action,
+      fetchData: action,
+      updateCreditAndDebitTransaction: action,
+      fetchTotalCreditAndDebitData: action,
     });
   }
 
-  async fetchData() {
+  async fetchData(userId: number) {
     let url: string =
       "https://bursting-gelding-24.hasura.app/api/rest/all-transactions";
     let headers: HeadersInit = {
@@ -56,10 +57,10 @@ export class TransctionStore {
       "x-hasura-role": "user",
       "x-hasura-admin-secret":
         "g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
-      "x-hasura-user-id": jwtToken,
+      "x-hasura-user-id": userId.toString(),
     };
 
-    if (jwtToken === "3") {
+    if (userId === 3) {
       headers["x-hasura-role"] = "admin";
       url = "https://bursting-gelding-24.hasura.app/api/rest/all-transactions";
     }
@@ -98,7 +99,6 @@ export class TransctionStore {
   }
 
   updateData(data: DataValues[]) {
-    console.log(data);
     this.transactionData = data.sort(
       (a: { date: string }, b: { date: string }) =>
         new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -107,8 +107,7 @@ export class TransctionStore {
 
   updateTransaction(updateData: DataValues) {
     const previousValue = this.transactionData.find(
-      (eachTransaction) =>
-        eachTransaction.id === updateData.id && eachTransaction
+      (eachTransaction) => eachTransaction.id === updateData.id
     );
 
     const updateCreditAndDebit = this.creditAndDebit.map((eachItem) => {
@@ -120,7 +119,6 @@ export class TransctionStore {
         return eachItem;
       }
     });
-    this.creditAndDebit = updateCreditAndDebit;
 
     const updateTransaction = {
       ...updateData,
@@ -134,8 +132,9 @@ export class TransctionStore {
         return eachTransaction;
       }
     );
-    this.transactionData = updatedTransactions;
-    // this.updateData(updatedTransactions);
+    // this.transactionData = updatedTransactions;
+    this.updateCreditAndDebitTransaction(updateCreditAndDebit);
+    this.updateData(updatedTransactions);
   }
 
   addTransaction(addTransactionData: DataValues) {
@@ -147,6 +146,7 @@ export class TransctionStore {
         return eachItem;
       }
     });
+
     this.creditAndDebit = updateCreditAndDebit;
     const addTransaction = {
       id: addTransactionData.id,
@@ -155,14 +155,14 @@ export class TransctionStore {
       category: addTransactionData.category,
       amount: addTransactionData.amount,
       date: addTransactionData.date,
-      userId: parseInt(jwtToken),
+      userId: addTransactionData.user_id,
     };
     this.updateData([...this.transactionData, addTransaction]);
   }
 
   deleteTransaction(id: number) {
     const previousValue = this.transactionData.find(
-      (eachTransaction) => eachTransaction.id === id && eachTransaction
+      (eachTransaction) => eachTransaction.id === id
     );
 
     const updateCreditAndDebit = this.creditAndDebit.map((eachItem) => {
@@ -177,10 +177,11 @@ export class TransctionStore {
     const updatedData = this.transactionData.filter(
       (eachTransaction) => eachTransaction.id !== id
     );
+
     this.updateData(updatedData);
   }
 
-  async fetchTotalCreditAndDebitData() {
+  async fetchTotalCreditAndDebitData(userId: number) {
     let url: string =
       "https://bursting-gelding-24.hasura.app/api/rest/credit-debit-totals";
     let headers: HeadersInit = {
@@ -188,10 +189,10 @@ export class TransctionStore {
       "x-hasura-role": "user",
       "x-hasura-admin-secret":
         "g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
-      "x-hasura-user-id": jwtToken,
+      "x-hasura-user-id": userId.toString(),
     };
 
-    if (jwtToken === "3") {
+    if (userId === 3) {
       url =
         "https://bursting-gelding-24.hasura.app/api/rest/transaction-totals-admin";
       headers["x-hasura-role"] = "admin";
@@ -207,7 +208,7 @@ export class TransctionStore {
 
     if (response.ok) {
       const outPutData: CreditAndDebit[] = (
-        jwtToken === "3"
+        userId === 3
           ? responseData.transaction_totals_admin
           : responseData.totals_credit_debit_transactions
       )!;

@@ -64,6 +64,8 @@ const MobileSideBar = (props: PropsValue): JSX.Element => {
     onChangeSelectOption,
     onChangeTransactionOption,
     userDict,
+    isUserAdmin,
+    userId,
   } = transactionStore;
 
   const jwtToken: string = Cookies.get("jwt_token")!;
@@ -72,7 +74,7 @@ const MobileSideBar = (props: PropsValue): JSX.Element => {
   const [apiResponse, setApiResponse] = useState<ProfileDetails>({});
 
   let loginUser: ProfileDetails = {
-    ...userDetails.find((eachUser) => eachUser.userId === parseInt(jwtToken)),
+    ...userDetails.find((eachUser) => eachUser.userId === userId),
     name: "",
   };
   if (loginUser === undefined) {
@@ -157,7 +159,7 @@ const MobileSideBar = (props: PropsValue): JSX.Element => {
             />
 
             <TextParagraph selectOption={selectOption === "TRANSACTIONS"}>
-              {jwtToken === "3" ? "All Transactions" : "Transactions"}
+              {isUserAdmin ? "All Transactions" : "Transactions"}
             </TextParagraph>
           </EachTextContainer>
         </Link>

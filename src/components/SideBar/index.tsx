@@ -68,13 +68,15 @@ const SideBar = (): JSX.Element => {
     onChangeSelectOption,
     onChangeTransactionOption,
     userDict,
+    userId,
+    isUserAdmin,
   } = transactionStore;
 
   const navigate: NavigateFunction = useNavigate();
   const [apiResponse, setApiResponse] = useState<ProfileDetails>({});
 
   let loginUser: ProfileDetails = {
-    ...userDetails.find((eachUser) => eachUser.userId === parseInt(jwtToken)),
+    ...userDetails.find((eachUser) => eachUser.userId === userId),
     name: "",
   };
 
@@ -89,8 +91,11 @@ const SideBar = (): JSX.Element => {
         return;
       }
       await userDict.fetchData();
-      userDict.loginUserDetails();
-      setApiResponse(userDict.loginUser);
+      // userDict.loginUserDetails();
+
+      setApiResponse(
+        userDict.users.find((findUser) => findUser.id === userId)!
+      );
     };
 
     fetchProfileData();
@@ -153,7 +158,7 @@ const SideBar = (): JSX.Element => {
             />
 
             <TextParagraph selectOption={selectOption === "TRANSACTIONS"}>
-              {jwtToken === "3" ? "All Transactions" : "Transactions"}
+              {isUserAdmin ? "All Transactions" : "Transactions"}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -185,25 +190,32 @@ const SideBar = (): JSX.Element => {
       </TextContainer>
       {/* Profile Section */}
       <ProfileContainer>
-        <ProfileImageContainer>
-          {loginUser.email !== undefined
-            ? loginUser.email[0].toUpperCase()
-            : ""}
-        </ProfileImageContainer>
-        <ProfileTextContainer>
-          <ProfileName>{apiResponse.name}</ProfileName>
-          <ProfileEmail>{apiResponse.email}</ProfileEmail>
-        </ProfileTextContainer>
+        {loginUser.email !== undefined ? (
+          <>
+            <ProfileImageContainer>
+              {loginUser.email[0].toUpperCase()}
+            </ProfileImageContainer>
+            <ProfileTextContainer>
+              <ProfileName>{loginUser.email.split("@")[0]}</ProfileName>
+              <ProfileEmail>{loginUser.email}</ProfileEmail>
+            </ProfileTextContainer>
+          </>
+        ) : (
+          <></>
+        )}
 
         <Popup
           modal
           trigger={
             <LogoutButton type="button">
-              <ProfileImageContainerMedium>
-                {loginUser.email !== undefined
-                  ? loginUser.email[0].toUpperCase()
-                  : ""}
-              </ProfileImageContainerMedium>
+              {loginUser.email !== undefined ? (
+                <ProfileImageContainerMedium>
+                  {loginUser.email[0].toUpperCase()}
+                </ProfileImageContainerMedium>
+              ) : (
+                ""
+              )}
+
               <ProfileLogoutImage
                 src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706074414/log-out-01_yllnww.png"
                 alt="logout"

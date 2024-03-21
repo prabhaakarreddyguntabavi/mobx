@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import Cookies from "js-cookie";
 import ReactLoading from "react-loading";
 
 import TransactionContext from "../../context/TransactionContext";
@@ -48,19 +47,7 @@ interface PropsValues {
   eachTransaction: EachTransction;
   close: () => void;
 }
-
-interface DataValues {
-  id: string;
-  transaction_name: string;
-  type: string;
-  category: string;
-  amount: number;
-  date: string;
-  user_id: string;
-}
 interface ApiOutputStatus {
-  status: string;
-  data: DataValues[];
   errorMsg?: string;
 }
 
@@ -68,11 +55,9 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
   const { eachTransaction, close }: PropsValues = props;
 
   const transactionStore = useContext(TransactionContext);
-  const { totalTransactionDetails } = transactionStore;
+  const { totalTransactionDetails, userId } = transactionStore;
 
   const [apiResponse, setApiResponse] = useState<ApiOutputStatus>({
-    status: "",
-    data: [],
     errorMsg: undefined,
   });
 
@@ -100,21 +85,8 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
     AddAmount(parseInt(event.target.value));
   };
 
-  const addDateFunction = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    addDate(event.target.value);
-  };
-
-  const jwtToken: string = Cookies.get("jwt_token")!;
-
   const getLeaderboardData = async (): Promise<void> => {
     updateTransaction("inprogress");
-
-    setApiResponse({
-      status: "",
-      data: [],
-    });
 
     let headers: HeadersInit = {};
     let url: string = "";
@@ -133,7 +105,7 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
       "x-hasura-role": "user",
       "x-hasura-admin-secret":
         "g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
-      "x-hasura-user-id": jwtToken,
+      "x-hasura-user-id": userId.toString(),
     };
     url = "https://bursting-gelding-24.hasura.app/api/rest/update-transaction";
 
@@ -145,17 +117,14 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
     const response: Response = await fetch(url, options);
 
     if (response.ok) {
-      totalTransactionDetails.updateTransaction(body);
-      close();
       setApiResponse({
-        status: "",
-        data: [],
         errorMsg: "",
       });
+      close();
+      updateTransaction("");
+      totalTransactionDetails.updateTransaction(body);
     } else {
       setApiResponse({
-        status: "",
-        data: [],
         errorMsg: "Details are in correct",
       });
     }
@@ -243,7 +212,7 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
           type="datetime-local"
           id="addtransactionamount"
           value={setTimeFormate(date)}
-          onChange={addDateFunction}
+          onChange={(event) => addDate(event.target.value)}
           placeholder="Select Date"
         />
       </AddTransactionInputContainer>
@@ -257,7 +226,7 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
       >
         {addTransactionStatus === "inprogress" ? (
           <ReactLoading
-            type={"bars"}
+            type={"spin"}
             color={"#ffffff"}
             height={20}
             width={30}

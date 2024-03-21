@@ -43,7 +43,8 @@ const userDetails: UserListProps[] = [
 
 export const LoginForm = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
-  const { createNewInstance } = transactionStore;
+
+  const { userDict } = transactionStore;
 
   const [emailId, onChangeEmail] = useState<string>("");
   const [password, onChangePassword] = useState<string>("");
@@ -91,6 +92,10 @@ export const LoginForm = (): JSX.Element => {
       Cookies.set("jwt_token", loginUserDict.userId.toString(), {
         expires: 30,
       });
+
+      const user = { email: emailId, password };
+      localStorage.setItem("userDetails", JSON.stringify(user));
+      // userDict.getUserId(user);
       navigate("/");
     }
   };

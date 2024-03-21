@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import Cookies from "js-cookie";
 import Popup from "reactjs-popup";
 import ReactLoading from "react-loading";
 
@@ -53,10 +52,9 @@ interface DataValues {
 }
 
 const Header = (): JSX.Element => {
-  const jwtToken: string = Cookies.get("jwt_token")!;
-
   const transactionStore = useContext(TransactionContext);
-  const { selectOption, totalTransactionDetails } = transactionStore;
+  const { selectOption, totalTransactionDetails, isUserAdmin, userId } =
+    transactionStore;
 
   const getCurrentDateTime = (): string => {
     const now: Date = new Date();
@@ -133,7 +131,7 @@ const Header = (): JSX.Element => {
         category,
         amount,
         date,
-        user_id: jwtToken,
+        user_id: userId.toString(),
       };
 
       headers = {
@@ -141,7 +139,7 @@ const Header = (): JSX.Element => {
         "x-hasura-role": "user",
         "x-hasura-admin-secret":
           "g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
-        "x-hasura-user-id": jwtToken,
+        "x-hasura-user-id": userId.toString(),
       };
       url = "https://bursting-gelding-24.hasura.app/api/rest/add-transaction";
 
@@ -152,16 +150,15 @@ const Header = (): JSX.Element => {
       };
       const response: Response = await fetch(url, options);
       const responseData = await response.json();
-      console.log("responseData");
-      console.log();
 
       if (response.ok) {
-        totalTransactionDetails.addTransaction(
-          responseData.insert_transactions_one
-        );
         updateTransction("");
         updateValues();
         close();
+        totalTransactionDetails.addTransaction({
+          ...responseData.insert_transactions_one,
+          user_id: userId,
+        });
       } else {
         updateTransction("");
       }
@@ -178,14 +175,14 @@ const Header = (): JSX.Element => {
           modal
           trigger={
             <PopupContainer>
-              <AddTransactionButton disabled={jwtToken === "3"} type="button">
+              <AddTransactionButton disabled={isUserAdmin} type="button">
                 <ButtonImage
                   src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705727508/plus_ndqvby.png"
                   alt="plus"
                 />{" "}
                 Add Transaction
               </AddTransactionButton>
-              <MobileAddTransactions type="button" disabled={jwtToken === "3"}>
+              <MobileAddTransactions type="button" disabled={isUserAdmin}>
                 <IoAddCircleOutline className="add-icon" />
               </MobileAddTransactions>
             </PopupContainer>

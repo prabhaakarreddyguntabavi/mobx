@@ -10,6 +10,7 @@ import Header from "../Header";
 import TransactionContext from "../../context/TransactionContext";
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
+import Pagination from "../Pagination"; // Import Pagination component
 
 import {
   TransactionHomePage,
@@ -83,6 +84,8 @@ const TransactionPage = (): JSX.Element => {
     onChangeSelectOption,
     totalTransactionDetails,
     userDict,
+    isUserAdmin,
+    userId,
   } = transactionStore;
 
   const jwtToken: string = Cookies.get("jwt_token")!;
@@ -98,6 +101,8 @@ const TransactionPage = (): JSX.Element => {
   >([]);
 
   const [filterOption, onChangeFilter] = useState<string>("alltransactions");
+  const [currentPage, setCurrentPage] = useState<number>(1); // Track current page
+  const [itemsPerPage] = useState<number>(10); // Number of items to display per page
 
   observe(totalTransactionDetails, (): void => {
     setApiResponse({
@@ -112,8 +117,8 @@ const TransactionPage = (): JSX.Element => {
     } else {
       const getTransactionData = async () => {
         try {
-          await totalTransactionDetails.fetchData();
-          if (jwtToken === "3") {
+          await totalTransactionDetails.fetchData(userId);
+          if (isUserAdmin) {
             await userDict.fetchData();
             setProfileDetailsApiResponse(userDict.users);
           }
@@ -132,7 +137,7 @@ const TransactionPage = (): JSX.Element => {
       };
       getTransactionData();
     }
-  }, [jwtToken]);
+  }, [jwtToken, isUserAdmin, userId]);
 
   const renderSuccessView = (): JSX.Element => {
     const { data } = apiResponse;
@@ -145,51 +150,62 @@ const TransactionPage = (): JSX.Element => {
       );
     }
 
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = transactionsData.slice(
+      indexOfFirstItem,
+      indexOfLastItem
+    );
+
     if (transactionsData.length !== 0) {
       return (
         <>
           <HeadingDashTransactionContainer>
-            {jwtToken === "3" ? (
+            {isUserAdmin ? (
               <TransactionUserName>User Name</TransactionUserName>
             ) : (
               ""
             )}
-            <TransactionName isAdmin={jwtToken === "3"}>
+            <TransactionName isAdmin={isUserAdmin}>
               Transaction Name
             </TransactionName>
-            <TransactionCategory isAdmin={jwtToken === "3"}>
+            <TransactionCategory isAdmin={isUserAdmin}>
               Category
             </TransactionCategory>
-            <TransactionDate isAdmin={jwtToken === "3"}>Date</TransactionDate>
-            <TransactionAmount isAdmin={jwtToken === "3"}>
-              Amount
-            </TransactionAmount>
+            <TransactionDate isAdmin={isUserAdmin}>Date</TransactionDate>
+            <TransactionAmount isAdmin={isUserAdmin}>Amount</TransactionAmount>
           </HeadingDashTransactionContainer>
+          {currentItems.map((eachTransaction: DataValues, index: number) => {
+            let user: UserDetail;
 
-          {transactionsData.map(
-            (eachTransaction: DataValues, index: number) => {
-              let user: UserDetail;
-
-              if (allProfileDetails === undefined) {
-                user = { name: "Admin" };
-              } else {
-                user = allProfileDetails.find(
-                  (findUser: UserDetail) =>
-                    findUser.id === eachTransaction.userId
-                )!;
-              }
-
-              return (
-                <EachTransaction
-                  transactionsData={transactionsData}
-                  eachTransaction={eachTransaction}
-                  index={index}
-                  jwtToken={jwtToken}
-                  user={user}
-                  isThisLastThreeTransactions={false}
-                />
-              );
+            if (allProfileDetails === undefined) {
+              user = { name: "Admin" };
+            } else {
+              user = allProfileDetails.find(
+                (findUser: UserDetail) => findUser.id === eachTransaction.userId
+              )!;
             }
+
+            return (
+              <EachTransaction
+                transactionsData={transactionsData}
+                eachTransaction={eachTransaction}
+                index={index}
+                isUserAdmin={isUserAdmin}
+                user={user}
+                isThisLastThreeTransactions={false}
+              />
+            );
+          })}
+          {transactionsData.length > 10 ? (
+            <Pagination
+              itemsPerPage={itemsPerPage}
+              totalItems={transactionsData.length}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          ) : (
+            ""
           )}
         </>
       );

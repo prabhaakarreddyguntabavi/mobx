@@ -42,7 +42,7 @@ interface ApiOutputStatus {
 
 const TotalDebitCredit = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
-  const { totalTransactionDetails } = transactionStore;
+  const { totalTransactionDetails, userId } = transactionStore;
 
   const [apiResponse, setApiResponse] = useState<ApiOutputStatus>({
     status: apiStatusConstants.initial,
@@ -58,7 +58,7 @@ const TotalDebitCredit = (): JSX.Element => {
     ],
   });
 
-  observe(totalTransactionDetails, (): void => {
+  observe(totalTransactionDetails.creditAndDebit, (): void => {
     setApiResponse({
       status: apiStatusConstants.success,
       data: totalTransactionDetails.creditAndDebit,
@@ -82,7 +82,7 @@ const TotalDebitCredit = (): JSX.Element => {
       });
 
       try {
-        await totalTransactionDetails.fetchTotalCreditAndDebitData();
+        await totalTransactionDetails.fetchTotalCreditAndDebitData(userId);
         setApiResponse({
           status: apiStatusConstants.success,
           data: totalTransactionDetails.creditAndDebit,
@@ -105,7 +105,7 @@ const TotalDebitCredit = (): JSX.Element => {
     };
 
     getLeaderboardData();
-  }, []);
+  }, [userId]);
 
   const renderSuccessView = (): JSX.Element => {
     let data: DataOutPut[] = apiResponse.data;
@@ -175,4 +175,4 @@ const TotalDebitCredit = (): JSX.Element => {
   return <AmountDetailsContainer>{renderLeaderboard()}</AmountDetailsContainer>;
 };
 
-export default observer(TotalDebitCredit);
+export default TotalDebitCredit;

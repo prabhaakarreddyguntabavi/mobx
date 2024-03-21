@@ -7,32 +7,49 @@ import LoginForm from "./components/LoginForm";
 import Dashboard from "./components/Dashboard";
 import TransactionPage from "./components/TransactionPage";
 import ProfileDetails from "./components/ProfileDetails";
-import Cookies from "js-cookie";
 import { TransctionStore } from "./stores/TotalTransactionData";
 import { UsersData } from "./stores/UsersDetails";
+import { observer } from "mobx-react";
+import { observe } from "mobx";
 
 let totalTransactionDetails = new TransctionStore();
 let userDict = new UsersData();
 
+interface UserDetails {
+  email?: string;
+  password?: string;
+}
+
 const App = (): JSX.Element => {
   const [selectOption, onChangeSelect] = useState<string>("DASHBOARD");
 
+  const [userId, updateUserId] = useState<number>(0);
+
   const [isUserAdmin, onChangeAdmin] = useState<boolean>(false);
 
-  useEffect((): void => {
-    const jwtToken: string = Cookies.get("jwt_token")!;
+  const emailAndPassword: UserDetails = JSON.parse(
+    localStorage.getItem("userDetails")!
+  );
 
-    if (jwtToken === "3") {
+  const getLeaderboardData = async (): Promise<void> => {
+    await userDict.getUserId();
+  };
+
+  if (emailAndPassword !== undefined) {
+    getLeaderboardData();
+  }
+
+  observe(userDict, (): void => {
+    updateUserId(userDict.userId);
+  });
+
+  useEffect((): void => {
+    if (userId === 3) {
       onChangeAdmin(true);
     } else {
       onChangeAdmin(false);
     }
-  }, []);
-
-  const createNewInstance = () => {
-    totalTransactionDetails.fetchData();
-    userDict.fetchData();
-  };
+  }, [userId]);
 
   const [transactionOption, selectTransactionOption] =
     useState<string>("ALLTRANSACTION");
@@ -48,15 +65,14 @@ const App = (): JSX.Element => {
   return (
     <TransactionContext.Provider
       value={{
+        userId,
         selectOption,
         onChangeSelectOption,
         transactionOption,
         onChangeTransactionOption,
         isUserAdmin,
-        onChangeAdmin: () => onChangeAdmin,
         totalTransactionDetails,
         userDict,
-        createNewInstance,
       }}
     >
       <BrowserRouter>
@@ -71,4 +87,4 @@ const App = (): JSX.Element => {
   );
 };
 
-export default App;
+export default observer(App);

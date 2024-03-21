@@ -33,9 +33,9 @@ export const TransactionBodyContainer = styled.div`
   }
 `;
 
-export const TransactionsContainer = styled.table`
+export const TransactionsContainer = styled.div`
   display: flex;
-  width: 95%;
+  width: 90%;
   min-height: 80vh;
   //   height: 210px;
   padding: 12px 25px 8px 10px;
@@ -64,7 +64,7 @@ export const TransactionsContainer = styled.table`
   }
 `;
 
-export const HeadingDashTransactionContainer = styled.tr`
+export const HeadingDashTransactionContainer = styled.div`
   width: 100%;
   // height: 58px;
   flex-shrink: 0;

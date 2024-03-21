@@ -22,6 +22,7 @@ import {
   DetailsContainer,
   FailureContainer,
 } from "./styledComponents";
+import { observe } from "mobx";
 
 interface apiStatusValues {
   initial: string;
@@ -61,7 +62,8 @@ const apiStatusConstants: apiStatusValues = {
 
 const ProfileDetails = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
-  const { selectOption, onChangeSelectOption, userDict } = transactionStore;
+  const { selectOption, onChangeSelectOption, userDict, userId } =
+    transactionStore;
 
   const navigate = useNavigate();
   const jwtToken = Cookies.get("jwt_token");
@@ -69,6 +71,13 @@ const ProfileDetails = (): JSX.Element => {
   const [apiResponse, setApiResponse] = useState<ApiOutputStatus>({
     status: apiStatusConstants.initial,
     data: {},
+  });
+
+  observe(userDict, (): void => {
+    setApiResponse({
+      status: apiStatusConstants.success,
+      data: userDict.loginUser,
+    });
   });
 
   useEffect((): void => {
@@ -82,6 +91,7 @@ const ProfileDetails = (): JSX.Element => {
         });
 
         try {
+          // await userDict.getUserId();
           await userDict.fetchData();
           userDict.loginUserDetails();
           setApiResponse({
@@ -99,151 +109,154 @@ const ProfileDetails = (): JSX.Element => {
 
       getLeaderboardData();
     }
-  }, [jwtToken]);
+  }, [jwtToken, userId]);
 
   const renderSuccessView = (): JSX.Element => {
     const { data } = apiResponse;
+    console.log(data);
+    if (data !== undefined) {
+      return (
+        <>
+          <ProfileImageContainer>
+            <ProfileImage>
+              {data.name ? data.name[0].toUpperCase() : ""}
+            </ProfileImage>
+          </ProfileImageContainer>
+          <DetailsContainer>
+            <AddTransactionInputContainer>
+              <AddTransactionLabel htmlFor="addtransactionname">
+                Your Name
+              </AddTransactionLabel>
+              <AddTransactionNameInput
+                type="text"
+                id="addtransactionname"
+                value={data.name}
+                placeholder="Your Name"
+                readOnly={true}
+              />
+            </AddTransactionInputContainer>
 
-    return (
-      <>
-        <ProfileImageContainer>
-          <ProfileImage>
-            {data?.name ? data.name[0].toUpperCase() : ""}
-          </ProfileImage>
-        </ProfileImageContainer>
-        <DetailsContainer>
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="addtransactionname">
-              Your Name
-            </AddTransactionLabel>
-            <AddTransactionNameInput
-              type="text"
-              id="addtransactionname"
-              value={data.name}
-              placeholder="Your Name"
-              readOnly={true}
-            />
-          </AddTransactionInputContainer>
+            <AddTransactionInputContainer>
+              <AddTransactionLabel htmlFor="addtransactionname">
+                User Name
+              </AddTransactionLabel>
+              <AddTransactionNameInput
+                type="text"
+                id="addtransactionname"
+                value={data.name}
+                placeholder="User Name"
+                readOnly={true}
+              />
+            </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="addtransactionname">
-              User Name
-            </AddTransactionLabel>
-            <AddTransactionNameInput
-              type="text"
-              id="addtransactionname"
-              value={data.name}
-              placeholder="User Name"
-              readOnly={true}
-            />
-          </AddTransactionInputContainer>
+            <AddTransactionInputContainer>
+              <AddTransactionLabel htmlFor="addtransactionname">
+                Email
+              </AddTransactionLabel>
+              <AddTransactionNameInput
+                type="email"
+                id="addtransactionname"
+                value={data.email}
+                placeholder="Email"
+                readOnly={true}
+              />
+            </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="addtransactionname">
-              Email
-            </AddTransactionLabel>
-            <AddTransactionNameInput
-              type="email"
-              id="addtransactionname"
-              value={data.email}
-              placeholder="Email"
-              readOnly={true}
-            />
-          </AddTransactionInputContainer>
+            <AddTransactionInputContainer>
+              <AddTransactionLabel htmlFor="addtransactionname">
+                Password
+              </AddTransactionLabel>
+              <AddTransactionNameInput
+                type="password"
+                id="addtransactionname"
+                value={data.email}
+                placeholder="Password"
+                readOnly={true}
+              />
+            </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="addtransactionname">
-              Password
-            </AddTransactionLabel>
-            <AddTransactionNameInput
-              type="password"
-              id="addtransactionname"
-              value={data.email}
-              placeholder="Password"
-              readOnly={true}
-            />
-          </AddTransactionInputContainer>
+            <AddTransactionInputContainer>
+              <AddTransactionLabel htmlFor="addtransactionamount">
+                Date of Birth
+              </AddTransactionLabel>
+              <AddTransactionNameInput
+                type="date"
+                id="addtransactionamount"
+                value={data.dateOfBirth}
+                placeholder="Date of Birth"
+                readOnly={true}
+              />
+            </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="addtransactionamount">
-              Date of Birth
-            </AddTransactionLabel>
-            <AddTransactionNameInput
-              type="date"
-              id="addtransactionamount"
-              value={data.dateOfBirth}
-              placeholder="Date of Birth"
-              readOnly={true}
-            />
-          </AddTransactionInputContainer>
+            <AddTransactionInputContainer>
+              <AddTransactionLabel htmlFor="addtransactionname">
+                Present Address
+              </AddTransactionLabel>
+              <AddTransactionNameInput
+                type="text"
+                id="addtransactionname"
+                value={data.present_address}
+                placeholder="Present Address"
+                readOnly={true}
+              />
+            </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="addtransactionname">
-              Present Address
-            </AddTransactionLabel>
-            <AddTransactionNameInput
-              type="text"
-              id="addtransactionname"
-              value={data.present_address}
-              placeholder="Present Address"
-              readOnly={true}
-            />
-          </AddTransactionInputContainer>
+            <AddTransactionInputContainer>
+              <AddTransactionLabel htmlFor="addtransactionname">
+                Permanent Address
+              </AddTransactionLabel>
+              <AddTransactionNameInput
+                type="text"
+                id="addtransactionname"
+                value={data.permanent_address}
+                placeholder="Permanent Address"
+                readOnly={true}
+              />
+            </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="addtransactionname">
-              Permanent Address
-            </AddTransactionLabel>
-            <AddTransactionNameInput
-              type="text"
-              id="addtransactionname"
-              value={data.permanent_address}
-              placeholder="Permanent Address"
-              readOnly={true}
-            />
-          </AddTransactionInputContainer>
+            <AddTransactionInputContainer>
+              <AddTransactionLabel htmlFor="addtransactionamount">
+                City
+              </AddTransactionLabel>
+              <AddTransactionNameInput
+                type="text"
+                id="addtransactionamount"
+                value={data.city}
+                placeholder="City"
+                readOnly={true}
+              />
+            </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="addtransactionamount">
-              City
-            </AddTransactionLabel>
-            <AddTransactionNameInput
-              type="text"
-              id="addtransactionamount"
-              value={data.city}
-              placeholder="City"
-              readOnly={true}
-            />
-          </AddTransactionInputContainer>
+            <AddTransactionInputContainer>
+              <AddTransactionLabel htmlFor="addtransactionamount">
+                Postal Code
+              </AddTransactionLabel>
+              <AddTransactionNameInput
+                type="number"
+                id="addtransactionamount"
+                value={data.postal_code}
+                placeholder="Postal Code"
+                readOnly={true}
+              />
+            </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="addtransactionamount">
-              Postal Code
-            </AddTransactionLabel>
-            <AddTransactionNameInput
-              type="number"
-              id="addtransactionamount"
-              value={data.postal_code}
-              placeholder="Postal Code"
-              readOnly={true}
-            />
-          </AddTransactionInputContainer>
-
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="addtransactionamount">
-              Country
-            </AddTransactionLabel>
-            <AddTransactionNameInput
-              type="text"
-              id="addtransactionamount"
-              value={data.country}
-              readOnly={true}
-              placeholder="Country"
-            />
-          </AddTransactionInputContainer>
-        </DetailsContainer>
-      </>
-    );
+            <AddTransactionInputContainer>
+              <AddTransactionLabel htmlFor="addtransactionamount">
+                Country
+              </AddTransactionLabel>
+              <AddTransactionNameInput
+                type="text"
+                id="addtransactionamount"
+                value={data.country}
+                readOnly={true}
+                placeholder="Country"
+              />
+            </AddTransactionInputContainer>
+          </DetailsContainer>
+        </>
+      );
+    }
+    return <div>Loading...</div>;
   };
 
   const renderLoadingView = (): JSX.Element => (
