@@ -95,7 +95,7 @@ export const LoginForm = (): JSX.Element => {
 
       const user = { email: emailId, password };
       localStorage.setItem("userDetails", JSON.stringify(user));
-      // userDict.getUserId(user);
+      userDict.getUserId(user);
       navigate("/");
     }
   };

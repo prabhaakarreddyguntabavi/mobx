@@ -110,7 +110,7 @@ export class TransctionStore {
       (eachTransaction) => eachTransaction.id === updateData.id
     );
 
-    const updateCreditAndDebit = this.creditAndDebit.map((eachItem) => {
+    let updateCreditAndDebit = this.creditAndDebit.map((eachItem) => {
       if (eachItem.type === previousValue?.type) {
         const sum = eachItem.sum - previousValue!.amount;
         const totalAmount = sum + updateData.amount;
@@ -120,34 +120,42 @@ export class TransctionStore {
       }
     });
 
+    if (
+      previousValue?.type !== updateData.type &&
+      previousValue?.id === updateData.id
+    ) {
+      if (previousValue?.type === "credit") {
+      }
+    }
+
     const updateTransaction = {
       ...updateData,
       transactionName: updateData.name,
     };
-    const updatedTransactions: DataValues[] = this.transactionData.map(
-      (eachTransaction) => {
-        if (eachTransaction.id === updateData.id) {
-          return updateTransaction;
-        }
-        return eachTransaction;
-      }
-    );
-    // this.transactionData = updatedTransactions;
-    this.updateCreditAndDebitTransaction(updateCreditAndDebit);
-    this.updateData(updatedTransactions);
-  }
 
-  addTransaction(addTransactionData: DataValues) {
-    const updateCreditAndDebit = this.creditAndDebit.map((eachItem) => {
-      if (eachItem.type === addTransactionData?.type) {
-        const sum = eachItem.sum + addTransactionData!.amount;
-        return { ...eachItem, sum };
-      } else {
-        return eachItem;
+    this.transactionData.forEach((eachTransaction, index) => {
+      if (eachTransaction.id === updateData.id) {
+        this.transactionData[index] = updateTransaction;
       }
     });
 
+    this.updateCreditAndDebitTransaction(updateCreditAndDebit);
+  }
+
+  addTransaction(addTransactionData: DataValues) {
+    const updateCreditAndDebit: CreditAndDebit[] = this.creditAndDebit.map(
+      (eachItem) => {
+        if (eachItem.type === addTransactionData?.type) {
+          const sum = eachItem.sum + addTransactionData!.amount;
+          return { ...eachItem, sum };
+        } else {
+          return eachItem;
+        }
+      }
+    );
+
     this.creditAndDebit = updateCreditAndDebit;
+
     const addTransaction = {
       id: addTransactionData.id,
       transactionName: addTransactionData.transaction_name,
@@ -157,7 +165,8 @@ export class TransctionStore {
       date: addTransactionData.date,
       userId: addTransactionData.user_id,
     };
-    this.updateData([...this.transactionData, addTransaction]);
+
+    this.transactionData.unshift(addTransaction);
   }
 
   deleteTransaction(id: number) {
@@ -165,20 +174,22 @@ export class TransctionStore {
       (eachTransaction) => eachTransaction.id === id
     );
 
-    const updateCreditAndDebit = this.creditAndDebit.map((eachItem) => {
-      if (eachItem.type === previousValue?.type) {
-        const sum = eachItem.sum - previousValue!.amount;
-        return { ...eachItem, sum };
-      } else {
-        return eachItem;
+    const updateCreditAndDebit: CreditAndDebit[] = this.creditAndDebit.map(
+      (eachItem) => {
+        if (eachItem.type === previousValue?.type) {
+          const sum = eachItem.sum - previousValue!.amount;
+          return { ...eachItem, sum };
+        } else {
+          return eachItem;
+        }
       }
-    });
-    this.creditAndDebit = updateCreditAndDebit;
-    const updatedData = this.transactionData.filter(
-      (eachTransaction) => eachTransaction.id !== id
     );
 
-    this.updateData(updatedData);
+    this.creditAndDebit = updateCreditAndDebit;
+    const indexNumber: number = this.transactionData.findIndex(
+      (each) => each.id === id
+    );
+    this.transactionData.splice(indexNumber, 1);
   }
 
   async fetchTotalCreditAndDebitData(userId: number) {

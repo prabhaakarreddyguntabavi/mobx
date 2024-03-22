@@ -17,6 +17,8 @@ import {
   GraphTextParagraph,
   GraphHeaderContainer,
 } from "./styledComponents";
+import { observe } from "mobx";
+import { v4 as uuidv4 } from "uuid";
 
 const apiStatusConstants: ApiStatus = {
   initial: "INITIAL",
@@ -67,11 +69,17 @@ interface ApiStatusAndData {
 
 const GenderChart = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
-  const { isUserAdmin, userId } = transactionStore;
+  const { isUserAdmin, userId, totalTransactionDetails } = transactionStore;
+
+  const [reRender, updateValue] = useState<string>();
 
   const [apiResponse, setApiResponse] = useState<ApiStatusAndData>({
     status: apiStatusConstants.initial,
     data: [],
+  });
+
+  observe(totalTransactionDetails.transactionData, (): void => {
+    updateValue(uuidv4());
   });
 
   useEffect((): void => {
@@ -130,7 +138,7 @@ const GenderChart = (): JSX.Element => {
     };
 
     getLeaderboardData();
-  }, [isUserAdmin, userId]);
+  }, [isUserAdmin, userId, reRender]);
 
   const renderSuccessView = (): JSX.Element => {
     const { data } = apiResponse;

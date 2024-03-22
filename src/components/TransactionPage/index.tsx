@@ -104,7 +104,7 @@ const TransactionPage = (): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(1); // Track current page
   const [itemsPerPage] = useState<number>(10); // Number of items to display per page
 
-  observe(totalTransactionDetails, (): void => {
+  observe(totalTransactionDetails.transactionData, (): void => {
     setApiResponse({
       status: apiStatusConstants.success,
       data: totalTransactionDetails.transactionData,
@@ -119,6 +119,7 @@ const TransactionPage = (): JSX.Element => {
         try {
           await totalTransactionDetails.fetchData(userId);
           if (isUserAdmin) {
+            await userDict.getUserId();
             await userDict.fetchData();
             setProfileDetailsApiResponse(userDict.users);
           }

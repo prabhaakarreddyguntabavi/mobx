@@ -73,7 +73,7 @@ const ProfileDetails = (): JSX.Element => {
     data: {},
   });
 
-  observe(userDict, (): void => {
+  observe(userDict.loginUser, (): void => {
     setApiResponse({
       status: apiStatusConstants.success,
       data: userDict.loginUser,
@@ -91,7 +91,7 @@ const ProfileDetails = (): JSX.Element => {
         });
 
         try {
-          // await userDict.getUserId();
+          await userDict.getUserId();
           await userDict.fetchData();
           userDict.loginUserDetails();
           setApiResponse({
@@ -113,7 +113,7 @@ const ProfileDetails = (): JSX.Element => {
 
   const renderSuccessView = (): JSX.Element => {
     const { data } = apiResponse;
-    console.log(data);
+
     if (data !== undefined) {
       return (
         <>
@@ -124,12 +124,12 @@ const ProfileDetails = (): JSX.Element => {
           </ProfileImageContainer>
           <DetailsContainer>
             <AddTransactionInputContainer>
-              <AddTransactionLabel htmlFor="addtransactionname">
+              <AddTransactionLabel htmlFor="userFirstName">
                 Your Name
               </AddTransactionLabel>
               <AddTransactionNameInput
                 type="text"
-                id="addtransactionname"
+                id="userFirstName"
                 value={data.name}
                 placeholder="Your Name"
                 readOnly={true}
@@ -137,12 +137,12 @@ const ProfileDetails = (): JSX.Element => {
             </AddTransactionInputContainer>
 
             <AddTransactionInputContainer>
-              <AddTransactionLabel htmlFor="addtransactionname">
+              <AddTransactionLabel htmlFor="userName">
                 User Name
               </AddTransactionLabel>
               <AddTransactionNameInput
                 type="text"
-                id="addtransactionname"
+                id="userName"
                 value={data.name}
                 placeholder="User Name"
                 readOnly={true}
@@ -150,12 +150,12 @@ const ProfileDetails = (): JSX.Element => {
             </AddTransactionInputContainer>
 
             <AddTransactionInputContainer>
-              <AddTransactionLabel htmlFor="addtransactionname">
+              <AddTransactionLabel htmlFor="userEmail">
                 Email
               </AddTransactionLabel>
               <AddTransactionNameInput
                 type="email"
-                id="addtransactionname"
+                id="userEmail"
                 value={data.email}
                 placeholder="Email"
                 readOnly={true}
@@ -163,12 +163,12 @@ const ProfileDetails = (): JSX.Element => {
             </AddTransactionInputContainer>
 
             <AddTransactionInputContainer>
-              <AddTransactionLabel htmlFor="addtransactionname">
+              <AddTransactionLabel htmlFor="userPassword">
                 Password
               </AddTransactionLabel>
               <AddTransactionNameInput
                 type="password"
-                id="addtransactionname"
+                id="userPassword"
                 value={data.email}
                 placeholder="Password"
                 readOnly={true}
@@ -176,12 +176,12 @@ const ProfileDetails = (): JSX.Element => {
             </AddTransactionInputContainer>
 
             <AddTransactionInputContainer>
-              <AddTransactionLabel htmlFor="addtransactionamount">
+              <AddTransactionLabel htmlFor="userDateOfBirth">
                 Date of Birth
               </AddTransactionLabel>
               <AddTransactionNameInput
                 type="date"
-                id="addtransactionamount"
+                id="userDateOfBirth"
                 value={data.dateOfBirth}
                 placeholder="Date of Birth"
                 readOnly={true}
@@ -189,12 +189,12 @@ const ProfileDetails = (): JSX.Element => {
             </AddTransactionInputContainer>
 
             <AddTransactionInputContainer>
-              <AddTransactionLabel htmlFor="addtransactionname">
+              <AddTransactionLabel htmlFor="userPresentAddress">
                 Present Address
               </AddTransactionLabel>
               <AddTransactionNameInput
                 type="text"
-                id="addtransactionname"
+                id="userPresentAddress"
                 value={data.present_address}
                 placeholder="Present Address"
                 readOnly={true}
@@ -202,12 +202,12 @@ const ProfileDetails = (): JSX.Element => {
             </AddTransactionInputContainer>
 
             <AddTransactionInputContainer>
-              <AddTransactionLabel htmlFor="addtransactionname">
+              <AddTransactionLabel htmlFor="userPermanentAddress">
                 Permanent Address
               </AddTransactionLabel>
               <AddTransactionNameInput
                 type="text"
-                id="addtransactionname"
+                id="userPermanentAddress"
                 value={data.permanent_address}
                 placeholder="Permanent Address"
                 readOnly={true}
@@ -215,12 +215,10 @@ const ProfileDetails = (): JSX.Element => {
             </AddTransactionInputContainer>
 
             <AddTransactionInputContainer>
-              <AddTransactionLabel htmlFor="addtransactionamount">
-                City
-              </AddTransactionLabel>
+              <AddTransactionLabel htmlFor="userCity">City</AddTransactionLabel>
               <AddTransactionNameInput
                 type="text"
-                id="addtransactionamount"
+                id="userCity"
                 value={data.city}
                 placeholder="City"
                 readOnly={true}
@@ -228,12 +226,12 @@ const ProfileDetails = (): JSX.Element => {
             </AddTransactionInputContainer>
 
             <AddTransactionInputContainer>
-              <AddTransactionLabel htmlFor="addtransactionamount">
+              <AddTransactionLabel htmlFor="userPostalCode">
                 Postal Code
               </AddTransactionLabel>
               <AddTransactionNameInput
                 type="number"
-                id="addtransactionamount"
+                id="userPostalCode"
                 value={data.postal_code}
                 placeholder="Postal Code"
                 readOnly={true}
@@ -241,12 +239,12 @@ const ProfileDetails = (): JSX.Element => {
             </AddTransactionInputContainer>
 
             <AddTransactionInputContainer>
-              <AddTransactionLabel htmlFor="addtransactionamount">
+              <AddTransactionLabel htmlFor="userCountry">
                 Country
               </AddTransactionLabel>
               <AddTransactionNameInput
                 type="text"
-                id="addtransactionamount"
+                id="userCountry"
                 value={data.country}
                 readOnly={true}
                 placeholder="Country"

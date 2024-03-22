@@ -22,9 +22,7 @@ interface UserDetails {
 
 const App = (): JSX.Element => {
   const [selectOption, onChangeSelect] = useState<string>("DASHBOARD");
-
   const [userId, updateUserId] = useState<number>(0);
-
   const [isUserAdmin, onChangeAdmin] = useState<boolean>(false);
 
   const emailAndPassword: UserDetails = JSON.parse(
@@ -87,4 +85,4 @@ const App = (): JSX.Element => {
   );
 };
 
-export default observer(App);
+export default App;

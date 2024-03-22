@@ -24,6 +24,13 @@ interface UserEmailAndPassword {
   email?: string;
   password?: string;
 }
+interface GetUserId {
+  get_user_id: ID[];
+}
+
+interface ID {
+  id: number;
+}
 
 export class UsersData {
   userId: number = 0;
@@ -94,7 +101,7 @@ export class UsersData {
     )!;
   }
 
-  async getUserId() {
+  async getUserId(user?: UserEmailAndPassword) {
     const emailAndPassword: UserEmailAndPassword = JSON.parse(
       localStorage.getItem("userDetails")!
     );
@@ -106,14 +113,15 @@ export class UsersData {
       "x-hasura-admin-secret":
         "g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzYY2BtF",
     };
+
     const options: RequestInit = {
       method: "POST",
       headers: headers,
-      body: JSON.stringify(emailAndPassword),
+      body: JSON.stringify(user === undefined ? emailAndPassword : user),
     };
 
     const response: Response = await fetch(url, options);
-    const responseData = await response.json();
+    const responseData: GetUserId = await response.json();
 
     if (response.ok) {
       this.userId = responseData.get_user_id[0].id;

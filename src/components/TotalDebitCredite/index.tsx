@@ -58,7 +58,7 @@ const TotalDebitCredit = (): JSX.Element => {
     ],
   });
 
-  observe(totalTransactionDetails.creditAndDebit, (): void => {
+  observe(totalTransactionDetails.transactionData, (): void => {
     setApiResponse({
       status: apiStatusConstants.success,
       data: totalTransactionDetails.creditAndDebit,

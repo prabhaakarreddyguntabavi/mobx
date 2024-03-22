@@ -59,7 +59,8 @@ const TransactionPage = (): JSX.Element => {
     UserDetail[]
   >([]);
 
-  observe(totalTransactionDetails, (): void => {
+  observe(totalTransactionDetails.transactionData, (): void => {
+    console.log("Prabhakar Testing ");
     setApiResponse({
       status: apiStatusConstants.success,
       data: totalTransactionDetails.transactionData.slice(0, 3),
@@ -71,6 +72,7 @@ const TransactionPage = (): JSX.Element => {
       try {
         await totalTransactionDetails.fetchData(userId);
         if (isUserAdmin) {
+          await userDict.getUserId();
           await userDict.fetchData();
           setProfileDetailsApiResponse(userDict.users);
         }
@@ -166,4 +168,4 @@ const TransactionPage = (): JSX.Element => {
   return <TransactionsContainer>{renderLeaderboard()}</TransactionsContainer>;
 };
 
-export default observer(TransactionPage);
+export default TransactionPage;

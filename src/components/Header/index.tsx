@@ -210,7 +210,7 @@ const Header = (): JSX.Element => {
                 </AddTransctionTextContainer>
 
                 <AddTransctionInputContainer>
-                  <AddTransctionLabel htmlFor="addtransctionname">
+                  <AddTransctionLabel htmlFor="addTransctionName">
                     Transaction Name*
                     <NotificationMessage>
                       (Max 30 Characters*)
@@ -219,7 +219,7 @@ const Header = (): JSX.Element => {
                   <AddTransctionNameInput
                     required
                     type="text"
-                    id="addtransctionname"
+                    id="addTransctionName"
                     value={name}
                     onChange={AddNameFunction}
                     placeholder="Enter Name"
@@ -228,12 +228,12 @@ const Header = (): JSX.Element => {
                 </AddTransctionInputContainer>
 
                 <AddTransctionInputContainer>
-                  <AddTransctionLabel htmlFor="transctionType">
+                  <AddTransctionLabel htmlFor="addTransctionType">
                     Transaction Type*
                   </AddTransctionLabel>
                   <SelectTransctionType
                     required
-                    id="transctionType"
+                    id="addTransctionType"
                     value={type}
                     onChange={(event) => addType(event.target.value)}
                   >
@@ -247,12 +247,12 @@ const Header = (): JSX.Element => {
                 </AddTransctionInputContainer>
 
                 <AddTransctionInputContainer>
-                  <AddTransctionLabel htmlFor="transctionCategory">
+                  <AddTransctionLabel htmlFor="addTransctionCategory">
                     Category*
                   </AddTransctionLabel>
                   <SelectTransctionType
                     required
-                    id="transctionCategory"
+                    id="addTransctionCategory"
                     value={category}
                     onChange={(event) => addCategory(event.target.value)}
                   >
@@ -269,13 +269,13 @@ const Header = (): JSX.Element => {
                 </AddTransctionInputContainer>
 
                 <AddTransctionInputContainer>
-                  <AddTransctionLabel htmlFor="addtransctionamount">
+                  <AddTransctionLabel htmlFor="addTransctionAmount">
                     Amount*
                   </AddTransctionLabel>
                   <AddTransctionNameInput
                     required
                     type="number"
-                    id="addtransctionamount"
+                    id="addTransctionAmount"
                     value={amount}
                     onChange={addAmountFunction}
                     placeholder="Enter Your Amount"
@@ -283,14 +283,14 @@ const Header = (): JSX.Element => {
                 </AddTransctionInputContainer>
 
                 <AddTransctionInputContainer>
-                  <AddTransctionLabel htmlFor="addtransctionamount">
+                  <AddTransctionLabel htmlFor="addTransctionDate">
                     Date*
                   </AddTransctionLabel>
                   <AddTransctionNameInput
                     required
                     type="datetime-local"
                     readOnly
-                    id="addtransctionamount"
+                    id="addTransctionDate"
                     value={date}
                     onChange={addDateFunction}
                     placeholder="Select Date"

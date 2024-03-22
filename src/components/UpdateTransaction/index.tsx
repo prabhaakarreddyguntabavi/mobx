@@ -133,13 +133,13 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
   return (
     <>
       <AddTransactionInputContainer>
-        <AddTransactionLabel htmlFor="addtransactionname">
+        <AddTransactionLabel htmlFor="updateTransactionName">
           Transaction Name*
         </AddTransactionLabel>
         <AddTransactionNameInput
           required
           type="text"
-          id="addtransactionname"
+          id="updateTransactionName"
           value={name}
           onChange={AddNameFunction}
           placeholder="Enter Name"
@@ -148,12 +148,12 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
       </AddTransactionInputContainer>
 
       <AddTransactionInputContainer>
-        <AddTransactionLabel htmlFor="transactionType">
+        <AddTransactionLabel htmlFor="updateTransactionType">
           Transaction Type*
         </AddTransactionLabel>
         <SelectTransactionType
           required
-          id="transactionType"
+          id="UpdateTransactionType"
           value={type}
           onChange={(event) => addType(event.target.value)}
         >
@@ -167,12 +167,12 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
       </AddTransactionInputContainer>
 
       <AddTransactionInputContainer>
-        <AddTransactionLabel htmlFor="transactionCategory">
+        <AddTransactionLabel htmlFor="updateTransactionCategory">
           Category*
         </AddTransactionLabel>
         <SelectTransactionType
           required
-          id="transactionCategory"
+          id="updateTransactionCategory"
           value={category}
           onChange={(event) => addCategory(event.target.value)}
         >
@@ -189,13 +189,13 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
       </AddTransactionInputContainer>
 
       <AddTransactionInputContainer>
-        <AddTransactionLabel htmlFor="addtransactionamount">
+        <AddTransactionLabel htmlFor="updateTransactionAmount">
           Amount*
         </AddTransactionLabel>
         <AddTransactionNameInput
           required
           type="number"
-          id="addtransactionamount"
+          id="updateTransactionAmount"
           value={amount}
           onChange={AddAmountFunction}
           placeholder="Enter Your Amount"
@@ -203,14 +203,14 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
       </AddTransactionInputContainer>
 
       <AddTransactionInputContainer>
-        <AddTransactionLabel htmlFor="addtransactionamount">
+        <AddTransactionLabel htmlFor="updateTransctionDate">
           Date*
         </AddTransactionLabel>
         <AddTransactionNameInput
           readOnly
           required
           type="datetime-local"
-          id="addtransactionamount"
+          id="updateTransctionDate"
           value={setTimeFormate(date)}
           onChange={(event) => addDate(event.target.value)}
           placeholder="Select Date"
