@@ -79,11 +79,12 @@ const TransactionPage = (): JSX.Element => {
           await userDict.fetchData();
           setProfileDetailsApiResponse(userDict.users);
         }
-        console.log(totalTransactionDetails.transactionLoading);
-        setApiResponse({
-          status: totalTransactionDetails.transactionLoading,
-          data: totalTransactionDetails.transactionData.slice(0, 3),
-        });
+        setTimeout(() => {
+          setApiResponse({
+            status: totalTransactionDetails.transactionLoading,
+            data: totalTransactionDetails.transactionData.slice(0, 3),
+          });
+        }, 250);
       } catch (error) {
         setApiResponse({
           status: apiStatusConstants.failure,

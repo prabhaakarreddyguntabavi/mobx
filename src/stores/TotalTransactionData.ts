@@ -194,10 +194,17 @@ export class TransctionStore {
     );
 
     this.creditAndDebit = updateCreditAndDebit;
-    const indexNumber: number = this.transactionData.findIndex(
-      (each) => each.id === id
+
+    const data = this.transactionData.filter(
+      (eachTransaction) => eachTransaction.id !== id
     );
-    this.transactionData.splice(indexNumber, 1);
+
+    this.transactionData = data;
+
+    // const indexNumber: number = this.transactionData.findIndex(
+    //   (each) => each.id === id
+    // );
+    // this.transactionData.splice(indexNumber, 1);
   }
 
   async fetchTotalCreditAndDebitData(userId: number) {

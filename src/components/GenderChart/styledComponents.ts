@@ -60,9 +60,11 @@ export const GraphDebit = styled.div`
   margin-right: 5px;
 `;
 
-export const GraphTextParagraph = styled.p`
+export const GraphTextParagraph = styled.div`
   display: flex;
   margin-right: 20px;
+  margin-bottom: 20px;
+  margin-top: 15px;
 `;
 
 export const GraphHeaderContainer = styled.div`

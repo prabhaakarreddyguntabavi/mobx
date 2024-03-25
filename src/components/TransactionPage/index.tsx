@@ -122,16 +122,20 @@ const TransactionPage = (): JSX.Element => {
     } else {
       const getTransactionData = async () => {
         try {
+          await userDict.getUserId();
           await totalTransactionDetails.fetchData(userId);
           if (isUserAdmin) {
-            await userDict.getUserId();
+            // await userDict.getUserId();
             await userDict.fetchData();
             setProfileDetailsApiResponse(userDict.users);
           }
-          setApiResponse({
-            status: totalTransactionDetails.transactionLoading,
-            data: totalTransactionDetails.transactionData,
-          });
+
+          setTimeout(() => {
+            setApiResponse({
+              status: totalTransactionDetails.transactionLoading,
+              data: totalTransactionDetails.transactionData,
+            });
+          }, 500);
         } catch (error) {
           setApiResponse({
             status: totalTransactionDetails.transactionLoading,
