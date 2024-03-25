@@ -231,6 +231,8 @@ export const LoadingContainer = styled.div`
 
 export const NoTransactionsFountHeading = styled.h1`
   margin: auto;
+  min-height: 35vh;
+  margin-top: 20%;
 `;
 
 export const TransactionUserName = styled.p`

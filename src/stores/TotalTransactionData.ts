@@ -26,9 +26,23 @@ interface FetchedOutput {
   transaction_totals_admin?: CreditAndDebit[];
 }
 
+interface ApiStatusValues {
+  initial: string;
+  inProgress: string;
+  success: string;
+  failure: string;
+}
+
+const apiStatusConstants: ApiStatusValues = {
+  initial: "INITIAL",
+  inProgress: "IN_PROGRESS",
+  success: "SUCCESS",
+  failure: "FAILURE",
+};
+
 export class TransctionStore {
   transactionData: DataValues[] = [];
-  transactionLoading: boolean = false;
+  transactionLoading: string = apiStatusConstants.initial;
   transactionErrorMes: string = "";
 
   creditAndDebit: CreditAndDebit[] = [];
@@ -50,6 +64,8 @@ export class TransctionStore {
   }
 
   async fetchData(userId: number) {
+    this.transactionLoading = apiStatusConstants.inProgress;
+
     let url: string =
       "https://bursting-gelding-24.hasura.app/api/rest/all-transactions";
     let headers: HeadersInit = {
@@ -91,10 +107,9 @@ export class TransctionStore {
         })
       );
       this.updateData(transactionDict);
-      this.transactionLoading = true;
     } else {
+      this.transactionLoading = apiStatusConstants.failure;
       this.transactionErrorMes = "Something Went wrong please try again later";
-      this.transactionLoading = false;
     }
   }
 
@@ -103,6 +118,7 @@ export class TransctionStore {
       (a: { date: string }, b: { date: string }) =>
         new Date(b.date).getTime() - new Date(a.date).getTime()
     );
+    this.transactionLoading = apiStatusConstants.success;
   }
 
   updateTransaction(updateData: DataValues) {
@@ -119,14 +135,6 @@ export class TransctionStore {
         return eachItem;
       }
     });
-
-    if (
-      previousValue?.type !== updateData.type &&
-      previousValue?.id === updateData.id
-    ) {
-      if (previousValue?.type === "credit") {
-      }
-    }
 
     const updateTransaction = {
       ...updateData,

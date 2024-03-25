@@ -92,7 +92,7 @@ const TransactionPage = (): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
   const [apiResponse, setApiResponse] = useState<ApiOutputStatus>({
-    status: apiStatusConstants.inProgress,
+    status: totalTransactionDetails.transactionLoading,
     data: [],
   });
 
@@ -106,12 +106,17 @@ const TransactionPage = (): JSX.Element => {
 
   observe(totalTransactionDetails.transactionData, (): void => {
     setApiResponse({
-      status: apiStatusConstants.success,
+      status: totalTransactionDetails.transactionLoading,
       data: totalTransactionDetails.transactionData,
+      errorMsg: totalTransactionDetails.transactionErrorMes,
     });
   });
 
   useEffect(() => {
+    setApiResponse({
+      status: apiStatusConstants.inProgress,
+      data: [],
+    });
     if (!jwtToken) {
       navigate("/login");
     } else {
@@ -123,14 +128,13 @@ const TransactionPage = (): JSX.Element => {
             await userDict.fetchData();
             setProfileDetailsApiResponse(userDict.users);
           }
-
           setApiResponse({
-            status: apiStatusConstants.success,
+            status: totalTransactionDetails.transactionLoading,
             data: totalTransactionDetails.transactionData,
           });
         } catch (error) {
           setApiResponse({
-            status: apiStatusConstants.failure,
+            status: totalTransactionDetails.transactionLoading,
             data: [],
             errorMsg: totalTransactionDetails.transactionErrorMes,
           });

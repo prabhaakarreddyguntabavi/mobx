@@ -51,7 +51,7 @@ const TransactionPage = (): JSX.Element => {
     transactionStore;
 
   const [apiResponse, setApiResponse] = useState<ApiStatusAndData>({
-    status: apiStatusConstants.inProgress,
+    status: totalTransactionDetails.transactionLoading,
     data: [],
   });
 
@@ -60,14 +60,17 @@ const TransactionPage = (): JSX.Element => {
   >([]);
 
   observe(totalTransactionDetails.transactionData, (): void => {
-    console.log("Prabhakar Testing ");
     setApiResponse({
-      status: apiStatusConstants.success,
+      status: totalTransactionDetails.transactionLoading,
       data: totalTransactionDetails.transactionData.slice(0, 3),
     });
   });
 
   useEffect(() => {
+    setApiResponse({
+      status: apiStatusConstants.inProgress,
+      data: [],
+    });
     const getTransactionData = async () => {
       try {
         await totalTransactionDetails.fetchData(userId);
@@ -76,9 +79,9 @@ const TransactionPage = (): JSX.Element => {
           await userDict.fetchData();
           setProfileDetailsApiResponse(userDict.users);
         }
-
+        console.log(totalTransactionDetails.transactionLoading);
         setApiResponse({
-          status: apiStatusConstants.success,
+          status: totalTransactionDetails.transactionLoading,
           data: totalTransactionDetails.transactionData.slice(0, 3),
         });
       } catch (error) {
@@ -168,4 +171,4 @@ const TransactionPage = (): JSX.Element => {
   return <TransactionsContainer>{renderLeaderboard()}</TransactionsContainer>;
 };
 
-export default TransactionPage;
+export default observer(TransactionPage);
