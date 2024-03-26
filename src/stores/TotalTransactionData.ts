@@ -1,4 +1,4 @@
-import { makeAutoObservable, observable, action } from "mobx";
+import { makeAutoObservable, observable, action, makeObservable } from "mobx";
 
 interface DataValues {
   id?: number;
@@ -50,16 +50,16 @@ export class TransctionStore {
   creditAndDebitTransactionErrorMes: string = "";
 
   constructor() {
-    makeAutoObservable(this, {
+    makeObservable(this, {
       transactionData: observable,
       creditAndDebit: observable,
-      updateData: action,
-      deleteTransaction: action,
-      updateTransaction: action,
-      addTransaction: action,
-      fetchData: action,
-      updateCreditAndDebitTransaction: action,
-      fetchTotalCreditAndDebitData: action,
+      updateData: action.bound,
+      deleteTransaction: action.bound,
+      updateTransaction: action.bound,
+      addTransaction: action.bound,
+      fetchData: action.bound,
+      updateCreditAndDebitTransaction: action.bound,
+      fetchTotalCreditAndDebitData: action.bound,
     });
   }
 
@@ -195,11 +195,9 @@ export class TransctionStore {
 
     this.creditAndDebit = updateCreditAndDebit;
 
-    const data = this.transactionData.filter(
+    this.transactionData = this.transactionData.filter(
       (eachTransaction) => eachTransaction.id !== id
     );
-
-    this.transactionData = data;
 
     // const indexNumber: number = this.transactionData.findIndex(
     //   (each) => each.id === id

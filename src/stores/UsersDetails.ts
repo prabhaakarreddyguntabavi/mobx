@@ -44,9 +44,9 @@ export class UsersData {
       userId: observable,
       users: observable,
       loginUser: observable,
-      getUserId: action,
-      fetchData: action,
-      loginUserDetails: action,
+      getUserId: action.bound,
+      fetchData: action.bound,
+      loginUserDetails: action.bound,
     });
   }
 
