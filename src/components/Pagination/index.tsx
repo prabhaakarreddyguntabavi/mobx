@@ -7,6 +7,7 @@ import {
   PaginationAnchorElement,
   PaginationListElement,
 } from "./styledComponents";
+import { observer } from "mobx-react";
 
 interface PaginationProps {
   itemsPerPage: number;
@@ -68,4 +69,4 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 };
 
-export default Pagination;
+export default observer(Pagination);

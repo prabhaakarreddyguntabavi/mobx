@@ -135,7 +135,7 @@ const TransactionPage = (): JSX.Element => {
               status: totalTransactionDetails.transactionLoading,
               data: totalTransactionDetails.transactionData,
             });
-          }, 500);
+          }, 300);
         } catch (error) {
           setApiResponse({
             status: totalTransactionDetails.transactionLoading,

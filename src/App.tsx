@@ -85,4 +85,4 @@ const App = (): JSX.Element => {
   );
 };
 
-export default App;
+export default observer(App);

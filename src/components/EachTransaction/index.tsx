@@ -29,6 +29,7 @@ import {
   TransactionParagraphMobile,
   TextContainer,
 } from "./styledComponents";
+import { observer } from "mobx-react";
 
 interface DataValues {
   id?: number;
@@ -264,4 +265,4 @@ const EachTransaction = (props: PropsValues) => {
   );
 };
 
-export default EachTransaction;
+export default observer(EachTransaction);

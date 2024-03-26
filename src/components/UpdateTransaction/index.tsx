@@ -12,6 +12,7 @@ import {
   SelectTransactionOptions,
   ErrorMessage,
 } from "./styledComponents";
+import { observer } from "mobx-react";
 
 const setTimeFormate = (date: string): string => {
   const inputDateString: string = date;
@@ -242,4 +243,4 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
   );
 };
 
-export default UpdateTransaction;
+export default observer(UpdateTransaction);

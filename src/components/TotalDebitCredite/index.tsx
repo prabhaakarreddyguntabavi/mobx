@@ -175,4 +175,4 @@ const TotalDebitCredit = (): JSX.Element => {
   return <AmountDetailsContainer>{renderLeaderboard()}</AmountDetailsContainer>;
 };
 
-export default TotalDebitCredit;
+export default observer(TotalDebitCredit);

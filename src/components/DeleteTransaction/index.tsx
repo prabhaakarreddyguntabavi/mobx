@@ -16,6 +16,7 @@ import {
   YesLogoutButton,
 } from "./styledComponents";
 import TransactionContext from "../../context/TransactionContext";
+import { observer } from "mobx-react";
 
 interface PropsValue {
   id: number;
@@ -110,4 +111,4 @@ const UpdateTransaction = (props: PropsValue): JSX.Element => {
   );
 };
 
-export default UpdateTransaction;
+export default observer(UpdateTransaction);

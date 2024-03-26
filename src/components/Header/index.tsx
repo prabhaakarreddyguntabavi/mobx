@@ -37,6 +37,7 @@ import {
 
 import "./index.css";
 import MobileSideBar from "../MobileSideBar";
+import { observer } from "mobx-react";
 
 interface DataValues {
   id?: number;
@@ -356,4 +357,4 @@ const Header = (): JSX.Element => {
   );
 };
 
-export default Header;
+export default observer(Header);

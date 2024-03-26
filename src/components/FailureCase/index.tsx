@@ -7,6 +7,7 @@ import {
   OnFailureParagraph,
   OnFailureRetryButton,
 } from "./styledComponents";
+import { observer } from "mobx-react";
 
 const FailureCase = (): JSX.Element => {
   return (
@@ -25,4 +26,4 @@ const FailureCase = (): JSX.Element => {
   );
 };
 
-export default FailureCase;
+export default observer(FailureCase);

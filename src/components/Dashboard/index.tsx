@@ -17,6 +17,7 @@ import {
   LastTransaction,
   BarChartContainer,
 } from "./styledComponents";
+import { observer } from "mobx-react";
 
 const Dashboard = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
@@ -54,4 +55,4 @@ const Dashboard = (): JSX.Element => {
   );
 };
 
-export default Dashboard;
+export default observer(Dashboard);

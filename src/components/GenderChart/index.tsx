@@ -19,6 +19,7 @@ import {
 } from "./styledComponents";
 import { observe } from "mobx";
 import { v4 as uuidv4 } from "uuid";
+import { observer } from "mobx-react";
 
 const apiStatusConstants: ApiStatus = {
   initial: "INITIAL",
@@ -292,4 +293,4 @@ const GenderChart = (): JSX.Element => {
   return <>{renderLeaderboard()}</>;
 };
 
-export default GenderChart;
+export default observer(GenderChart);

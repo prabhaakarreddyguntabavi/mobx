@@ -26,6 +26,7 @@ import {
 } from "./styledComponents";
 
 import "./index.css";
+import { observer } from "mobx-react";
 
 interface UserListProps {
   email: string;
@@ -207,4 +208,4 @@ const MobileSideBar = (props: PropsValue): JSX.Element => {
   );
 };
 
-export default MobileSideBar;
+export default observer(MobileSideBar);

@@ -16,6 +16,7 @@ import {
   ErrorMessageParagraph,
   LogoImage,
 } from "./styledComponents";
+import { observer } from "mobx-react";
 
 interface UserListProps {
   email: string;
@@ -41,7 +42,7 @@ const userDetails: UserListProps[] = [
   { email: "admin@gmail.com", password: "Admin@123", userId: 3 },
 ];
 
-export const LoginForm = (): JSX.Element => {
+const LoginForm = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
 
   const { userDict } = transactionStore;
@@ -147,3 +148,5 @@ export const LoginForm = (): JSX.Element => {
     </LoginContainer>
   );
 };
+
+export default observer(LoginForm);

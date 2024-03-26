@@ -7,6 +7,7 @@ import {
   NotFoundParagraph,
   BackToHomePage,
 } from "./styledComponents";
+import { observer } from "mobx-react";
 
 const text: string = "we're sorry, the page you requested could not be found";
 
@@ -32,4 +33,4 @@ const NotFound = (): JSX.Element => {
   );
 };
 
-export default NotFound;
+export default observer(NotFound);

@@ -23,6 +23,7 @@ import {
   FailureContainer,
 } from "./styledComponents";
 import { observe } from "mobx";
+import { observer } from "mobx-react";
 
 interface apiStatusValues {
   initial: string;
@@ -303,4 +304,4 @@ const ProfileDetails = (): JSX.Element => {
   );
 };
 
-export default ProfileDetails;
+export default observer(ProfileDetails);

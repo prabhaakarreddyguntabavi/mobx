@@ -40,6 +40,7 @@ import {
 } from "./styledComponents";
 
 import "./index.css";
+import { observer } from "mobx-react";
 
 const userDetails = [
   { email: "jane.doe@gmail.com", password: "janedoe@123", userId: 1 },
@@ -273,4 +274,4 @@ const SideBar = (): JSX.Element => {
   );
 };
 
-export default SideBar;
+export default observer(SideBar);
