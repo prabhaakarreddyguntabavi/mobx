@@ -227,7 +227,7 @@ const UpdateTransaction = (props: PropsValues): JSX.Element => {
       >
         {addTransactionStatus === "inprogress" ? (
           <ReactLoading
-            type={"spin"}
+            type={"bars"}
             color={"#ffffff"}
             height={20}
             width={30}

@@ -30,7 +30,7 @@ export const ProfileDetailsContainer = styled.div`
   }
 `;
 
-export const ProfileContainer = styled.div`
+export const ProfileContainer = styled.form`
   min-height: 40vw;
   width: 80vw;
   flex-shrink: 0;

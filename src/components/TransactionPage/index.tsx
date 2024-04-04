@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
-import { observer } from "mobx-react";
+import { observer, useObserver } from "mobx-react";
 import ReactLoading from "react-loading";
 import Cookies from "js-cookie";
-import { useNavigate, NavigateFunction } from "react-router-dom";
-import { observe } from "mobx";
+import { useNavigate } from "react-router-dom";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
 import TransactionContext from "../../context/TransactionContext";
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
-import Pagination from "../Pagination"; // Import Pagination component
+import Pagination from "../Pagination";
 
 import {
   TransactionHomePage,
@@ -33,51 +32,7 @@ import {
   TransactionUserName,
 } from "./styledComponents";
 
-interface DataValues {
-  id?: number;
-  transactionName?: string;
-  type: string;
-  category: string;
-  amount: number;
-  date: string;
-  userId?: number;
-  transaction_name?: string;
-  user_id?: number;
-  name?: string;
-}
-interface ApiOutputStatus {
-  status: string;
-  data: DataValues[];
-  errorMsg?: string;
-}
-
-interface ApiStatusValues {
-  initial: string;
-  inProgress: string;
-  success: string;
-  failure: string;
-}
-
-interface UserDetail {
-  id?: number;
-  name?: string;
-  email?: string;
-  country?: string | null;
-  date_of_birth?: string | null;
-  city?: string | null;
-  permanent_address?: string | null;
-  postal_code?: string | null;
-  present_address?: string | null;
-}
-
-const apiStatusConstants: ApiStatusValues = {
-  initial: "INITIAL",
-  inProgress: "IN_PROGRESS",
-  success: "SUCCESS",
-  failure: "FAILURE",
-};
-
-const TransactionPage = (): JSX.Element => {
+const TransactionPage = observer(() => {
   const transactionStore = useContext(TransactionContext);
   const {
     selectOption,
@@ -88,169 +43,130 @@ const TransactionPage = (): JSX.Element => {
     userId,
   } = transactionStore;
 
-  const jwtToken: string = Cookies.get("jwt_token")!;
-  const navigate: NavigateFunction = useNavigate();
+  const jwtToken = Cookies.get("jwt_token") || "";
+  const navigate = useNavigate();
 
-  const [apiResponse, setApiResponse] = useState<ApiOutputStatus>({
-    status: totalTransactionDetails.transactionLoading,
-    data: [],
-  });
-
-  const [allProfileDetails, setProfileDetailsApiResponse] = useState<
-    UserDetail[]
-  >([]);
-
-  const [filterOption, onChangeFilter] = useState<string>("alltransactions");
-  const [currentPage, setCurrentPage] = useState<number>(1); // Track current page
-  const [itemsPerPage] = useState<number>(10); // Number of items to display per page
-
-  observe(totalTransactionDetails.transactionData, (): void => {
-    setApiResponse({
-      status: totalTransactionDetails.transactionLoading,
-      data: totalTransactionDetails.transactionData,
-      errorMsg: totalTransactionDetails.transactionErrorMes,
-    });
-  });
+  const [filterOption, setFilterOption] = useState("alltransactions");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
-    setApiResponse({
-      status: apiStatusConstants.inProgress,
-      data: [],
-    });
     if (!jwtToken) {
       navigate("/login");
     } else {
-      const getTransactionData = async () => {
+      const fetchData = async () => {
         try {
           await userDict.getUserId();
           await totalTransactionDetails.fetchData(userId);
           if (isUserAdmin) {
-            // await userDict.getUserId();
             await userDict.fetchData();
-            setProfileDetailsApiResponse(userDict.users);
           }
-
-          setTimeout(() => {
-            setApiResponse({
-              status: totalTransactionDetails.transactionLoading,
-              data: totalTransactionDetails.transactionData,
-            });
-          }, 300);
         } catch (error) {
-          setApiResponse({
-            status: totalTransactionDetails.transactionLoading,
-            data: [],
-            errorMsg: totalTransactionDetails.transactionErrorMes,
-          });
+          console.error("Error fetching data:", error);
         }
       };
-      getTransactionData();
+      fetchData();
     }
-  }, [jwtToken, isUserAdmin, userId]);
+  }, [
+    jwtToken,
+    isUserAdmin,
+    navigate,
+    totalTransactionDetails,
+    userId,
+    userDict,
+  ]);
 
-  const renderSuccessView = (): JSX.Element => {
-    const { data } = apiResponse;
+  const renderTransactions = () => {
+    const { transactionLoading, transactionData, transactionErrorMes } =
+      totalTransactionDetails;
 
-    let transactionsData = data;
+    if (transactionLoading === "IN_PROGRESS") {
+      return (
+        <LoadingContainer data-testid="loader">
+          <ReactLoading type="bars" color="#000000" height={50} width={50} />
+        </LoadingContainer>
+      );
+    }
+
+    if (transactionLoading === "FAILURE") {
+      return <FailureCase />;
+    }
+
+    let filteredTransactions = [...transactionData];
+
     if (filterOption !== "alltransactions") {
-      transactionsData = data.filter(
-        (eachTransactionData) =>
-          eachTransactionData.type.toUpperCase() === filterOption.toUpperCase()
+      filteredTransactions = filteredTransactions.filter(
+        (transaction) =>
+          transaction.type.toUpperCase() === filterOption.toUpperCase()
       );
     }
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = transactionsData.slice(
+    const currentItems = filteredTransactions.slice(
       indexOfFirstItem,
       indexOfLastItem
     );
 
-    if (transactionsData.length !== 0) {
+    if (currentItems.length === 0) {
       return (
-        <>
-          <HeadingDashTransactionContainer>
-            {isUserAdmin ? (
-              <TransactionUserName>User Name</TransactionUserName>
-            ) : (
-              ""
-            )}
-            <TransactionName isAdmin={isUserAdmin}>
-              Transaction Name
-            </TransactionName>
-            <TransactionCategory isAdmin={isUserAdmin}>
-              Category
-            </TransactionCategory>
-            <TransactionDate isAdmin={isUserAdmin}>Date</TransactionDate>
-            <TransactionAmount isAdmin={isUserAdmin}>Amount</TransactionAmount>
-          </HeadingDashTransactionContainer>
-          {currentItems.map((eachTransaction: DataValues, index: number) => {
-            let user: UserDetail;
-
-            if (allProfileDetails === undefined) {
-              user = { name: "Admin" };
-            } else {
-              user = allProfileDetails.find(
-                (findUser: UserDetail) => findUser.id === eachTransaction.userId
-              )!;
-            }
-
-            return (
-              <EachTransaction
-                transactionsData={transactionsData}
-                eachTransaction={eachTransaction}
-                index={index}
-                isUserAdmin={isUserAdmin}
-                user={user}
-                isThisLastThreeTransactions={false}
-              />
-            );
-          })}
-          {transactionsData.length > 10 ? (
-            <Pagination
-              itemsPerPage={itemsPerPage}
-              totalItems={transactionsData.length}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
-          ) : (
-            ""
-          )}
-        </>
+        <NoTransactionsFountHeading>
+          No Transactions Found
+        </NoTransactionsFountHeading>
       );
     }
+
     return (
-      <NoTransactionsFountHeading>
-        No Transactions Found
-      </NoTransactionsFountHeading>
+      <>
+        <HeadingDashTransactionContainer>
+          {isUserAdmin && <TransactionUserName>User Name</TransactionUserName>}
+          <TransactionName isAdmin={isUserAdmin}>
+            Transaction Name
+          </TransactionName>
+          <TransactionCategory isAdmin={isUserAdmin}>
+            Category
+          </TransactionCategory>
+          <TransactionDate isAdmin={isUserAdmin}>Date</TransactionDate>
+          <TransactionAmount isAdmin={isUserAdmin}>Amount</TransactionAmount>
+        </HeadingDashTransactionContainer>
+        {currentItems.map((transaction, index) => {
+          let user = isUserAdmin
+            ? userDict.users.find((user) => user.id === transaction.userId)
+            : { name: "Admin" };
+
+          return (
+            <EachTransaction
+              transactionsData={currentItems}
+              eachTransaction={transaction}
+              index={index}
+              isUserAdmin={isUserAdmin}
+              user={user!}
+              isThisLastThreeTransactions={true}
+            />
+          );
+        })}
+        {filteredTransactions.length > 10 && (
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            totalItems={filteredTransactions.length}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
+      </>
     );
   };
 
-  const renderLoadingView = (): JSX.Element => (
-    <LoadingContainer data-testid="loader">
-      <ReactLoading type={"bars"} color={"#000000"} height={50} width={50} />
-    </LoadingContainer>
-  );
-
-  const renderFailureView = (): JSX.Element => <FailureCase />;
-
-  const renderLeaderboard = (): JSX.Element | null => {
-    const { status } = apiResponse;
-    switch (status) {
-      case apiStatusConstants.inProgress:
-        return renderLoadingView();
-      case apiStatusConstants.success:
-        return renderSuccessView();
-      case apiStatusConstants.failure:
-        return renderFailureView();
-      default:
-        return null;
-    }
+  const handleFilterChange = (option: string) => {
+    setFilterOption(option);
+    setCurrentPage(1); // Reset current page when filter changes
   };
 
-  if (selectOption !== "TRANSACTIONS") {
-    onChangeSelectOption("TRANSACTIONS");
-  }
+  useEffect(() => {
+    if (selectOption !== "TRANSACTIONS") {
+      onChangeSelectOption("TRANSACTIONS");
+    }
+  }, [onChangeSelectOption, selectOption]);
 
   return (
     <TransactionHomePage>
@@ -259,9 +175,7 @@ const TransactionPage = (): JSX.Element => {
         <Header />
         <SelectFilterConditions>
           <TransactionSelectFilter
-            onClick={() => {
-              onChangeFilter("alltransactions");
-            }}
+            onClick={() => handleFilterChange("alltransactions")}
           >
             <SelectAllOption
               transactionOption={filterOption === "alltransactions"}
@@ -270,41 +184,33 @@ const TransactionPage = (): JSX.Element => {
             </SelectAllOption>
             <SelectedContainer
               transactionOption={filterOption === "alltransactions"}
-            ></SelectedContainer>
+            />
           </TransactionSelectFilter>
 
-          <TransactionSelectFilter
-            onClick={() => {
-              onChangeFilter("credit");
-            }}
-          >
+          <TransactionSelectFilter onClick={() => handleFilterChange("credit")}>
             <SelectOption transactionOption={filterOption === "credit"}>
               Credit
             </SelectOption>
             <SelectedCreditContainer
               transactionOption={filterOption === "credit"}
-            ></SelectedCreditContainer>
+            />
           </TransactionSelectFilter>
 
-          <TransactionSelectFilter
-            onClick={() => {
-              onChangeFilter("debit");
-            }}
-          >
+          <TransactionSelectFilter onClick={() => handleFilterChange("debit")}>
             <SelectOption transactionOption={filterOption === "debit"}>
               Debit
             </SelectOption>
             <SelectedCreditContainer
               transactionOption={filterOption === "debit"}
-            ></SelectedCreditContainer>
+            />
           </TransactionSelectFilter>
         </SelectFilterConditions>
         <TransactionBodyContainer>
-          <TransactionsContainer>{renderLeaderboard()}</TransactionsContainer>
+          <TransactionsContainer>{renderTransactions()}</TransactionsContainer>
         </TransactionBodyContainer>
       </TransactionTotalBodyContainer>
     </TransactionHomePage>
   );
-};
+});
 
-export default observer(TransactionPage);
+export default TransactionPage;

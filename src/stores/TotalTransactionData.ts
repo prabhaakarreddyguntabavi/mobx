@@ -1,4 +1,4 @@
-import { makeAutoObservable, observable, action, makeObservable } from "mobx";
+import { makeAutoObservable, observable, action } from "mobx";
 
 interface DataValues {
   id?: number;
@@ -50,7 +50,7 @@ export class TransctionStore {
   creditAndDebitTransactionErrorMes: string = "";
 
   constructor() {
-    makeObservable(this, {
+    makeAutoObservable(this, {
       transactionData: observable,
       creditAndDebit: observable,
       updateData: action.bound,
