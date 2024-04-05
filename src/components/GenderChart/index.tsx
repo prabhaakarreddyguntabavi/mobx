@@ -180,7 +180,12 @@ const GenderChart = (): JSX.Element => {
 
       const { totalDailySums }: TodaySunOfTheValue = calculateDailySums(data);
 
-      const last7Transactions: DailySum[] = totalDailySums.slice(0, 7);
+      const last7Transactions: DailySum[] = totalDailySums
+
+        .sort(
+          (a, b) => new Date(b.date!).getTime() - new Date(a.date!).getTime()
+        )
+        .slice(0, 7);
 
       function separateTransactions() {
         const creditTransactions: number[] = [];
