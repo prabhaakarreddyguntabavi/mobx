@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { observer } from "mobx-react";
 import ReactLoading from "react-loading";
 import { useNavigate, NavigateFunction } from "react-router-dom";
@@ -123,7 +123,7 @@ const TransactionPage = (): JSX.Element => {
       }
     };
     getTransactionData();
-  }, [jwtToken, userId]);
+  }, [userId]);
 
   const renderSuccessView = (): JSX.Element => {
     const { data } = apiResponse;

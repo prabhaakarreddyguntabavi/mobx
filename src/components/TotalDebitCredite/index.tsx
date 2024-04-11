@@ -81,7 +81,7 @@ const TotalDebitCredit = (): JSX.Element => {
     };
 
     getLeaderboardData();
-  }, [userId]);
+  }, [userId, totalTransactionDetails]);
 
   const renderSuccessView = (): JSX.Element => {
     let data: DataOutPut[] = apiResponse.data;

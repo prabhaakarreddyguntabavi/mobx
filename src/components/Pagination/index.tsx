@@ -1,4 +1,5 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { observer } from "mobx-react";
 
 import {
   PaginationNavBar,
@@ -6,7 +7,6 @@ import {
   PaginationAnchorElement,
   PaginationListElement,
 } from "./styledComponents";
-import { observer } from "mobx-react";
 
 interface PaginationProps {
   itemsPerPage: number;

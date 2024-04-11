@@ -26,13 +26,6 @@ import {
   FailureContainer,
 } from "./styledComponents";
 
-interface apiStatusValues {
-  initial: string;
-  inProgress: string;
-  success: string;
-  failure: string;
-}
-
 interface ProfileDetailsValues {
   id?: number;
   name?: string;
