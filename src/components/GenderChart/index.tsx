@@ -1,10 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import ReactLoading from "react-loading";
-
-import { ApiStatus, CrediteAndDebitList } from "../InterfaceDefining";
-import TransactionContext from "../../context/TransactionContext";
-
+import { observe } from "mobx";
+import { v4 as uuidv4 } from "uuid";
+import { observer } from "mobx-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+
+import { CrediteAndDebitList } from "../InterfaceDefining";
+import TransactionContext from "../../context/TransactionContext";
+import { apiStatusConstants } from "../../constants/commonConstants";
 
 import {
   LoadingContainer,
@@ -17,16 +20,6 @@ import {
   GraphTextParagraph,
   GraphHeaderContainer,
 } from "./styledComponents";
-import { observe } from "mobx";
-import { v4 as uuidv4 } from "uuid";
-import { observer } from "mobx-react";
-
-const apiStatusConstants: ApiStatus = {
-  initial: "INITIAL",
-  inProgress: "IN_PROGRESS",
-  success: "SUCCESS",
-  failure: "FAILURE",
-};
 
 interface FetchedData {
   date: string;
@@ -84,12 +77,12 @@ const GenderChart = (): JSX.Element => {
   });
 
   useEffect((): void => {
-    const getLeaderboardData = async (): Promise<void> => {
-      setApiResponse({
-        status: apiStatusConstants.inProgress,
-        data: [],
-      });
+    setApiResponse({
+      status: apiStatusConstants.inProgress,
+      data: [],
+    });
 
+    const getLeaderboardData = async (): Promise<void> => {
       let headers: HeadersInit = {};
       let url: string = "";
 
@@ -175,13 +168,12 @@ const GenderChart = (): JSX.Element => {
 
         totalDailySums = Object.values(dailySums);
 
-        return { dailySums, totalDailySums };
+        return { totalDailySums };
       }
 
       const { totalDailySums }: TodaySunOfTheValue = calculateDailySums(data);
 
       const last7Transactions: DailySum[] = totalDailySums
-
         .sort(
           (a, b) => new Date(b.date!).getTime() - new Date(a.date!).getTime()
         )
@@ -209,6 +201,7 @@ const GenderChart = (): JSX.Element => {
           accumulator + currentValue,
         0
       );
+
       const debitTransactionsSum: number = debitTransactions.reduce(
         (accumulator: number, currentValue: number) =>
           accumulator + currentValue,

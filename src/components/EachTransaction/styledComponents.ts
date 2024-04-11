@@ -12,7 +12,7 @@ export const DashTransactionContainer = styled.div<TextParagraphLengthProps>`
   width: 100%;
   // height: 58px;
   flex-shrink: 0;
-  border-bottom: ${(props: any) => (props.length ? "" : "1px solid #e2e2e2")};
+  border-bottom: ${(props) => (props.length ? "" : "1px solid #e2e2e2")};
   margin-left: 24px;
 
   display: flex;
@@ -33,10 +33,10 @@ export const CreditDebitImage = styled.img<TextParagraphProps>`
   width: 30px;
   height: 30px;
   flex-shrink: 0;
-  padding-right: ${(props: any) => (props.isAdmin ? "10px" : "16px")};
+  padding-right: ${(props) => (props.isAdmin ? "10px" : "16px")};
   @media screen and (max-width: 768px) {
     display: block;
-    // ${(props: any) => (props.isAdmin ? "none" : "block")};
+    // ${(props) => (props.isAdmin ? "none" : "block")};
   }
 `;
 
@@ -62,10 +62,10 @@ export const CategoryParagraph = styled.p<TextParagraphProps>`
   font-weight: 400;
   line-height: normal;
   // margin-right: 96px;
-  width: ${(props: any) => (props.isAdmin ? "22vw" : "20vw")};
+  width: ${(props) => (props.isAdmin ? "22vw" : "20vw")};
   overflow: hidden;
   @media screen and (max-width: 768px) {
-    width: ${(props: any) => (props.isAdmin ? "28vw" : "20vw")};
+    width: ${(props) => (props.isAdmin ? "28vw" : "20vw")};
   }
 `;
 
@@ -110,7 +110,7 @@ export const CreditAmount = styled.p<TextParagraphProps>`
   font-weight: 500;
   line-height: normal;
   text-align: start;
-  width: ${(props: any) => (props.isAdmin ? "15vw" : "10vw")};
+  width: ${(props) => (props.isAdmin ? "15vw" : "10vw")};
   overflow: hidden;
 
   @media screen and (max-width: 1024px) {
@@ -129,7 +129,7 @@ export const DebitAmount = styled.p<TextParagraphProps>`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  width: ${(props: any) => (props.isAdmin ? "15vw" : "10vw")};
+  width: ${(props) => (props.isAdmin ? "15vw" : "10vw")};
   overflow: hidden;
 
   @media screen and (max-width: 1024px) {
@@ -255,7 +255,7 @@ export const TitleUserParagraph = styled.p`
 export const AdminContainer = styled.div<TextParagraphProps>`
   display: flex;
   align-items: center;
-  width: 20vw; // ${(props: any) => (props.isAdmin ? "15vw" : "15vw")};
+  width: 20vw; // ${(props) => (props.isAdmin ? "15vw" : "15vw")};
   @media screen and (max-width: 768px) {
     width: 30vw;
   }
@@ -264,21 +264,21 @@ export const AdminContainer = styled.div<TextParagraphProps>`
 export const UserContainer = styled.div<TextParagraphProps>`
   display: flex;
   align-items: center;
-  width: 20vw; // ${(props: any) => (props.isAdmin ? "15vw" : "15vw")};
+  width: 20vw; // ${(props) => (props.isAdmin ? "15vw" : "15vw")};
   @media screen and (max-width: 768px) {
-    width: 30vw; // ${(props: any) => (props.isAdmin ? "35vw" : "30vw")};
+    width: 30vw; // ${(props) => (props.isAdmin ? "35vw" : "30vw")};
   }
 `;
 
 export const EditDeleteContainer = styled.div<TextParagraphProps>`
   width: 61px;
   margin-right: 20px;
-  display: ${(props: any) => (props.isAdmin ? "none" : "block")};
+  display: ${(props) => (props.isAdmin ? "none" : "block")};
 
   @media screen and (max-width: 768px) {
-    display: ${(props: any) => (props.isAdmin ? "none" : "block")};
+    display: ${(props) => (props.isAdmin ? "none" : "block")};
 
-    width: ${(props: any) => (props.isAdmin ? "12vw" : "")};
+    width: ${(props) => (props.isAdmin ? "12vw" : "")};
     margin-right: 5px;
   }
 `;

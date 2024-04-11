@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 
 import { useNavigate, NavigateFunction } from "react-router-dom";
-import Cookies from "js-cookie";
 import TransactionContext from "../../context/TransactionContext";
+import { jwtToken } from "../../constants/commonConstants";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
@@ -24,8 +24,6 @@ const Dashboard = (): JSX.Element => {
   const { selectOption, onChangeSelectOption } = transactionStore;
 
   const navigate: NavigateFunction = useNavigate();
-
-  const jwtToken: string = Cookies.get("jwt_token")!;
 
   useEffect((): void => {
     if (!jwtToken) {

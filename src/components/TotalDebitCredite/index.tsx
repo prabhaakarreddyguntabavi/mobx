@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import ReactLoading from "react-loading";
 import { observe } from "mobx";
+import { observer } from "mobx-react";
 
 import TransactionContext from "../../context/TransactionContext";
-import { ApiStatus } from "../InterfaceDefining";
+import { apiStatusConstants } from "../../constants/commonConstants";
+
 import FailureCase from "../FailureCase";
-import { observer } from "mobx-react";
+
 import {
   CreditContainer,
   HeadingAmount,
@@ -21,13 +23,6 @@ import {
   DebitImage,
   LoadingContainer,
 } from "./styledComponents";
-
-const apiStatusConstants: ApiStatus = {
-  initial: "INITIAL",
-  inProgress: "IN_PROGRESS",
-  success: "SUCCESS",
-  failure: "FAILURE",
-};
 
 interface DataOutPut {
   sum?: number;
@@ -46,16 +41,7 @@ const TotalDebitCredit = (): JSX.Element => {
 
   const [apiResponse, setApiResponse] = useState<ApiOutputStatus>({
     status: apiStatusConstants.initial,
-    data: [
-      {
-        sum: 0,
-        type: "credit",
-      },
-      {
-        sum: 0,
-        type: "debit",
-      },
-    ],
+    data: [],
   });
 
   observe(totalTransactionDetails.transactionData, (): void => {
@@ -66,21 +52,11 @@ const TotalDebitCredit = (): JSX.Element => {
   });
 
   useEffect((): void => {
+    setApiResponse({
+      status: apiStatusConstants.inProgress,
+      data: [],
+    });
     const getLeaderboardData = async (): Promise<void> => {
-      setApiResponse({
-        status: apiStatusConstants.inProgress,
-        data: [
-          {
-            sum: 0,
-            type: "credit",
-          },
-          {
-            sum: 0,
-            type: "debit",
-          },
-        ],
-      });
-
       try {
         await totalTransactionDetails.fetchTotalCreditAndDebitData(userId);
         setApiResponse({

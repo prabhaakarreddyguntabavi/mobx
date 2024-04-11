@@ -1,4 +1,3 @@
-import React from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import {
@@ -16,17 +15,10 @@ interface PaginationProps {
   setCurrentPage: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
-  itemsPerPage,
-  totalItems,
-  currentPage,
-  setCurrentPage,
-}) => {
-  const pageNumbers: number[] = [];
+const Pagination = (props: PaginationProps) => {
+  const { itemsPerPage, totalItems, currentPage, setCurrentPage } = props;
 
-  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const totalPages: number = Math.ceil(totalItems / itemsPerPage);
 
   return (
     <PaginationNavBar>
@@ -40,26 +32,14 @@ const Pagination: React.FC<PaginationProps> = ({
           </PaginationAnchorElement>
         </PaginationListElement>
         <PaginationListElement>{currentPage}</PaginationListElement>
-        {/* {pageNumbers.map((number) => (
-          <PaginationListElement key={number} className="page-item">
-            <PaginationAnchorElement
-              onClick={() => setCurrentPage(number)}
-              className={`page-link ${currentPage === number ? "active" : ""}`}
-            >
-              {number}
-            </PaginationAnchorElement>
-          </PaginationListElement>
-        ))} */}
         <PaginationListElement
           className={`page-item ${
-            currentPage === Math.ceil(totalItems / itemsPerPage)
-              ? "disabled"
-              : ""
+            currentPage === totalPages ? "disabled" : ""
           }`}
         >
           <PaginationAnchorElement
             onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={pageNumbers.length === currentPage}
+            disabled={totalPages === currentPage}
           >
             <IoIosArrowForward />
           </PaginationAnchorElement>

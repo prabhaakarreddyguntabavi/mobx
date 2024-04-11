@@ -7,7 +7,9 @@ import TransactionContext from "../../context/TransactionContext";
 
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
-import { ApiStatus, TransctionProps } from "../InterfaceDefining";
+import { TransctionProps } from "../InterfaceDefining";
+
+import { apiStatusConstants } from "../../constants/commonConstants";
 
 import {
   TransactionsContainer,
@@ -19,7 +21,6 @@ import {
 export interface ApiStatusAndData {
   status: string;
   data: TransctionProps[];
-  errorMsg?: string;
 }
 
 interface UserDetail {
@@ -37,13 +38,6 @@ interface UserDetail {
   postalCode?: string;
   presentAddress?: string;
 }
-
-const apiStatusConstants: ApiStatus = {
-  initial: "INITIAL",
-  inProgress: "IN_PROGRESS",
-  success: "SUCCESS",
-  failure: "FAILURE",
-};
 
 const TransactionPage = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
@@ -79,17 +73,15 @@ const TransactionPage = (): JSX.Element => {
           await userDict.fetchData();
           setProfileDetailsApiResponse(userDict.users);
         }
-        setTimeout(() => {
-          setApiResponse({
-            status: totalTransactionDetails.transactionLoading,
-            data: totalTransactionDetails.transactionData.slice(0, 3),
-          });
-        }, 250);
+
+        setApiResponse({
+          status: totalTransactionDetails.transactionLoading,
+          data: totalTransactionDetails.transactionData.slice(0, 3),
+        });
       } catch (error) {
         setApiResponse({
           status: apiStatusConstants.failure,
           data: [],
-          errorMsg: totalTransactionDetails.transactionErrorMes,
         });
       }
     };

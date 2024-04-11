@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import Cookies from "js-cookie";
 
 import {
   LogoutConformationContainer,
@@ -60,7 +59,7 @@ const UpdateTransaction = (props: PropsValue): JSX.Element => {
       totalTransactionDetails.deleteTransaction(id);
       close();
     } else {
-      updateErrorMessage(responseData.error);
+      updateErrorMessage(responseData.error!);
     }
   };
 
@@ -84,25 +83,20 @@ const UpdateTransaction = (props: PropsValue): JSX.Element => {
           </HeaderTextImageContainer>
         </TextImageContainer>
         <LogoutClosingImage
-          onClick={() => close()}
+          onClick={close}
           src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706078678/Close_gxeytv.png"
           alt="close"
         />
       </TestContainer>
       <LogoutButtonContainer>
-        <YesLogoutButton
-          type="button"
-          onClick={() => {
-            getLeaderboardData();
-          }}
-        >
+        <YesLogoutButton type="button" onClick={getLeaderboardData}>
           Yes, Delete
         </YesLogoutButton>
         <CancelLogoutButton
           type="button"
           className="trigger-button"
           data-testid="close"
-          onClick={() => close()}
+          onClick={close}
         >
           Cancel
         </CancelLogoutButton>

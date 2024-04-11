@@ -37,7 +37,7 @@ export class UsersData {
   loading: boolean = false;
   error: string = "";
   users: UserDetail[] = [];
-  loginUser: UserDetail = { name: "Admin" };
+  loginUser: UserDetail = { name: "" };
 
   constructor() {
     makeAutoObservable(this, {

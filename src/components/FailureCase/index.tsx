@@ -1,5 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
-
+import { observer } from "mobx-react";
 import {
   OnFailureConrainer,
   OnFailureImage,
@@ -7,7 +6,6 @@ import {
   OnFailureParagraph,
   OnFailureRetryButton,
 } from "./styledComponents";
-import { observer } from "mobx-react";
 
 const FailureCase = (): JSX.Element => {
   return (

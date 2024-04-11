@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import Popup from "reactjs-popup";
 import ReactLoading from "react-loading";
 
@@ -66,6 +66,7 @@ const Header = (): JSX.Element => {
     const minutes: string = String(now.getMinutes()).padStart(2, "0");
     const seconds: string = String(now.getSeconds()).padStart(2, "0");
     const dateTimeString: string = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+
     return dateTimeString;
   };
 
@@ -93,16 +94,6 @@ const Header = (): JSX.Element => {
   ): void => {
     addAmount(parseInt(event.target.value));
   };
-
-  const addDateFunction = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    addDate(event.target.value);
-  };
-
-  useEffect((): void => {
-    addDate(getCurrentDateTime());
-  }, [date]);
 
   const updateValues = (): void => {
     addName("");
@@ -293,7 +284,7 @@ const Header = (): JSX.Element => {
                     readOnly
                     id="addTransctionDate"
                     value={date}
-                    onChange={addDateFunction}
+                    onChange={() => addDate(getCurrentDateTime())}
                     placeholder="Select Date"
                   />
                 </AddTransctionInputContainer>

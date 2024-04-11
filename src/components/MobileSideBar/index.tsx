@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import TransactionContext from "../../context/TransactionContext";
 
 import { ProfileDetails } from "../InterfaceDefining";
+import { jwtToken } from "../../constants/commonConstants";
 
 import {
   SideBarMainContainer,
@@ -69,8 +70,6 @@ const MobileSideBar = (props: PropsValue): JSX.Element => {
     userId,
   } = transactionStore;
 
-  const jwtToken: string = Cookies.get("jwt_token")!;
-
   const navigate: NavigateFunction = useNavigate();
   const [apiResponse, setApiResponse] = useState<ProfileDetails>({});
 
@@ -78,9 +77,6 @@ const MobileSideBar = (props: PropsValue): JSX.Element => {
     ...userDetails.find((eachUser) => eachUser.userId === userId),
     name: "",
   };
-  if (loginUser === undefined) {
-    loginUser = { email: "Admin", password: "", userId: 0, name: "Admin" };
-  }
 
   useEffect(() => {
     const fetchProfileData = async (): Promise<void> => {
@@ -109,7 +105,7 @@ const MobileSideBar = (props: PropsValue): JSX.Element => {
           alt="website logo"
         />
         <MobileSideBarClosing
-          onClick={() => close()}
+          onClick={close}
           src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706078678/Close_gxeytv.png"
           alt="close"
         />

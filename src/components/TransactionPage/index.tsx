@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { observer } from "mobx-react";
 import ReactLoading from "react-loading";
-import Cookies from "js-cookie";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import { observe } from "mobx";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
 import TransactionContext from "../../context/TransactionContext";
+import { apiStatusConstants, jwtToken } from "../../constants/commonConstants";
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
 import Pagination from "../Pagination"; // Import Pagination component
@@ -48,14 +48,6 @@ interface DataValues {
 interface ApiOutputStatus {
   status: string;
   data: DataValues[];
-  errorMsg?: string;
-}
-
-interface ApiStatusValues {
-  initial: string;
-  inProgress: string;
-  success: string;
-  failure: string;
 }
 
 interface UserDetail {
@@ -70,13 +62,6 @@ interface UserDetail {
   present_address?: string | null;
 }
 
-const apiStatusConstants: ApiStatusValues = {
-  initial: "INITIAL",
-  inProgress: "IN_PROGRESS",
-  success: "SUCCESS",
-  failure: "FAILURE",
-};
-
 const TransactionPage = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
   const {
@@ -88,7 +73,6 @@ const TransactionPage = (): JSX.Element => {
     userId,
   } = transactionStore;
 
-  const jwtToken: string = Cookies.get("jwt_token")!;
   const navigate: NavigateFunction = useNavigate();
 
   const [apiResponse, setApiResponse] = useState<ApiOutputStatus>({
@@ -108,7 +92,6 @@ const TransactionPage = (): JSX.Element => {
     setApiResponse({
       status: totalTransactionDetails.transactionLoading,
       data: totalTransactionDetails.transactionData,
-      errorMsg: totalTransactionDetails.transactionErrorMes,
     });
   });
 
@@ -117,36 +100,30 @@ const TransactionPage = (): JSX.Element => {
       status: apiStatusConstants.inProgress,
       data: [],
     });
-    if (!jwtToken) {
-      navigate("/login");
-    } else {
-      const getTransactionData = async () => {
-        try {
-          // await userDict.getUserId();
-          await totalTransactionDetails.fetchData(userId);
-          if (isUserAdmin) {
-            // await userDict.getUserId();
-            await userDict.fetchData();
-            setProfileDetailsApiResponse(userDict.users);
-          }
 
-          setTimeout(() => {
-            setApiResponse({
-              status: totalTransactionDetails.transactionLoading,
-              data: totalTransactionDetails.transactionData,
-            });
-          }, 300);
-        } catch (error) {
+    const getTransactionData = async () => {
+      try {
+        await totalTransactionDetails.fetchData(userId);
+        if (isUserAdmin) {
+          await userDict.fetchData();
+          setProfileDetailsApiResponse(userDict.users);
+        }
+
+        setTimeout(() => {
           setApiResponse({
             status: totalTransactionDetails.transactionLoading,
-            data: [],
-            errorMsg: totalTransactionDetails.transactionErrorMes,
+            data: totalTransactionDetails.transactionData,
           });
-        }
-      };
-      getTransactionData();
-    }
-  }, [jwtToken, isUserAdmin, userId]);
+        }, 300);
+      } catch (error) {
+        setApiResponse({
+          status: totalTransactionDetails.transactionLoading,
+          data: [],
+        });
+      }
+    };
+    getTransactionData();
+  }, [jwtToken, userId]);
 
   const renderSuccessView = (): JSX.Element => {
     const { data } = apiResponse;
@@ -251,7 +228,9 @@ const TransactionPage = (): JSX.Element => {
   if (selectOption !== "TRANSACTIONS") {
     onChangeSelectOption("TRANSACTIONS");
   }
-
+  if (!jwtToken) {
+    navigate("/login");
+  }
   return (
     <TransactionHomePage>
       <SideBar />
@@ -261,6 +240,7 @@ const TransactionPage = (): JSX.Element => {
           <TransactionSelectFilter
             onClick={() => {
               onChangeFilter("alltransactions");
+              setCurrentPage(1);
             }}
           >
             <SelectAllOption
@@ -276,6 +256,7 @@ const TransactionPage = (): JSX.Element => {
           <TransactionSelectFilter
             onClick={() => {
               onChangeFilter("credit");
+              setCurrentPage(1);
             }}
           >
             <SelectOption transactionOption={filterOption === "credit"}>
@@ -289,6 +270,7 @@ const TransactionPage = (): JSX.Element => {
           <TransactionSelectFilter
             onClick={() => {
               onChangeFilter("debit");
+              setCurrentPage(1);
             }}
           >
             <SelectOption transactionOption={filterOption === "debit"}>

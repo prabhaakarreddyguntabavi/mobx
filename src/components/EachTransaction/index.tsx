@@ -1,4 +1,5 @@
 import Popup from "reactjs-popup";
+import { observer } from "mobx-react";
 import UpdateTransaction from "../UpdateTransaction";
 import DeleteTransaction from "../DeleteTransaction";
 
@@ -29,7 +30,6 @@ import {
   TransactionParagraphMobile,
   TextContainer,
 } from "./styledComponents";
-import { observer } from "mobx-react";
 
 interface DataValues {
   id?: number;
@@ -144,7 +144,7 @@ const EachTransaction = (props: PropsValues) => {
           </UserProfileDetails>
         </AdminContainer>
       ) : (
-        ""
+        <></>
       )}
 
       <UserContainer isAdmin={isUserAdmin}>

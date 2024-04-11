@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import {
   NotFoundContainer,
@@ -9,10 +9,8 @@ import {
 } from "./styledComponents";
 import { observer } from "mobx-react";
 
-const text: string = "we're sorry, the page you requested could not be found";
-
 const NotFound = (): JSX.Element => {
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   const onBackToHomePage = (): void => {
     navigate("/");
@@ -25,7 +23,9 @@ const NotFound = (): JSX.Element => {
         alt="not found"
       />
       <NotFoundHeading>Page Not Found</NotFoundHeading>
-      <NotFoundParagraph>{text}</NotFoundParagraph>
+      <NotFoundParagraph>
+        we're sorry, the page you requested could not be found
+      </NotFoundParagraph>
       <BackToHomePage type="button" onClick={onBackToHomePage}>
         Back To HomePage
       </BackToHomePage>

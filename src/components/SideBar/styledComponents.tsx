@@ -258,6 +258,7 @@ export const LogoutClosingImage = styled.img`
   height: 24px;
   flex-shrink: 0;
   margin: 10px 10px 10px auto;
+  cursor: pointer;
 `;
 
 export const LogoutParagraph = styled.p`

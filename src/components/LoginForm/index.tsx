@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import Cookies from "js-cookie";
+import { observer } from "mobx-react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 
 import TransactionContext from "../../context/TransactionContext";
+import { jwtToken } from "../../constants/commonConstants";
 
 import {
   LoginLabel,
@@ -16,7 +18,6 @@ import {
   ErrorMessageParagraph,
   LogoImage,
 } from "./styledComponents";
-import { observer } from "mobx-react";
 
 interface UserListProps {
   email: string;
@@ -67,7 +68,7 @@ const LoginForm = (): JSX.Element => {
     }
   };
 
-  const onChangeEmailID = (event: React.ChangeEvent<HTMLInputElement>): void =>
+  const onChangeEmailId = (event: React.ChangeEvent<HTMLInputElement>): void =>
     onSetEmail(event.target.value);
 
   const onChangePas = (event: React.ChangeEvent<HTMLInputElement>): void =>
@@ -103,8 +104,6 @@ const LoginForm = (): JSX.Element => {
     }
   };
 
-  const jwtToken: string = Cookies.get("jwt_token")!;
-
   if (jwtToken !== undefined) {
     navigate("/");
   }
@@ -127,7 +126,7 @@ const LoginForm = (): JSX.Element => {
             type="email"
             id="emailId"
             value={emailId}
-            onChange={onChangeEmailID}
+            onChange={onChangeEmailId}
             onBlur={() => onEnterEmailId()}
             placeholder="Email"
           />
@@ -142,7 +141,7 @@ const LoginForm = (): JSX.Element => {
             placeholder="Password"
           />
         </InputContainer>
-        <LoginButton>Login</LoginButton>
+        <LoginButton type="submit">Login</LoginButton>
         {errorMessage && (
           <ErrorMessageParagraph>*{errorMessage}</ErrorMessageParagraph>
         )}

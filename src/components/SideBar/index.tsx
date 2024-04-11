@@ -3,6 +3,8 @@ import Popup from "reactjs-popup";
 import Cookies from "js-cookie";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
+
+import { jwtToken } from "../../constants/commonConstants";
 import TransactionContext from "../../context/TransactionContext";
 
 import { ProfileDetails } from "../InterfaceDefining";
@@ -61,8 +63,6 @@ const userDetails = [
 ];
 
 const SideBar = (): JSX.Element => {
-  const jwtToken: string = Cookies.get("jwt_token")!;
-
   const transactionStore = useContext(TransactionContext);
   const {
     selectOption,
@@ -81,19 +81,9 @@ const SideBar = (): JSX.Element => {
     name: "",
   };
 
-  if (loginUser === undefined) {
-    loginUser = { email: undefined, password: "", userId: 0, name: "" };
-  }
-
   useEffect(() => {
     const fetchProfileData = async (): Promise<void> => {
-      if (!jwtToken) {
-        navigate("/login");
-        return;
-      }
       await userDict.fetchData();
-      // userDict.loginUserDetails();
-
       setApiResponse(
         userDict.users.find((findUser) => findUser.id === userId)!
       );
@@ -107,6 +97,10 @@ const SideBar = (): JSX.Element => {
     navigate("/login");
     localStorage.clear();
   };
+
+  if (!jwtToken) {
+    navigate("/login");
+  }
 
   return (
     <SideBarMainContainer>
@@ -190,7 +184,6 @@ const SideBar = (): JSX.Element => {
           </EachTextContainer>
         </Link>
       </TextContainer>
-      {/* Profile Section */}
       <ProfileContainer>
         {loginUser.email !== undefined ? (
           <>
@@ -248,7 +241,7 @@ const SideBar = (): JSX.Element => {
                     </HeaderTextImageContainer>
                   </TextImageContainer>
                   <LogoutClosingImage
-                    onClick={() => close()}
+                    onClick={close}
                     src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706078678/Close_gxeytv.png"
                     alt="close"
                   />
@@ -261,7 +254,7 @@ const SideBar = (): JSX.Element => {
                     type="button"
                     className="trigger-button"
                     data-testid="close"
-                    onClick={() => close()}
+                    onClick={close}
                   >
                     Cancel
                   </CancelLogoutButton>
