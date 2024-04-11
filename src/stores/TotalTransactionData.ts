@@ -195,14 +195,14 @@ export class TransctionStore {
 
     this.creditAndDebit = updateCreditAndDebit;
 
-    this.transactionData = this.transactionData.filter(
-      (eachTransaction) => eachTransaction.id !== id
-    );
-
-    // const indexNumber: number = this.transactionData.findIndex(
-    //   (each) => each.id === id
+    // this.transactionData = this.transactionData.filter(
+    //   (eachTransaction) => eachTransaction.id !== id
     // );
-    // this.transactionData.splice(indexNumber, 1);
+
+    const indexNumber: number = this.transactionData.findIndex(
+      (each) => each.id === id
+    );
+    this.transactionData.splice(indexNumber, 1);
   }
 
   async fetchTotalCreditAndDebitData(userId: number) {

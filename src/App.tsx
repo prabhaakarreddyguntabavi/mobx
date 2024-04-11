@@ -33,9 +33,11 @@ const App = (): JSX.Element => {
     await userDict.getUserId();
   };
 
-  if (emailAndPassword !== undefined) {
+  if (emailAndPassword !== null) {
     getLeaderboardData();
   }
+
+  console.log(emailAndPassword);
 
   observe(userDict, (): void => {
     updateUserId(userDict.userId);

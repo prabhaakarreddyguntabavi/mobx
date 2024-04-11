@@ -122,7 +122,7 @@ const TransactionPage = (): JSX.Element => {
     } else {
       const getTransactionData = async () => {
         try {
-          await userDict.getUserId();
+          // await userDict.getUserId();
           await totalTransactionDetails.fetchData(userId);
           if (isUserAdmin) {
             // await userDict.getUserId();

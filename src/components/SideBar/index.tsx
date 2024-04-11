@@ -103,8 +103,9 @@ const SideBar = (): JSX.Element => {
   }, [jwtToken]);
 
   const onClickLogout = (): void => {
-    navigate("/login");
     Cookies.remove("jwt_token");
+    navigate("/login");
+    localStorage.clear();
   };
 
   return (

@@ -47,8 +47,8 @@ const LoginForm = (): JSX.Element => {
 
   const { userDict } = transactionStore;
 
-  const [emailId, onChangeEmail] = useState<string>("");
-  const [password, onChangePassword] = useState<string>("");
+  const [emailId, onSetEmail] = useState<string>("");
+  const [password, onSetPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [loginUserDict, setEmailDict] = useState<UserListProps>({
     email: "",
@@ -68,12 +68,12 @@ const LoginForm = (): JSX.Element => {
   };
 
   const onChangeEmailID = (event: React.ChangeEvent<HTMLInputElement>): void =>
-    onChangeEmail(event.target.value);
+    onSetEmail(event.target.value);
 
   const onChangePas = (event: React.ChangeEvent<HTMLInputElement>): void =>
-    onChangePassword(event.target.value);
+    onSetPassword(event.target.value);
 
-  const onLoginField = (): void => {
+  const onLoginButton = async (): Promise<void> => {
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!pattern.test(emailId)) {
@@ -96,8 +96,10 @@ const LoginForm = (): JSX.Element => {
 
       const user = { email: emailId, password };
       localStorage.setItem("userDetails", JSON.stringify(user));
-      userDict.getUserId(user);
+      await userDict.getUserId(user);
       navigate("/");
+      onSetEmail("");
+      onSetPassword("");
     }
   };
 
@@ -111,7 +113,7 @@ const LoginForm = (): JSX.Element => {
     <LoginContainer>
       <LoginFormContainer
         onSubmit={(e) => {
-          onLoginField();
+          onLoginButton();
           e.preventDefault();
         }}
       >

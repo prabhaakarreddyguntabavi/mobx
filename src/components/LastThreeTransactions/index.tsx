@@ -75,7 +75,7 @@ const TransactionPage = (): JSX.Element => {
       try {
         await totalTransactionDetails.fetchData(userId);
         if (isUserAdmin) {
-          await userDict.getUserId();
+          // await userDict.getUserId();
           await userDict.fetchData();
           setProfileDetailsApiResponse(userDict.users);
         }
