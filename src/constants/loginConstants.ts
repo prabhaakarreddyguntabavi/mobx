@@ -1,8 +1,4 @@
-interface UserListProps {
-  email: string;
-  password: string;
-  userId: number;
-}
+import { UserListProps } from "../types/loginTypes";
 
 export const userDetails: UserListProps[] = [
   { email: "jane.doe@gmail.com", password: "janedoe@123", userId: 1 },

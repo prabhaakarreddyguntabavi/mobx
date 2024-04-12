@@ -4,12 +4,15 @@ import { observe } from "mobx";
 import { observer } from "mobx-react";
 
 import TransactionContext from "../../context/TransactionContext";
+import { apiStatusConstants } from "../../constants/commonConstants";
+import {
+  ApiStatusAndData,
+  TransctionProps,
+} from "../../types/transactionsTypes";
+import { UserDetail } from "../../types/usersTypes";
 
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
-import { TransctionProps } from "../InterfaceDefining";
-
-import { apiStatusConstants } from "../../constants/commonConstants";
 
 import {
   TransactionsContainer,
@@ -17,27 +20,6 @@ import {
   NoTransactionsFountHeading,
   FailureContainer,
 } from "./styledComponents";
-
-export interface ApiStatusAndData {
-  status: string;
-  data: TransctionProps[];
-}
-
-interface UserDetail {
-  id?: number;
-  name?: string;
-  email?: string;
-  country?: string;
-  date_of_birth?: string;
-  dateOfBirth?: string;
-  city?: string;
-  permanent_address?: string;
-  postal_code?: string;
-  present_address?: string;
-  permanentAddress?: string;
-  postalCode?: string;
-  presentAddress?: string;
-}
 
 const TransactionPage = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);

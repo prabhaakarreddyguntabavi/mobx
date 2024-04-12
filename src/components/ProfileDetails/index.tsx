@@ -6,6 +6,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import { jwtToken, apiStatusConstants } from "../../constants/commonConstants";
 import TransactionContext from "../../context/TransactionContext";
+import { ApiOutputStatus } from "../../types/usersTypes";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
@@ -25,27 +26,6 @@ import {
   DetailsContainer,
   FailureContainer,
 } from "./styledComponents";
-
-interface ProfileDetailsValues {
-  id?: number;
-  name?: string;
-  email?: string;
-  country?: string;
-  date_of_birth?: string;
-  dateOfBirth?: string;
-  city?: string;
-  permanent_address?: string;
-  postal_code?: string;
-  present_address?: string;
-  permanentAddress?: string;
-  postalCode?: string;
-  presentAddress?: string;
-}
-
-interface ApiOutputStatus {
-  status: string;
-  data: ProfileDetailsValues;
-}
 
 const ProfileDetails = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);

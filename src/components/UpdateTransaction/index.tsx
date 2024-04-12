@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import ReactLoading from "react-loading";
 
 import TransactionContext from "../../context/TransactionContext";
-
+import { TransctionProps as EachTransction } from "../../types/transactionsTypes";
 import {
   AddTransactionButton,
   AddTransactionInputContainer,
@@ -31,34 +31,18 @@ const setTimeFormate = (date: string): string => {
   return formattedDateTime;
 };
 
-interface EachTransction {
-  id?: number;
-  transactionName?: string;
-  type: string;
-  category: string;
-  amount: number;
-  date: string;
-  userId?: number;
-  transaction_name?: string;
-  user_id?: number;
-  name?: string;
-}
-
-interface PropsValues {
+const UpdateTransaction = (props: {
   eachTransaction: EachTransction;
   close: () => void;
-}
-interface ApiOutputStatus {
-  errorMsg?: string;
-}
-
-const UpdateTransaction = (props: PropsValues): JSX.Element => {
-  const { eachTransaction, close }: PropsValues = props;
+}): JSX.Element => {
+  const { eachTransaction, close } = props;
 
   const transactionStore = useContext(TransactionContext);
   const { totalTransactionDetails, userId } = transactionStore;
 
-  const [apiResponse, setApiResponse] = useState<ApiOutputStatus>({
+  const [apiResponse, setApiResponse] = useState<{
+    errorMsg: string | undefined;
+  }>({
     errorMsg: undefined,
   });
 

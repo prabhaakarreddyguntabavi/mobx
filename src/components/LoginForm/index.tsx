@@ -7,6 +7,7 @@ import { useNavigate, NavigateFunction } from "react-router-dom";
 import TransactionContext from "../../context/TransactionContext";
 import { jwtToken } from "../../constants/commonConstants";
 import { userDetails } from "../../constants/loginConstants";
+import { UserListProps } from "../../types/loginTypes";
 
 import {
   LoginLabel,
@@ -19,12 +20,6 @@ import {
   ErrorMessageParagraph,
   LogoImage,
 } from "./styledComponents";
-
-interface UserListProps {
-  email: string;
-  password: string;
-  userId: number;
-}
 
 const LoginForm = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);

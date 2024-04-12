@@ -16,14 +16,10 @@ import {
 } from "./styledComponents";
 import TransactionContext from "../../context/TransactionContext";
 import { observer } from "mobx-react";
+import { DeleteTransactionPropsValue } from "../../types/transactionsTypes";
 
-interface PropsValue {
-  id: number;
-  close: () => void;
-}
-
-const UpdateTransaction = (props: PropsValue): JSX.Element => {
-  const { id, close }: PropsValue = props;
+const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
+  const { id, close }: DeleteTransactionPropsValue = props;
 
   const transactionStore = useContext(TransactionContext);
   const { totalTransactionDetails, userId } = transactionStore;

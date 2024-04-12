@@ -1,11 +1,13 @@
 import { useState, useContext } from "react";
 import Popup from "reactjs-popup";
 import ReactLoading from "react-loading";
-
 import { IoMdMenu } from "react-icons/io";
+import MobileSideBar from "../MobileSideBar";
+import { observer } from "mobx-react";
 
 import TransactionContext from "../../context/TransactionContext";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { DataValues } from "../../types/transactionsTypes";
 
 import {
   HeaderMainContainer,
@@ -36,21 +38,6 @@ import {
 } from "./styledComponents";
 
 import "./index.css";
-import MobileSideBar from "../MobileSideBar";
-import { observer } from "mobx-react";
-
-interface DataValues {
-  id?: number;
-  transactionName?: string;
-  type: string;
-  category: string;
-  amount: number;
-  date: string;
-  userId?: number;
-  transaction_name?: string;
-  user_id?: number | string;
-  name?: string;
-}
 
 const Header = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);

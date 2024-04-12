@@ -1,37 +1,11 @@
 import { makeAutoObservable, observable, action } from "mobx";
-
-interface DataValues {
-  id?: number;
-  transactionName?: string;
-  type: string;
-  category: string;
-  amount: number;
-  date: string;
-  userId?: number;
-  transaction_name?: string;
-  user_id?: number;
-  name?: string;
-}
-interface FetchedData {
-  transactions: DataValues[];
-}
-
-interface CreditAndDebit {
-  sum: number;
-  type: string;
-}
-
-interface FetchedOutput {
-  totals_credit_debit_transactions?: CreditAndDebit[];
-  transaction_totals_admin?: CreditAndDebit[];
-}
-
-interface ApiStatusValues {
-  initial: string;
-  inProgress: string;
-  success: string;
-  failure: string;
-}
+import {
+  FetchedData,
+  TransctionProps as DataValues,
+  DataOutPut as CreditAndDebit,
+  ApiStatus as ApiStatusValues,
+  FetchedOutput,
+} from "../types/transactionsTypes";
 
 const apiStatusConstants: ApiStatusValues = {
   initial: "INITIAL",

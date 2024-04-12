@@ -5,9 +5,19 @@ import { v4 as uuidv4 } from "uuid";
 import { observer } from "mobx-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
-import { CrediteAndDebitList } from "../InterfaceDefining";
 import TransactionContext from "../../context/TransactionContext";
 import { apiStatusConstants } from "../../constants/commonConstants";
+
+import {
+  FetchedData,
+  OutPutObject,
+  DailySum,
+  DailySums,
+  GraphProps,
+  TodaySunOfTheValue,
+  ApiStatusAndData,
+  CrediteAndDebitList,
+} from "../../types/graphTypes";
 
 import {
   LoadingContainer,
@@ -20,46 +30,6 @@ import {
   GraphTextParagraph,
   GraphHeaderContainer,
 } from "./styledComponents";
-
-interface FetchedData {
-  date: string;
-  sum: number;
-  type: string;
-}
-
-interface OutPutObject {
-  last_7_days_transactions_credit_debit_totals?: FetchedData[];
-  last_7_days_transactions_totals_admin?: FetchedData[];
-}
-
-interface DailySum {
-  debit?: number;
-  credit?: number;
-  type?: string;
-  date?: string;
-  sum?: number;
-}
-
-interface DailySums {
-  [date: string]: DailySum;
-}
-
-interface GraphProps {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  fill: string;
-}
-
-interface TodaySunOfTheValue {
-  totalDailySums: DailySum[];
-}
-interface ApiStatusAndData {
-  status: string;
-  data: FetchedData[];
-  errorMsg?: string;
-}
 
 const GenderChart = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);

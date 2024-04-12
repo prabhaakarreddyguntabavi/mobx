@@ -1,5 +1,6 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { observer } from "mobx-react";
+import { PaginationProps } from "../../types/transactionsTypes";
 
 import {
   PaginationNavBar,
@@ -7,13 +8,6 @@ import {
   PaginationAnchorElement,
   PaginationListElement,
 } from "./styledComponents";
-
-interface PaginationProps {
-  itemsPerPage: number;
-  totalItems: number;
-  currentPage: number;
-  setCurrentPage: (page: number) => void;
-}
 
 const Pagination = (props: PaginationProps) => {
   const { itemsPerPage, totalItems, currentPage, setCurrentPage } = props;

@@ -1,36 +1,11 @@
 import { action, makeAutoObservable, observable } from "mobx";
-
-interface UserDetail {
-  id?: number;
-  name?: string;
-  email?: string;
-  country?: string;
-  date_of_birth?: string;
-  dateOfBirth?: string;
-  city?: string;
-  permanent_address?: string;
-  postal_code?: string;
-  present_address?: string;
-  permanentAddress?: string;
-  postalCode?: string;
-  presentAddress?: string;
-}
-
-interface FetchOutPut {
-  users: UserDetail[];
-}
-
-interface UserEmailAndPassword {
-  email?: string;
-  password?: string;
-}
-interface GetUserId {
-  get_user_id: ID[];
-}
-
-interface ID {
-  id: number;
-}
+import {
+  UserDetail,
+  FetchOutPut,
+  UserEmailAndPassword,
+  ID,
+  GetUserId,
+} from "../types/usersTypes";
 
 export class UsersData {
   userId: number = 0;

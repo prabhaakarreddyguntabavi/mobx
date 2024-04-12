@@ -6,8 +6,8 @@ import { useState, useEffect, useContext } from "react";
 import TransactionContext from "../../context/TransactionContext";
 import { userDetails } from "../../constants/loginConstants";
 
-import { ProfileDetails } from "../InterfaceDefining";
 import { jwtToken } from "../../constants/commonConstants";
+import { UserDetail as ProfileDetails } from "../../types/usersTypes";
 
 import {
   SideBarMainContainer,

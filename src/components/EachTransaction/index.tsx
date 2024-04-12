@@ -2,6 +2,7 @@ import Popup from "reactjs-popup";
 import { observer } from "mobx-react";
 import UpdateTransaction from "../UpdateTransaction";
 import DeleteTransaction from "../DeleteTransaction";
+import { PropsValues } from "../../types/transactionsTypes";
 
 import {
   DashTransactionContainer,
@@ -30,39 +31,6 @@ import {
   TransactionParagraphMobile,
   TextContainer,
 } from "./styledComponents";
-
-interface DataValues {
-  id?: number;
-  transactionName?: string;
-  type: string;
-  category: string;
-  amount: number;
-  date: string;
-  userId?: number;
-  transaction_name?: string;
-  user_id?: number;
-  name?: string;
-}
-
-interface UserDetail {
-  id?: number;
-  name?: string;
-  email?: string;
-  country?: string | null;
-  date_of_birth?: string | null;
-  city?: string | null;
-  permanent_address?: string | null;
-  postal_code?: string | null;
-  present_address?: string | null;
-}
-interface PropsValues {
-  transactionsData: DataValues[];
-  isUserAdmin: boolean;
-  index: number;
-  eachTransaction: DataValues;
-  user: UserDetail;
-  isThisLastThreeTransactions: boolean;
-}
 
 const EachTransaction = (props: PropsValues) => {
   const {

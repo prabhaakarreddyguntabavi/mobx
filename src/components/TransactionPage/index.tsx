@@ -7,10 +7,15 @@ import { observe } from "mobx";
 import SideBar from "../SideBar";
 import Header from "../Header";
 import TransactionContext from "../../context/TransactionContext";
+import {
+  TransctionProps as DataValues,
+  ApiStatusAndData as ApiOutputStatus,
+} from "../../types/transactionsTypes";
+import { UserDetail } from "../../types/usersTypes";
 import { apiStatusConstants, jwtToken } from "../../constants/commonConstants";
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
-import Pagination from "../Pagination"; // Import Pagination component
+import Pagination from "../Pagination";
 
 import {
   TransactionHomePage,
@@ -32,35 +37,6 @@ import {
   NoTransactionsFountHeading,
   TransactionUserName,
 } from "./styledComponents";
-
-interface DataValues {
-  id?: number;
-  transactionName?: string;
-  type: string;
-  category: string;
-  amount: number;
-  date: string;
-  userId?: number;
-  transaction_name?: string;
-  user_id?: number;
-  name?: string;
-}
-interface ApiOutputStatus {
-  status: string;
-  data: DataValues[];
-}
-
-interface UserDetail {
-  id?: number;
-  name?: string;
-  email?: string;
-  country?: string | null;
-  date_of_birth?: string | null;
-  city?: string | null;
-  permanent_address?: string | null;
-  postal_code?: string | null;
-  present_address?: string | null;
-}
 
 const TransactionPage = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);

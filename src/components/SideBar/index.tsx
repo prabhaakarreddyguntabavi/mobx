@@ -8,7 +8,7 @@ import { jwtToken } from "../../constants/commonConstants";
 import TransactionContext from "../../context/TransactionContext";
 import { userDetails } from "../../constants/loginConstants";
 
-import { ProfileDetails } from "../InterfaceDefining";
+import { UserDetail as ProfileDetails } from "../../types/usersTypes";
 
 import {
   SideBarMainContainer,

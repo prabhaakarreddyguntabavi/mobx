@@ -5,7 +5,7 @@ import { observer } from "mobx-react";
 
 import TransactionContext from "../../context/TransactionContext";
 import { apiStatusConstants } from "../../constants/commonConstants";
-
+import { DataOutPut, ApiOutputStatus } from "../../types/transactionsTypes";
 import FailureCase from "../FailureCase";
 
 import {
@@ -23,17 +23,6 @@ import {
   DebitImage,
   LoadingContainer,
 } from "./styledComponents";
-
-interface DataOutPut {
-  sum?: number;
-  type?: string;
-}
-
-interface ApiOutputStatus {
-  status: string;
-  data: DataOutPut[];
-  errorMsg?: string;
-}
 
 const TotalDebitCredit = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
