@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import ReactLoading from "react-loading";
+import { observer } from "mobx-react";
 
 import TransactionContext from "../../context/TransactionContext";
 import { TransctionProps as EachTransction } from "../../types/transactionsTypes";
+import { setTimeFormate } from "../../utils/dateTimeFormate";
+
 import {
   AddTransactionButton,
   AddTransactionInputContainer,
@@ -12,24 +15,6 @@ import {
   SelectTransactionOptions,
   ErrorMessage,
 } from "./styledComponents";
-import { observer } from "mobx-react";
-
-const setTimeFormate = (date: string): string => {
-  const inputDateString: string = date;
-  const inputDate: Date = new Date(inputDateString);
-
-  const year: number = inputDate.getFullYear();
-  const month: string = String(inputDate.getMonth() + 1).padStart(2, "0");
-  const day: string = String(inputDate.getDate()).padStart(2, "0");
-
-  const hours: string = String(inputDate.getHours()).padStart(2, "0");
-  const minutes: string = String(inputDate.getMinutes()).padStart(2, "0");
-  const seconds: string = String(inputDate.getSeconds()).padStart(2, "0");
-
-  const formattedDateTime: string = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
-  return formattedDateTime;
-};
 
 const UpdateTransaction = (props: {
   eachTransaction: EachTransction;

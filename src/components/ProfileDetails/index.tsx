@@ -4,7 +4,8 @@ import { observe } from "mobx";
 import { observer } from "mobx-react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 
-import { jwtToken, apiStatusConstants } from "../../constants/commonConstants";
+import { jwtToken } from "../../utils/jwtToken";
+import { apiStatusConstants } from "../../constants/commonConstants";
 import TransactionContext from "../../context/TransactionContext";
 import { ApiOutputStatus } from "../../types/usersTypes";
 

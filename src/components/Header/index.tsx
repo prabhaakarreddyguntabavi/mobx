@@ -8,6 +8,7 @@ import { observer } from "mobx-react";
 import TransactionContext from "../../context/TransactionContext";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { DataValues } from "../../types/transactionsTypes";
+import { getCurrentDateTime } from "../../utils/dateTimeFormate";
 
 import {
   HeaderMainContainer,
@@ -43,19 +44,6 @@ const Header = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
   const { selectOption, totalTransactionDetails, isUserAdmin, userId } =
     transactionStore;
-
-  const getCurrentDateTime = (): string => {
-    const now: Date = new Date();
-    const year: number = now.getFullYear();
-    const month: string = String(now.getMonth() + 1).padStart(2, "0");
-    const day: string = String(now.getDate()).padStart(2, "0");
-    const hours: string = String(now.getHours()).padStart(2, "0");
-    const minutes: string = String(now.getMinutes()).padStart(2, "0");
-    const seconds: string = String(now.getSeconds()).padStart(2, "0");
-    const dateTimeString: string = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-
-    return dateTimeString;
-  };
 
   const [addTransctionStatus, updateTransction] = useState<string>("");
 

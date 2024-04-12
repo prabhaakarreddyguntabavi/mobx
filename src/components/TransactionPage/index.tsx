@@ -12,10 +12,13 @@ import {
   ApiStatusAndData as ApiOutputStatus,
 } from "../../types/transactionsTypes";
 import { UserDetail } from "../../types/usersTypes";
-import { apiStatusConstants, jwtToken } from "../../constants/commonConstants";
+import { apiStatusConstants } from "../../constants/commonConstants";
+import { jwtToken } from "../../utils/jwtToken";
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
 import Pagination from "../Pagination";
+
+import { getTransactionData } from "../../utils/transactionData";
 
 import {
   TransactionHomePage,
@@ -77,28 +80,19 @@ const TransactionPage = (): JSX.Element => {
       data: [],
     });
 
-    const getTransactionData = async () => {
-      try {
-        await totalTransactionDetails.fetchData(userId);
-        if (isUserAdmin) {
-          await userDict.fetchData();
-          setProfileDetailsApiResponse(userDict.users);
-        }
-
-        setTimeout(() => {
-          setApiResponse({
-            status: totalTransactionDetails.transactionLoading,
-            data: totalTransactionDetails.transactionData,
-          });
-        }, 300);
-      } catch (error) {
+    const fetchData = async () => {
+      await getTransactionData(transactionStore);
+      if (isUserAdmin) {
+        setProfileDetailsApiResponse(userDict.users);
+      }
+      setTimeout(() => {
         setApiResponse({
           status: totalTransactionDetails.transactionLoading,
-          data: [],
+          data: totalTransactionDetails.transactionData,
         });
-      }
+      }, 3);
     };
-    getTransactionData();
+    fetchData();
   }, [userId]);
 
   const renderSuccessView = (): JSX.Element => {

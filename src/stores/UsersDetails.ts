@@ -3,7 +3,6 @@ import {
   UserDetail,
   FetchOutPut,
   UserEmailAndPassword,
-  ID,
   GetUserId,
 } from "../types/usersTypes";
 

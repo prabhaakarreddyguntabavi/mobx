@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import TransactionContext from "../../context/TransactionContext";
-import { jwtToken } from "../../constants/commonConstants";
+import { jwtToken } from "../../utils/jwtToken";
 
 import SideBar from "../SideBar";
 import Header from "../Header";

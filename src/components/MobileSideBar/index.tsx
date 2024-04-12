@@ -6,7 +6,7 @@ import { useState, useEffect, useContext } from "react";
 import TransactionContext from "../../context/TransactionContext";
 import { userDetails } from "../../constants/loginConstants";
 
-import { jwtToken } from "../../constants/commonConstants";
+import { jwtToken } from "../../utils/jwtToken";
 import { UserDetail as ProfileDetails } from "../../types/usersTypes";
 
 import {
@@ -30,11 +30,7 @@ import {
 
 import "./index.css";
 
-interface PropsValue {
-  close: () => void;
-}
-
-const MobileSideBar = (props: PropsValue): JSX.Element => {
+const MobileSideBar = (props: { close: () => void }): JSX.Element => {
   const { close } = props;
 
   const transactionStore = useContext(TransactionContext);

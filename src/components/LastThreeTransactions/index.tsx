@@ -10,6 +10,7 @@ import {
   TransctionProps,
 } from "../../types/transactionsTypes";
 import { UserDetail } from "../../types/usersTypes";
+import { getTransactionData } from "../../utils/transactionData";
 
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
@@ -47,27 +48,19 @@ const TransactionPage = (): JSX.Element => {
       status: apiStatusConstants.inProgress,
       data: [],
     });
-    const getTransactionData = async () => {
-      try {
-        await totalTransactionDetails.fetchData(userId);
-        if (isUserAdmin) {
-          // await userDict.getUserId();
-          await userDict.fetchData();
-          setProfileDetailsApiResponse(userDict.users);
-        }
-
+    const fetchData = async () => {
+      await getTransactionData(transactionStore);
+      if (isUserAdmin) {
+        setProfileDetailsApiResponse(userDict.users);
+      }
+      setTimeout(() => {
         setApiResponse({
           status: totalTransactionDetails.transactionLoading,
           data: totalTransactionDetails.transactionData.slice(0, 3),
         });
-      } catch (error) {
-        setApiResponse({
-          status: apiStatusConstants.failure,
-          data: [],
-        });
-      }
+      }, 3);
     };
-    getTransactionData();
+    fetchData();
   }, [isUserAdmin, userId]);
 
   const renderSuccessView = (): JSX.Element => {

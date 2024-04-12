@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import { useEffect, useContext } from "react";
 
-import { jwtToken } from "../../constants/commonConstants";
+import { jwtToken } from "../../utils/jwtToken";
 import TransactionContext from "../../context/TransactionContext";
 import { userDetails } from "../../constants/loginConstants";
 

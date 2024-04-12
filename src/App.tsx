@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import TransactionContext from "./context/TransactionContext";
@@ -11,21 +11,17 @@ import { TransctionStore } from "./stores/TotalTransactionData";
 import { UsersData } from "./stores/UsersDetails";
 import { observer } from "mobx-react";
 import { observe } from "mobx";
+import { UserEmailAndPassword } from "./types/usersTypes";
 
 let totalTransactionDetails = new TransctionStore();
 let userDict = new UsersData();
-
-interface UserDetails {
-  email?: string;
-  password?: string;
-}
 
 const App = (): JSX.Element => {
   const [selectOption, onChangeSelect] = useState<string>("DASHBOARD");
   const [userId, updateUserId] = useState<number>(0);
   const [isUserAdmin, onChangeAdmin] = useState<boolean>(false);
 
-  const emailAndPassword: UserDetails = JSON.parse(
+  const emailAndPassword: UserEmailAndPassword = JSON.parse(
     localStorage.getItem("userDetails")!
   );
 
@@ -36,8 +32,6 @@ const App = (): JSX.Element => {
   if (emailAndPassword !== null) {
     getLeaderboardData();
   }
-
-  console.log(emailAndPassword);
 
   observe(userDict, (): void => {
     updateUserId(userDict.userId);

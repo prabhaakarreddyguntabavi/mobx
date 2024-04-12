@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import UpdateTransaction from "../UpdateTransaction";
 import DeleteTransaction from "../DeleteTransaction";
 import { PropsValues } from "../../types/transactionsTypes";
+import { dateTimeCustomFormate as dateFormate } from "../../utils/dateTimeFormate";
 
 import {
   DashTransactionContainer,
@@ -41,37 +42,6 @@ const EachTransaction = (props: PropsValues) => {
     user,
     isThisLastThreeTransactions,
   } = props;
-
-  const dateFormate = (date: string): string => {
-    const inputDateString: string = date;
-    const inputDate: Date = new Date(inputDateString);
-
-    const day: number = inputDate.getDate();
-    const monthNames: string[] = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    const month: string = monthNames[inputDate.getMonth()];
-    const hours: number = inputDate.getHours();
-    const minutes: number = inputDate.getMinutes();
-    const ampm: string = hours >= 12 ? "PM" : "AM";
-
-    const formattedDate: string = `${day} ${month}, ${
-      hours % 12
-    }:${minutes} ${ampm}`;
-
-    return formattedDate;
-  };
 
   return (
     <DashTransactionContainer
