@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   LogoutConformationContainer,
@@ -20,7 +21,7 @@ import { DeleteTransactionPropsValue } from "../../types/transactionsTypes";
 
 const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
   const { id, close }: DeleteTransactionPropsValue = props;
-
+  const { t } = useTranslation();
   const transactionStore = useContext(TransactionContext);
   const { totalTransactionDetails, userId } = transactionStore;
 
@@ -61,7 +62,7 @@ const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
 
   return (
     <LogoutConformationContainer>
-      {errorMessage && <p>Something went wrong please try again later</p>}
+      {errorMessage && <p>{t("somethingwentwrongpleasetrygainlater")}</p>}
       <TestContainer>
         <WarningImageContainer>
           <WarningImage
@@ -71,11 +72,8 @@ const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
         </WarningImageContainer>
         <TextImageContainer>
           <HeaderTextImageContainer>
-            <LogoutHeading>Are you sure you want to Delete?</LogoutHeading>
-            <LogoutParagraph>
-              This transaction will be deleted immediately. You can’t undo this
-              action.
-            </LogoutParagraph>
+            <LogoutHeading>{t("deletePopupText")}</LogoutHeading>
+            <LogoutParagraph>{t("deletePopupTextMessage")}</LogoutParagraph>
           </HeaderTextImageContainer>
         </TextImageContainer>
         <LogoutClosingImage
@@ -86,7 +84,7 @@ const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
       </TestContainer>
       <LogoutButtonContainer>
         <YesLogoutButton type="button" onClick={getLeaderboardData}>
-          Yes, Delete
+          {t("yesDelete")}
         </YesLogoutButton>
         <CancelLogoutButton
           type="button"
@@ -94,7 +92,7 @@ const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
           data-testid="close"
           onClick={close}
         >
-          Cancel
+          {t("cancel")}
         </CancelLogoutButton>
       </LogoutButtonContainer>
     </LogoutConformationContainer>

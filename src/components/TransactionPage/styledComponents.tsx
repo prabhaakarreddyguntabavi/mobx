@@ -132,7 +132,7 @@ export const SelectedContainer = styled.div<TextParagraphFilterProps>`
 `;
 
 export const SelectOption = styled.div<TextParagraphFilterProps>`
-  width: 57px;
+  // width: 57px;
   color: ${(props: any) => (props.transactionOption ? "#2d60ff" : "#718ebf")};
   text-align: center;
   font-family: Inter;

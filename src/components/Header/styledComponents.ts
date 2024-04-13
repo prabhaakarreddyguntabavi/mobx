@@ -305,3 +305,13 @@ export const NotificationMessage = styled.p`
 `;
 
 export const PopupContainer = styled.div``;
+
+export const LanguageContainer = styled.div`
+  margin-top: 20px;
+`;
+export const LanguageSelectorContainer = styled.select`
+  margin-top: 8px;
+`;
+export const DropdownOptions = styled.option`
+  margin-top: 5px;
+`;

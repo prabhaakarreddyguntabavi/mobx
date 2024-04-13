@@ -3,7 +3,7 @@ import Popup from "reactjs-popup";
 import Cookies from "js-cookie";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import { useEffect, useContext } from "react";
-
+import { useTranslation } from "react-i18next";
 import { setJwtToken } from "../../utils/jwtToken";
 import TransactionContext from "../../context/TransactionContext";
 import { userDetails } from "../../constants/loginConstants";
@@ -46,6 +46,8 @@ import "./index.css";
 import { observer } from "mobx-react";
 
 const SideBar = (): JSX.Element => {
+  const { t } = useTranslation();
+
   const transactionStore = useContext(TransactionContext);
   const {
     selectOption,
@@ -116,7 +118,7 @@ const SideBar = (): JSX.Element => {
               alt="dashboard"
             />
             <TextParagraph selectOption={selectOption === "DASHBOARD"}>
-              Dashboard
+              {t("dashboard")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -139,7 +141,7 @@ const SideBar = (): JSX.Element => {
             />
 
             <TextParagraph selectOption={selectOption === "TRANSACTIONS"}>
-              {isUserAdmin ? "All Transactions" : "Transactions"}
+              {isUserAdmin ? t("allTransactions") : t("transactions")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -164,7 +166,7 @@ const SideBar = (): JSX.Element => {
               alt="profile"
             />
             <TextParagraph selectOption={selectOption === "PROFILE"}>
-              Profile
+              {t("profile")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -216,12 +218,9 @@ const SideBar = (): JSX.Element => {
                   </WarningImageContainer>
                   <TextImageContainer>
                     <HeaderTextImageContainer>
-                      <LogoutHeading>
-                        Are you sure you want to Logout?
-                      </LogoutHeading>
+                      <LogoutHeading>{t("logOutWarningTitle")}</LogoutHeading>
                       <LogoutParagraph>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed
+                        {t("logOutWarningParagraph")}
                       </LogoutParagraph>
                     </HeaderTextImageContainer>
                   </TextImageContainer>
@@ -233,7 +232,7 @@ const SideBar = (): JSX.Element => {
                 </TestContainer>
                 <LogoutButtonContainer>
                   <YesLogoutButton type="button" onClick={onClickLogout}>
-                    Yes, Logout
+                    {t("yesLogout")}
                   </YesLogoutButton>
                   <CancelLogoutButton
                     type="button"
@@ -241,7 +240,7 @@ const SideBar = (): JSX.Element => {
                     data-testid="close"
                     onClick={close}
                   >
-                    Cancel
+                    {t("cancel")}
                   </CancelLogoutButton>
                 </LogoutButtonContainer>
               </LogoutConformationContainer>

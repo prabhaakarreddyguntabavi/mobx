@@ -1,4 +1,5 @@
 import { observer } from "mobx-react";
+import { useTranslation } from "react-i18next";
 import {
   OnFailureConrainer,
   OnFailureImage,
@@ -8,18 +9,19 @@ import {
 } from "./styledComponents";
 
 const FailureCase = (): JSX.Element => {
+  const { t } = useTranslation();
   return (
     <OnFailureConrainer>
       <OnFailureImage
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
         alt="failure view"
       />
-      <OnFailureHeading>Oops! Something Went Wrong</OnFailureHeading>
+      <OnFailureHeading>{t("failureTitleText")}</OnFailureHeading>
       <OnFailureParagraph>
-        We are having some trouble to complete your request.
-        <br /> Please try again
+        {t("failureParagraph")}
+        <br /> {t("pleaseTryAgainLater")}
       </OnFailureParagraph>
-      <OnFailureRetryButton type="button">Retry</OnFailureRetryButton>
+      <OnFailureRetryButton type="button">{t("retry")}</OnFailureRetryButton>
     </OnFailureConrainer>
   );
 };

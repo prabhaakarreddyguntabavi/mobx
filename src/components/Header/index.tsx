@@ -1,4 +1,5 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import Popup from "reactjs-popup";
 import ReactLoading from "react-loading";
 import { IoMdMenu } from "react-icons/io";
@@ -36,11 +37,16 @@ import {
   ErrorMessageParagraph,
   NotificationMessage,
   PopupContainer,
+  LanguageContainer,
+  LanguageSelectorContainer,
+  DropdownOptions,
 } from "./styledComponents";
 
 import "./index.css";
 
 const Header = (): JSX.Element => {
+  const { t, i18n } = useTranslation();
+
   const transactionStore = useContext(TransactionContext);
   const { selectOption, totalTransactionDetails, isUserAdmin, userId } =
     transactionStore;
@@ -53,6 +59,7 @@ const Header = (): JSX.Element => {
   const [amount, addAmount] = useState<number>();
   const [date, addDate] = useState<string>(getCurrentDateTime());
   const [errorMessage, updateErrorMessage] = useState<string>("");
+  const [language, setLanguage] = useState<string>(i18n.language);
 
   const AddNameFunction = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -142,13 +149,18 @@ const Header = (): JSX.Element => {
           modal
           trigger={
             <PopupContainer>
-              <AddTransactionButton disabled={isUserAdmin} type="button">
+              <AddTransactionButton
+                disabled={isUserAdmin}
+                type="button"
+                onClick={() => addDate(getCurrentDateTime())}
+              >
                 <ButtonImage
                   src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705727508/plus_ndqvby.png"
                   alt="plus"
                 />{" "}
-                Add Transaction
+                {t("addTransaction")}
               </AddTransactionButton>
+
               <MobileAddTransactions type="button" disabled={isUserAdmin}>
                 <IoAddCircleOutline className="add-icon" />
               </MobileAddTransactions>
@@ -161,9 +173,11 @@ const Header = (): JSX.Element => {
               <AddTransctionContainer>
                 <AddTransctionTextContainer>
                   <HeadingTextContainer>
-                    <AddTransctionHeading>Add Transaction</AddTransctionHeading>
+                    <AddTransctionHeading>
+                      {t("addTransaction")}
+                    </AddTransctionHeading>
                     <AddTransctionParagraph>
-                      Lorem ipsum dolor sit amet, consectetur
+                      {t("loremipsumdolorsitametconsectetur")}
                     </AddTransctionParagraph>
                   </HeadingTextContainer>
                   <AddTransctionCloseImage
@@ -178,9 +192,9 @@ const Header = (): JSX.Element => {
 
                 <AddTransctionInputContainer>
                   <AddTransctionLabel htmlFor="addTransctionName">
-                    Transaction Name*
+                    {t("transactionName")}*
                     <NotificationMessage>
-                      (Max 30 Characters*)
+                      ({t("max30Characters")}*)
                     </NotificationMessage>
                   </AddTransctionLabel>
                   <AddTransctionNameInput
@@ -196,7 +210,7 @@ const Header = (): JSX.Element => {
 
                 <AddTransctionInputContainer>
                   <AddTransctionLabel htmlFor="addTransctionType">
-                    Transaction Type*
+                    {t("transactionType")}*
                   </AddTransctionLabel>
                   <SelectTransctionType
                     required
@@ -205,17 +219,17 @@ const Header = (): JSX.Element => {
                     onChange={(event) => addType(event.target.value)}
                   >
                     <SelectTransctionOptions value="credit">
-                      Credit
+                      {t("credit")}
                     </SelectTransctionOptions>
                     <SelectTransctionOptions value="debit">
-                      Debit
+                      {t("debit")}
                     </SelectTransctionOptions>
                   </SelectTransctionType>
                 </AddTransctionInputContainer>
 
                 <AddTransctionInputContainer>
                   <AddTransctionLabel htmlFor="addTransctionCategory">
-                    Category*
+                    {t("category")}*
                   </AddTransctionLabel>
                   <SelectTransctionType
                     required
@@ -224,20 +238,20 @@ const Header = (): JSX.Element => {
                     onChange={(event) => addCategory(event.target.value)}
                   >
                     <SelectTransctionOptions value="Shopping">
-                      Shopping
+                      {t("shopping")}
                     </SelectTransctionOptions>
                     <SelectTransctionOptions value="Service">
-                      Service
+                      {t("service")}
                     </SelectTransctionOptions>
                     <SelectTransctionOptions value="Transfer">
-                      Transfer
+                      {t("transfer")}
                     </SelectTransctionOptions>
                   </SelectTransctionType>
                 </AddTransctionInputContainer>
 
                 <AddTransctionInputContainer>
                   <AddTransctionLabel htmlFor="addTransctionAmount">
-                    Amount*
+                    {t("amount")}*
                   </AddTransctionLabel>
                   <AddTransctionNameInput
                     required
@@ -251,7 +265,7 @@ const Header = (): JSX.Element => {
 
                 <AddTransctionInputContainer>
                   <AddTransctionLabel htmlFor="addTransctionDate">
-                    Date*
+                    {t("date")}*
                   </AddTransctionLabel>
                   <AddTransctionNameInput
                     required
@@ -315,10 +329,29 @@ const Header = (): JSX.Element => {
         alt="logo"
       />
       <ButtonText>
-        {selectOption.charAt(0).toUpperCase() +
-          selectOption.slice(1).toLowerCase()}
+        {t(`${selectOption.toLowerCase()}`)}
+        {/* {selectOption.charAt(0).toUpperCase() +
+          selectOption.slice(1).toLowerCase()} */}
       </ButtonText>
-      {renderSuccessView()}
+
+      <LanguageContainer>
+        {renderSuccessView()}
+        {/* <label>Change Language </label> */}
+        <LanguageSelectorContainer
+          required
+          id="UpdateTransactionType"
+          value={language}
+          onChange={(event) => {
+            i18n.changeLanguage(event.target.value);
+            setLanguage(event.target.value);
+          }}
+        >
+          <DropdownOptions value="en">English</DropdownOptions>
+          <DropdownOptions value="de">German</DropdownOptions>
+          <DropdownOptions value="te">Telugu</DropdownOptions>
+          <DropdownOptions value="hi">Hindi</DropdownOptions>
+        </LanguageSelectorContainer>
+      </LanguageContainer>
     </HeaderMainContainer>
   );
 };

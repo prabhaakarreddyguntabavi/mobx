@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { observer } from "mobx-react";
@@ -22,6 +23,7 @@ import {
 } from "./styledComponents";
 
 const LoginForm = (): JSX.Element => {
+  const { t } = useTranslation();
   const transactionStore = useContext(TransactionContext);
   const jwtToken = setJwtToken();
   const { userDict } = transactionStore;
@@ -99,7 +101,7 @@ const LoginForm = (): JSX.Element => {
           alt="website logo"
         />
         <InputContainer>
-          <LoginLabel htmlFor="emailId">Email</LoginLabel>
+          <LoginLabel htmlFor="emailId">{t("email")}</LoginLabel>
           <EmailInput
             type="email"
             id="emailId"
@@ -110,7 +112,7 @@ const LoginForm = (): JSX.Element => {
           />
         </InputContainer>
         <InputContainer>
-          <LoginLabel htmlFor="password">PASSWORD</LoginLabel>
+          <LoginLabel htmlFor="password">{t("password")}</LoginLabel>
           <PasswordInput
             type="password"
             id="password"
@@ -119,7 +121,7 @@ const LoginForm = (): JSX.Element => {
             placeholder="Password"
           />
         </InputContainer>
-        <LoginButton type="submit">Login</LoginButton>
+        <LoginButton type="submit">{t("login")}</LoginButton>
         {errorMessage && (
           <ErrorMessageParagraph>*{errorMessage}</ErrorMessageParagraph>
         )}

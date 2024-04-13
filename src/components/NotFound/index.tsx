@@ -1,4 +1,5 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import {
   NotFoundContainer,
@@ -10,6 +11,7 @@ import {
 import { observer } from "mobx-react";
 
 const NotFound = (): JSX.Element => {
+  const { t } = useTranslation();
   const navigate: NavigateFunction = useNavigate();
 
   const onBackToHomePage = (): void => {
@@ -22,12 +24,10 @@ const NotFound = (): JSX.Element => {
         src="https://assets.ccbp.in/frontend/react-js/jobby-app-not-found-img.png"
         alt="not found"
       />
-      <NotFoundHeading>Page Not Found</NotFoundHeading>
-      <NotFoundParagraph>
-        we're sorry, the page you requested could not be found
-      </NotFoundParagraph>
+      <NotFoundHeading>{t("pageNotFound")}</NotFoundHeading>
+      <NotFoundParagraph>{t("pageNotFoundText")}</NotFoundParagraph>
       <BackToHomePage type="button" onClick={onBackToHomePage}>
-        Back To HomePage
+        {t("backToHomePage")}
       </BackToHomePage>
     </NotFoundContainer>
   );

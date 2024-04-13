@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import ReactLoading from "react-loading";
 import { observer } from "mobx-react";
+import { useTranslation } from "react-i18next";
 
 import TransactionContext from "../../context/TransactionContext";
 import { TransctionProps } from "../../types/transactionsTypes";
@@ -21,7 +22,7 @@ const UpdateTransaction = (props: {
   close: () => void;
 }): JSX.Element => {
   const { eachTransaction, close } = props;
-
+  const { t, i18n } = useTranslation();
   const transactionStore = useContext(TransactionContext);
   const { totalTransactionDetails, userId } = transactionStore;
 
@@ -104,7 +105,7 @@ const UpdateTransaction = (props: {
     <>
       <AddTransactionInputContainer>
         <AddTransactionLabel htmlFor="updateTransactionName">
-          Transaction Name*
+          {t("transactionName")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
           required
@@ -119,7 +120,7 @@ const UpdateTransaction = (props: {
 
       <AddTransactionInputContainer>
         <AddTransactionLabel htmlFor="updateTransactionType">
-          Transaction Type*
+          {t("transactionType")}*
         </AddTransactionLabel>
         <SelectTransactionType
           required
@@ -128,17 +129,17 @@ const UpdateTransaction = (props: {
           onChange={(event) => addType(event.target.value)}
         >
           <SelectTransactionOptions value="credit">
-            Credit
+            {t("credit")}
           </SelectTransactionOptions>
           <SelectTransactionOptions value="debit">
-            Debit
+            {t("debit")}
           </SelectTransactionOptions>
         </SelectTransactionType>
       </AddTransactionInputContainer>
 
       <AddTransactionInputContainer>
         <AddTransactionLabel htmlFor="updateTransactionCategory">
-          Category*
+          {t("category")}*
         </AddTransactionLabel>
         <SelectTransactionType
           required
@@ -147,20 +148,20 @@ const UpdateTransaction = (props: {
           onChange={(event) => addCategory(event.target.value)}
         >
           <SelectTransactionOptions value="Shopping">
-            Shopping
+            {t("shopping")}
           </SelectTransactionOptions>
           <SelectTransactionOptions value="Service">
-            Service
+            {t("service")}
           </SelectTransactionOptions>
           <SelectTransactionOptions value="Transfer">
-            Transfer
+            {t("transfer")}
           </SelectTransactionOptions>
         </SelectTransactionType>
       </AddTransactionInputContainer>
 
       <AddTransactionInputContainer>
         <AddTransactionLabel htmlFor="updateTransactionAmount">
-          Amount*
+          {t("amount")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
           required
@@ -174,7 +175,7 @@ const UpdateTransaction = (props: {
 
       <AddTransactionInputContainer>
         <AddTransactionLabel htmlFor="updateTransctionDate">
-          Date*
+          {t("date")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
           readOnly
@@ -206,7 +207,7 @@ const UpdateTransaction = (props: {
         )}
       </AddTransactionButton>
       {apiResponse.errorMsg !== undefined && (
-        <ErrorMessage>Invalid Field Responses*</ErrorMessage>
+        <ErrorMessage>{t("invalidFieldResponses")}*</ErrorMessage>
       )}
     </>
   );

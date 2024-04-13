@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
 import ReactLoading from "react-loading";
 import { useNavigate, NavigateFunction } from "react-router-dom";
@@ -40,6 +41,8 @@ import {
 } from "./styledComponents";
 
 const TransactionPage = (): JSX.Element => {
+  const { t } = useTranslation();
+
   const transactionStore = useContext(TransactionContext);
   const {
     selectOption,
@@ -116,18 +119,20 @@ const TransactionPage = (): JSX.Element => {
         <>
           <HeadingDashTransactionContainer>
             {isUserAdmin ? (
-              <TransactionUserName>User Name</TransactionUserName>
+              <TransactionUserName>{t("userName")}</TransactionUserName>
             ) : (
               ""
             )}
             <TransactionName isAdmin={isUserAdmin}>
-              Transaction Name
+              {t("transactionName")}
             </TransactionName>
             <TransactionCategory isAdmin={isUserAdmin}>
-              Category
+              {t("category")}
             </TransactionCategory>
-            <TransactionDate isAdmin={isUserAdmin}>Date</TransactionDate>
-            <TransactionAmount isAdmin={isUserAdmin}>Amount</TransactionAmount>
+            <TransactionDate isAdmin={isUserAdmin}>{t("date")}</TransactionDate>
+            <TransactionAmount isAdmin={isUserAdmin}>
+              {t("amount")}
+            </TransactionAmount>
           </HeadingDashTransactionContainer>
           {currentItems.map(
             (eachTransaction: TransctionProps, index: number) => {
@@ -169,7 +174,7 @@ const TransactionPage = (): JSX.Element => {
     }
     return (
       <NoTransactionsFountHeading>
-        No Transactions Found
+        {t("noTransactionsFound")}
       </NoTransactionsFountHeading>
     );
   };
@@ -218,7 +223,7 @@ const TransactionPage = (): JSX.Element => {
             <SelectAllOption
               transactionOption={filterOption === "alltransactions"}
             >
-              All Transaction
+              {t("allTransactions")}
             </SelectAllOption>
             <SelectedContainer
               transactionOption={filterOption === "alltransactions"}
@@ -232,7 +237,7 @@ const TransactionPage = (): JSX.Element => {
             }}
           >
             <SelectOption transactionOption={filterOption === "credit"}>
-              Credit
+              {t("credit")}
             </SelectOption>
             <SelectedCreditContainer
               transactionOption={filterOption === "credit"}
@@ -246,7 +251,7 @@ const TransactionPage = (): JSX.Element => {
             }}
           >
             <SelectOption transactionOption={filterOption === "debit"}>
-              Debit
+              {t("debit")}
             </SelectOption>
             <SelectedCreditContainer
               transactionOption={filterOption === "debit"}

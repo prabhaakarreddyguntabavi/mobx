@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import ReactLoading from "react-loading";
 import { observe } from "mobx";
 import { observer } from "mobx-react";
@@ -22,6 +23,7 @@ import {
 } from "./styledComponents";
 
 const TransactionPage = (): JSX.Element => {
+  const { t } = useTranslation();
   const transactionStore = useContext(TransactionContext);
   const { totalTransactionDetails, userDict, isUserAdmin, userId } =
     transactionStore;
@@ -101,7 +103,7 @@ const TransactionPage = (): JSX.Element => {
     }
     return (
       <NoTransactionsFountHeading>
-        No Transactions Found
+        {t("noTransactionsFound")}
       </NoTransactionsFountHeading>
     );
   };

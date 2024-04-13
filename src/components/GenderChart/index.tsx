@@ -4,6 +4,7 @@ import { observe } from "mobx";
 import { v4 as uuidv4 } from "uuid";
 import { observer } from "mobx-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import { useTranslation } from "react-i18next";
 
 import TransactionContext from "../../context/TransactionContext";
 import { apiStatusConstants } from "../../constants/commonConstants";
@@ -32,6 +33,7 @@ import {
 } from "./styledComponents";
 
 const GenderChart = (): JSX.Element => {
+  const { t } = useTranslation();
   const transactionStore = useContext(TransactionContext);
   const { isUserAdmin, userId, totalTransactionDetails } = transactionStore;
 
@@ -183,19 +185,19 @@ const GenderChart = (): JSX.Element => {
           <GraphHeaderContainer>
             <GraphPrargraph>
               <GraphPrargraphSpan> ${debitTransactionsSum}</GraphPrargraphSpan>{" "}
-              Debited &
+              {t("debited")}
               <GraphPrargraphSpan>
                 {" "}
                 ${creditTransactionsSum}{" "}
               </GraphPrargraphSpan>{" "}
-              Credited in this Week
+              {t("creditedinthisWeek")}
             </GraphPrargraph>
             <GraphValuesSetting>
               <GraphTextParagraph>
-                <GraphCredite></GraphCredite> Credit
+                <GraphCredite></GraphCredite> {t("credit")}
               </GraphTextParagraph>
               <GraphTextParagraph>
-                <GraphDebit></GraphDebit> Debit
+                <GraphDebit></GraphDebit> {t("debit")}
               </GraphTextParagraph>
             </GraphValuesSetting>
           </GraphHeaderContainer>
@@ -223,7 +225,7 @@ const GenderChart = (): JSX.Element => {
     }
     return (
       <NoTransactionsFountHeading>
-        No Transactions Found
+        {t("noTransactionsFound")}
       </NoTransactionsFountHeading>
     );
   };

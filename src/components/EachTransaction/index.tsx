@@ -1,4 +1,5 @@
 import Popup from "reactjs-popup";
+import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
 import UpdateTransaction from "../UpdateTransaction";
 import DeleteTransaction from "../DeleteTransaction";
@@ -42,6 +43,7 @@ const EachTransaction = (props: PropsValues) => {
     user,
     isThisLastThreeTransactions,
   } = props;
+  const { t } = useTranslation();
 
   return (
     <DashTransactionContainer
@@ -159,10 +161,10 @@ const EachTransaction = (props: PropsValues) => {
                     <AddTransactionTextContainer>
                       <HeadingTextContainer>
                         <AddTransactionHeading>
-                          Update Transaction
+                          {t("updateTransaction")}
                         </AddTransactionHeading>
                         <AddTransactionParagraph>
-                          You can update your transaction here
+                          {t("youcanupdateyourtransactionhere")}
                         </AddTransactionParagraph>
                       </HeadingTextContainer>
                       <AddTransactionCloseImage

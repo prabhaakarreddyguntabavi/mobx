@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import ReactLoading from "react-loading";
 import { observe } from "mobx";
 import { observer } from "mobx-react";
+import { useTranslation } from "react-i18next";
 
 import TransactionContext from "../../context/TransactionContext";
 import { apiStatusConstants } from "../../constants/commonConstants";
@@ -25,6 +26,8 @@ import {
 } from "./styledComponents";
 
 const TotalDebitCredit = (): JSX.Element => {
+  const { t } = useTranslation();
+
   const transactionStore = useContext(TransactionContext);
   const { totalTransactionDetails, userId } = transactionStore;
 
@@ -86,7 +89,7 @@ const TotalDebitCredit = (): JSX.Element => {
         <CreditContainer>
           <CreditTextContainer>
             <HeadingAmount>$ {data[0].sum}</HeadingAmount>
-            <Paragraph>Credit</Paragraph>
+            <Paragraph>{t("credit")}</Paragraph>
           </CreditTextContainer>
           <ImageContainer>
             <CreditImage
@@ -99,7 +102,7 @@ const TotalDebitCredit = (): JSX.Element => {
         <DebitContainer>
           <DebitTextContainer>
             <DebitHeadingAmount>$ {data[1].sum}</DebitHeadingAmount>
-            <Paragraph>Debit</Paragraph>
+            <Paragraph>{t("debit")}</Paragraph>
           </DebitTextContainer>
           <DebitImageContainer>
             <DebitImage

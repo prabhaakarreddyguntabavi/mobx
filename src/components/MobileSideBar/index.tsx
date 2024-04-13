@@ -5,6 +5,7 @@ import { useNavigate, NavigateFunction } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import TransactionContext from "../../context/TransactionContext";
 import { userDetails } from "../../constants/loginConstants";
+import { useTranslation } from "react-i18next";
 
 import { setJwtToken } from "../../utils/jwtToken";
 import { UserDetail } from "../../types/usersTypes";
@@ -32,6 +33,7 @@ import "./index.css";
 
 const MobileSideBar = (props: { close: () => void }): JSX.Element => {
   const { close } = props;
+  const { t } = useTranslation();
 
   const transactionStore = useContext(TransactionContext);
   const {
@@ -106,7 +108,7 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
               alt="dashboard"
             />
             <TextParagraph selectOption={selectOption === "DASHBOARD"}>
-              Dashboard
+              {t("dashboard")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -129,7 +131,7 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
             />
 
             <TextParagraph selectOption={selectOption === "TRANSACTIONS"}>
-              {isUserAdmin ? "All Transactions" : "Transactions"}
+              {isUserAdmin ? t("allTransactions") : t("transactions")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -154,7 +156,7 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
               alt="profile"
             />
             <TextParagraph selectOption={selectOption === "PROFILE"}>
-              Profile
+              {t("profile")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -170,7 +172,7 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
           <ProfileEmail>{apiResponse.email}</ProfileEmail>
         </ProfileTextContainer>
         <YesLogoutButton type="button" onClick={onClickLogout}>
-          Yes, Logout
+          {t("yesLogout")}
         </YesLogoutButton>
       </ProfileContainer>
     </SideBarMainContainer>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import ReactLoading from "react-loading";
 import { observe } from "mobx";
 import { observer } from "mobx-react";
@@ -29,6 +30,7 @@ import {
 } from "./styledComponents";
 
 const ProfileDetails = (): JSX.Element => {
+  const { t } = useTranslation();
   const transactionStore = useContext(TransactionContext);
   const { selectOption, onChangeSelectOption, userDict, userId } =
     transactionStore;
@@ -84,7 +86,7 @@ const ProfileDetails = (): JSX.Element => {
         <DetailsContainer>
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userFirstName">
-              Your Name
+              {t("yourName")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
@@ -97,7 +99,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userName">
-              User Name
+              {t("UserName")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
@@ -109,7 +111,9 @@ const ProfileDetails = (): JSX.Element => {
           </AddTransactionInputContainer>
 
           <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userEmail">Email</AddTransactionLabel>
+            <AddTransactionLabel htmlFor="userEmail">
+              {t("email")}
+            </AddTransactionLabel>
             <AddTransactionNameInput
               type="email"
               id="userEmail"
@@ -121,7 +125,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userPassword">
-              Password
+              {t("password")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="password"
@@ -134,7 +138,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userDateOfBirth">
-              Date of Birth
+              {t("dateofBirth")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="date"
@@ -147,7 +151,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userPresentAddress">
-              Present Address
+              {t("presentAddress")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
@@ -160,7 +164,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userPermanentAddress">
-              Permanent Address
+              {t("permanentAddress")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
@@ -172,7 +176,9 @@ const ProfileDetails = (): JSX.Element => {
           </AddTransactionInputContainer>
 
           <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userCity">City</AddTransactionLabel>
+            <AddTransactionLabel htmlFor="userCity">
+              {t("city")}
+            </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
               id="userCity"
@@ -184,7 +190,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userPostalCode">
-              Postal Code
+              {t("postalCode")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="number"
@@ -197,7 +203,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userCountry">
-              Country
+              {t("country")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
