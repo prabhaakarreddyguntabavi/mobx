@@ -3,7 +3,7 @@ import ReactLoading from "react-loading";
 import { observer } from "mobx-react";
 
 import TransactionContext from "../../context/TransactionContext";
-import { TransctionProps as EachTransction } from "../../types/transactionsTypes";
+import { TransctionProps } from "../../types/transactionsTypes";
 import { setTimeFormate } from "../../utils/dateTimeFormate";
 
 import {
@@ -17,7 +17,7 @@ import {
 } from "./styledComponents";
 
 const UpdateTransaction = (props: {
-  eachTransaction: EachTransction;
+  eachTransaction: TransctionProps;
   close: () => void;
 }): JSX.Element => {
   const { eachTransaction, close } = props;
@@ -61,7 +61,7 @@ const UpdateTransaction = (props: {
     let headers: HeadersInit = {};
     let url: string = "";
 
-    const body: EachTransction = {
+    const body: TransctionProps = {
       id: eachTransaction.id,
       name,
       type,

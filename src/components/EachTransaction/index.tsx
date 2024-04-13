@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import UpdateTransaction from "../UpdateTransaction";
 import DeleteTransaction from "../DeleteTransaction";
 import { PropsValues } from "../../types/transactionsTypes";
-import { dateTimeCustomFormate as dateFormate } from "../../utils/dateTimeFormate";
+import { dateTimeCustomFormate } from "../../utils/dateTimeFormate";
 
 import {
   DashTransactionContainer,
@@ -118,7 +118,7 @@ const EachTransaction = (props: PropsValues) => {
         <TextContainer>
           <TitleParagraph>{eachTransaction.transactionName}</TitleParagraph>
           <TransactionParagraphMobile>
-            {dateFormate(eachTransaction.date)}
+            {dateTimeCustomFormate(eachTransaction.date)}
           </TransactionParagraphMobile>
         </TextContainer>
       </UserContainer>
@@ -126,7 +126,7 @@ const EachTransaction = (props: PropsValues) => {
         {eachTransaction.category}
       </CategoryParagraph>
       <DateOfTransactionParagraph>
-        {dateFormate(eachTransaction.date)}
+        {dateTimeCustomFormate(eachTransaction.date)}
       </DateOfTransactionParagraph>
 
       {eachTransaction.type === "credit" ? (

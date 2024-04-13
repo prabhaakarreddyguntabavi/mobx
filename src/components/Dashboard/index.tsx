@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import TransactionContext from "../../context/TransactionContext";
-import { jwtToken } from "../../utils/jwtToken";
+import { setJwtToken } from "../../utils/jwtToken";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
@@ -22,7 +22,7 @@ import { observer } from "mobx-react";
 const Dashboard = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
   const { selectOption, onChangeSelectOption } = transactionStore;
-
+  const jwtToken = setJwtToken();
   const navigate: NavigateFunction = useNavigate();
 
   useEffect((): void => {

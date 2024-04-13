@@ -87,6 +87,21 @@ export class TransctionStore {
     }
   }
 
+  async getTransactionData(transactionStore: any) {
+    const { totalTransactionDetails, userDict, isUserAdmin, userId } =
+      transactionStore;
+
+    try {
+      await this.fetchData(userId);
+      if (isUserAdmin) {
+        await userDict.fetchData();
+      }
+      return { totalTransactionDetails, userDict };
+    } catch (error) {
+      return { totalTransactionDetails, userDict };
+    }
+  }
+
   updateData(data: DataValues[]) {
     this.transactionData = data.sort(
       (a: { date: string }, b: { date: string }) =>

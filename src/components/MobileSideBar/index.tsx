@@ -6,8 +6,8 @@ import { useState, useEffect, useContext } from "react";
 import TransactionContext from "../../context/TransactionContext";
 import { userDetails } from "../../constants/loginConstants";
 
-import { jwtToken } from "../../utils/jwtToken";
-import { UserDetail as ProfileDetails } from "../../types/usersTypes";
+import { setJwtToken } from "../../utils/jwtToken";
+import { UserDetail } from "../../types/usersTypes";
 
 import {
   SideBarMainContainer,
@@ -42,11 +42,11 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
     isUserAdmin,
     userId,
   } = transactionStore;
-
+  const jwtToken = setJwtToken();
   const navigate: NavigateFunction = useNavigate();
-  const [apiResponse, setApiResponse] = useState<ProfileDetails>({});
+  const [apiResponse, setApiResponse] = useState<UserDetail>({});
 
-  let loginUser: ProfileDetails = {
+  let loginUser: UserDetail = {
     ...userDetails.find((eachUser) => eachUser.userId === userId),
     name: "",
   };

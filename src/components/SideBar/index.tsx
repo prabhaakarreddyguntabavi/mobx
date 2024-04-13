@@ -4,11 +4,11 @@ import Cookies from "js-cookie";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import { useEffect, useContext } from "react";
 
-import { jwtToken } from "../../utils/jwtToken";
+import { setJwtToken } from "../../utils/jwtToken";
 import TransactionContext from "../../context/TransactionContext";
 import { userDetails } from "../../constants/loginConstants";
 
-import { UserDetail as ProfileDetails } from "../../types/usersTypes";
+import { UserDetail } from "../../types/usersTypes";
 
 import {
   SideBarMainContainer,
@@ -56,10 +56,12 @@ const SideBar = (): JSX.Element => {
     isUserAdmin,
   } = transactionStore;
 
-  const navigate: NavigateFunction = useNavigate();
-  // const [apiResponse, setApiResponse] = useState<ProfileDetails>({});
+  const jwtToken = setJwtToken();
 
-  let loginUser: ProfileDetails = {
+  const navigate: NavigateFunction = useNavigate();
+  // const [apiResponse, setApiResponse] = useState<UserDetail>({});
+
+  let loginUser: UserDetail = {
     ...userDetails.find((eachUser) => eachUser.userId === userId),
     name: "",
   };

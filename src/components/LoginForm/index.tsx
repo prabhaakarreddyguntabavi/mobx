@@ -5,7 +5,7 @@ import { observer } from "mobx-react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 
 import TransactionContext from "../../context/TransactionContext";
-import { jwtToken } from "../../utils/jwtToken";
+import { setJwtToken } from "../../utils/jwtToken";
 import { userDetails } from "../../constants/loginConstants";
 import { UserListProps } from "../../types/loginTypes";
 
@@ -23,7 +23,7 @@ import {
 
 const LoginForm = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
-
+  const jwtToken = setJwtToken();
   const { userDict } = transactionStore;
 
   const [emailId, onSetEmail] = useState<string>("");

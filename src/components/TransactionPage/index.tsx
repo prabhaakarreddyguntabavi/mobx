@@ -8,17 +8,15 @@ import SideBar from "../SideBar";
 import Header from "../Header";
 import TransactionContext from "../../context/TransactionContext";
 import {
-  TransctionProps as DataValues,
-  ApiStatusAndData as ApiOutputStatus,
+  TransctionProps,
+  ApiStatusAndData,
 } from "../../types/transactionsTypes";
 import { UserDetail } from "../../types/usersTypes";
 import { apiStatusConstants } from "../../constants/commonConstants";
-import { jwtToken } from "../../utils/jwtToken";
+import { setJwtToken } from "../../utils/jwtToken";
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
 import Pagination from "../Pagination";
-
-import { getTransactionData } from "../../utils/transactionData";
 
 import {
   TransactionHomePage,
@@ -54,7 +52,7 @@ const TransactionPage = (): JSX.Element => {
 
   const navigate: NavigateFunction = useNavigate();
 
-  const [apiResponse, setApiResponse] = useState<ApiOutputStatus>({
+  const [apiResponse, setApiResponse] = useState<ApiStatusAndData>({
     status: totalTransactionDetails.transactionLoading,
     data: [],
   });
@@ -81,7 +79,7 @@ const TransactionPage = (): JSX.Element => {
     });
 
     const fetchData = async () => {
-      await getTransactionData(transactionStore);
+      await totalTransactionDetails.getTransactionData(transactionStore);
       if (isUserAdmin) {
         setProfileDetailsApiResponse(userDict.users);
       }
@@ -131,28 +129,31 @@ const TransactionPage = (): JSX.Element => {
             <TransactionDate isAdmin={isUserAdmin}>Date</TransactionDate>
             <TransactionAmount isAdmin={isUserAdmin}>Amount</TransactionAmount>
           </HeadingDashTransactionContainer>
-          {currentItems.map((eachTransaction: DataValues, index: number) => {
-            let user: UserDetail;
+          {currentItems.map(
+            (eachTransaction: TransctionProps, index: number) => {
+              let user: UserDetail;
 
-            if (allProfileDetails === undefined) {
-              user = { name: "Admin" };
-            } else {
-              user = allProfileDetails.find(
-                (findUser: UserDetail) => findUser.id === eachTransaction.userId
-              )!;
+              if (allProfileDetails === undefined) {
+                user = { name: "Admin" };
+              } else {
+                user = allProfileDetails.find(
+                  (findUser: UserDetail) =>
+                    findUser.id === eachTransaction.userId
+                )!;
+              }
+
+              return (
+                <EachTransaction
+                  transactionsData={transactionsData}
+                  eachTransaction={eachTransaction}
+                  index={index}
+                  isUserAdmin={isUserAdmin}
+                  user={user}
+                  isThisLastThreeTransactions={false}
+                />
+              );
             }
-
-            return (
-              <EachTransaction
-                transactionsData={transactionsData}
-                eachTransaction={eachTransaction}
-                index={index}
-                isUserAdmin={isUserAdmin}
-                user={user}
-                isThisLastThreeTransactions={false}
-              />
-            );
-          })}
+          )}
           {transactionsData.length > 10 ? (
             <Pagination
               itemsPerPage={itemsPerPage}
@@ -198,6 +199,7 @@ const TransactionPage = (): JSX.Element => {
   if (selectOption !== "TRANSACTIONS") {
     onChangeSelectOption("TRANSACTIONS");
   }
+  const jwtToken = setJwtToken();
   if (!jwtToken) {
     navigate("/login");
   }

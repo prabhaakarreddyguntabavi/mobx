@@ -4,7 +4,7 @@ import { observe } from "mobx";
 import { observer } from "mobx-react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 
-import { jwtToken } from "../../utils/jwtToken";
+import { setJwtToken } from "../../utils/jwtToken";
 import { apiStatusConstants } from "../../constants/commonConstants";
 import TransactionContext from "../../context/TransactionContext";
 import { ApiOutputStatus } from "../../types/usersTypes";
@@ -32,7 +32,7 @@ const ProfileDetails = (): JSX.Element => {
   const transactionStore = useContext(TransactionContext);
   const { selectOption, onChangeSelectOption, userDict, userId } =
     transactionStore;
-
+  const jwtToken = setJwtToken();
   const navigate: NavigateFunction = useNavigate();
 
   const [apiResponse, setApiResponse] = useState<ApiOutputStatus>({

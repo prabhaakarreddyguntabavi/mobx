@@ -1,6 +1,6 @@
 import { UserDetail } from "./usersTypes";
 export interface TransctionProps {
-  id?: number;
+  id: number;
   transactionName?: string;
   type: string;
   category: string;

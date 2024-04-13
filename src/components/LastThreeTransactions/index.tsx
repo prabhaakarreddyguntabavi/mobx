@@ -10,7 +10,6 @@ import {
   TransctionProps,
 } from "../../types/transactionsTypes";
 import { UserDetail } from "../../types/usersTypes";
-import { getTransactionData } from "../../utils/transactionData";
 
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
@@ -49,7 +48,7 @@ const TransactionPage = (): JSX.Element => {
       data: [],
     });
     const fetchData = async () => {
-      await getTransactionData(transactionStore);
+      await totalTransactionDetails.getTransactionData(transactionStore);
       if (isUserAdmin) {
         setProfileDetailsApiResponse(userDict.users);
       }

@@ -28,10 +28,10 @@ export interface UserEmailAndPassword {
   password?: string;
 }
 
-export interface ID {
+export interface GetUserID {
   id: number;
 }
 
 export interface GetUserId {
-  get_user_id: ID[];
+  get_user_id: GetUserID[];
 }
