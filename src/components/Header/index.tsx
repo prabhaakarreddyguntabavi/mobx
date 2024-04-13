@@ -7,7 +7,7 @@ import { observer } from "mobx-react";
 
 import TransactionContext from "../../context/TransactionContext";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { DataValues } from "../../types/transactionsTypes";
+import { TransctionProps } from "../../types/transactionsTypes";
 import { getCurrentDateTime } from "../../utils/dateTimeFormate";
 
 import {
@@ -92,13 +92,13 @@ const Header = (): JSX.Element => {
       amount !== undefined &&
       date !== undefined
     ) {
-      const body: DataValues = {
+      const body: TransctionProps = {
         name,
         type: type.toLowerCase(),
         category,
         amount,
         date,
-        user_id: userId.toString(),
+        user_id: userId,
       };
 
       headers = {

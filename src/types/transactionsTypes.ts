@@ -1,6 +1,6 @@
 import { UserDetail } from "./usersTypes";
 export interface TransctionProps {
-  id: number;
+  id?: number;
   transactionName?: string;
   type: string;
   category: string;
@@ -28,19 +28,6 @@ export interface PropsValues {
   eachTransaction: TransctionProps;
   user: UserDetail;
   isThisLastThreeTransactions: boolean;
-}
-
-export interface DataValues {
-  id?: number;
-  transactionName?: string;
-  type: string;
-  category: string;
-  amount: number;
-  date: string;
-  userId?: number;
-  transaction_name?: string;
-  user_id?: number | string;
-  name?: string;
 }
 
 export interface PaginationProps {
