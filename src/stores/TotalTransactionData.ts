@@ -184,10 +184,6 @@ export class TransctionStore {
 
     this.creditAndDebit = updateCreditAndDebit;
 
-    // this.transactionData = this.transactionData.filter(
-    //   (eachTransaction) => eachTransaction.id !== id
-    // );
-
     const indexNumber: number = this.transactionData.findIndex(
       (each) => each.id === id
     );

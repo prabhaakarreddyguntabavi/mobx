@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Popup from "reactjs-popup";
 import Cookies from "js-cookie";
 import { useNavigate, NavigateFunction } from "react-router-dom";
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { setJwtToken } from "../../utils/jwtToken";
 import TransactionContext from "../../context/TransactionContext";
@@ -53,7 +53,6 @@ const SideBar = (): JSX.Element => {
     selectOption,
     onChangeSelectOption,
     onChangeTransactionOption,
-    userDict,
     userId,
     isUserAdmin,
   } = transactionStore;
@@ -66,13 +65,6 @@ const SideBar = (): JSX.Element => {
     ...userDetails.find((eachUser) => eachUser.userId === userId),
     name: "",
   };
-
-  // useEffect(() => {
-  //   const fetchProfileData = async (): Promise<void> => {
-  //     await userDict.fetchData();
-  //   };
-  //   fetchProfileData();
-  // }, [jwtToken]);
 
   const onClickLogout = (): void => {
     Cookies.remove("jwt_token");

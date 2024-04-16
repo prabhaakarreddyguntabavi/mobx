@@ -59,7 +59,6 @@ const Header = (): JSX.Element => {
   const [amount, addAmount] = useState<number>();
   const [date, addDate] = useState<string>(getCurrentDateTime());
   const [errorMessage, updateErrorMessage] = useState<string>("");
-  const [language, setLanguage] = useState<string>(i18n.language);
 
   const AddNameFunction = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -145,162 +144,177 @@ const Header = (): JSX.Element => {
   const renderSuccessView = (): JSX.Element => {
     return (
       <>
-        <Popup
-          modal
-          trigger={
-            <PopupContainer>
-              <AddTransactionButton
-                disabled={isUserAdmin}
-                type="button"
-                onClick={() => addDate(getCurrentDateTime())}
-              >
-                <ButtonImage
-                  src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705727508/plus_ndqvby.png"
-                  alt="plus"
-                />{" "}
-                {t("transactionInputs.addTransaction")}
-              </AddTransactionButton>
+        <LanguageContainer>
+          <LanguageSelectorContainer
+            required
+            id="UpdateTransactionType"
+            value={i18n.language}
+            onChange={(event) => i18n.changeLanguage(event.target.value)}
+          >
+            <DropdownOptions value="en">English</DropdownOptions>
+            <DropdownOptions value="te">తెలుగు</DropdownOptions>
+            <DropdownOptions value="hi">हिंदी</DropdownOptions>
+          </LanguageSelectorContainer>
 
-              <MobileAddTransactions type="button" disabled={isUserAdmin}>
-                <IoAddCircleOutline className="add-icon" />
-              </MobileAddTransactions>
-            </PopupContainer>
-          }
-        >
-          {/* @ts-ignore */}
-          {(close) => (
-            <AddTransctionMainContainer>
-              <AddTransctionContainer id="addTransaction">
-                <AddTransctionTextContainer>
-                  <HeadingTextContainer>
-                    <AddTransctionHeading>
-                      {t("transactionInputs.addTransaction")}
-                    </AddTransctionHeading>
-                    <AddTransctionParagraph>
-                      {t("transactionInputs.loremipsumdolorsitametconsectetur")}
-                    </AddTransctionParagraph>
-                  </HeadingTextContainer>
-                  <AddTransctionCloseImage
-                    onClick={() => {
-                      close();
-                      updateValues();
-                    }}
-                    src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706078678/Close_gxeytv.png"
-                    alt="close"
-                  />
-                </AddTransctionTextContainer>
-
-                <AddTransctionInputContainer>
-                  <AddTransctionLabel htmlFor="addTransctionName">
-                    {t("transactionInputs.transactionName")}*
-                    <NotificationMessage>
-                      ({t("transactionInputs.max30Characters")}*)
-                    </NotificationMessage>
-                  </AddTransctionLabel>
-                  <AddTransctionNameInput
-                    required
-                    type="text"
-                    id="addTransctionName"
-                    value={name}
-                    onChange={AddNameFunction}
-                    placeholder="Enter Name"
-                    maxLength={30}
-                  />
-                </AddTransctionInputContainer>
-
-                <AddTransctionInputContainer>
-                  <AddTransctionLabel htmlFor="addTransctionType">
-                    {t("transactionInputs.transactionType")}*
-                  </AddTransctionLabel>
-                  <SelectTransctionType
-                    required
-                    id="addTransctionType"
-                    value={type}
-                    onChange={(event) => addType(event.target.value)}
-                  >
-                    <SelectTransctionOptions value="credit">
-                      {t("common.credit")}
-                    </SelectTransctionOptions>
-                    <SelectTransctionOptions value="debit">
-                      {t("common.debit")}
-                    </SelectTransctionOptions>
-                  </SelectTransctionType>
-                </AddTransctionInputContainer>
-
-                <AddTransctionInputContainer>
-                  <AddTransctionLabel htmlFor="addTransctionCategory">
-                    {t("transactionInputs.category")}*
-                  </AddTransctionLabel>
-                  <SelectTransctionType
-                    required
-                    id="addTransctionCategory"
-                    value={category}
-                    onChange={(event) => addCategory(event.target.value)}
-                  >
-                    <SelectTransctionOptions value="Shopping">
-                      {t("transactionInputs.shopping")}
-                    </SelectTransctionOptions>
-                    <SelectTransctionOptions value="Service">
-                      {t("transactionInputs.service")}
-                    </SelectTransctionOptions>
-                    <SelectTransctionOptions value="Transfer">
-                      {t("transactionInputs.transfer")}
-                    </SelectTransctionOptions>
-                  </SelectTransctionType>
-                </AddTransctionInputContainer>
-
-                <AddTransctionInputContainer>
-                  <AddTransctionLabel htmlFor="addTransctionAmount">
-                    {t("transactionInputs.amount")}*
-                  </AddTransctionLabel>
-                  <AddTransctionNameInput
-                    required
-                    type="number"
-                    id="addTransctionAmount"
-                    value={amount}
-                    onChange={addAmountFunction}
-                    placeholder="Enter Your Amount"
-                  />
-                </AddTransctionInputContainer>
-
-                <AddTransctionInputContainer>
-                  <AddTransctionLabel htmlFor="addTransctionDate">
-                    {t("transactionInputs.date")}*
-                  </AddTransctionLabel>
-                  <AddTransctionNameInput
-                    required
-                    type="datetime-local"
-                    readOnly
-                    id="addTransctionDate"
-                    value={date}
-                    onChange={() => addDate(getCurrentDateTime())}
-                    placeholder="Select Date"
-                  />
-                </AddTransctionInputContainer>
-
-                <AddTransctionButton
-                  type="submit"
-                  onClick={() => {
-                    getLeaderboardData(close);
-                  }}
-                  disabled={addTransctionStatus === "inprogress"}
+          <Popup
+            modal
+            trigger={
+              <PopupContainer>
+                <AddTransactionButton
+                  disabled={isUserAdmin}
+                  type="button"
+                  onClick={() => addDate(getCurrentDateTime())}
                 >
-                  {addTransctionStatus === "inprogress" ? (
-                    <ReactLoading
-                      type={"bars"}
-                      color={"#ffffff"}
-                      height={20}
-                      width={30}
+                  <ButtonImage
+                    src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705727508/plus_ndqvby.png"
+                    alt="plus"
+                  />{" "}
+                  {t("transactionInputs.addTransaction")}
+                </AddTransactionButton>
+
+                <MobileAddTransactions type="button" disabled={isUserAdmin}>
+                  <IoAddCircleOutline className="add-icon" />
+                </MobileAddTransactions>
+              </PopupContainer>
+            }
+          >
+            {/* @ts-ignore */}
+            {(close) => (
+              <AddTransctionMainContainer>
+                <AddTransctionContainer id="addTransaction">
+                  <AddTransctionTextContainer>
+                    <HeadingTextContainer>
+                      <AddTransctionHeading>
+                        {t("transactionInputs.addTransaction")}
+                      </AddTransctionHeading>
+                      <AddTransctionParagraph>
+                        {t(
+                          "transactionInputs.loremipsumdolorsitametconsectetur"
+                        )}
+                      </AddTransctionParagraph>
+                    </HeadingTextContainer>
+                    <AddTransctionCloseImage
+                      onClick={() => {
+                        close();
+                        updateValues();
+                      }}
+                      src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706078678/Close_gxeytv.png"
+                      alt="close"
                     />
-                  ) : (
-                    `${t("transactionInputs.addTransaction")}`
-                  )}
-                </AddTransctionButton>
-                <ErrorMessageParagraph>{errorMessage}</ErrorMessageParagraph>
-              </AddTransctionContainer>
-            </AddTransctionMainContainer>
-          )}
-        </Popup>
+                  </AddTransctionTextContainer>
+
+                  <AddTransctionInputContainer>
+                    <AddTransctionLabel htmlFor="addTransctionName">
+                      {t("transactionInputs.transactionName")}*
+                      <NotificationMessage>
+                        ({t("transactionInputs.max30Characters")}*)
+                      </NotificationMessage>
+                    </AddTransctionLabel>
+                    <AddTransctionNameInput
+                      required
+                      type="text"
+                      id="addTransctionName"
+                      value={name}
+                      onChange={AddNameFunction}
+                      placeholder="Enter Name"
+                      maxLength={30}
+                    />
+                  </AddTransctionInputContainer>
+
+                  <AddTransctionInputContainer>
+                    <AddTransctionLabel htmlFor="addTransctionType">
+                      {t("transactionInputs.transactionType")}*
+                    </AddTransctionLabel>
+                    <SelectTransctionType
+                      required
+                      id="addTransctionType"
+                      value={type}
+                      onChange={(event) => addType(event.target.value)}
+                    >
+                      <SelectTransctionOptions value="credit">
+                        {t("common.credit")}
+                      </SelectTransctionOptions>
+                      <SelectTransctionOptions value="debit">
+                        {t("common.debit")}
+                      </SelectTransctionOptions>
+                    </SelectTransctionType>
+                  </AddTransctionInputContainer>
+
+                  <AddTransctionInputContainer>
+                    <AddTransctionLabel htmlFor="addTransctionCategory">
+                      {t("transactionInputs.category")}*
+                    </AddTransctionLabel>
+                    <SelectTransctionType
+                      required
+                      id="addTransctionCategory"
+                      value={category}
+                      onChange={(event) => addCategory(event.target.value)}
+                    >
+                      <SelectTransctionOptions value="Shopping">
+                        {t("transactionInputs.shopping")}
+                      </SelectTransctionOptions>
+                      <SelectTransctionOptions value="Service">
+                        {t("transactionInputs.service")}
+                      </SelectTransctionOptions>
+                      <SelectTransctionOptions value="Transfer">
+                        {t("transactionInputs.transfer")}
+                      </SelectTransctionOptions>
+                    </SelectTransctionType>
+                  </AddTransctionInputContainer>
+
+                  <AddTransctionInputContainer>
+                    <AddTransctionLabel htmlFor="addTransctionAmount">
+                      {t("transactionInputs.amount")}*
+                    </AddTransctionLabel>
+                    <AddTransctionNameInput
+                      required
+                      type="number"
+                      id="addTransctionAmount"
+                      value={amount}
+                      onChange={addAmountFunction}
+                      placeholder="Enter Your Amount"
+                    />
+                  </AddTransctionInputContainer>
+
+                  <AddTransctionInputContainer>
+                    <AddTransctionLabel htmlFor="addTransctionDate">
+                      {t("transactionInputs.date")}*
+                    </AddTransctionLabel>
+                    <AddTransctionNameInput
+                      required
+                      type="datetime-local"
+                      readOnly
+                      id="addTransctionDate"
+                      value={date}
+                      onChange={() => addDate(getCurrentDateTime())}
+                      placeholder="Select Date"
+                    />
+                  </AddTransctionInputContainer>
+
+                  <AddTransctionButton
+                    type="submit"
+                    onClick={() => {
+                      getLeaderboardData(close);
+                    }}
+                    disabled={addTransctionStatus === "inprogress"}
+                  >
+                    {addTransctionStatus === "inprogress" ? (
+                      <ReactLoading
+                        type={"bars"}
+                        color={"#ffffff"}
+                        height={20}
+                        width={30}
+                      />
+                    ) : (
+                      `${t("transactionInputs.addTransaction")}`
+                    )}
+                  </AddTransctionButton>
+                  <ErrorMessageParagraph>{errorMessage}</ErrorMessageParagraph>
+                </AddTransctionContainer>
+              </AddTransctionMainContainer>
+            )}
+          </Popup>
+        </LanguageContainer>
       </>
     );
   };
@@ -329,20 +343,7 @@ const Header = (): JSX.Element => {
         alt="logo"
       />
       <ButtonText>{t(`common.${selectOption.toLowerCase()}`)}</ButtonText>
-
-      <LanguageContainer>
-        {renderSuccessView()}
-        <LanguageSelectorContainer
-          required
-          id="UpdateTransactionType"
-          value={i18n.language}
-          onChange={(event) => i18n.changeLanguage(event.target.value)}
-        >
-          <DropdownOptions value="en">English</DropdownOptions>
-          <DropdownOptions value="te">తెలుగు</DropdownOptions>
-          <DropdownOptions value="hi">हिंदी</DropdownOptions>
-        </LanguageSelectorContainer>
-      </LanguageContainer>
+      {renderSuccessView()}
     </HeaderMainContainer>
   );
 };
