@@ -143,7 +143,7 @@ export const DebitAmount = styled.p<TextParagraphProps>`
 
 export const AddTransactionContainer = styled.form`
   width: 466px;
-  height: 700px;
+  min-height: 700px;
   flex-shrink: 0;
   border-radius: 16px;
   background: #fff;

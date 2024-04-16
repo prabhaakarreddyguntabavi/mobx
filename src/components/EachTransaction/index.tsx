@@ -161,10 +161,12 @@ const EachTransaction = (props: PropsValues) => {
                     <AddTransactionTextContainer>
                       <HeadingTextContainer>
                         <AddTransactionHeading>
-                          {t("updateTransaction")}
+                          {t("transactionInputs.updateTransaction")}
                         </AddTransactionHeading>
                         <AddTransactionParagraph>
-                          {t("youcanupdateyourtransactionhere")}
+                          {t(
+                            "transactionInputs.youcanupdateyourtransactionhere"
+                          )}
                         </AddTransactionParagraph>
                       </HeadingTextContainer>
                       <AddTransactionCloseImage

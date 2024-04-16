@@ -18,7 +18,7 @@ export const LoadingContainer = styled.div`
 export const ProfileDetailsContainer = styled.div`
   background: #f5f7fa;
   padding-top: 32px;
-  // height: 85vh;
+  height: 85vh;
   overflow: auto;
 
   @media screen and (max-width: 1024px) {

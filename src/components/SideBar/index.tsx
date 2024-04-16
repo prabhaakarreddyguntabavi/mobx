@@ -61,23 +61,18 @@ const SideBar = (): JSX.Element => {
   const jwtToken = setJwtToken();
 
   const navigate: NavigateFunction = useNavigate();
-  // const [apiResponse, setApiResponse] = useState<UserDetail>({});
 
   let loginUser: UserDetail = {
     ...userDetails.find((eachUser) => eachUser.userId === userId),
     name: "",
   };
 
-  useEffect(() => {
-    const fetchProfileData = async (): Promise<void> => {
-      await userDict.fetchData();
-      // setApiResponse(
-      //   userDict.users.find((findUser) => findUser.id === userId)!
-      // );
-    };
-
-    fetchProfileData();
-  }, [jwtToken]);
+  // useEffect(() => {
+  //   const fetchProfileData = async (): Promise<void> => {
+  //     await userDict.fetchData();
+  //   };
+  //   fetchProfileData();
+  // }, [jwtToken]);
 
   const onClickLogout = (): void => {
     Cookies.remove("jwt_token");
@@ -118,7 +113,7 @@ const SideBar = (): JSX.Element => {
               alt="dashboard"
             />
             <TextParagraph selectOption={selectOption === "DASHBOARD"}>
-              {t("dashboard")}
+              {t("common.dashboard")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -141,7 +136,9 @@ const SideBar = (): JSX.Element => {
             />
 
             <TextParagraph selectOption={selectOption === "TRANSACTIONS"}>
-              {isUserAdmin ? t("allTransactions") : t("transactions")}
+              {isUserAdmin
+                ? t("common.allTransactions")
+                : t("common.transactions")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -166,7 +163,7 @@ const SideBar = (): JSX.Element => {
               alt="profile"
             />
             <TextParagraph selectOption={selectOption === "PROFILE"}>
-              {t("profile")}
+              {t("common.profile")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -218,9 +215,11 @@ const SideBar = (): JSX.Element => {
                   </WarningImageContainer>
                   <TextImageContainer>
                     <HeaderTextImageContainer>
-                      <LogoutHeading>{t("logOutWarningTitle")}</LogoutHeading>
+                      <LogoutHeading>
+                        {t("logoutValues.logOutWarningTitle")}
+                      </LogoutHeading>
                       <LogoutParagraph>
-                        {t("logOutWarningParagraph")}
+                        {t("logoutValues.logOutWarningParagraph")}
                       </LogoutParagraph>
                     </HeaderTextImageContainer>
                   </TextImageContainer>
@@ -232,7 +231,7 @@ const SideBar = (): JSX.Element => {
                 </TestContainer>
                 <LogoutButtonContainer>
                   <YesLogoutButton type="button" onClick={onClickLogout}>
-                    {t("yesLogout")}
+                    {t("logoutValues.yesLogout")}
                   </YesLogoutButton>
                   <CancelLogoutButton
                     type="button"
@@ -240,7 +239,7 @@ const SideBar = (): JSX.Element => {
                     data-testid="close"
                     onClick={close}
                   >
-                    {t("cancel")}
+                    {t("common.cancel")}
                   </CancelLogoutButton>
                 </LogoutButtonContainer>
               </LogoutConformationContainer>

@@ -158,7 +158,7 @@ const Header = (): JSX.Element => {
                   src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705727508/plus_ndqvby.png"
                   alt="plus"
                 />{" "}
-                {t("addTransaction")}
+                {t("transactionInputs.addTransaction")}
               </AddTransactionButton>
 
               <MobileAddTransactions type="button" disabled={isUserAdmin}>
@@ -170,14 +170,14 @@ const Header = (): JSX.Element => {
           {/* @ts-ignore */}
           {(close) => (
             <AddTransctionMainContainer>
-              <AddTransctionContainer>
+              <AddTransctionContainer id="addTransaction">
                 <AddTransctionTextContainer>
                   <HeadingTextContainer>
                     <AddTransctionHeading>
-                      {t("addTransaction")}
+                      {t("transactionInputs.addTransaction")}
                     </AddTransctionHeading>
                     <AddTransctionParagraph>
-                      {t("loremipsumdolorsitametconsectetur")}
+                      {t("transactionInputs.loremipsumdolorsitametconsectetur")}
                     </AddTransctionParagraph>
                   </HeadingTextContainer>
                   <AddTransctionCloseImage
@@ -192,9 +192,9 @@ const Header = (): JSX.Element => {
 
                 <AddTransctionInputContainer>
                   <AddTransctionLabel htmlFor="addTransctionName">
-                    {t("transactionName")}*
+                    {t("transactionInputs.transactionName")}*
                     <NotificationMessage>
-                      ({t("max30Characters")}*)
+                      ({t("transactionInputs.max30Characters")}*)
                     </NotificationMessage>
                   </AddTransctionLabel>
                   <AddTransctionNameInput
@@ -210,7 +210,7 @@ const Header = (): JSX.Element => {
 
                 <AddTransctionInputContainer>
                   <AddTransctionLabel htmlFor="addTransctionType">
-                    {t("transactionType")}*
+                    {t("transactionInputs.transactionType")}*
                   </AddTransctionLabel>
                   <SelectTransctionType
                     required
@@ -219,17 +219,17 @@ const Header = (): JSX.Element => {
                     onChange={(event) => addType(event.target.value)}
                   >
                     <SelectTransctionOptions value="credit">
-                      {t("credit")}
+                      {t("common.credit")}
                     </SelectTransctionOptions>
                     <SelectTransctionOptions value="debit">
-                      {t("debit")}
+                      {t("common.debit")}
                     </SelectTransctionOptions>
                   </SelectTransctionType>
                 </AddTransctionInputContainer>
 
                 <AddTransctionInputContainer>
                   <AddTransctionLabel htmlFor="addTransctionCategory">
-                    {t("category")}*
+                    {t("transactionInputs.category")}*
                   </AddTransctionLabel>
                   <SelectTransctionType
                     required
@@ -238,20 +238,20 @@ const Header = (): JSX.Element => {
                     onChange={(event) => addCategory(event.target.value)}
                   >
                     <SelectTransctionOptions value="Shopping">
-                      {t("shopping")}
+                      {t("transactionInputs.shopping")}
                     </SelectTransctionOptions>
                     <SelectTransctionOptions value="Service">
-                      {t("service")}
+                      {t("transactionInputs.service")}
                     </SelectTransctionOptions>
                     <SelectTransctionOptions value="Transfer">
-                      {t("transfer")}
+                      {t("transactionInputs.transfer")}
                     </SelectTransctionOptions>
                   </SelectTransctionType>
                 </AddTransctionInputContainer>
 
                 <AddTransctionInputContainer>
                   <AddTransctionLabel htmlFor="addTransctionAmount">
-                    {t("amount")}*
+                    {t("transactionInputs.amount")}*
                   </AddTransctionLabel>
                   <AddTransctionNameInput
                     required
@@ -265,7 +265,7 @@ const Header = (): JSX.Element => {
 
                 <AddTransctionInputContainer>
                   <AddTransctionLabel htmlFor="addTransctionDate">
-                    {t("date")}*
+                    {t("transactionInputs.date")}*
                   </AddTransctionLabel>
                   <AddTransctionNameInput
                     required
@@ -293,7 +293,7 @@ const Header = (): JSX.Element => {
                       width={30}
                     />
                   ) : (
-                    "Add Transaction "
+                    `${t("transactionInputs.addTransaction")}`
                   )}
                 </AddTransctionButton>
                 <ErrorMessageParagraph>{errorMessage}</ErrorMessageParagraph>
@@ -328,28 +328,19 @@ const Header = (): JSX.Element => {
         src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705580146/Frame_507_ba197a.png"
         alt="logo"
       />
-      <ButtonText>
-        {t(`${selectOption.toLowerCase()}`)}
-        {/* {selectOption.charAt(0).toUpperCase() +
-          selectOption.slice(1).toLowerCase()} */}
-      </ButtonText>
+      <ButtonText>{t(`common.${selectOption.toLowerCase()}`)}</ButtonText>
 
       <LanguageContainer>
         {renderSuccessView()}
-        {/* <label>Change Language </label> */}
         <LanguageSelectorContainer
           required
           id="UpdateTransactionType"
-          value={language}
-          onChange={(event) => {
-            i18n.changeLanguage(event.target.value);
-            setLanguage(event.target.value);
-          }}
+          value={i18n.language}
+          onChange={(event) => i18n.changeLanguage(event.target.value)}
         >
           <DropdownOptions value="en">English</DropdownOptions>
-          <DropdownOptions value="de">German</DropdownOptions>
-          <DropdownOptions value="te">Telugu</DropdownOptions>
-          <DropdownOptions value="hi">Hindi</DropdownOptions>
+          <DropdownOptions value="te">తెలుగు</DropdownOptions>
+          <DropdownOptions value="hi">हिंदी</DropdownOptions>
         </LanguageSelectorContainer>
       </LanguageContainer>
     </HeaderMainContainer>

@@ -22,7 +22,7 @@ const UpdateTransaction = (props: {
   close: () => void;
 }): JSX.Element => {
   const { eachTransaction, close } = props;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const transactionStore = useContext(TransactionContext);
   const { totalTransactionDetails, userId } = transactionStore;
 
@@ -105,7 +105,7 @@ const UpdateTransaction = (props: {
     <>
       <AddTransactionInputContainer>
         <AddTransactionLabel htmlFor="updateTransactionName">
-          {t("transactionName")}*
+          {t("transactionInputs.transactionName")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
           required
@@ -120,7 +120,7 @@ const UpdateTransaction = (props: {
 
       <AddTransactionInputContainer>
         <AddTransactionLabel htmlFor="updateTransactionType">
-          {t("transactionType")}*
+          {t("transactionInputs.transactionType")}*
         </AddTransactionLabel>
         <SelectTransactionType
           required
@@ -129,17 +129,17 @@ const UpdateTransaction = (props: {
           onChange={(event) => addType(event.target.value)}
         >
           <SelectTransactionOptions value="credit">
-            {t("credit")}
+            {t("common.credit")}
           </SelectTransactionOptions>
           <SelectTransactionOptions value="debit">
-            {t("debit")}
+            {t("common.debit")}
           </SelectTransactionOptions>
         </SelectTransactionType>
       </AddTransactionInputContainer>
 
       <AddTransactionInputContainer>
         <AddTransactionLabel htmlFor="updateTransactionCategory">
-          {t("category")}*
+          {t("transactionInputs.category")}*
         </AddTransactionLabel>
         <SelectTransactionType
           required
@@ -148,20 +148,20 @@ const UpdateTransaction = (props: {
           onChange={(event) => addCategory(event.target.value)}
         >
           <SelectTransactionOptions value="Shopping">
-            {t("shopping")}
+            {t("transactionInputs.shopping")}
           </SelectTransactionOptions>
           <SelectTransactionOptions value="Service">
-            {t("service")}
+            {t("transactionInputs.service")}
           </SelectTransactionOptions>
           <SelectTransactionOptions value="Transfer">
-            {t("transfer")}
+            {t("transactionInputs.transfer")}
           </SelectTransactionOptions>
         </SelectTransactionType>
       </AddTransactionInputContainer>
 
       <AddTransactionInputContainer>
         <AddTransactionLabel htmlFor="updateTransactionAmount">
-          {t("amount")}*
+          {t("transactionInputs.amount")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
           required
@@ -175,7 +175,7 @@ const UpdateTransaction = (props: {
 
       <AddTransactionInputContainer>
         <AddTransactionLabel htmlFor="updateTransctionDate">
-          {t("date")}*
+          {t("transactionInputs.date")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
           readOnly
@@ -203,11 +203,13 @@ const UpdateTransaction = (props: {
             width={30}
           />
         ) : (
-          "Update Transaction "
+          `${t("transactionInputs.updateTransaction")}`
         )}
       </AddTransactionButton>
       {apiResponse.errorMsg !== undefined && (
-        <ErrorMessage>{t("invalidFieldResponses")}*</ErrorMessage>
+        <ErrorMessage>
+          {t("transactionInputs.invalidFieldResponses")}*
+        </ErrorMessage>
       )}
     </>
   );

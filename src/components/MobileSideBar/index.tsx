@@ -108,7 +108,7 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
               alt="dashboard"
             />
             <TextParagraph selectOption={selectOption === "DASHBOARD"}>
-              {t("dashboard")}
+              {t("dashboard.dashboard")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -131,7 +131,9 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
             />
 
             <TextParagraph selectOption={selectOption === "TRANSACTIONS"}>
-              {isUserAdmin ? t("allTransactions") : t("transactions")}
+              {isUserAdmin
+                ? t("common.allTransactions")
+                : t("common.transactions")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -156,7 +158,7 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
               alt="profile"
             />
             <TextParagraph selectOption={selectOption === "PROFILE"}>
-              {t("profile")}
+              {t("common.profile")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
@@ -172,7 +174,7 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
           <ProfileEmail>{apiResponse.email}</ProfileEmail>
         </ProfileTextContainer>
         <YesLogoutButton type="button" onClick={onClickLogout}>
-          {t("yesLogout")}
+          {t("logoutValues.yesLogout")}
         </YesLogoutButton>
       </ProfileContainer>
     </SideBarMainContainer>

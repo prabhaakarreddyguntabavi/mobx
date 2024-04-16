@@ -119,19 +119,21 @@ const TransactionPage = (): JSX.Element => {
         <>
           <HeadingDashTransactionContainer>
             {isUserAdmin ? (
-              <TransactionUserName>{t("userName")}</TransactionUserName>
+              <TransactionUserName>{t("common.userName")}</TransactionUserName>
             ) : (
               ""
             )}
             <TransactionName isAdmin={isUserAdmin}>
-              {t("transactionName")}
+              {t("transactionInputs.transactionName")}
             </TransactionName>
             <TransactionCategory isAdmin={isUserAdmin}>
-              {t("category")}
+              {t("transactionInputs.category")}
             </TransactionCategory>
-            <TransactionDate isAdmin={isUserAdmin}>{t("date")}</TransactionDate>
+            <TransactionDate isAdmin={isUserAdmin}>
+              {t("transactionInputs.date")}
+            </TransactionDate>
             <TransactionAmount isAdmin={isUserAdmin}>
-              {t("amount")}
+              {t("transactionInputs.amount")}
             </TransactionAmount>
           </HeadingDashTransactionContainer>
           {currentItems.map(
@@ -174,7 +176,7 @@ const TransactionPage = (): JSX.Element => {
     }
     return (
       <NoTransactionsFountHeading>
-        {t("noTransactionsFound")}
+        {t("common.noTransactionsFound")}
       </NoTransactionsFountHeading>
     );
   };
@@ -223,7 +225,7 @@ const TransactionPage = (): JSX.Element => {
             <SelectAllOption
               transactionOption={filterOption === "alltransactions"}
             >
-              {t("allTransactions")}
+              {t("common.allTransactions")}
             </SelectAllOption>
             <SelectedContainer
               transactionOption={filterOption === "alltransactions"}
@@ -237,7 +239,7 @@ const TransactionPage = (): JSX.Element => {
             }}
           >
             <SelectOption transactionOption={filterOption === "credit"}>
-              {t("credit")}
+              {t("common.credit")}
             </SelectOption>
             <SelectedCreditContainer
               transactionOption={filterOption === "credit"}
@@ -251,7 +253,7 @@ const TransactionPage = (): JSX.Element => {
             }}
           >
             <SelectOption transactionOption={filterOption === "debit"}>
-              {t("debit")}
+              {t("common.debit")}
             </SelectOption>
             <SelectedCreditContainer
               transactionOption={filterOption === "debit"}

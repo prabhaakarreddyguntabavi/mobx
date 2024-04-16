@@ -101,7 +101,7 @@ const LoginForm = (): JSX.Element => {
           alt="website logo"
         />
         <InputContainer>
-          <LoginLabel htmlFor="emailId">{t("email")}</LoginLabel>
+          <LoginLabel htmlFor="emailId">{t("common.email")}</LoginLabel>
           <EmailInput
             type="email"
             id="emailId"
@@ -112,7 +112,7 @@ const LoginForm = (): JSX.Element => {
           />
         </InputContainer>
         <InputContainer>
-          <LoginLabel htmlFor="password">{t("password")}</LoginLabel>
+          <LoginLabel htmlFor="password">{t("common.password")}</LoginLabel>
           <PasswordInput
             type="password"
             id="password"
@@ -121,7 +121,7 @@ const LoginForm = (): JSX.Element => {
             placeholder="Password"
           />
         </InputContainer>
-        <LoginButton type="submit">{t("login")}</LoginButton>
+        <LoginButton type="submit">{t("common.login")}</LoginButton>
         {errorMessage && (
           <ErrorMessageParagraph>*{errorMessage}</ErrorMessageParagraph>
         )}

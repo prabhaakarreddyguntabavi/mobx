@@ -16,12 +16,14 @@ const FailureCase = (): JSX.Element => {
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
         alt="failure view"
       />
-      <OnFailureHeading>{t("failureTitleText")}</OnFailureHeading>
+      <OnFailureHeading>{t("errorMessage.failureTitleText")}</OnFailureHeading>
       <OnFailureParagraph>
-        {t("failureParagraph")}
-        <br /> {t("pleaseTryAgainLater")}
+        {t("errorMessage.failureParagraph")}
+        <br /> {t("errorMessage.pleaseTryAgainLater")}
       </OnFailureParagraph>
-      <OnFailureRetryButton type="button">{t("retry")}</OnFailureRetryButton>
+      <OnFailureRetryButton type="button">
+        {t("errorMessage.retry")}
+      </OnFailureRetryButton>
     </OnFailureConrainer>
   );
 };

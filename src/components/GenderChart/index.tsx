@@ -185,19 +185,19 @@ const GenderChart = (): JSX.Element => {
           <GraphHeaderContainer>
             <GraphPrargraph>
               <GraphPrargraphSpan> ${debitTransactionsSum}</GraphPrargraphSpan>{" "}
-              {t("debited")}
+              {t("dashboard.debited")}
               <GraphPrargraphSpan>
                 {" "}
                 ${creditTransactionsSum}{" "}
               </GraphPrargraphSpan>{" "}
-              {t("creditedinthisWeek")}
+              {t("dashboard.creditedinthisWeek")}
             </GraphPrargraph>
             <GraphValuesSetting>
               <GraphTextParagraph>
-                <GraphCredite></GraphCredite> {t("credit")}
+                <GraphCredite></GraphCredite> {t("common.credit")}
               </GraphTextParagraph>
               <GraphTextParagraph>
-                <GraphDebit></GraphDebit> {t("debit")}
+                <GraphDebit></GraphDebit> {t("common.debit")}
               </GraphTextParagraph>
             </GraphValuesSetting>
           </GraphHeaderContainer>
@@ -225,7 +225,7 @@ const GenderChart = (): JSX.Element => {
     }
     return (
       <NoTransactionsFountHeading>
-        {t("noTransactionsFound")}
+        {t("common.noTransactionsFound")}
       </NoTransactionsFountHeading>
     );
   };

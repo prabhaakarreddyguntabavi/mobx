@@ -62,7 +62,9 @@ const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
 
   return (
     <LogoutConformationContainer>
-      {errorMessage && <p>{t("somethingwentwrongpleasetrygainlater")}</p>}
+      {errorMessage && (
+        <p>{t("errorMessage.somethingwentwrongpleasetrygainlater")}</p>
+      )}
       <TestContainer>
         <WarningImageContainer>
           <WarningImage
@@ -72,8 +74,12 @@ const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
         </WarningImageContainer>
         <TextImageContainer>
           <HeaderTextImageContainer>
-            <LogoutHeading>{t("deletePopupText")}</LogoutHeading>
-            <LogoutParagraph>{t("deletePopupTextMessage")}</LogoutParagraph>
+            <LogoutHeading>
+              {t("deleteTransactions.deletePopupText")}
+            </LogoutHeading>
+            <LogoutParagraph>
+              {t("deleteTransactions.deletePopupTextMessage")}
+            </LogoutParagraph>
           </HeaderTextImageContainer>
         </TextImageContainer>
         <LogoutClosingImage
@@ -84,7 +90,7 @@ const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
       </TestContainer>
       <LogoutButtonContainer>
         <YesLogoutButton type="button" onClick={getLeaderboardData}>
-          {t("yesDelete")}
+          {t("deleteTransactions.yesDelete")}
         </YesLogoutButton>
         <CancelLogoutButton
           type="button"
@@ -92,7 +98,7 @@ const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
           data-testid="close"
           onClick={close}
         >
-          {t("cancel")}
+          {t("common.cancel")}
         </CancelLogoutButton>
       </LogoutButtonContainer>
     </LogoutConformationContainer>

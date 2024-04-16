@@ -24,10 +24,12 @@ const NotFound = (): JSX.Element => {
         src="https://assets.ccbp.in/frontend/react-js/jobby-app-not-found-img.png"
         alt="not found"
       />
-      <NotFoundHeading>{t("pageNotFound")}</NotFoundHeading>
-      <NotFoundParagraph>{t("pageNotFoundText")}</NotFoundParagraph>
+      <NotFoundHeading>{t("errorMessage.pageNotFound")}</NotFoundHeading>
+      <NotFoundParagraph>
+        {t("errorMessage.pageNotFoundText")}
+      </NotFoundParagraph>
       <BackToHomePage type="button" onClick={onBackToHomePage}>
-        {t("backToHomePage")}
+        {t("errorMessage.backToHomePage")}
       </BackToHomePage>
     </NotFoundContainer>
   );

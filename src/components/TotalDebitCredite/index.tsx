@@ -89,7 +89,7 @@ const TotalDebitCredit = (): JSX.Element => {
         <CreditContainer>
           <CreditTextContainer>
             <HeadingAmount>$ {data[0].sum}</HeadingAmount>
-            <Paragraph>{t("credit")}</Paragraph>
+            <Paragraph>{t("common.credit")}</Paragraph>
           </CreditTextContainer>
           <ImageContainer>
             <CreditImage
@@ -102,7 +102,7 @@ const TotalDebitCredit = (): JSX.Element => {
         <DebitContainer>
           <DebitTextContainer>
             <DebitHeadingAmount>$ {data[1].sum}</DebitHeadingAmount>
-            <Paragraph>{t("debit")}</Paragraph>
+            <Paragraph>{t("common.debit")}</Paragraph>
           </DebitTextContainer>
           <DebitImageContainer>
             <DebitImage

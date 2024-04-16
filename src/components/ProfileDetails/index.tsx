@@ -86,7 +86,7 @@ const ProfileDetails = (): JSX.Element => {
         <DetailsContainer>
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userFirstName">
-              {t("yourName")}
+              {t("profile.yourName")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
@@ -99,7 +99,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userName">
-              {t("UserName")}
+              {t("common.userName")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
@@ -112,7 +112,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userEmail">
-              {t("email")}
+              {t("common.email")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="email"
@@ -125,7 +125,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userPassword">
-              {t("password")}
+              {t("common.password")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="password"
@@ -138,7 +138,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userDateOfBirth">
-              {t("dateofBirth")}
+              {t("profile.dateofBirth")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="date"
@@ -151,7 +151,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userPresentAddress">
-              {t("presentAddress")}
+              {t("profile.presentAddress")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
@@ -164,7 +164,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userPermanentAddress">
-              {t("permanentAddress")}
+              {t("profile.permanentAddress")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
@@ -177,7 +177,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userCity">
-              {t("city")}
+              {t("profile.city")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"
@@ -190,7 +190,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userPostalCode">
-              {t("postalCode")}
+              {t("profile.postalCode")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="number"
@@ -203,7 +203,7 @@ const ProfileDetails = (): JSX.Element => {
 
           <AddTransactionInputContainer>
             <AddTransactionLabel htmlFor="userCountry">
-              {t("country")}
+              {t("profile.country")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               type="text"

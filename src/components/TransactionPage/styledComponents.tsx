@@ -21,7 +21,7 @@ export const TransactionBodyContainer = styled.div`
   width: 84vw;
   background: #f5f7fa;
   overflow: auto;
-  height: 86vh;
+  height: 84vh;
 
   @media screen and (max-width: 1024px) {
     width: 92vw;

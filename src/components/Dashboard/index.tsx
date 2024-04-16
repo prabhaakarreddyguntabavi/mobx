@@ -43,9 +43,11 @@ const Dashboard = (): JSX.Element => {
         <Header />
         <BodyContainer>
           <TotalDebitCredite />
-          <LastTransaction>{t("lastTransaction")}</LastTransaction>
+          <LastTransaction>{t("dashboard.lastTransaction")}</LastTransaction>
           <LastThreeTransactionsFunction />
-          <LastTransaction>{t("debitCreditOverview")}</LastTransaction>
+          <LastTransaction>
+            {t(`dashboard.debitCreditOverview`)}
+          </LastTransaction>
           <BarChartContainer>
             <GenderChart />
           </BarChartContainer>

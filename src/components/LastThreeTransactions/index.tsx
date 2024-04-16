@@ -103,7 +103,7 @@ const TransactionPage = (): JSX.Element => {
     }
     return (
       <NoTransactionsFountHeading>
-        {t("noTransactionsFound")}
+        {t("common.noTransactionsFound")}
       </NoTransactionsFountHeading>
     );
   };
