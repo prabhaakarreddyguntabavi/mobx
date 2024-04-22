@@ -55,7 +55,7 @@ export const ButtonImage = styled.img`
   // height: 20px;
 `;
 
-export const ButtonText = styled.p`
+export const HeaderPrargraphText = styled.p`
   // color: #343c6a;
   // font-family: Inter;
   // font-size: 28px;

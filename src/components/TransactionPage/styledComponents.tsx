@@ -177,7 +177,7 @@ export const TransactionCategory = styled.p<TextParagraphProps>`
   // font-weight: 500;
   // line-height: normal;
   // margin-left: 114px;
-  width: ${(props: any) => (props.isAdmin ? "16vw" : "21vw")};
+  width: ${(props: any) => (props.isAdmin ? "16vw" : "20vw")};
 
   @media screen and (max-width: 1024px) {
     width: 21vw;

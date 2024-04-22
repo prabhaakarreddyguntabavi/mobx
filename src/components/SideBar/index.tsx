@@ -85,7 +85,7 @@ const SideBar = (): JSX.Element => {
         alt="website logo"
       />
 
-      <TextContainer className="flex flex-col items-start w-2.5">
+      <TextContainer className="flex flex-col items-start w-2.5 h-[171px] mt-[50px]">
         <Link
           className="sidbar-content"
           to="/"
@@ -96,7 +96,7 @@ const SideBar = (): JSX.Element => {
         >
           <EachTextContainer className="flex h-6 justify-start items-center gap-5 shrink-0">
             <SelectedContainer
-              className="w-1.5 h-6 shrink-0 "
+              className="w-1.5 h-10 shrink-0 "
               selectOption={selectOption === "DASHBOARD"}
             >
               {}
@@ -111,7 +111,7 @@ const SideBar = (): JSX.Element => {
               alt="dashboard"
             />
             <TextParagraph
-              className="font-medium text-base no-underline"
+              className="font-inter text-base font-medium text-gray-800"
               selectOption={selectOption === "DASHBOARD"}
             >
               {t("common.dashboard")}
@@ -125,7 +125,7 @@ const SideBar = (): JSX.Element => {
         >
           <EachTextContainer className="flex h-20 justify-start items-center gap-5 shrink-0">
             <SelectedContainer
-              className="w-1.5 h-6 shrink-0 "
+              className="w-1.5 h-10 shrink-0 "
               selectOption={selectOption === "TRANSACTIONS"}
             ></SelectedContainer>
             <TransactionIconsImage
@@ -139,7 +139,7 @@ const SideBar = (): JSX.Element => {
             />
 
             <TextParagraph
-              className="font-medium text-base no-underline"
+              className="font-inter text-base font-medium text-gray-800"
               selectOption={selectOption === "TRANSACTIONS"}
             >
               {isUserAdmin
@@ -158,7 +158,7 @@ const SideBar = (): JSX.Element => {
         >
           <EachTextContainer className="flex h-6 justify-start items-center gap-5 shrink-0">
             <SelectedContainer
-              className="w-1.5 h-6 shrink-0 "
+              className="w-1.5 h-10 shrink-0 "
               selectOption={selectOption === "PROFILE"}
             ></SelectedContainer>
             <IconsImage
@@ -171,7 +171,7 @@ const SideBar = (): JSX.Element => {
               alt="profile"
             />
             <TextParagraph
-              className="font-medium text-base no-underline"
+              className="font-inter text-base font-medium text-gray-800"
               selectOption={selectOption === "PROFILE"}
             >
               {t("common.profile")}
@@ -182,12 +182,16 @@ const SideBar = (): JSX.Element => {
       <ProfileContainer className="h-20 mt-auto flex p-[24px 32px 0px 24px] items-center gap-2 self-stretch border-t border-solid border-gray-200">
         {loginUser.email !== undefined ? (
           <>
-            <ProfileImageContainer className="flex items-center justify-center w-10 h-10 flex-col rounded-full bg-cover bg-center bg-lightgray">
+            <ProfileImageContainer className="flex items-center justify-center w-10 h-10 flex-col rounded-full bg-cover bg-center bg-lightgray ml-2">
               {loginUser.email[0].toUpperCase()}
             </ProfileImageContainer>
             <ProfileTextContainer>
-              <ProfileName>{loginUser.email.split("@")[0]}</ProfileName>
-              <ProfileEmail>{loginUser.email}</ProfileEmail>
+              <ProfileName className="text-gray-700 font-inter font-semibold text-sm leading-5 w-100 overflow-hidden">
+                {loginUser.email.split("@")[0]}
+              </ProfileName>
+              <ProfileEmail className="text-gray-700 font-inter font-semibold text-sm leading-5 w-100 overflow-hidden">
+                {loginUser.email}
+              </ProfileEmail>
             </ProfileTextContainer>
           </>
         ) : (
@@ -202,7 +206,7 @@ const SideBar = (): JSX.Element => {
               type="button"
             >
               {loginUser.email !== undefined ? (
-                <ProfileImageContainerMedium>
+                <ProfileImageContainerMedium className="hidden w-40 h-40 flex-col justify-center items-center rounded-full bg-cover bg-center bg-lightgray">
                   {loginUser.email[0].toUpperCase()}
                 </ProfileImageContainerMedium>
               ) : (
@@ -210,6 +214,7 @@ const SideBar = (): JSX.Element => {
               )}
 
               <ProfileLogoutImage
+                className="w-[20px] h-[20px] cursor-pointer"
                 src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706074414/log-out-01_yllnww.png"
                 alt="logout"
               />
@@ -218,10 +223,10 @@ const SideBar = (): JSX.Element => {
         >
           {/* @ts-ignore */}
           {(close) => (
-            <LogoutContainer>
-              <LogoutConformationContainer>
-                <TestContainer>
-                  <WarningImageContainer>
+            <LogoutContainer className="flex fixed top-0 left-0 w-screen h-screen flex-shrink-0 bg-gray-700 bg-opacity-70 backdrop-blur-md">
+              <LogoutConformationContainer className="min-w-591 h-188 flex-shrink-0 rounded-lg bg-white mx-auto self-center shadow-lg pl-4">
+                <TestContainer className="flex">
+                  <WarningImageContainer className="w-[64px] h-[64px] flex-shrink-0 bg-yellow-200 rounded-full mt-[32px] [ml-20px] mr-[15px] flex justify-center items-center">
                     <WarningImage
                       src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706080360/log-out-01_1_wtsz63.png"
                       alt="logout"
@@ -229,27 +234,32 @@ const SideBar = (): JSX.Element => {
                   </WarningImageContainer>
                   <TextImageContainer>
                     <HeaderTextImageContainer>
-                      <LogoutHeading>
+                      <LogoutHeading className="text-[#333b69] font-inter font-bold text-lg mt-[32px] leading-7">
                         {t("logoutValues.logOutWarningTitle")}
                       </LogoutHeading>
-                      <LogoutParagraph>
+                      <LogoutParagraph className="text-gray-700 font-inter text-base font-normal leading-5">
                         {t("logoutValues.logOutWarningParagraph")}
                       </LogoutParagraph>
                     </HeaderTextImageContainer>
                   </TextImageContainer>
                   <LogoutClosingImage
+                    className="w-[24px] h-[24px] flex-shrink-0 m-[10px] ml-auto cursor-pointer"
                     onClick={close}
                     src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706078678/Close_gxeytv.png"
                     alt="close"
                   />
                 </TestContainer>
-                <LogoutButtonContainer>
-                  <YesLogoutButton type="button" onClick={onClickLogout}>
+                <LogoutButtonContainer className="flex">
+                  <YesLogoutButton
+                    className="flex px-4 py-2 justify-center items-center gap-4 bg-red-600 rounded-lg border-0 mr-4 mt-8 mb-8 ml-28 text-white text-center font-inter font-medium text-sm leading-5 cursor-pointer"
+                    type="button"
+                    onClick={onClickLogout}
+                  >
                     {t("logoutValues.yesLogout")}
                   </YesLogoutButton>
                   <CancelLogoutButton
+                    className="flex h-10 p-2 md:p-4 justify-center items-center gap-4 md:gap-[10px] rounded-lg border border-gray-300 bg-white mt-8 text-[#333b69] md:text-gray-700 text-center font-inter font-medium text-sm leading-5 cursor-pointer"
                     type="button"
-                    className="trigger-button"
                     data-testid="close"
                     onClick={close}
                   >

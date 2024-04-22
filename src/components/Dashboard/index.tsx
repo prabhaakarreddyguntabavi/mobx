@@ -44,7 +44,7 @@ const Dashboard = (): JSX.Element => {
       <SideBar />
       <BodyMainContainer className="bg-[#f5f7fa] flex flex-col w-5/6 ">
         <Header />
-        <BodyContainer className="w-20 h-12">
+        <BodyContainer>
           <TotalDebitCredite />
           <LastTransaction className="text-[#333b69] Inter text-2xl not-italic font-semibold leading-normal ml-10 mt-6 mb-3 ">
             {t("dashboard.lastTransaction")}

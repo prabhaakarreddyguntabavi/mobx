@@ -86,8 +86,8 @@ const TotalDebitCredit = (): JSX.Element => {
 
     return (
       <>
-        <CreditContainer className="flex w-6/12 p-2 flex-row items-start gap-2 flex-shrink-0 rounded-2xl bg-white mt-6 md:mt-10 ml-5 md:ml-10">
-          <CreditTextContainer className="inline-flex flex-col items-start gap-2">
+        <CreditContainer className="flex w-[45%] p-2 flex-row items-start gap-2 flex-shrink-0 rounded-2xl bg-white mt-6 md:mt-10 ml-5 md:ml-10">
+          <CreditTextContainer className="inline-flex flex-col items-start gap-[2px] mt-2 ml-3">
             <HeadingAmount className="text-[#16dbaa] font-inter text-3xl font-semibold m-0">
               $ {data[0].sum}
             </HeadingAmount>
@@ -104,9 +104,9 @@ const TotalDebitCredit = (): JSX.Element => {
           </ImageContainer>
         </CreditContainer>
 
-        <DebitContainer className="flex w-5/12 p-2 flex-row items-start gap-2 flex-shrink-0 rounded-2xl bg-white mt-6 md:mt-10 ml-5 md:ml-10">
-          <DebitTextContainer>
-            <DebitHeadingAmount className="text-[#fe5c73] font-inter text-2xl font-semibold mb-4">
+        <DebitContainer className="flex w-[45%] p-2 flex-row items-start gap-2 flex-shrink-0 rounded-2xl bg-white mt-6 md:mt-10 ml-5 md:ml-10">
+          <DebitTextContainer className="inline-flex flex-col items-start gap-[2px] mt-2 ml-3">
+            <DebitHeadingAmount className="text-[#fe5c73] font-inter text-2xl font-semibold">
               $ {data[1].sum}
             </DebitHeadingAmount>
             <Paragraph className="text-[#718ebf] font-inter text-base font-normal m-0">

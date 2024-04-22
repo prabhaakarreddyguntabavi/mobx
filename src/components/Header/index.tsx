@@ -15,7 +15,7 @@ import {
   HeaderMainContainer,
   AddTransactionButton,
   ButtonImage,
-  ButtonText,
+  HeaderPrargraphText,
   AddTransctionButton,
   AddTransctionContainer,
   AddTransctionMainContainer,
@@ -141,12 +141,12 @@ const Header = (): JSX.Element => {
     }
   };
 
-  const renderSuccessView = (): JSX.Element => {
+  const addTransctionDetails = (): JSX.Element => {
     return (
       <>
         <LanguageContainer className="flex ">
           <LanguageSelectorContainer
-            className="mt-2 mr-2.5 h-6"
+            className="mt-2 mr-2.5 h-8 "
             required
             id="UpdateTransactionType"
             value={i18n.language}
@@ -164,7 +164,7 @@ const Header = (): JSX.Element => {
             trigger={
               <PopupContainer>
                 <AddTransactionButton
-                  className="flex p-2 justify-center items-center gap-1 rounded-lg text-white text-center font-inter font-medium text-base"
+                  className="flex p-2 mr-10 justify-center items-center gap-1 rounded-lg text-white text-center font-inter font-medium text-base"
                   disabled={isUserAdmin}
                   type="button"
                   onClick={() => addDate(getCurrentDateTime())}
@@ -195,7 +195,7 @@ const Header = (): JSX.Element => {
                   id="addTransaction"
                 >
                   <AddTransctionTextContainer className="flex">
-                    <HeadingTextContainer className="scroll-my-9 scroll-ml-6">
+                    <HeadingTextContainer className="my-3 ml-6">
                       <AddTransctionHeading className="text-[#333b69] font-serif text-lg not-italic font-bold leading-7">
                         {t("transactionInputs.addTransaction")}
                       </AddTransctionHeading>
@@ -379,10 +379,10 @@ const Header = (): JSX.Element => {
         src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705580146/Frame_507_ba197a.png"
         alt="logo"
       />
-      <ButtonText className="text-[#343c6a] font-inter font-semibold text-3xl">
+      <HeaderPrargraphText className="text-[#343c6a] font-inter font-semibold text-3xl ml-10">
         {t(`common.${selectOption.toLowerCase()}`)}
-      </ButtonText>
-      {renderSuccessView()}
+      </HeaderPrargraphText>
+      {addTransctionDetails()}
     </HeaderMainContainer>
   );
 };

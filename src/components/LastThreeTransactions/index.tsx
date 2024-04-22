@@ -135,7 +135,7 @@ const TransactionPage = (): JSX.Element => {
   };
 
   return (
-    <TransactionsContainer className="flex flex-col justify-end items-start gap-5 w-90 pt-5 pr-5 pb-3  mr-2 rounded-3xl bg-white ml-10">
+    <TransactionsContainer className="flex flex-col justify-end items-start gap-3 w-[94%] pt-5 pr-5 pb-3  mr-2 rounded-3xl bg-white ml-10">
       {renderLeaderboard()}
     </TransactionsContainer>
   );

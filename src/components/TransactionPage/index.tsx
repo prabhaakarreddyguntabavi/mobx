@@ -117,7 +117,7 @@ const TransactionPage = (): JSX.Element => {
     if (transactionsData.length !== 0) {
       return (
         <>
-          <HeadingDashTransactionContainer className="w-full flex-shrink-0 border-b border-gray-300 ml-6 mr-6 flex items-center">
+          <HeadingDashTransactionContainer className="w-full flex-shrink-0 border-b border-gray-300  flex items-center">
             {isUserAdmin ? (
               <TransactionUserName className="w-1/5 text-blue-900 font-inter text-lg font-medium">
                 {t("common.userName")}
@@ -232,7 +232,7 @@ const TransactionPage = (): JSX.Element => {
       <SideBar />
       <TransactionTotalBodyContainer className="bg-[#f5f7fa] flex flex-col w-5/6 ">
         <Header />
-        <SelectFilterConditions className="flex items-start gap-24 pl-[40px] bg-white">
+        <SelectFilterConditions className="flex items-start gap-[24px] pl-[40px] bg-white">
           <TransactionSelectFilter
             className="flex flex-col items-center gap-[8px] border-0 bg-transparent cursor-pointer"
             onClick={() => {
@@ -290,8 +290,8 @@ const TransactionPage = (): JSX.Element => {
             ></SelectedCreditContainer>
           </TransactionSelectFilter>
         </SelectFilterConditions>
-        <TransactionBodyContainer className="w-full bg-[#f5f7fa] h-full">
-          <TransactionsContainer className="flex flex-col w-90 min-h-80v min-h-fit-content p-[12px] pt-6 gap-8 items-start bg-white rounded-[25px] ml-[40px] mt-[32px] mr-[20px]">
+        <TransactionBodyContainer className="w-full bg-[#f5f7fa] h-[90%] overflow-auto">
+          <TransactionsContainer className="flex flex-col w-[94%] h-fit p-[12px] pt-6 gap-[20px] items-start bg-white rounded-[25px] ml-[40px] mt-[32px] mr-[20px]">
             {renderLeaderboard()}
           </TransactionsContainer>
         </TransactionBodyContainer>

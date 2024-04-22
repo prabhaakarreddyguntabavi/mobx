@@ -47,7 +47,7 @@ const EachTransaction = (props: PropsValues) => {
 
   return (
     <DashTransactionContainer
-      className="w-full flex-shrink-0 ml-1 flex justify-between items-center"
+      className="w-full flex-shrink-0 ml-1 flex justify-between items-center pl-2 pb-[6px] pt-0"
       length={transactionsData.length - 1 === index}
       key={eachTransaction.id}
     >
@@ -136,7 +136,7 @@ const EachTransaction = (props: PropsValues) => {
       >
         {eachTransaction.category}
       </CategoryParagraph>
-      <DateOfTransactionParagraph className="text-gray-700 font-inter text-base font-normal overflow-hidden">
+      <DateOfTransactionParagraph className="text-gray-700 w-[20vw] font-inter text-base font-normal overflow-hidden">
         {dateTimeCustomFormate(eachTransaction.date)}
       </DateOfTransactionParagraph>
 
