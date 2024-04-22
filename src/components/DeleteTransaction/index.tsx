@@ -61,40 +61,46 @@ const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
   };
 
   return (
-    <LogoutConformationContainer>
+    <LogoutConformationContainer className="m-auto flex-shrink-0 rounded-xl bg-white shadow-lg">
       {errorMessage && (
         <p>{t("errorMessage.somethingwentwrongpleasetrygainlater")}</p>
       )}
-      <TestContainer>
-        <WarningImageContainer>
+      <TestContainer className="flex">
+        <WarningImageContainer className="w-16 h-16 flex-shrink-0 bg-[#fef3c7] rounded-full mt-8 ml-5 mr-4 flex justify-center items-center">
           <WarningImage
+            className="w-[32px] h-[32px] shrink-0 self-center"
             src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706078759/danger_wb66ql.png"
             alt="delete"
           />
         </WarningImageContainer>
         <TextImageContainer>
           <HeaderTextImageContainer>
-            <LogoutHeading>
+            <LogoutHeading className="text-[#333b69] font-bold text-2xl mt-8 leading-7">
               {t("deleteTransactions.deletePopupText")}
             </LogoutHeading>
-            <LogoutParagraph>
+            <LogoutParagraph className="text-[#505887] font-normal text-base leading-5 mt-2">
               {t("deleteTransactions.deletePopupTextMessage")}
             </LogoutParagraph>
           </HeaderTextImageContainer>
         </TextImageContainer>
         <LogoutClosingImage
+          className="w-6 h-6 mr-3 mt-2 my-2 cursor-pointer"
           onClick={close}
           src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706078678/Close_gxeytv.png"
           alt="close"
         />
       </TestContainer>
-      <LogoutButtonContainer>
-        <YesLogoutButton type="button" onClick={getLeaderboardData}>
+      <LogoutButtonContainer className="flex">
+        <YesLogoutButton
+          className="flex w-28 h-10 justify-center items-center gap-4 rounded-md bg-red-600 mr-4 mt-8 mb-8 ml-32 text-white text-center font-medium text-sm leading-5"
+          type="button"
+          onClick={getLeaderboardData}
+        >
           {t("deleteTransactions.yesDelete")}
         </YesLogoutButton>
         <CancelLogoutButton
+          className="flex h-10 w-28 justify-center items-center gap-10 rounded-lg border border-gray-300 bg-white mt-8 text-blue-900 text-center font-medium text-sm leading-5 cursor-pointer"
           type="button"
-          className="trigger-button"
           data-testid="close"
           onClick={close}
         >

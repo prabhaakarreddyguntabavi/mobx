@@ -95,6 +95,7 @@ const UpdateTransaction = (props: {
       updateTransaction("");
       totalTransactionDetails.updateTransaction(body);
     } else {
+      updateTransaction("");
       setApiResponse({
         errorMsg: "Details are in correct",
       });
@@ -103,11 +104,15 @@ const UpdateTransaction = (props: {
 
   return (
     <>
-      <AddTransactionInputContainer>
-        <AddTransactionLabel htmlFor="updateTransactionName">
+      <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+        <AddTransactionLabel
+          className="text-[#505887] font-inter text-base font-normal"
+          htmlFor="updateTransactionName"
+        >
           {t("transactionInputs.transactionName")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
+          className="w-[400px] h-[20px] flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
           required
           type="text"
           id="updateTransactionName"
@@ -118,11 +123,15 @@ const UpdateTransaction = (props: {
         />
       </AddTransactionInputContainer>
 
-      <AddTransactionInputContainer>
-        <AddTransactionLabel htmlFor="updateTransactionType">
+      <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+        <AddTransactionLabel
+          className="text-[#505887] font-inter text-base font-normal"
+          htmlFor="updateTransactionType"
+        >
           {t("transactionInputs.transactionType")}*
         </AddTransactionLabel>
         <SelectTransactionType
+          className="w-[400px] h-[40px] flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white pr-[22px] text-[#718ebf] font-inter text-base"
           required
           id="UpdateTransactionType"
           value={type}
@@ -137,11 +146,15 @@ const UpdateTransaction = (props: {
         </SelectTransactionType>
       </AddTransactionInputContainer>
 
-      <AddTransactionInputContainer>
-        <AddTransactionLabel htmlFor="updateTransactionCategory">
+      <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+        <AddTransactionLabel
+          className="text-[#505887] font-inter text-base font-normal"
+          htmlFor="updateTransactionCategory"
+        >
           {t("transactionInputs.category")}*
         </AddTransactionLabel>
         <SelectTransactionType
+          className="w-[400px] h-[40px] flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white pr-[22px] text-[#718ebf] font-inter text-base"
           required
           id="updateTransactionCategory"
           value={category}
@@ -159,11 +172,15 @@ const UpdateTransaction = (props: {
         </SelectTransactionType>
       </AddTransactionInputContainer>
 
-      <AddTransactionInputContainer>
-        <AddTransactionLabel htmlFor="updateTransactionAmount">
+      <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+        <AddTransactionLabel
+          className="text-[#505887] font-inter text-base font-normal"
+          htmlFor="updateTransactionAmount"
+        >
           {t("transactionInputs.amount")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
+          className="w-[400px] h-[20px] flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
           required
           type="number"
           id="updateTransactionAmount"
@@ -173,11 +190,15 @@ const UpdateTransaction = (props: {
         />
       </AddTransactionInputContainer>
 
-      <AddTransactionInputContainer>
-        <AddTransactionLabel htmlFor="updateTransctionDate">
+      <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+        <AddTransactionLabel
+          className="text-[#505887] font-inter text-base font-normal"
+          htmlFor="updateTransctionDate"
+        >
           {t("transactionInputs.date")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
+          className="w-[400px] h-[30px] flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
           readOnly
           required
           type="datetime-local"
@@ -189,6 +210,7 @@ const UpdateTransaction = (props: {
       </AddTransactionInputContainer>
 
       <AddTransactionButton
+        className="flex w-[90%] p-2 mx-auto justify-center items-center gap-4 rounded-lg bg-blue-600 border-0 text-white font-inter text-base md:text-lg cursor-pointer"
         type="button"
         onClick={() => {
           getLeaderboardData();
@@ -207,7 +229,7 @@ const UpdateTransaction = (props: {
         )}
       </AddTransactionButton>
       {apiResponse.errorMsg !== undefined && (
-        <ErrorMessage>
+        <ErrorMessage className="self-start text-xs mt-1 mb-0 font-roboto text-[#ff0b37] ml-[24px]">
           {t("transactionInputs.invalidFieldResponses")}*
         </ErrorMessage>
       )}

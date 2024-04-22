@@ -5,14 +5,14 @@ interface TextParagraphProps {
 }
 
 export const SideBarMainContainer = styled.div`
-  width: 15vw;
-  min-width: 206px;
-  height: 100%;
-  flex-shrink: 0;
-  border-right: 1px solid #e2e2e2;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
+  // width: 15vw;
+  // min-width: 206px;
+  // height: 100%;
+  // flex-shrink: 0;
+  // border-right: 1px solid #e2e2e2;
+  // background: #fff;
+  // display: flex;
+  // flex-direction: column;
 
   @media screen and (max-width: 1024px) {
     width: 7vw;
@@ -26,8 +26,8 @@ export const SideBarMainContainer = styled.div`
   }
 `;
 export const IconsImage = styled.img`
-  width: 25px;
-  height: 25px;
+  // width: 25px;
+  // height: 25px;
 `;
 
 export const TransactionIconsImage = styled.img`
@@ -50,13 +50,13 @@ export const TextParagraph = styled.p<TextParagraphProps>`
 `;
 
 export const EachTextContainer = styled.div`
-  display: flex;
-  width: 210px;
-  height: 60px;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-  flex-shrink: 0;
+  // display: flex;
+  // width: 210px;
+  // height: 60px;
+  // justify-content: flex-start;
+  // align-items: center;
+  // gap: 20px;
+  // flex-shrink: 0;
   // margin-left: 20px;
 `;
 
@@ -68,31 +68,31 @@ export const TextContainer = styled.div`
 `;
 
 export const LogoImage = styled.img`
-  display: inline-flex;
-  align-items: center;
-  margin: 20px;
+  // display: inline-flex;
+  // align-items: center;
+  // margin: 20px;
   @media screen and (max-width: 1024px) {
     width: 20vw;
   }
 `;
 
 export const SelectedContainer = styled.div<TextParagraphProps>`
-  width: 6px;
-  height: 60px;
-  flex-shrink: 0;
+  // width: 6px;
+  // height: 60px;
+  // flex-shrink: 0;
   border-radius: 0px 10px 10px 0px;
   background-color: ${(props: any) =>
     props.selectOption ? "var(--Primary-3, #2d60ff)" : "#ffffff"};
 `;
 
 export const ProfileContainer = styled.div`
-  margin-top: auto;
-  display: flex;
-  padding: 24px 32px 0px 24px;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
-  border-top: 1px solid #eaecf0;
+  // margin-top: auto;
+  // display: flex;
+  // padding: 24px 32px 0px 24px;
+  // align-items: center;
+  // gap: 10px;
+  // align-self: stretch;
+  // border-top: 1px solid #eaecf0;
 
   @media screen and (max-width: 1024px) {
     padding: 0px;
@@ -100,13 +100,13 @@ export const ProfileContainer = styled.div`
 `;
 
 export const ProfileImageContainer = styled.div`
-  display: flex;
-  width: 40px;
-  height: 40px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 200px;
+  // display: flex;
+  // width: 40px;
+  // height: 40px;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // border-radius: 200px;
   background: url(<path-to-image>), lightgray 50% / cover no-repeat;
   @media screen and (max-width: 1024px) {
     display: none;
@@ -155,10 +155,10 @@ export const ProfileEmail = styled.p`
 `;
 
 export const ProfileTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 10px;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: flex-start;
+  // width: 10px;
   @media screen and (max-width: 1024px) {
     display: none;
   }
@@ -178,11 +178,11 @@ export const ProfileLogoutImage = styled.img`
 `;
 
 export const LogoutButton = styled.button`
-  margin-left: auto;
-  border-width: 0px;
-  background-color: transparent;
-  margin-bottom: 20px;
-  cursor: pointer;
+  // margin-left: auto;
+  // border-width: 0px;
+  // background-color: transparent;
+  // margin-bottom: 20px;
+  // cursor: pointer;
 `;
 
 export const LogoutContainer = styled.div`

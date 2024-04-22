@@ -9,16 +9,15 @@ interface TextParagraphLengthProps {
 }
 
 export const DashTransactionContainer = styled.div<TextParagraphLengthProps>`
-  width: 100%;
-  // height: 58px;
-  flex-shrink: 0;
+  // width: 100%;
+  // // height: 58px;
+  // flex-shrink: 0;
+  // margin-left: 24px;
+
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
   border-bottom: ${(props) => (props.length ? "" : "1px solid #e2e2e2")};
-  margin-left: 24px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   @media screen and (max-width: 1024px) {
     margin-left: 10px;
   }
@@ -30,88 +29,93 @@ export const DashTransactionContainer = styled.div<TextParagraphLengthProps>`
 `;
 
 export const CreditDebitImage = styled.img<TextParagraphProps>`
-  width: 30px;
-  height: 30px;
-  flex-shrink: 0;
+  // width: 30px;
+  // height: 30px;
+  // flex-shrink: 0;
   padding-right: ${(props) => (props.isAdmin ? "10px" : "16px")};
   @media screen and (max-width: 768px) {
+    width: 25px;
+    height: 25px;
     display: block;
     // ${(props) => (props.isAdmin ? "none" : "block")};
   }
 `;
 
 export const TitleParagraph = styled.p`
-  width: 15vw;
-  color: #505887;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  // width: 15vw;
+  // color: #505887;
+  // font-family: Inter;
+  // font-size: 16px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: normal;
   // margin-right: 80px;
   @media screen and (max-width: 768px) {
     margin-bottom: 8px;
+    overflow: hidden;
+    height: 20px;
   }
 `;
 
 export const CategoryParagraph = styled.p<TextParagraphProps>`
-  color: #505887;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  // color: #505887;
+  // font-family: Inter;
+  // font-size: 16px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: normal;
+  // overflow: hidden;
   // margin-right: 96px;
   width: ${(props) => (props.isAdmin ? "22vw" : "20vw")};
-  overflow: hidden;
+
   @media screen and (max-width: 768px) {
     width: ${(props) => (props.isAdmin ? "28vw" : "20vw")};
   }
 `;
 
 export const DateOfTransactionParagraph = styled.p`
-  color: #505887;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  // margin-right: 101px;
-  width: 20vw;
-  overflow: hidden;
+  // color: #505887;
+  // font-family: Inter;
+  // font-size: 16px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: normal;
+  // // margin-right: 101px;
+  // width: 20vw;
+  // overflow: hidden;
   @media screen and (max-width: 768px) {
     display: none;
   }
 `;
 
 export const EditImage = styled.img`
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  margin-right: 15px;
-  cursor: pointer;
+  // width: 20px;
+  // height: 20px;
+  // flex-shrink: 0;
+  // margin-right: 15px;
+  // cursor: pointer;
   @media screen and (max-width: 768px) {
     margin-right: 10px;
   }
 `;
 
 export const DeleteImage = styled.img`
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  cursor: pointer;
+  // width: 20px;
+  // height: 20px;
+  // flex-shrink: 0;
+  // cursor: pointer;
 `;
 
 export const CreditAmount = styled.p<TextParagraphProps>`
-  color: #16dbaa;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  text-align: start;
+  // color: #16dbaa;
+  // font-family: Inter;
+  // font-size: 16px;
+  // font-style: normal;
+  // font-weight: 500;
+  // line-height: normal;
+  // text-align: start;
   width: ${(props) => (props.isAdmin ? "15vw" : "10vw")};
-  overflow: hidden;
+  // overflow: hidden;
 
   @media screen and (max-width: 1024px) {
     width: 15vw;
@@ -123,14 +127,14 @@ export const CreditAmount = styled.p<TextParagraphProps>`
 `;
 
 export const DebitAmount = styled.p<TextParagraphProps>`
-  color: #fe5c73;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  // color: #fe5c73;
+  // font-family: Inter;
+  // font-size: 16px;
+  // font-style: normal;
+  // font-weight: 500;
+  // line-height: normal;
   width: ${(props) => (props.isAdmin ? "15vw" : "10vw")};
-  overflow: hidden;
+  // overflow: hidden;
 
   @media screen and (max-width: 1024px) {
     width: 15vw;
@@ -142,119 +146,119 @@ export const DebitAmount = styled.p<TextParagraphProps>`
 `;
 
 export const AddTransactionContainer = styled.form`
-  width: 466px;
-  min-height: 700px;
-  flex-shrink: 0;
-  border-radius: 16px;
-  background: #fff;
-  margin: auto;
-  aline-self: center;
+  // width: 466px;
+  // min-height: 700px;
+  // flex-shrink: 0;
+  // border-radius: 16px;
+  // background: #fff;
+  // margin: auto;
+  // aline-self: center;
   @media screen and (max-width: 768px) {
     width: 95vw;
   }
 `;
 
 export const AddTransactionMainContainer = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
-  background: rgba(52, 64, 84, 0.7);
-  backdrop-filter: blur(8px);
-  position: fixed;
-  top: 0px;
-  left: 0px;
+  // display: flex;
+  // width: 100vw;
+  // height: 100vh;
+  // flex-shrink: 0;
+  // background: rgba(52, 64, 84, 0.7);
+  // backdrop-filter: blur(8px);
+  // position: fixed;
+  // top: 0px;
+  // left: 0px;
 `;
 
 export const AddTransactionTextContainer = styled.div`
-  display: flex;
+  // display: flex;
 `;
 
 export const HeadingTextContainer = styled.div`
-  margin-top: 32px;
-  margin-left: 24px;
-  margin-bottom: 20px;
+  // margin-top: 32px;
+  // margin-left: 24px;
+  // margin-bottom: 20px;
 `;
 
 export const AddTransactionHeading = styled.h1`
-  color: #333b69;
-  font-family: Inter;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 28px; /* 140% */
+  // color: #333b69;
+  // font-family: Inter;
+  // font-size: 20px;
+  // font-style: normal;
+  // font-weight: 700;
+  // line-height: 28px; /* 140% */
 `;
 
 export const AddTransactionParagraph = styled.p`
-  width: 289px;
-  color: #505887;
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px; /* 142.857% */
-  margin-top: 8px;
+  // width: 289px;
+  // color: #505887;
+  // font-family: Inter;
+  // font-size: 14px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: 20px; /* 142.857% */
+  // margin-top: 8px;
 `;
 
 export const AddTransactionCloseImage = styled.img`
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  margin-left: auto;
-  margin-top: 24px;
-  margin-right: 24px;
-  cursor: pointer;
+  // width: 24px;
+  // height: 24px;
+  // flex-shrink: 0;
+  // margin-left: auto;
+  // margin-top: 24px;
+  // margin-right: 24px;
+  // cursor: pointer;
 `;
 
 export const LogoutContainer = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
-  background: rgba(52, 64, 84, 0.7);
-  backdrop-filter: blur(8px);
-  margin: 0px;
+  // display: flex;
+  // width: 100vw;
+  // height: 100vh;
+  // flex-shrink: 0;
+  // background: rgba(52, 64, 84, 0.7);
+  // backdrop-filter: blur(8px);
+  // margin: 0px;
 `;
 
 export const AdminProfileContainer = styled.p<TextParagraphProps>`
-  color: #505887;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  background-color: red;
-  text-align: center;
-  height: 25px;
-  padding-top: 5px;
-  width: 30px;
-  border-radius: 30px;
-  background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+  // color: #505887;
+  // font-family: Inter;
+  // font-size: 16px;
+  // font-style: normal;
+  // font-weight: 500;
+  // line-height: normal;
+  // background-color: red;
+  // text-align: center;
+  // height: 25px;
+  // padding-top: 5px;
+  // width: 30px;
+  // border-radius: 30px;
+  // background: url(<path-to-image>), lightgray 50% / cover no-repeat;
   // margin-right: 10px;
   display: ${(props) => (props.isAdmin ? "block" : "none")};
 `;
 
 export const UserProfileDetails = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  width: 100vw;
+  // display: inline-flex;
+  // align-items: center;
+  // gap: 8px;
+  // width: 100vw;
 `;
 
 export const TitleUserParagraph = styled.p`
-  width: 153px;
-  color: #505887;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  // width: 153px;
+  // color: #505887;
+  // font-family: Inter;
+  // font-size: 16px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: normal;
   // margin-right: 89px;
 `;
 
 export const AdminContainer = styled.div<TextParagraphProps>`
-  display: flex;
-  align-items: center;
+  // display: flex;
+  // align-items: center;
   width: 20vw; // ${(props) => (props.isAdmin ? "15vw" : "15vw")};
   @media screen and (max-width: 768px) {
     width: 30vw;
@@ -262,21 +266,21 @@ export const AdminContainer = styled.div<TextParagraphProps>`
 `;
 
 export const UserContainer = styled.div<TextParagraphProps>`
-  display: flex;
-  align-items: center;
-  width: 20vw; // ${(props) => (props.isAdmin ? "15vw" : "15vw")};
+  // display: flex;
+  // align-items: center;
+  // width: 20vw; // ${(props) => (props.isAdmin ? "15vw" : "15vw")};
   @media screen and (max-width: 768px) {
     width: 30vw; // ${(props) => (props.isAdmin ? "35vw" : "30vw")};
   }
 `;
 
 export const EditDeleteContainer = styled.div<TextParagraphProps>`
-  width: 61px;
-  margin-right: 20px;
-  display: ${(props) => (props.isAdmin ? "none" : "block")};
+  // width: 61px;
+  // margin-right: 20px;
+  display: ${(props) => (props.isAdmin ? "none" : "flex")};
 
   @media screen and (max-width: 768px) {
-    display: ${(props) => (props.isAdmin ? "none" : "block")};
+    display: ${(props) => (props.isAdmin ? "none" : "flex")};
 
     width: ${(props) => (props.isAdmin ? "12vw" : "")};
     margin-right: 5px;
@@ -284,14 +288,15 @@ export const EditDeleteContainer = styled.div<TextParagraphProps>`
 `;
 
 export const TransactionParagraphMobile = styled.p`
-  display: none;
+  // display: none;
   @media screen and (max-width: 768px) {
     display: flex;
     font-size: 12px;
-    margin-top: 0px;
+    margin-top: 5px;
     color: #bfbfbf;
     font-weight: 400;
     font-weight: bold;
+    width: 90px;
   }
 `;
 

@@ -11,8 +11,9 @@ import {
 const FailureCase = (): JSX.Element => {
   const { t } = useTranslation();
   return (
-    <OnFailureConrainer>
+    <OnFailureConrainer className="flex flex-col justify-center items-center mt-auto mb-auto">
       <OnFailureImage
+        className="w-1/3"
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
         alt="failure view"
       />
@@ -21,7 +22,10 @@ const FailureCase = (): JSX.Element => {
         {t("errorMessage.failureParagraph")}
         <br /> {t("errorMessage.pleaseTryAgainLater")}
       </OnFailureParagraph>
-      <OnFailureRetryButton type="button">
+      <OnFailureRetryButton
+        className="flex px-3 py-2 justify-center items-center gap-4 rounded-lg bg-blue-600 text-white text-center font-inter font-medium text-lg cursor-pointer"
+        type="button"
+      >
         {t("errorMessage.retry")}
       </OnFailureRetryButton>
     </OnFailureConrainer>

@@ -89,20 +89,28 @@ const LoginForm = (): JSX.Element => {
   }
 
   return (
-    <LoginContainer>
+    <LoginContainer className="flex flex-col justify-center items-center h-screen w-screen mx-auto bg-white">
       <LoginFormContainer
+        className="flex flex-col items-center p-[20px] rounded-lg w-full md:w-[350px] bg-white shadow-lg"
         onSubmit={(e) => {
           onLoginButton();
           e.preventDefault();
         }}
       >
         <LogoImage
+          className="flex items-center gap-[11px]"
           src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705580146/Frame_507_ba197a.png"
           alt="website logo"
         />
-        <InputContainer>
-          <LoginLabel htmlFor="emailId">{t("common.email")}</LoginLabel>
+        <InputContainer className="flex flex-col mt-20px w-full">
+          <LoginLabel
+            className="mb-0 font-bold text-sm leading-4 text-[#475569]"
+            htmlFor="emailId"
+          >
+            {t("common.email")}
+          </LoginLabel>
           <EmailInput
+            className="text-base h-[40px] border border-[#d7dfe9] bg-[#e2e8f0] text-[#64748b] rounded-md mt-1 px-4 mb-3"
             type="email"
             id="emailId"
             value={emailId}
@@ -111,9 +119,15 @@ const LoginForm = (): JSX.Element => {
             placeholder="Email"
           />
         </InputContainer>
-        <InputContainer>
-          <LoginLabel htmlFor="password">{t("common.password")}</LoginLabel>
+        <InputContainer className="flex flex-col mt-20px w-full">
+          <LoginLabel
+            className="mb-0 font-bold text-sm leading-4 text-[#475569]"
+            htmlFor="password"
+          >
+            {t("common.password")}
+          </LoginLabel>
           <PasswordInput
+            className="text-base h-[40px] border border-[#d7dfe9] bg-[#e2e8f0] text-[#64748b] rounded-md mt-1 px-4 mb-3"
             type="password"
             id="password"
             value={password}
@@ -121,9 +135,16 @@ const LoginForm = (): JSX.Element => {
             placeholder="Password"
           />
         </InputContainer>
-        <LoginButton type="submit">{t("common.login")}</LoginButton>
+        <LoginButton
+          className="font-bold text-base text-white h-10 w-full mt-5 mb-2 bg-[#0b69ff] rounded-lg border-none cursor-pointer focus:outline-none"
+          type="submit"
+        >
+          {t("common.login")}
+        </LoginButton>
         {errorMessage && (
-          <ErrorMessageParagraph>*{errorMessage}</ErrorMessageParagraph>
+          <ErrorMessageParagraph className="self-start text-xs mt-1 mb-0 font-roboto text-red-600">
+            *{errorMessage}
+          </ErrorMessageParagraph>
         )}
       </LoginFormContainer>
     </LoginContainer>

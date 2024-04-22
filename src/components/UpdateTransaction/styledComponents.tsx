@@ -47,27 +47,27 @@ export const AddTransactionContainer = styled.div`
 `;
 
 export const AddTransactionButton = styled.button`
-  display: flex;
-  width: 90%;
-  padding: 8px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 8px;
-  background: var(--Primary-3, #2d60ff);
-  border-width: 0px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #fff;
-  text-align: center;
+  // display: flex;
+  // width: 90%;
+  // padding: 8px 16px;
+  // justify-content: center;
+  // align-items: center;
+  // gap: 10px;
+  // border-radius: 8px;
+  // background: var(--Primary-3, #2d60ff);
+  // border-width: 0px;
+  // margin-left: auto;
+  // margin-right: auto;
+  // color: #fff;
+  // text-align: center;
 
-  /* text-sm / leading-5 / font-medium */
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px; /* 142.857% */
-  cursor: pointer;
+  // /* text-sm / leading-5 / font-medium */
+  // font-family: Inter;
+  // font-size: 14px;
+  // font-style: normal;
+  // font-weight: 500;
+  // line-height: 20px; /* 142.857% */
+  // cursor: pointer;
 `;
 
 export const AddTransactionTextContainer = styled.div`
@@ -110,54 +110,54 @@ export const AddTransactionCloseImage = styled.img`
 `;
 
 export const AddTransactionInputContainer = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 11px;
-  margin-left: 24px;
-  margin-right: 24px;
-  margin-bottom: 20px;
+  // display: inline-flex;
+  // flex-direction: column;
+  // align-items: flex-start;
+  // gap: 11px;
+  // margin-left: 24px;
+  // margin-right: 24px;
+  // margin-bottom: 20px;
   @media screen and (max-width: 768px) {
     margin-left: 15px;
   }
 `;
 
 export const AddTransactionLabel = styled.label`
-  color: #505887;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  // color: #505887;
+  // font-family: Inter;
+  // font-size: 16px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: normal;
 `;
 
 export const AddTransactionNameInput = styled.input`
-  width: 390px;
-  height: 15px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  border: 1px solid #dfeaf2;
-  background: #fff;
-  padding: 16px;
+  // width: 390px;
+  // height: 15px;
+  // flex-shrink: 0;
+  // border-radius: 10px;
+  // border: 1px solid #dfeaf2;
+  // background: #fff;
+  // padding: 16px;
   @media screen and (max-width: 768px) {
     width: 75vw;
   }
 `;
 
 export const SelectTransactionType = styled.select`
-  width: 418px;
-  height: 50px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  border: 1px solid #dfeaf2;
-  background: #fff;
-  padding-right: 22px;
-  color: #718ebf;
-  font-family: Inter;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  // width: 418px;
+  // height: 50px;
+  // flex-shrink: 0;
+  // border-radius: 10px;
+  // border: 1px solid #dfeaf2;
+  // background: #fff;
+  // padding-right: 22px;
+  // color: #718ebf;
+  // font-family: Inter;
+  // font-size: 15px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: normal;
   @media screen and (max-width: 768px) {
     width: 85vw;
   }
@@ -170,13 +170,13 @@ export const LoadingContainer = styled.div`
 `;
 
 export const ErrorMessage = styled.p`
-  align-self: start;
-  font-size: 12px;
-  margin-top: 5px;
-  margin-bottom: 0px;
-  font-family: "Roboto";
-  font-size: 12px;
-  line-height: 16px;
-  color: #ff0b37;
-  margin-left: 24px;
+  // align-self: start;
+  // font-size: 12px;
+  // margin-top: 5px;
+  // margin-bottom: 0px;
+  // font-family: "Roboto";
+  // font-size: 12px;
+  // line-height: 16px;
+  // color: #ff0b37;
+  // margin-left: 24px;
 `;

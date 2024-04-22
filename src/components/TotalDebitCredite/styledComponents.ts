@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const CreditContainer = styled.div`
-  display: flex;
-  width: 39.5%;
-  // height: 145px;
-  padding: 9px 36px;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 8px;
-  flex-shrink: 0;
-  border-radius: 25px;
-  background: #fff;
-  margin-top: 24px;
-  margin-left: 40px;
+  // display: flex;
+  // width: 45%;
+  // // height: 145px;
+  // padding: 9px 36px;
+  // flex-direction: row;
+  // align-items: flex-start;
+  // gap: 8px;
+  // flex-shrink: 0;
+  // border-radius: 25px;
+  // background: #fff;
+  // margin-top: 24px;
+  // margin-left: 40px;
   // margin-right: 24px;
   // margin-bottom: 24px;
   // min-height: 176px;
@@ -33,40 +33,40 @@ export const CreditContainer = styled.div`
 `;
 
 export const CreditTextContainer = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 7px;
+  // display: inline-flex;
+  // flex-direction: column;
+  // align-items: flex-start;
+  // gap: 7px;
 `;
 
 export const HeadingAmount = styled.h1`
-  color: #16dbaa;
-  font-family: Inter;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  margin: 0px;
+  // color: #16dbaa;
+  // font-family: Inter;
+  // font-size: 30px;
+  // font-style: normal;
+  // font-weight: 600;
+  // line-height: normal;
+  // margin: 0px;
   @media screen and (max-width: 768px) {
-    font-size: 30px;
+    font-size: 25px;
   }
 `;
 
 export const Paragraph = styled.p`
-  color: #718ebf;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin: 0px;
+  // color: #718ebf;
+  // font-family: Inter;
+  // font-size: 16px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: normal;
+  // margin: 0px;
 `;
 
 export const CreditImage = styled.img`
-  width: 182.431px;
-  height: 161px;
+  // width: 182.431px;
+  // height: 161px;
   @media screen and (max-width: 768px) {
-    height: 100px;
+    height: 90px;
     width: auto;
   }
   // position: absolute;
@@ -74,28 +74,28 @@ export const CreditImage = styled.img`
 `;
 
 export const ImageContainer = styled.div`
-  width: 182.431px;
-  // height: 161px;
-  // position: absolute;
-  // left: 254.039px;
-  aline-self: flex-end;
-  margin-left: auto;
-  display: flex;
-  justify-content: flex-end;
+  // width: 182.431px;
+  // // height: 161px;
+  // // position: absolute;
+  // // left: 254.039px;
+  // aline-self: flex-end;
+  // margin-left: auto;
+  // display: flex;
+  // justify-content: flex-end;
 `;
 
 export const AmountDetailsContainer = styled.div`
-  display: flex;
-  // width: 84vw;
-  width: 100%;
-  //   height: 210px;
-  // padding: 12px 25px 8px 20px;
-  flex-direction: row;
-  gap: 8px;
-  flex-shrink: 0;
-  border-radius: 25px;
-  // background: #fff;
-  // margin-top: 32px;
+  // display: flex;
+  // // width: 84vw;
+  // width: 100%;
+  // //   height: 210px;
+  // // padding: 12px 25px 8px 20px;
+  // flex-direction: row;
+  // gap: 8px;
+  // flex-shrink: 0;
+  // border-radius: 25px;
+  // // background: #fff;
+  // // margin-top: 32px;
 
   @media screen and (max-width: 1024px) {
     // width: 84vw;
@@ -111,19 +111,19 @@ export const AmountDetailsContainer = styled.div`
 `;
 
 export const DebitContainer = styled.div`
-  display: flex;
-  width: 39.5%;
-  // height: 145px;
-  padding: 9px 40px;
-  // flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  flex-shrink: 0;
-  border-radius: 25px;
-  background: #fff;
-  margin-top: 24px;
-  margin-left: 20px;
-  margin-right: 24px;
+  // display: flex;
+  // width: 45%;
+  // // height: 145px;
+  // padding: 9px 40px;
+  // // flex-direction: column;
+  // align-items: flex-start;
+  // gap: 8px;
+  // flex-shrink: 0;
+  // border-radius: 25px;
+  // background: #fff;
+  // margin-top: 24px;
+  // margin-left: 20px;
+  // margin-right: 24px;
   @media screen and (max-width: 1024px) {
     width: 38%;
   }
@@ -142,35 +142,35 @@ export const DebitContainer = styled.div`
 export const DebitTextContainer = styled.div``;
 
 export const DebitImageContainer = styled.div`
-  width: 187.807px;
-  // height: 154.736px;
-  aline-self: flex-end;
-  margin-left: auto;
-  // position: absolute;
-  display: flex;
-  justify-content: flex-end;
+  // width: 187.807px;
+  // // height: 154.736px;
+  // aline-self: flex-end;
+  // margin-left: auto;
+  // // position: absolute;
+  // display: flex;
+  // justify-content: flex-end;
 `;
 
 export const DebitHeadingAmount = styled.h1`
-  color: #fe5c73;
-  font-family: Inter;
-  font-size: 25px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  margin-bottom: 10px;
+  // color: #fe5c73;
+  // font-family: Inter;
+  // font-size: 25px;
+  // font-style: normal;
+  // font-weight: 600;
+  // line-height: normal;
+  // margin-bottom: 10px;
 `;
 
 export const DebitImage = styled.img`
-  width: 187.807px;
-  height: 154.736px;
+  // width: 187.807px;
+  // height: 154.736px;
 
   @media screen and (max-width: 768px) {
     width: auto;
-    height: 100px;
+    height: 90px;
   }
 `;
 
 export const LoadingContainer = styled.div`
-  margin: auto;
+  // margin: auto;
 `;

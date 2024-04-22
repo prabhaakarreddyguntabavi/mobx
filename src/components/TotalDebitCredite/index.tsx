@@ -86,26 +86,36 @@ const TotalDebitCredit = (): JSX.Element => {
 
     return (
       <>
-        <CreditContainer>
-          <CreditTextContainer>
-            <HeadingAmount>$ {data[0].sum}</HeadingAmount>
-            <Paragraph>{t("common.credit")}</Paragraph>
+        <CreditContainer className="flex w-6/12 p-2 flex-row items-start gap-2 flex-shrink-0 rounded-2xl bg-white mt-6 md:mt-10 ml-5 md:ml-10">
+          <CreditTextContainer className="inline-flex flex-col items-start gap-2">
+            <HeadingAmount className="text-[#16dbaa] font-inter text-3xl font-semibold m-0">
+              $ {data[0].sum}
+            </HeadingAmount>
+            <Paragraph className="text-[#718ebf] font-inter text-base font-normal m-0">
+              {t("common.credit")}
+            </Paragraph>
           </CreditTextContainer>
-          <ImageContainer>
+          <ImageContainer className="w-[182.431px] self-end ml-auto flex justify-end">
             <CreditImage
+              className="w-fit ml-auto"
               src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705735242/Group_itp5q8.png"
               alt="group"
             />
           </ImageContainer>
         </CreditContainer>
 
-        <DebitContainer>
+        <DebitContainer className="flex w-5/12 p-2 flex-row items-start gap-2 flex-shrink-0 rounded-2xl bg-white mt-6 md:mt-10 ml-5 md:ml-10">
           <DebitTextContainer>
-            <DebitHeadingAmount>$ {data[1].sum}</DebitHeadingAmount>
-            <Paragraph>{t("common.debit")}</Paragraph>
+            <DebitHeadingAmount className="text-[#fe5c73] font-inter text-2xl font-semibold mb-4">
+              $ {data[1].sum}
+            </DebitHeadingAmount>
+            <Paragraph className="text-[#718ebf] font-inter text-base font-normal m-0">
+              {t("common.debit")}
+            </Paragraph>
           </DebitTextContainer>
-          <DebitImageContainer>
+          <DebitImageContainer className="w-[187.807px] self-end ml-auto flex justify-end">
             <DebitImage
+              className="w-fit ml-auto"
               src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705741143/Group_1_x8rnbj.png"
               alt="group"
             />
@@ -116,10 +126,7 @@ const TotalDebitCredit = (): JSX.Element => {
   };
 
   const renderLoadingView = (): JSX.Element => (
-    <LoadingContainer
-      className="products-loader-container"
-      data-testid="loader"
-    >
+    <LoadingContainer className="m-auto h-16" data-testid="loader">
       <ReactLoading type={"bars"} color={"#000000"} height={50} width={50} />
     </LoadingContainer>
   );
@@ -140,7 +147,11 @@ const TotalDebitCredit = (): JSX.Element => {
     }
   };
 
-  return <AmountDetailsContainer>{renderLeaderboard()}</AmountDetailsContainer>;
+  return (
+    <AmountDetailsContainer className="w-full flex flex-row gap-2 shrink-0 rounded-e-3xl ">
+      {renderLeaderboard()}
+    </AmountDetailsContainer>
+  );
 };
 
 export default observer(TotalDebitCredit);

@@ -183,27 +183,32 @@ const GenderChart = (): JSX.Element => {
       return (
         <>
           <GraphHeaderContainer>
-            <GraphPrargraph>
-              <GraphPrargraphSpan> ${debitTransactionsSum}</GraphPrargraphSpan>{" "}
+            <GraphPrargraph className="text-[#718ebf] font-inter text-base font-normal ml-8 mt-2">
+              <GraphPrargraphSpan className="text-blue-800 font-inter text-base font-normal">
+                {" "}
+                ${debitTransactionsSum}
+              </GraphPrargraphSpan>{" "}
               {t("dashboard.debited")}
-              <GraphPrargraphSpan>
+              <GraphPrargraphSpan className="text-blue-800 font-inter text-base font-normal">
                 {" "}
                 ${creditTransactionsSum}{" "}
               </GraphPrargraphSpan>{" "}
               {t("dashboard.creditedinthisWeek")}
             </GraphPrargraph>
-            <GraphValuesSetting>
-              <GraphTextParagraph>
-                <GraphCredite></GraphCredite> {t("common.credit")}
+            <GraphValuesSetting className="text-[#718ebf] font-inter text-base font-normal ml-[30px] justify-end flex">
+              <GraphTextParagraph className="flex mr-[20px] mb-[20px] mt-[15px] items-center">
+                <GraphCredite className="w-4 h-4 flex-shrink-0 rounded-sm bg-blue-500 shadow-inner mr-1"></GraphCredite>{" "}
+                {t("common.credit")}
               </GraphTextParagraph>
-              <GraphTextParagraph>
-                <GraphDebit></GraphDebit> {t("common.debit")}
+              <GraphTextParagraph className="flex mr-[20px] mb-[20px] mt-[15px] items-center">
+                <GraphDebit className="w-4 h-4 flex-shrink-0 rounded-sm bg-[#FCAA0B] shadow-inner mr-1"></GraphDebit>{" "}
+                {t("common.debit")}
               </GraphTextParagraph>
             </GraphValuesSetting>
           </GraphHeaderContainer>
           <BarChart
-            width={window.innerWidth * 0.8}
-            height={window.innerWidth * 0.3}
+            width={window.innerWidth * 0.7}
+            height={window.innerHeight * 0.3}
             data={last7Transactions}
             margin={{
               top: 5,
@@ -224,14 +229,14 @@ const GenderChart = (): JSX.Element => {
       );
     }
     return (
-      <NoTransactionsFountHeading>
+      <NoTransactionsFountHeading className="m-auto">
         {t("common.noTransactionsFound")}
       </NoTransactionsFountHeading>
     );
   };
 
   const renderLoadingView = (): JSX.Element => (
-    <LoadingContainer data-testid="loader">
+    <LoadingContainer className="m-auto" data-testid="loader">
       <ReactLoading type={"bars"} color={"#000000"} height={50} width={50} />
     </LoadingContainer>
   );

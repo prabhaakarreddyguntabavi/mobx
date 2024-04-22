@@ -78,17 +78,21 @@ const ProfileDetails = (): JSX.Element => {
     const { data } = apiResponse;
     return (
       <>
-        <ProfileImageContainer>
-          <ProfileImage>
+        <ProfileImageContainer className="h-[200px] w-[200px] bg-[#b8c1c9] bg-cover bg-center rounded-full flex items-center justify-center mt-[45px]">
+          <ProfileImage className="rounded-full mx-auto text-center text-9xl">
             {data.name ? data.name[0].toUpperCase() : ""}
           </ProfileImage>
         </ProfileImageContainer>
-        <DetailsContainer>
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userFirstName">
+        <DetailsContainer className="flex flex-wrap justify-center overflow-auto mt-12">
+          <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+            <AddTransactionLabel
+              className="text-[#505887 ] font-inter text-base font-normal"
+              htmlFor="userFirstName"
+            >
               {t("profile.yourName")}
             </AddTransactionLabel>
             <AddTransactionNameInput
+              className="w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"
               type="text"
               id="userFirstName"
               value={data.name}
@@ -97,11 +101,15 @@ const ProfileDetails = (): JSX.Element => {
             />
           </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userName">
+          <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+            <AddTransactionLabel
+              className="text-[#505887 ] font-inter text-base font-normal"
+              htmlFor="userName"
+            >
               {t("common.userName")}
             </AddTransactionLabel>
             <AddTransactionNameInput
+              className="w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"
               type="text"
               id="userName"
               value={data.name}
@@ -110,11 +118,15 @@ const ProfileDetails = (): JSX.Element => {
             />
           </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userEmail">
+          <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+            <AddTransactionLabel
+              className="text-[#505887 ] font-inter text-base font-normal"
+              htmlFor="userEmail"
+            >
               {t("common.email")}
             </AddTransactionLabel>
             <AddTransactionNameInput
+              className="w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"
               type="email"
               id="userEmail"
               value={data.email}
@@ -123,11 +135,15 @@ const ProfileDetails = (): JSX.Element => {
             />
           </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userPassword">
+          <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+            <AddTransactionLabel
+              className="text-[#505887 ] font-inter text-base font-normal"
+              htmlFor="userPassword"
+            >
               {t("common.password")}
             </AddTransactionLabel>
             <AddTransactionNameInput
+              className="w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"
               type="password"
               id="userPassword"
               value={data.email}
@@ -136,11 +152,15 @@ const ProfileDetails = (): JSX.Element => {
             />
           </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userDateOfBirth">
+          <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+            <AddTransactionLabel
+              className="text-[#505887 ] font-inter text-base font-normal"
+              htmlFor="userDateOfBirth"
+            >
               {t("profile.dateofBirth")}
             </AddTransactionLabel>
             <AddTransactionNameInput
+              className="w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"
               type="date"
               id="userDateOfBirth"
               value={data.dateOfBirth}
@@ -149,11 +169,15 @@ const ProfileDetails = (): JSX.Element => {
             />
           </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userPresentAddress">
+          <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+            <AddTransactionLabel
+              className="text-[#505887 ] font-inter text-base font-normal"
+              htmlFor="userPresentAddress"
+            >
               {t("profile.presentAddress")}
             </AddTransactionLabel>
             <AddTransactionNameInput
+              className="w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"
               type="text"
               id="userPresentAddress"
               value={data.present_address}
@@ -162,11 +186,15 @@ const ProfileDetails = (): JSX.Element => {
             />
           </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userPermanentAddress">
+          <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+            <AddTransactionLabel
+              className="text-[#505887 ] font-inter text-base font-normal"
+              htmlFor="userPermanentAddress"
+            >
               {t("profile.permanentAddress")}
             </AddTransactionLabel>
             <AddTransactionNameInput
+              className="w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"
               type="text"
               id="userPermanentAddress"
               value={data.permanent_address}
@@ -175,11 +203,15 @@ const ProfileDetails = (): JSX.Element => {
             />
           </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userCity">
+          <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+            <AddTransactionLabel
+              className="text-[#505887 ] font-inter text-base font-normal"
+              htmlFor="userCity"
+            >
               {t("profile.city")}
             </AddTransactionLabel>
             <AddTransactionNameInput
+              className="w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"
               type="text"
               id="userCity"
               value={data.city}
@@ -188,11 +220,15 @@ const ProfileDetails = (): JSX.Element => {
             />
           </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userPostalCode">
+          <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+            <AddTransactionLabel
+              className="text-[#505887 ] font-inter text-base font-normal"
+              htmlFor="userPostalCode"
+            >
               {t("profile.postalCode")}
             </AddTransactionLabel>
             <AddTransactionNameInput
+              className="w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"
               type="number"
               id="userPostalCode"
               value={data.postal_code}
@@ -201,11 +237,15 @@ const ProfileDetails = (): JSX.Element => {
             />
           </AddTransactionInputContainer>
 
-          <AddTransactionInputContainer>
-            <AddTransactionLabel htmlFor="userCountry">
+          <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+            <AddTransactionLabel
+              className="text-[#505887 ] font-inter text-base font-normal"
+              htmlFor="userCountry"
+            >
               {t("profile.country")}
             </AddTransactionLabel>
             <AddTransactionNameInput
+              className="w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"
               type="text"
               id="userCountry"
               value={data.country}
@@ -219,10 +259,7 @@ const ProfileDetails = (): JSX.Element => {
   };
 
   const renderLoadingView = (): JSX.Element => (
-    <LoadingContainer
-      className="products-loader-container"
-      data-testid="loader"
-    >
+    <LoadingContainer className="m-auto" data-testid="loader">
       <ReactLoading type={"bars"} color={"#000000"} height={50} width={50} />
     </LoadingContainer>
   );
@@ -256,12 +293,14 @@ const ProfileDetails = (): JSX.Element => {
   }
 
   return (
-    <ProfileHomePage>
+    <ProfileHomePage className="w-full h-full bg-[#f5f7fa] flex">
       <SideBar />
-      <ProfileTotalBodyContainer>
+      <ProfileTotalBodyContainer className="w-full">
         <Header />
-        <ProfileDetailsContainer>
-          <ProfileContainer>{renderLeaderboard()}</ProfileContainer>
+        <ProfileDetailsContainer className="bg-[#f5f7fa] pt-[32px] h-fit overflow-auto pb-10">
+          <ProfileContainer className="min-h-[50vh] w-[80vw] flex-shrink-0 rounded-lg bg-white ml-10 flex flex-col justify-center items-center overflow-auto">
+            {renderLeaderboard()}
+          </ProfileContainer>
         </ProfileDetailsContainer>
       </ProfileTotalBodyContainer>
     </ProfileHomePage>

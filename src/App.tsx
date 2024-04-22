@@ -13,6 +13,8 @@ import { observer } from "mobx-react";
 import { observe } from "mobx";
 import { UserEmailAndPassword } from "./types/usersTypes";
 
+import "./tailwind.css";
+
 let totalTransactionDetails = new TransctionStore();
 let userDict = new UsersData();
 

@@ -19,16 +19,21 @@ const NotFound = (): JSX.Element => {
   };
 
   return (
-    <NotFoundContainer>
+    <NotFoundContainer className="flex flex-col justify-center items-center bg-white text-black mt-auto mb-auto h-screen">
       <NotFoundImage
+        className="w-10"
         src="https://assets.ccbp.in/frontend/react-js/jobby-app-not-found-img.png"
         alt="not found"
       />
       <NotFoundHeading>{t("errorMessage.pageNotFound")}</NotFoundHeading>
-      <NotFoundParagraph>
+      <NotFoundParagraph className="item-center ml-[10px] mr-[10px]">
         {t("errorMessage.pageNotFoundText")}
       </NotFoundParagraph>
-      <BackToHomePage type="button" onClick={onBackToHomePage}>
+      <BackToHomePage
+        className="flex items-center justify-center gap-4 rounded-lg px-3 py-2 text-white text-center font-inter font-medium text-base cursor-pointer"
+        type="button"
+        onClick={onBackToHomePage}
+      >
         {t("errorMessage.backToHomePage")}
       </BackToHomePage>
     </NotFoundContainer>

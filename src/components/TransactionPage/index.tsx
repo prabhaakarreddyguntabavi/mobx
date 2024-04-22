@@ -117,22 +117,36 @@ const TransactionPage = (): JSX.Element => {
     if (transactionsData.length !== 0) {
       return (
         <>
-          <HeadingDashTransactionContainer>
+          <HeadingDashTransactionContainer className="w-full flex-shrink-0 border-b border-gray-300 ml-6 mr-6 flex items-center">
             {isUserAdmin ? (
-              <TransactionUserName>{t("common.userName")}</TransactionUserName>
+              <TransactionUserName className="w-1/5 text-blue-900 font-inter text-lg font-medium">
+                {t("common.userName")}
+              </TransactionUserName>
             ) : (
               ""
             )}
-            <TransactionName isAdmin={isUserAdmin}>
+            <TransactionName
+              className="text-[#343c6a] font-inter text-base font-medium overflow-hidden"
+              isAdmin={isUserAdmin}
+            >
               {t("transactionInputs.transactionName")}
             </TransactionName>
-            <TransactionCategory isAdmin={isUserAdmin}>
+            <TransactionCategory
+              className="text-[#343c6a] font-inter text-base font-medium"
+              isAdmin={isUserAdmin}
+            >
               {t("transactionInputs.category")}
             </TransactionCategory>
-            <TransactionDate isAdmin={isUserAdmin}>
+            <TransactionDate
+              className="text-[#343c6a] font-inter text-base font-medium"
+              isAdmin={isUserAdmin}
+            >
               {t("transactionInputs.date")}
             </TransactionDate>
-            <TransactionAmount isAdmin={isUserAdmin}>
+            <TransactionAmount
+              className="text-[#343c6a] font-inter text-base font-medium"
+              isAdmin={isUserAdmin}
+            >
               {t("transactionInputs.amount")}
             </TransactionAmount>
           </HeadingDashTransactionContainer>
@@ -175,14 +189,17 @@ const TransactionPage = (): JSX.Element => {
       );
     }
     return (
-      <NoTransactionsFountHeading>
+      <NoTransactionsFountHeading className="m-auto min-h-[35vh] mt-[20%]">
         {t("common.noTransactionsFound")}
       </NoTransactionsFountHeading>
     );
   };
 
   const renderLoadingView = (): JSX.Element => (
-    <LoadingContainer data-testid="loader">
+    <LoadingContainer
+      className="m-auto min-h-[35vh] mt-[20%]"
+      data-testid="loader"
+    >
       <ReactLoading type={"bars"} color={"#000000"} height={50} width={50} />
     </LoadingContainer>
   );
@@ -211,57 +228,72 @@ const TransactionPage = (): JSX.Element => {
     navigate("/login");
   }
   return (
-    <TransactionHomePage>
+    <TransactionHomePage className="w-full h-full bg-[#f5f7fa] flex">
       <SideBar />
-      <TransactionTotalBodyContainer>
+      <TransactionTotalBodyContainer className="bg-[#f5f7fa] flex flex-col w-5/6 ">
         <Header />
-        <SelectFilterConditions>
+        <SelectFilterConditions className="flex items-start gap-24 pl-[40px] bg-white">
           <TransactionSelectFilter
+            className="flex flex-col items-center gap-[8px] border-0 bg-transparent cursor-pointer"
             onClick={() => {
               onChangeFilter("alltransactions");
               setCurrentPage(1);
             }}
           >
             <SelectAllOption
+              className="font-inter text-base font-medium"
               transactionOption={filterOption === "alltransactions"}
             >
               {t("common.allTransactions")}
             </SelectAllOption>
             <SelectedContainer
+              className="w-[139px] h-[3px] rounded-t-10"
               transactionOption={filterOption === "alltransactions"}
             ></SelectedContainer>
           </TransactionSelectFilter>
 
           <TransactionSelectFilter
+            className="flex flex-col items-center gap-[8px] border-0 bg-transparent cursor-pointer"
             onClick={() => {
               onChangeFilter("credit");
               setCurrentPage(1);
             }}
           >
-            <SelectOption transactionOption={filterOption === "credit"}>
+            <SelectOption
+              className="text-center font-inter font-medium text-base"
+              transactionOption={filterOption === "credit"}
+            >
               {t("common.credit")}
             </SelectOption>
             <SelectedCreditContainer
+              className="w-[63px] h-[3px] flex-shrink-0 rounded-t-lg"
               transactionOption={filterOption === "credit"}
             ></SelectedCreditContainer>
           </TransactionSelectFilter>
 
           <TransactionSelectFilter
+            className="flex flex-col items-center gap-[8px] border-0 bg-transparent cursor-pointer"
             onClick={() => {
               onChangeFilter("debit");
               setCurrentPage(1);
             }}
           >
-            <SelectOption transactionOption={filterOption === "debit"}>
+            <SelectOption
+              className="text-center font-inter font-medium text-base"
+              transactionOption={filterOption === "debit"}
+            >
               {t("common.debit")}
             </SelectOption>
             <SelectedCreditContainer
+              className="w-[63px] h-[3px] flex-shrink-0 rounded-t-lg"
               transactionOption={filterOption === "debit"}
             ></SelectedCreditContainer>
           </TransactionSelectFilter>
         </SelectFilterConditions>
-        <TransactionBodyContainer>
-          <TransactionsContainer>{renderLeaderboard()}</TransactionsContainer>
+        <TransactionBodyContainer className="w-full bg-[#f5f7fa] h-full">
+          <TransactionsContainer className="flex flex-col w-90 min-h-80v min-h-fit-content p-[12px] pt-6 gap-8 items-start bg-white rounded-[25px] ml-[40px] mt-[32px] mr-[20px]">
+            {renderLeaderboard()}
+          </TransactionsContainer>
         </TransactionBodyContainer>
       </TransactionTotalBodyContainer>
     </TransactionHomePage>

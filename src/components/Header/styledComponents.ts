@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const HeaderMainContainer = styled.div`
-  display: flex;
-  // width: 79vw;
-  padding: 24px 40px;
-  justify-content: space-between;
-  align-items: center;
-  background: #fff;
-  height: 5vh;
+  // display: flex;
+  // // width: 79vw;
+  // padding: 24px 40px;
+  // justify-content: space-between;
+  // align-items: center;
+  // background: #fff;
+  // height: 5vh;
   // width:90%;
 
   @media screen and (max-width: 1024px) {
@@ -23,21 +23,21 @@ export const HeaderMainContainer = styled.div`
 `;
 
 export const AddTransactionButton = styled.button`
-  display: flex;
-  padding: 8px 12px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  border-radius: 12px;
+  // display: flex;
+  // padding: 8px 12px;
+  // justify-content: center;
+  // align-items: center;
+  // gap: 4px;
+  // border-radius: 12px;
+  // color: #fff;
+  // text-align: center;
+  // font-family: Inter;
+  // font-size: 15px;
+  // font-style: normal;
+  // font-weight: 500;
+  // line-height: normal;
+  // border-width: 0px;
   background: ${(props) => (props.disabled ? "#dddddd" : "#2d60ff")};
-  color: #fff;
-  text-align: center;
-  font-family: Inter;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  border-width: 0px;
   cursor: pointer;
 
   &:focus {
@@ -51,43 +51,43 @@ export const AddTransactionButton = styled.button`
 `;
 
 export const ButtonImage = styled.img`
-  width: 20px;
-  height: 20px;
+  // width: 20px;
+  // height: 20px;
 `;
 
 export const ButtonText = styled.p`
-  color: #343c6a;
-  font-family: Inter;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+  // color: #343c6a;
+  // font-family: Inter;
+  // font-size: 28px;
+  // font-style: normal;
+  // font-weight: 600;
+  // line-height: normal;
   @media screen and (max-width: 768px) {
     display: none;
   }
 `;
 
 export const AddTransctionMainContainer = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
-  background: rgba(52, 64, 84, 0.7);
-  backdrop-filter: blur(8px);
-  overflow: auto;
-  position: fixed;
-  top: 0px;
-  left: 0px;
+  // display: flex;
+  // width: 100vw;
+  // height: 100vh;
+  // flex-shrink: 0;
+  // background: rgba(52, 64, 84, 0.7);
+  // backdrop-filter: blur(8px);
+  // overflow: auto;
+  // position: fixed;
+  // top: 0px;
+  // left: 0px;
 `;
 
 export const AddTransctionContainer = styled.form`
-  width: 466px;
-  // height: 80vh;
-  flex-shrink: 0;
-  border-radius: 16px;
-  background: #fff;
-  margin: auto;
-  aline-self: center;
+  // width: 466px;
+  // // height: 80vh;
+  // flex-shrink: 0;
+  // border-radius: 16px;
+  // background: #fff;
+  // margin: auto;
+  // aline-self: center;
   padding: 10px;
 
   @media screen and (max-width: 768px) {
@@ -97,80 +97,80 @@ export const AddTransctionContainer = styled.form`
 `;
 
 export const AddTransctionButton = styled.button`
-  display: flex;
-  width: 418px;
-  padding: 8px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 8px;
-  background: var(--Primary-3, #2d60ff);
-  border-width: 0px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #fff;
-  text-align: center;
+  // display: flex;
+  // width: 418px;
+  // padding: 8px 16px;
+  // justify-content: center;
+  // align-items: center;
+  // gap: 10px;
+  // border-radius: 8px;
+  // background: var(--Primary-3, #2d60ff);
+  // border-width: 0px;
+  // margin-left: auto;
+  // margin-right: auto;
+  // color: #fff;
+  // text-align: center;
 
-  /* text-sm / leading-5 / font-medium */
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px; /* 142.857% */
-  cursor: pointer;
+  // /* text-sm / leading-5 / font-medium */
+  // font-family: Inter;
+  // font-size: 14px;
+  // font-style: normal;
+  // font-weight: 500;
+  // line-height: 20px; /* 142.857% */
+  // cursor: pointer;
   @media screen and (max-width: 768px) {
     width: 90vw;
   }
 `;
 
 export const AddTransctionTextContainer = styled.div`
-  display: flex;
+  // display: flex;
 `;
 
 export const HeadingTextContainer = styled.div`
-  margin-top: 32px;
-  margin-left: 24px;
-  margin-bottom: 20px;
+  // margin-top: 32px;
+  // margin-left: 24px;
+  // margin-bottom: 20px;
 `;
 
 export const AddTransctionHeading = styled.h1`
-  color: #333b69;
-  font-family: Inter;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 28px; /* 140% */
+  // color: #333b69;
+  // font-family: Inter;
+  // font-size: 20px;
+  // font-style: normal;
+  // font-weight: 700;
+  // line-height: 28px; /* 140% */
 `;
 
 export const AddTransctionParagraph = styled.p`
-  width: 289px;
-  color: #505887;
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px; /* 142.857% */
-  margin-top: 8px;
+  // width: 289px;
+  // color: #505887;
+  // font-family: Inter;
+  // font-size: 14px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: 20px; /* 142.857% */
+  // margin-top: 8px;
 `;
 
 export const AddTransctionCloseImage = styled.img`
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  margin-left: auto;
-  // margin-top: 15px;
-  margin-right: 10px;
-  cursor: pointer;
+  // width: 24px;
+  // height: 24px;
+  // flex-shrink: 0;
+  // margin-left: auto;
+  // // margin-top: 15px;
+  // margin-right: 10px;
+  // cursor: pointer;
 `;
 
 export const AddTransctionInputContainer = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 11px;
-  margin-left: 24px;
-  margin-right: 24px;
-  margin-bottom: 20px;
+  // display: inline-flex;
+  // flex-direction: column;
+  // align-items: flex-start;
+  // gap: 11px;
+  // margin-left: 24px;
+  // margin-right: 24px;
+  // margin-bottom: 20px;
 
   @media screen and (max-width: 768px) {
     margin-left: 15px;
@@ -178,41 +178,41 @@ export const AddTransctionInputContainer = styled.div`
 `;
 
 export const AddTransctionLabel = styled.label`
-  color: #505887;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  // color: #505887;
+  // font-family: Inter;
+  // font-size: 16px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: normal;
 `;
 
 export const AddTransctionNameInput = styled.input`
-  width: 390px;
-  height: 15px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  border: 1px solid #dfeaf2;
-  background: #fff;
-  padding: 16px;
+  // width: 390px;
+  // height: 15px;
+  // flex-shrink: 0;
+  // border-radius: 10px;
+  // border: 1px solid #dfeaf2;
+  // background: #fff;
+  // padding: 16px;
   @media screen and (max-width: 768px) {
     width: 75vw;
   }
 `;
 
 export const SelectTransctionType = styled.select`
-  width: 418px;
-  height: 50px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  border: 1px solid #dfeaf2;
-  background: #fff;
-  padding-right: 22px;
-  color: #718ebf;
-  font-family: Inter;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  // width: 418px;
+  // height: 50px;
+  // flex-shrink: 0;
+  // border-radius: 10px;
+  // border: 1px solid #dfeaf2;
+  // background: #fff;
+  // padding-right: 22px;
+  // color: #718ebf;
+  // font-family: Inter;
+  // font-size: 15px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: normal;
   @media screen and (max-width: 768px) {
     width: 80vw;
   }
@@ -225,7 +225,7 @@ export const LoadingContainer = styled.div`
 `;
 
 export const MobileLogoImage = styled.img`
-  display: none;
+  // display: none;
   @media screen and (max-width: 768px) {
     display: block;
     width: 40%;
@@ -233,7 +233,7 @@ export const MobileLogoImage = styled.img`
   }
 `;
 export const MobileHeaderProfile = styled.div`
-  display: none;
+  // display: none;
   @media screen and (max-width: 768px) {
     display: flex;
     width: 35px;
@@ -248,7 +248,7 @@ export const MobileHeaderProfile = styled.div`
   }
 `;
 export const MobilePopupContainer = styled.div`
-  display: none;
+  // display: n one;
   @media screen and (max-width: 768px) {
     display: flex;
     width: 100vw;
@@ -263,12 +263,12 @@ export const MobilePopupContainer = styled.div`
 `;
 
 export const MobileParagraph = styled.p`
-  font-size: 25px;
-  width: 22px;
+  // font-size: 25px;
+  // width: 22px;
 `;
 
 export const MobileAddTransactions = styled.button`
-  display: none;
+  // display: none;
   @media screen and (max-width: 768px) {
     display: ${(props) => (props.disabled ? "none" : "flex")};
     padding: 8px 12px;
@@ -291,30 +291,30 @@ export const MobileAddTransactions = styled.button`
 `;
 
 export const ErrorMessageParagraph = styled.div`
-  color: red;
-  font-size: 12px;
-  margin-left: 30px;
-  margin-top: 7px;
+  // color: red;
+  // font-size: 12px;
+  // margin-left: 30px;
+  // margin-top: 7px;
 `;
 
 export const ErrorMessage = styled.p``;
 
 export const NotificationMessage = styled.p`
-  font-size: 10px;
-  margin: 0px;
+  // font-size: 10px;
+  // margin: 0px;
 `;
 
 export const PopupContainer = styled.div``;
 
 export const LanguageContainer = styled.div`
-  display: flex;
-  margin-top: 20px;
+  // display: flex;
+  // margin-top: 20px;
 `;
 export const LanguageSelectorContainer = styled.select`
-  margin-top: 8px;
-  margin-right: 10px;
-  height: 25px;
+  // margin-top: 8px;
+  // margin-right: 10px;
+  // height: 25px;
 `;
 export const DropdownOptions = styled.option`
-  margin-top: 5px;
+  // margin-top: 5px;
 `;

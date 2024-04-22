@@ -44,6 +44,7 @@ import {
 
 import "./index.css";
 import { observer } from "mobx-react";
+import "../../tailwind.css";
 
 const SideBar = (): JSX.Element => {
   const { t } = useTranslation();
@@ -77,13 +78,14 @@ const SideBar = (): JSX.Element => {
   }
 
   return (
-    <SideBarMainContainer>
+    <SideBarMainContainer className="w-1/6 h-screen shrink-0 border-r-1 border-[#e2e2e2] flex flex-col bg-white">
       <LogoImage
+        className="inline-flex items-center m-5 "
         src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705580146/Frame_507_ba197a.png"
         alt="website logo"
       />
 
-      <TextContainer>
+      <TextContainer className="flex flex-col items-start w-2.5">
         <Link
           className="sidbar-content"
           to="/"
@@ -92,11 +94,15 @@ const SideBar = (): JSX.Element => {
             onChangeTransactionOption("ALLTRANSACTION");
           }}
         >
-          <EachTextContainer>
-            <SelectedContainer selectOption={selectOption === "DASHBOARD"}>
+          <EachTextContainer className="flex h-6 justify-start items-center gap-5 shrink-0">
+            <SelectedContainer
+              className="w-1.5 h-6 shrink-0 "
+              selectOption={selectOption === "DASHBOARD"}
+            >
               {}
             </SelectedContainer>
             <IconsImage
+              className="w-6 h-6"
               src={
                 selectOption === "DASHBOARD"
                   ? "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706070137/home_2_1_xkaadl.png"
@@ -104,7 +110,10 @@ const SideBar = (): JSX.Element => {
               }
               alt="dashboard"
             />
-            <TextParagraph selectOption={selectOption === "DASHBOARD"}>
+            <TextParagraph
+              className="font-medium text-base no-underline"
+              selectOption={selectOption === "DASHBOARD"}
+            >
               {t("common.dashboard")}
             </TextParagraph>
           </EachTextContainer>
@@ -114,11 +123,13 @@ const SideBar = (): JSX.Element => {
           to="/transaction"
           onClick={() => onChangeSelectOption("TRANSACTIONS")}
         >
-          <EachTextContainer>
+          <EachTextContainer className="flex h-20 justify-start items-center gap-5 shrink-0">
             <SelectedContainer
+              className="w-1.5 h-6 shrink-0 "
               selectOption={selectOption === "TRANSACTIONS"}
             ></SelectedContainer>
             <TransactionIconsImage
+              className="w-6 h-6"
               src={
                 selectOption === "TRANSACTIONS"
                   ? "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706070137/transfer_1_1_hqx4fr.png"
@@ -127,7 +138,10 @@ const SideBar = (): JSX.Element => {
               alt="transactions"
             />
 
-            <TextParagraph selectOption={selectOption === "TRANSACTIONS"}>
+            <TextParagraph
+              className="font-medium text-base no-underline"
+              selectOption={selectOption === "TRANSACTIONS"}
+            >
               {isUserAdmin
                 ? t("common.allTransactions")
                 : t("common.transactions")}
@@ -142,11 +156,13 @@ const SideBar = (): JSX.Element => {
             onChangeTransactionOption("ALLTRANSACTION");
           }}
         >
-          <EachTextContainer>
+          <EachTextContainer className="flex h-6 justify-start items-center gap-5 shrink-0">
             <SelectedContainer
+              className="w-1.5 h-6 shrink-0 "
               selectOption={selectOption === "PROFILE"}
             ></SelectedContainer>
             <IconsImage
+              className="w-6 h-6"
               src={
                 selectOption === "PROFILE"
                   ? "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706070137/user_3_1_1_h8fxdm.png"
@@ -154,16 +170,19 @@ const SideBar = (): JSX.Element => {
               }
               alt="profile"
             />
-            <TextParagraph selectOption={selectOption === "PROFILE"}>
+            <TextParagraph
+              className="font-medium text-base no-underline"
+              selectOption={selectOption === "PROFILE"}
+            >
               {t("common.profile")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
       </TextContainer>
-      <ProfileContainer>
+      <ProfileContainer className="h-20 mt-auto flex p-[24px 32px 0px 24px] items-center gap-2 self-stretch border-t border-solid border-gray-200">
         {loginUser.email !== undefined ? (
           <>
-            <ProfileImageContainer>
+            <ProfileImageContainer className="flex items-center justify-center w-10 h-10 flex-col rounded-full bg-cover bg-center bg-lightgray">
               {loginUser.email[0].toUpperCase()}
             </ProfileImageContainer>
             <ProfileTextContainer>
@@ -178,7 +197,10 @@ const SideBar = (): JSX.Element => {
         <Popup
           modal
           trigger={
-            <LogoutButton type="button">
+            <LogoutButton
+              className="border-0 bg-transparent mb-10 cursor-pointer"
+              type="button"
+            >
               {loginUser.email !== undefined ? (
                 <ProfileImageContainerMedium>
                   {loginUser.email[0].toUpperCase()}

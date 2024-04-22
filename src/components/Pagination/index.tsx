@@ -16,21 +16,20 @@ const Pagination = (props: PaginationProps) => {
 
   return (
     <PaginationNavBar>
-      <PaginationUnOrderList>
-        <PaginationListElement>
+      <PaginationUnOrderList className="flex">
+        <PaginationListElement className="w-[35px] text-center">
           <PaginationAnchorElement
+            className="no-underline"
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
           >
             <IoIosArrowBack />
           </PaginationAnchorElement>
         </PaginationListElement>
-        <PaginationListElement>{currentPage}</PaginationListElement>
-        <PaginationListElement
-          className={`page-item ${
-            currentPage === totalPages ? "disabled" : ""
-          }`}
-        >
+        <PaginationListElement className="w-[35px] text-center">
+          {currentPage}
+        </PaginationListElement>
+        <PaginationListElement className="w-[35px] text-center">
           <PaginationAnchorElement
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={totalPages === currentPage}

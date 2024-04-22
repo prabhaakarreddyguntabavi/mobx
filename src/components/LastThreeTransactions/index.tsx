@@ -102,17 +102,14 @@ const TransactionPage = (): JSX.Element => {
       );
     }
     return (
-      <NoTransactionsFountHeading>
+      <NoTransactionsFountHeading className="m-auto">
         {t("common.noTransactionsFound")}
       </NoTransactionsFountHeading>
     );
   };
 
   const renderLoadingView = (): JSX.Element => (
-    <LoadingContainer
-      className="products-loader-container"
-      data-testid="loader"
-    >
+    <LoadingContainer className="m-auto" data-testid="loader">
       <ReactLoading type={"bars"} color={"#000000"} height={50} width={50} />
     </LoadingContainer>
   );
@@ -137,7 +134,11 @@ const TransactionPage = (): JSX.Element => {
     }
   };
 
-  return <TransactionsContainer>{renderLeaderboard()}</TransactionsContainer>;
+  return (
+    <TransactionsContainer className="flex flex-col justify-end items-start gap-5 w-90 pt-5 pr-5 pb-3  mr-2 rounded-3xl bg-white ml-10">
+      {renderLeaderboard()}
+    </TransactionsContainer>
+  );
 };
 
 export default observer(TransactionPage);

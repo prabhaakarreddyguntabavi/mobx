@@ -19,6 +19,9 @@ import {
 } from "./styledComponents";
 import { observer } from "mobx-react";
 
+// import "./styles/tailwind.css";
+import "../../tailwind.css";
+
 const Dashboard = (): JSX.Element => {
   const { t } = useTranslation();
 
@@ -37,15 +40,17 @@ const Dashboard = (): JSX.Element => {
   }
 
   return (
-    <DashboardMainContainer>
+    <DashboardMainContainer className="w-full h-full bg-[#f5f7fa] flex">
       <SideBar />
-      <BodyMainContainer>
+      <BodyMainContainer className="bg-[#f5f7fa] flex flex-col w-5/6 ">
         <Header />
-        <BodyContainer>
+        <BodyContainer className="w-20 h-12">
           <TotalDebitCredite />
-          <LastTransaction>{t("dashboard.lastTransaction")}</LastTransaction>
+          <LastTransaction className="text-[#333b69] Inter text-2xl not-italic font-semibold leading-normal ml-10 mt-6 mb-3 ">
+            {t("dashboard.lastTransaction")}
+          </LastTransaction>
           <LastThreeTransactionsFunction />
-          <LastTransaction>
+          <LastTransaction className="text-[#333b69] Inter text-2xl not-italic font-semibold leading-normal ml-10 mt-6 mb-3 ">
             {t(`dashboard.debitCreditOverview`)}
           </LastTransaction>
           <BarChartContainer>

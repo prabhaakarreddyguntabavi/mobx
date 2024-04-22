@@ -1,10 +1,11 @@
 import styled from "styled-components";
+// import tw from 'twin.'
 
 export const DashboardMainContainer = styled.div`
-  width: 100vw;
-  height: 98vh;
-  background: #f5f7fa;
-  display: flex;
+  // width: 100vw;
+  // height: 98vh;
+  // background: #f5f7fa;
+  // display: flex;
 `;
 
 export const BodyContainer = styled.div`
@@ -46,14 +47,14 @@ export const BarChartContainer = styled.div`
 `;
 
 export const LastTransaction = styled.h1`
-  color: #333b69;
-  font-family: Inter;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  margin-left: 40px;
-  margin-top: 30px;
+  // color: #333b69;
+  // font-family: Inter;
+  // font-size: 22px;
+  // font-style: normal;
+  // font-weight: 600;
+  // line-height: normal;
+  // margin-left: 40px;
+  // margin-top: 30px;
   @media screen and (max-width: 768px) {
     margin-left: 10px;
     font-size: 22px;
@@ -61,8 +62,8 @@ export const LastTransaction = styled.h1`
 `;
 
 export const BodyMainContainer = styled.div`
-  background: #f5f7fa;
-  display: flex;
-  flex-direction: column;
-  width: 85%;
+  // background: #f5f7fa;
+  // display: flex;
+  // flex-direction: column;
+  // width: 85%;
 `;

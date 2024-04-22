@@ -41,7 +41,7 @@ import {
   LanguageSelectorContainer,
   DropdownOptions,
 } from "./styledComponents";
-
+import "../../tailwind.css";
 import "./index.css";
 
 const Header = (): JSX.Element => {
@@ -136,7 +136,7 @@ const Header = (): JSX.Element => {
         updateTransction("");
       }
     } else {
-      updateErrorMessage("Please Fill All Fields");
+      updateErrorMessage("*Please Fill All Fields");
       updateTransction("");
     }
   };
@@ -144,15 +144,18 @@ const Header = (): JSX.Element => {
   const renderSuccessView = (): JSX.Element => {
     return (
       <>
-        <LanguageContainer>
+        <LanguageContainer className="flex ">
           <LanguageSelectorContainer
+            className="mt-2 mr-2.5 h-6"
             required
             id="UpdateTransactionType"
             value={i18n.language}
             onChange={(event) => i18n.changeLanguage(event.target.value)}
           >
             <DropdownOptions value="en">English</DropdownOptions>
-            <DropdownOptions value="te">తెలుగు</DropdownOptions>
+            <DropdownOptions className="mt-2" value="te">
+              తెలుగు
+            </DropdownOptions>
             <DropdownOptions value="hi">हिंदी</DropdownOptions>
           </LanguageSelectorContainer>
 
@@ -161,18 +164,24 @@ const Header = (): JSX.Element => {
             trigger={
               <PopupContainer>
                 <AddTransactionButton
+                  className="flex p-2 justify-center items-center gap-1 rounded-lg text-white text-center font-inter font-medium text-base"
                   disabled={isUserAdmin}
                   type="button"
                   onClick={() => addDate(getCurrentDateTime())}
                 >
                   <ButtonImage
+                    className="h-5 w-5"
                     src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705727508/plus_ndqvby.png"
                     alt="plus"
                   />{" "}
                   {t("transactionInputs.addTransaction")}
                 </AddTransactionButton>
 
-                <MobileAddTransactions type="button" disabled={isUserAdmin}>
+                <MobileAddTransactions
+                  className="hidden"
+                  type="button"
+                  disabled={isUserAdmin}
+                >
                   <IoAddCircleOutline className="add-icon" />
                 </MobileAddTransactions>
               </PopupContainer>
@@ -180,20 +189,24 @@ const Header = (): JSX.Element => {
           >
             {/* @ts-ignore */}
             {(close) => (
-              <AddTransctionMainContainer>
-                <AddTransctionContainer id="addTransaction">
-                  <AddTransctionTextContainer>
-                    <HeadingTextContainer>
-                      <AddTransctionHeading>
+              <AddTransctionMainContainer className="flex top-0 left-0 w-screen h-screen bg-[#b9b9b9] backdrop-blur-lg overflow-auto">
+                <AddTransctionContainer
+                  className="flex flex-col max-w-2/6 flex-shrink-0 rounded-2xl bg-white mx-auto my-auto "
+                  id="addTransaction"
+                >
+                  <AddTransctionTextContainer className="flex">
+                    <HeadingTextContainer className="scroll-my-9 scroll-ml-6">
+                      <AddTransctionHeading className="text-[#333b69] font-serif text-lg not-italic font-bold leading-7">
                         {t("transactionInputs.addTransaction")}
                       </AddTransctionHeading>
-                      <AddTransctionParagraph>
+                      <AddTransctionParagraph className="w-72 text-[#505887] font-serif text-base not-italic font-normal leading-5 mt-2 mb-6">
                         {t(
                           "transactionInputs.loremipsumdolorsitametconsectetur"
                         )}
                       </AddTransctionParagraph>
                     </HeadingTextContainer>
                     <AddTransctionCloseImage
+                      className="w-6 h-6 shrink-0 ml-auto mr-3 cursor-pointer"
                       onClick={() => {
                         close();
                         updateValues();
@@ -203,14 +216,18 @@ const Header = (): JSX.Element => {
                     />
                   </AddTransctionTextContainer>
 
-                  <AddTransctionInputContainer>
-                    <AddTransctionLabel htmlFor="addTransctionName">
+                  <AddTransctionInputContainer className="inline-flex flex-col items-start gap-1 mx-6 mb-5">
+                    <AddTransctionLabel
+                      className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
+                      htmlFor="addTransctionName"
+                    >
                       {t("transactionInputs.transactionName")}*
-                      <NotificationMessage>
+                      <NotificationMessage className="text-xs m-0">
                         ({t("transactionInputs.max30Characters")}*)
                       </NotificationMessage>
                     </AddTransctionLabel>
                     <AddTransctionNameInput
+                      className="w-96 h-11 pl-2 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white"
                       required
                       type="text"
                       id="addTransctionName"
@@ -221,11 +238,15 @@ const Header = (): JSX.Element => {
                     />
                   </AddTransctionInputContainer>
 
-                  <AddTransctionInputContainer>
-                    <AddTransctionLabel htmlFor="addTransctionType">
+                  <AddTransctionInputContainer className="inline-flex flex-col items-start gap-1 mx-6 mb-5">
+                    <AddTransctionLabel
+                      className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
+                      htmlFor="addTransctionType"
+                    >
                       {t("transactionInputs.transactionType")}*
                     </AddTransctionLabel>
                     <SelectTransctionType
+                      className="w-96 h-12 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white pr-22 text-gray-700 font-inter text-base font-normal"
                       required
                       id="addTransctionType"
                       value={type}
@@ -240,11 +261,15 @@ const Header = (): JSX.Element => {
                     </SelectTransctionType>
                   </AddTransctionInputContainer>
 
-                  <AddTransctionInputContainer>
-                    <AddTransctionLabel htmlFor="addTransctionCategory">
+                  <AddTransctionInputContainer className="inline-flex flex-col items-start gap-1 mx-6 mb-5">
+                    <AddTransctionLabel
+                      className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
+                      htmlFor="addTransctionCategory"
+                    >
                       {t("transactionInputs.category")}*
                     </AddTransctionLabel>
                     <SelectTransctionType
+                      className="w-96 h-12 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white pr-22 text-gray-700 font-inter text-base font-normal"
                       required
                       id="addTransctionCategory"
                       value={category}
@@ -262,11 +287,15 @@ const Header = (): JSX.Element => {
                     </SelectTransctionType>
                   </AddTransctionInputContainer>
 
-                  <AddTransctionInputContainer>
-                    <AddTransctionLabel htmlFor="addTransctionAmount">
+                  <AddTransctionInputContainer className="inline-flex flex-col items-start gap-1 mx-6 mb-5">
+                    <AddTransctionLabel
+                      className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
+                      htmlFor="addTransctionAmount"
+                    >
                       {t("transactionInputs.amount")}*
                     </AddTransctionLabel>
                     <AddTransctionNameInput
+                      className="w-96 h-11 pl-2 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white"
                       required
                       type="number"
                       id="addTransctionAmount"
@@ -276,11 +305,15 @@ const Header = (): JSX.Element => {
                     />
                   </AddTransctionInputContainer>
 
-                  <AddTransctionInputContainer>
-                    <AddTransctionLabel htmlFor="addTransctionDate">
+                  <AddTransctionInputContainer className="inline-flex flex-col items-start gap-1 mx-6 mb-5">
+                    <AddTransctionLabel
+                      className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
+                      htmlFor="addTransctionDate"
+                    >
                       {t("transactionInputs.date")}*
                     </AddTransctionLabel>
                     <AddTransctionNameInput
+                      className="w-96 h-11 pl-2 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white"
                       required
                       type="datetime-local"
                       readOnly
@@ -292,6 +325,7 @@ const Header = (): JSX.Element => {
                   </AddTransctionInputContainer>
 
                   <AddTransctionButton
+                    className="flex h-0 items-center justify-center w-96 px-8 py-5 gap-10 rounded-lg bg-[#2d60ff] border-0 mx-auto text-white text-center text-sm font-medium leading-5"
                     type="submit"
                     onClick={() => {
                       getLeaderboardData(close);
@@ -309,7 +343,9 @@ const Header = (): JSX.Element => {
                       `${t("transactionInputs.addTransaction")}`
                     )}
                   </AddTransctionButton>
-                  <ErrorMessageParagraph>{errorMessage}</ErrorMessageParagraph>
+                  <ErrorMessageParagraph className="text-red-500 text-sm ml-8 mt-2">
+                    {errorMessage}
+                  </ErrorMessageParagraph>
                 </AddTransctionContainer>
               </AddTransctionMainContainer>
             )}
@@ -320,12 +356,12 @@ const Header = (): JSX.Element => {
   };
 
   return (
-    <HeaderMainContainer>
+    <HeaderMainContainer className="h-20 max-w-full flex scroll-px-3 justify-between items-center bg-white">
       <Popup
         modal
         trigger={
-          <MobileHeaderProfile>
-            <MobileParagraph>
+          <MobileHeaderProfile className="hidden">
+            <MobileParagraph className="w-5 text-lg">
               <IoMdMenu />
             </MobileParagraph>
           </MobileHeaderProfile>
@@ -333,16 +369,19 @@ const Header = (): JSX.Element => {
       >
         {/* @ts-ignore */}
         {(close) => (
-          <MobilePopupContainer>
+          <MobilePopupContainer className="hidden">
             <MobileSideBar close={close} />
           </MobilePopupContainer>
         )}
       </Popup>
       <MobileLogoImage
+        className="hidden"
         src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705580146/Frame_507_ba197a.png"
         alt="logo"
       />
-      <ButtonText>{t(`common.${selectOption.toLowerCase()}`)}</ButtonText>
+      <ButtonText className="text-[#343c6a] font-inter font-semibold text-3xl">
+        {t(`common.${selectOption.toLowerCase()}`)}
+      </ButtonText>
       {renderSuccessView()}
     </HeaderMainContainer>
   );
