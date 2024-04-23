@@ -135,7 +135,7 @@ const TransactionPage = (): JSX.Element => {
   };
 
   return (
-    <TransactionsContainer className="h-[17vh] lg:w-[94%] md:ml-10 md:w-[90%] sm:p-0 sm:ml-2 md:p-0 flex flex-col justify-end items-start gap-3 pt-5 pr-5 pb-3  md:mr-2 rounded-3xl bg-white lg:ml-10">
+    <TransactionsContainer className="md:h-[17vh] lg:w-[94%] md:ml-10 md:w-[90%] sm:p-0 sm:ml-2 md:p-0 flex flex-col justify-end items-start gap-3 pt-5 pr-5 pb-3  md:mr-2 rounded-3xl bg-white lg:ml-10">
       {renderLeaderboard()}
     </TransactionsContainer>
   );

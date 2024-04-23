@@ -73,20 +73,22 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
   };
 
   return (
-    <SideBarMainContainer>
-      <PopupClosingContainer>
+    <SideBarMainContainer className="flex flex-col w-screen h-screen flex-shrink-0 border-r border-gray-200 bg-white">
+      <PopupClosingContainer className="flex">
         <LogoImage
+          className="inline-flex items-center m-[20px]"
           src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705580146/Frame_507_ba197a.png"
           alt="website logo"
         />
         <MobileSideBarClosing
+          className="w-[5%] h-[35%] ml-auto mr-[20px] mt-[20px]"
           onClick={close}
           src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706078678/Close_gxeytv.png"
           alt="close"
         />
       </PopupClosingContainer>
 
-      <TextContainer>
+      <TextContainer className="w-[90vw] h-[171px] flex-shrink-0 mt-[49px]">
         <Link
           className="sidbar-content"
           to="/"
@@ -95,11 +97,15 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
             onChangeTransactionOption("ALLTRANSACTION");
           }}
         >
-          <EachTextContainer>
-            <SelectedContainer selectOption={selectOption === "DASHBOARD"}>
+          <EachTextContainer className="flex w-[60vw] h-[60px] justify-start items-center gap-[20px] flex-shrink-0">
+            <SelectedContainer
+              className="w-[6px] h-[60px] flex-shrink-0 rounded-r-3xl"
+              selectOption={selectOption === "DASHBOARD"}
+            >
               {}
             </SelectedContainer>
             <IconsImage
+              className="w-[25px] h-[25px]"
               src={
                 selectOption === "DASHBOARD"
                   ? "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706070137/home_2_1_xkaadl.png"
@@ -107,7 +113,10 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
               }
               alt="dashboard"
             />
-            <TextParagraph selectOption={selectOption === "DASHBOARD"}>
+            <TextParagraph
+              className="font-inter text-[18px] text-base font-medium"
+              selectOption={selectOption === "DASHBOARD"}
+            >
               {t("common.dashboard")}
             </TextParagraph>
           </EachTextContainer>
@@ -117,11 +126,13 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
           to="/transaction"
           onClick={() => onChangeSelectOption("TRANSACTIONS")}
         >
-          <EachTextContainer>
+          <EachTextContainer className="flex w-[60vw] h-[60px] justify-start items-center gap-[20px] flex-shrink-0">
             <SelectedContainer
+              className="w-[6px] h-[60px] flex-shrink-0 rounded-r-3xl"
               selectOption={selectOption === "TRANSACTIONS"}
             ></SelectedContainer>
             <TransactionIconsImage
+              className="w-[25px] h-[25px]"
               src={
                 selectOption === "TRANSACTIONS"
                   ? "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706070137/transfer_1_1_hqx4fr.png"
@@ -130,7 +141,10 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
               alt="transactions"
             />
 
-            <TextParagraph selectOption={selectOption === "TRANSACTIONS"}>
+            <TextParagraph
+              className="font-inter text-[18px] text-base font-medium"
+              selectOption={selectOption === "TRANSACTIONS"}
+            >
               {isUserAdmin
                 ? t("common.allTransactions")
                 : t("common.transactions")}
@@ -145,8 +159,9 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
             onChangeTransactionOption("ALLTRANSACTION");
           }}
         >
-          <EachTextContainer>
+          <EachTextContainer className="flex w-[60vw] h-[60px] justify-start items-center gap-[20px] flex-shrink-0">
             <SelectedContainer
+              className="w-[6px] h-[60px] flex-shrink-0 rounded-r-3xl"
               selectOption={selectOption === "PROFILE"}
             ></SelectedContainer>
             <IconsImage
@@ -157,23 +172,34 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
               }
               alt="profile"
             />
-            <TextParagraph selectOption={selectOption === "PROFILE"}>
+            <TextParagraph
+              className="font-inter text-[18px] text-base font-medium"
+              selectOption={selectOption === "PROFILE"}
+            >
               {t("common.profile")}
             </TextParagraph>
           </EachTextContainer>
         </Link>
       </TextContainer>
-      <ProfileContainer>
-        <ProfileImageContainer>
+      <ProfileContainer className="mt-auto flex px-[24px] py-[32px] items-center gap-[10px] self-stretch border-t border-[#eaecf0] pb-[10px]">
+        <ProfileImageContainer className="flex w-[40px] h-[40px] flex-col justify-center items-center rounded-full bg-cover bg-center bg-no-repeat bg-[#c7c7c7]">
           {loginUser.email !== undefined
             ? loginUser.email[0].toUpperCase()
             : ""}
         </ProfileImageContainer>
-        <ProfileTextContainer>
-          <ProfileName>{apiResponse.name}</ProfileName>
-          <ProfileEmail>{apiResponse.email}</ProfileEmail>
+        <ProfileTextContainer className="flex flex-col items-start w-[10px]">
+          <ProfileName className="text-[#505887] font-inter text-[14px] font-semibold leading-5 overflow-hidden w-[100px]">
+            {apiResponse.name}
+          </ProfileName>
+          <ProfileEmail className="text-[#718ebf] font-inter text-base font-normal leading-5 overflow-hidden w-[150px]">
+            {apiResponse.email}
+          </ProfileEmail>
         </ProfileTextContainer>
-        <YesLogoutButton type="button" onClick={onClickLogout}>
+        <YesLogoutButton
+          className="rounded-lg h-10 w-32 ml-auto mr-[5px] cursor-pointer bg-[#c3c7ca]"
+          type="button"
+          onClick={onClickLogout}
+        >
           {t("logoutValues.yesLogout")}
         </YesLogoutButton>
       </ProfileContainer>

@@ -80,7 +80,7 @@ const SideBar = (): JSX.Element => {
   return (
     <SideBarMainContainer className="hidden w-1/6 h-screen shrink-0 border-r-1 border-[#e2e2e2] md:flex flex-col bg-white">
       <LogoImage
-        className="w-[20vw] inline-flex items-center m-5 "
+        className="w-[15vw] inline-flex items-center m-5 "
         src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705580146/Frame_507_ba197a.png"
         alt="website logo"
       />

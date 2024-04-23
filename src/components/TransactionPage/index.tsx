@@ -290,7 +290,7 @@ const TransactionPage = (): JSX.Element => {
             ></SelectedCreditContainer>
           </TransactionSelectFilter>
         </SelectFilterConditions>
-        <TransactionBodyContainer className="w-full bg-[#f5f7fa] h-[75vh] overflow-auto">
+        <TransactionBodyContainer className="w-full bg-[#f5f7fa] h-[80vh] overflow-auto">
           <TransactionsContainer className="flex flex-col mt-0 md:w-[94%] h-fit p-[12px] gap-[20px] items-start bg-white rounded-[25px] md:ml-[40px] md:mt-[32px] md:mr-[20px] sm:ml-0 sm:mr-0">
             {renderLeaderboard()}
           </TransactionsContainer>

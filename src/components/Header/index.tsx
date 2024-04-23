@@ -205,7 +205,7 @@ const Header = (): JSX.Element => {
                       </AddTransctionParagraph>
                     </HeadingTextContainer>
                     <AddTransctionCloseImage
-                      className="w-[24px] h-[24px] flex-shrink-0 ml-auto mt-[15px] mr-[50px] cursor-pointer"
+                      className="w-[24px] h-[24px] flex-shrink-0 ml-auto mt-[15px] mr-[15px] cursor-pointer"
                       onClick={() => {
                         close();
                         updateValues();
