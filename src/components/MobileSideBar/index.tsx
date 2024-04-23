@@ -108,7 +108,7 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
               alt="dashboard"
             />
             <TextParagraph selectOption={selectOption === "DASHBOARD"}>
-              {t("dashboard.dashboard")}
+              {t("common.dashboard")}
             </TextParagraph>
           </EachTextContainer>
         </Link>

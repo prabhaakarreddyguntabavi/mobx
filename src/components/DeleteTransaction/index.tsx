@@ -61,7 +61,7 @@ const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
   };
 
   return (
-    <LogoutConformationContainer className="m-auto flex-shrink-0 rounded-xl bg-white shadow-lg">
+    <LogoutConformationContainer className="w-[95vw] md:w-[45vw] m-auto flex-shrink-0 rounded-xl bg-white shadow-lg">
       {errorMessage && (
         <p>{t("errorMessage.somethingwentwrongpleasetrygainlater")}</p>
       )}

@@ -1,3 +1,4 @@
+import React from "react";
 import Popup from "reactjs-popup";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
@@ -52,7 +53,7 @@ const EachTransaction = (props: PropsValues) => {
       key={eachTransaction.id}
     >
       {isUserAdmin ? (
-        <AdminContainer className="flex items-center" isAdmin={isUserAdmin}>
+        <AdminContainer className="flex items-center w-[30vw] md:w-[20vw]">
           {eachTransaction.type === "credit" ? (
             <CreditDebitImage
               isAdmin={isUserAdmin}
@@ -75,9 +76,9 @@ const EachTransaction = (props: PropsValues) => {
             />
           )}
 
-          <UserProfileDetails className="inline-flex items-center gap-2 w-fit">
+          <UserProfileDetails className="inline-flex items-center gap-2 w-[20vw]">
             <AdminProfileContainer
-              className="text-gray-700 font-inter text-base font-medium bg-red-500 text-center h-25 px-6 py-5 w-30 rounded-full bg-cover"
+              className="text-[#505887] font-inter text-base font-medium bg-[#cccdcf] text-center h-25 px-[6px] py-[5px] w-[35px] rounded-full bg-cover"
               isAdmin={isUserAdmin}
             >
               {user?.name !== undefined ? user.name[0].toUpperCase() : ""}
@@ -91,7 +92,7 @@ const EachTransaction = (props: PropsValues) => {
         <></>
       )}
 
-      <UserContainer isAdmin={isUserAdmin} className="flex items-center w-1/4">
+      <UserContainer className="flex items-center w-[30vw] md:w-1/4">
         {!isUserAdmin ? (
           <>
             {" "}
@@ -121,41 +122,41 @@ const EachTransaction = (props: PropsValues) => {
           ""
         )}
 
-        <TextContainer>
-          <TitleParagraph className="w-15vw text-gray-700 font-inter text-base font-normal">
+        <TextContainer className="sm:w-[30vw]">
+          <TitleParagraph className="w-[15vw] text-gray-700 font-inter text-base font-normal">
             {eachTransaction.transactionName}
           </TitleParagraph>
-          <TransactionParagraphMobile className="hidden">
+          <TransactionParagraphMobile className="flex text-xs mt-5 text-gray-400 font-bold w-20 md:hidden">
             {dateTimeCustomFormate(eachTransaction.date)}
           </TransactionParagraphMobile>
         </TextContainer>
       </UserContainer>
       <CategoryParagraph
         isAdmin={isUserAdmin}
-        className="text-gray-700 font-inter text-base font-normal overflow-hidden"
+        className="sm:w-14 text-gray-700 font-inter text-base font-normal overflow-hidden"
       >
         {eachTransaction.category}
       </CategoryParagraph>
-      <DateOfTransactionParagraph className="text-gray-700 w-[20vw] font-inter text-base font-normal overflow-hidden">
+      <DateOfTransactionParagraph className="hidden md:block text-gray-700 w-[20vw] font-inter text-base font-normal overflow-hidden">
         {dateTimeCustomFormate(eachTransaction.date)}
       </DateOfTransactionParagraph>
 
       {eachTransaction.type === "credit" ? (
         <CreditAmount
-          className="text-[#16dbaa] font-inter text-base font-medium text-left overflow-hidden"
+          className="w-[30vw] md:w-15vw] text-[#16dbaa] font-inter text-base font-medium text-left overflow-hidden"
           isAdmin={isUserAdmin}
         >
           +${eachTransaction.amount}
         </CreditAmount>
       ) : (
         <DebitAmount
-          className="text-[#fe5c73] font-inter text-base font-medium text-left overflow-hidden"
+          className=" text-[#fe5c73] font-inter text-base font-medium text-left overflow-hidden"
           isAdmin={isUserAdmin}
         >
           -${eachTransaction.amount}
         </DebitAmount>
       )}
-      <EditDeleteContainer className="mr-5 w-16" isAdmin={isUserAdmin}>
+      <EditDeleteContainer className="mr-5 md:w-16" isAdmin={isUserAdmin}>
         {isUserAdmin ? (
           ""
         ) : (
@@ -164,7 +165,7 @@ const EachTransaction = (props: PropsValues) => {
               modal
               trigger={
                 <EditImage
-                  className="w-[20px] h-[20px] flex-shrink-0 mr-[15px] cursor-pointer"
+                  className="mr-2 md:w-[20px] md:h-[20px] flex-shrink-0 lg:mr-[15px] cursor-pointer"
                   src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705900717/pencil-02_lbbupq.png"
                   alt="edit"
                 />
@@ -173,7 +174,7 @@ const EachTransaction = (props: PropsValues) => {
               {/* @ts-ignore */}
               {(close) => (
                 <AddTransactionMainContainer className="fixed inset-0 w-screen h-screen flex flex-shrink-0 bg-gray-700 bg-opacity-70 backdrop-blur-md">
-                  <AddTransactionContainer className="w-[466px] min-h-[700px] flex-shrink-0 rounded-xl bg-white m-auto">
+                  <AddTransactionContainer className="w-[95vw] md:w-[466px] flex-shrink-0 rounded-xl bg-white m-auto">
                     <AddTransactionTextContainer className="flex">
                       <HeadingTextContainer className="mt-8 ml-6 mb-5">
                         <AddTransactionHeading className="text-[20px] font-bold leading-28 text-[#333b69]">

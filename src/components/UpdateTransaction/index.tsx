@@ -104,7 +104,7 @@ const UpdateTransaction = (props: {
 
   return (
     <>
-      <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+      <AddTransactionInputContainer className="inline-flex flex-col items-start mx-6 mb-3">
         <AddTransactionLabel
           className="text-[#505887] font-inter text-base font-normal"
           htmlFor="updateTransactionName"
@@ -112,7 +112,7 @@ const UpdateTransaction = (props: {
           {t("transactionInputs.transactionName")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
-          className="w-[400px] h-[20px] flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
+          className="w-[80vw] md:w-[28vw]  h-11 flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
           required
           type="text"
           id="updateTransactionName"
@@ -123,7 +123,7 @@ const UpdateTransaction = (props: {
         />
       </AddTransactionInputContainer>
 
-      <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+      <AddTransactionInputContainer className="inline-flex flex-col items-start mx-6 mb-3">
         <AddTransactionLabel
           className="text-[#505887] font-inter text-base font-normal"
           htmlFor="updateTransactionType"
@@ -131,7 +131,7 @@ const UpdateTransaction = (props: {
           {t("transactionInputs.transactionType")}*
         </AddTransactionLabel>
         <SelectTransactionType
-          className="w-[400px] h-[40px] flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white pr-[22px] text-[#718ebf] font-inter text-base"
+          className="w-[80vw] md:w-[28vw]  h-11 flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white pr-[22px] text-[#718ebf] font-inter text-base"
           required
           id="UpdateTransactionType"
           value={type}
@@ -146,7 +146,7 @@ const UpdateTransaction = (props: {
         </SelectTransactionType>
       </AddTransactionInputContainer>
 
-      <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+      <AddTransactionInputContainer className="inline-flex flex-col items-start mx-6 mb-3">
         <AddTransactionLabel
           className="text-[#505887] font-inter text-base font-normal"
           htmlFor="updateTransactionCategory"
@@ -154,7 +154,7 @@ const UpdateTransaction = (props: {
           {t("transactionInputs.category")}*
         </AddTransactionLabel>
         <SelectTransactionType
-          className="w-[400px] h-[40px] flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white pr-[22px] text-[#718ebf] font-inter text-base"
+          className="w-[80vw] md:w-[28vw]  h-11 flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white pr-[22px] text-[#718ebf] font-inter text-base"
           required
           id="updateTransactionCategory"
           value={category}
@@ -172,7 +172,7 @@ const UpdateTransaction = (props: {
         </SelectTransactionType>
       </AddTransactionInputContainer>
 
-      <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+      <AddTransactionInputContainer className="inline-flex flex-col items-start mx-6 mb-3">
         <AddTransactionLabel
           className="text-[#505887] font-inter text-base font-normal"
           htmlFor="updateTransactionAmount"
@@ -180,7 +180,7 @@ const UpdateTransaction = (props: {
           {t("transactionInputs.amount")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
-          className="w-[400px] h-[20px] flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
+          className="w-[80vw] md:w-[28vw]  h-11 flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
           required
           type="number"
           id="updateTransactionAmount"
@@ -190,7 +190,7 @@ const UpdateTransaction = (props: {
         />
       </AddTransactionInputContainer>
 
-      <AddTransactionInputContainer className="inline-flex flex-col items-start gap-[11px] mx-[24px] mb-[20px]">
+      <AddTransactionInputContainer className="inline-flex flex-col items-start mx-6 mb-3">
         <AddTransactionLabel
           className="text-[#505887] font-inter text-base font-normal"
           htmlFor="updateTransctionDate"
@@ -198,7 +198,7 @@ const UpdateTransaction = (props: {
           {t("transactionInputs.date")}*
         </AddTransactionLabel>
         <AddTransactionNameInput
-          className="w-[400px] h-[30px] flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
+          className="w-[80vw] md:w-[28vw]  h-11 flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
           readOnly
           required
           type="datetime-local"
@@ -210,7 +210,7 @@ const UpdateTransaction = (props: {
       </AddTransactionInputContainer>
 
       <AddTransactionButton
-        className="flex w-[90%] p-2 mx-auto justify-center items-center gap-4 rounded-lg bg-blue-600 border-0 text-white font-inter text-base md:text-lg cursor-pointer"
+        className="flex w-[90%] p-2 mb-2 mx-auto justify-center items-center gap-4 rounded-lg bg-blue-600 border-0 text-white font-inter text-base md:text-lg cursor-pointer"
         type="button"
         onClick={() => {
           getLeaderboardData();

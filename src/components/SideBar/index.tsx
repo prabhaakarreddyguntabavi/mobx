@@ -78,9 +78,9 @@ const SideBar = (): JSX.Element => {
   }
 
   return (
-    <SideBarMainContainer className="w-1/6 h-screen shrink-0 border-r-1 border-[#e2e2e2] flex flex-col bg-white">
+    <SideBarMainContainer className="hidden w-1/6 h-screen shrink-0 border-r-1 border-[#e2e2e2] md:flex flex-col bg-white">
       <LogoImage
-        className="inline-flex items-center m-5 "
+        className="w-[20vw] inline-flex items-center m-5 "
         src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705580146/Frame_507_ba197a.png"
         alt="website logo"
       />
@@ -182,7 +182,7 @@ const SideBar = (): JSX.Element => {
       <ProfileContainer className="h-20 mt-auto flex p-[24px 32px 0px 24px] items-center gap-2 self-stretch border-t border-solid border-gray-200">
         {loginUser.email !== undefined ? (
           <>
-            <ProfileImageContainer className="flex items-center justify-center w-10 h-10 flex-col rounded-full bg-cover bg-center bg-lightgray ml-2">
+            <ProfileImageContainer className="flex items-center justify-center w-10 h-10 flex-col rounded-full bg-cover bg-center bg-[#6e7275] ml-2">
               {loginUser.email[0].toUpperCase()}
             </ProfileImageContainer>
             <ProfileTextContainer>

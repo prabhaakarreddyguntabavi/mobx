@@ -42,18 +42,18 @@ const Dashboard = (): JSX.Element => {
   return (
     <DashboardMainContainer className="w-full h-full bg-[#f5f7fa] flex">
       <SideBar />
-      <BodyMainContainer className="bg-[#f5f7fa] flex flex-col w-5/6 ">
+      <BodyMainContainer className=" bg-[#f5f7fa] flex flex-col lg:w-[83%] ">
         <Header />
-        <BodyContainer>
+        <BodyContainer className="overflow-y-scroll h-[90vh] flex flex-col w-full ">
           <TotalDebitCredite />
-          <LastTransaction className="text-[#333b69] Inter text-2xl not-italic font-semibold leading-normal ml-10 mt-6 mb-3 ">
+          <LastTransaction className="ml-[10px] text-[22px] text-[#333b69] Inter text-2xl not-italic font-semibold leading-normal md:ml-10 mt-6 mb-3 ">
             {t("dashboard.lastTransaction")}
           </LastTransaction>
           <LastThreeTransactionsFunction />
-          <LastTransaction className="text-[#333b69] Inter text-2xl not-italic font-semibold leading-normal ml-10 mt-6 mb-3 ">
+          <LastTransaction className="ml-[10px] text-[22px] text-[#333b69] Inter text-2xl not-italic font-semibold leading-normal md:ml-10 mt-6 mb-3 ">
             {t(`dashboard.debitCreditOverview`)}
           </LastTransaction>
-          <BarChartContainer>
+          <BarChartContainer className="min-h-[25%] w-[94%] flex-shrink-0 rounded-2xl bg-white lg:ml-[40px] flex flex-col ">
             <GenderChart />
           </BarChartContainer>
         </BodyContainer>

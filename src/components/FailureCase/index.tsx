@@ -13,12 +13,14 @@ const FailureCase = (): JSX.Element => {
   return (
     <OnFailureConrainer className="flex flex-col justify-center items-center mt-auto mb-auto">
       <OnFailureImage
-        className="w-1/3"
+        className="w-[50%] md:w-[30%]"
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
         alt="failure view"
       />
-      <OnFailureHeading>{t("errorMessage.failureTitleText")}</OnFailureHeading>
-      <OnFailureParagraph>
+      <OnFailureHeading className="text-[20px]">
+        {t("errorMessage.failureTitleText")}
+      </OnFailureHeading>
+      <OnFailureParagraph className="text-[15px] text-center">
         {t("errorMessage.failureParagraph")}
         <br /> {t("errorMessage.pleaseTryAgainLater")}
       </OnFailureParagraph>

@@ -182,7 +182,7 @@ const GenderChart = (): JSX.Element => {
 
       return (
         <>
-          <GraphHeaderContainer>
+          <GraphHeaderContainer className="flex justify-between">
             <GraphPrargraph className="text-[#718ebf] font-inter text-base font-normal ml-8 mt-2">
               <GraphPrargraphSpan className="text-blue-800 font-inter text-base font-normal">
                 {" "}
