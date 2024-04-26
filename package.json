@@ -23,6 +23,7 @@
     "reactjs-popup": "^2.0.6",
     "recharts": "^2.12.1",
     "twin.macro": "3.4.1",
+    "twind": "0.16.19",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },

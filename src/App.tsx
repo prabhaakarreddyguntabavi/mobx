@@ -7,6 +7,7 @@ import LoginForm from "./components/LoginForm";
 import Dashboard from "./components/Dashboard";
 import TransactionPage from "./components/TransactionPage";
 import ProfileDetails from "./components/ProfileDetails";
+import ButtonStyles from "./components/ButtonElement";
 import { TransctionStore } from "./stores/TotalTransactionData";
 import { UsersData } from "./stores/UsersDetails";
 import { observer } from "mobx-react";
@@ -77,6 +78,7 @@ const App = (): JSX.Element => {
           <Route path="/" element={<Dashboard />} />
           <Route path="/transaction" element={<TransactionPage />} />
           <Route path="/profile" element={<ProfileDetails />} />
+          <Route path="/button-styles" element={<ButtonStyles />} />
         </Routes>
       </BrowserRouter>
     </TransactionContext.Provider>
