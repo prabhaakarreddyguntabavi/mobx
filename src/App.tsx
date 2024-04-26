@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard";
 import TransactionPage from "./components/TransactionPage";
 import ProfileDetails from "./components/ProfileDetails";
 import ButtonStyles from "./components/ButtonElement";
+import InputElement from "./components/InputElement";
 import { TransctionStore } from "./stores/TotalTransactionData";
 import { UsersData } from "./stores/UsersDetails";
 import { observer } from "mobx-react";
@@ -79,6 +80,7 @@ const App = (): JSX.Element => {
           <Route path="/transaction" element={<TransactionPage />} />
           <Route path="/profile" element={<ProfileDetails />} />
           <Route path="/button-styles" element={<ButtonStyles />} />
+          <Route path="/input-element" element={<InputElement />} />
         </Routes>
       </BrowserRouter>
     </TransactionContext.Provider>

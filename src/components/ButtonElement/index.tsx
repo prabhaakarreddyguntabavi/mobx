@@ -4,11 +4,6 @@ import { useTranslation } from "react-i18next";
 import { CiCircleChevDown } from "react-icons/ci";
 import { IoAddCircleOutline } from "react-icons/io5";
 
-// import {
-//   buttonSizePadding,
-//   // buttonTypes,
-// } from "../../constants/buttonConstants";
-
 import { buttonTypes } from "../../utils/buttonStyles";
 
 import ButtonWrap from "../ButtonWrap";

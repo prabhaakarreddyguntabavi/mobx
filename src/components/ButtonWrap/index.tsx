@@ -1,6 +1,6 @@
 import { ButtonStyles } from "./styledComponents";
 import ReactLoading from "react-loading";
-import { PropsValueTypes, StylesProperties } from "../../types/buttonStyles";
+import { PropsValueTypes } from "../../types/buttonStyles";
 import { observer } from "mobx-react";
 
 const ButtonWrap = (props: PropsValueTypes) => {
