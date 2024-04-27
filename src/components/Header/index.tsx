@@ -190,7 +190,7 @@ const Header = (): JSX.Element => {
             {(close) => (
               <AddTransctionMainContainer className="fixed inset-0 w-screen h-screen flex flex-shrink-0 bg-gray-700 bg-opacity-70 backdrop-blur-md">
                 <AddTransctionContainer
-                  className="w-[90vw] md:w-[466px] flex-shrink-0 rounded-xl bg-white m-auto"
+                  className="w-[90vw] md:w-[42%] lg:w-[32%] flex-shrink-0 rounded-xl bg-white m-auto"
                   id="addTransaction"
                 >
                   <AddTransctionTextContainer className="flex">

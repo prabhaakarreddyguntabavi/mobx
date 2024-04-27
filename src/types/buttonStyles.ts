@@ -24,3 +24,8 @@ export interface PropsValueTypes {
   isButtonDisabled: boolean;
   isLoading: boolean;
 }
+
+export interface SelectOptions {
+  value: string;
+  label: string;
+}

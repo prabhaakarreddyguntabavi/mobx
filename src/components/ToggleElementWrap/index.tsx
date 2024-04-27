@@ -2,6 +2,7 @@
 
 import { observer } from "mobx-react";
 import { useState } from "react";
+import { PropsValueTypes } from "../../types/buttonStyles";
 
 import {
   ToggleMainContainer,
@@ -12,12 +13,14 @@ import {
   ImageElement,
 } from "./styledComponents";
 
-const ToggleElementWrap = (props: {
+interface PropsValueTypes {
   disable: boolean;
   withIcon: boolean;
   type: string;
   label: string;
-}) => {
+}
+
+const ToggleElementWrap = (props: PropsValueTypes) => {
   const { disable, withIcon, type, label } = props;
 
   const [isChecked, setIsChecked] = useState(false);
@@ -59,7 +62,7 @@ const ToggleElementWrap = (props: {
 
   return (
     <>
-      <ToggleMainContainer className="flex items-center mt-10">
+      <ToggleMainContainer className="flex items-center mt-2 ml-3">
         <InputField
           type="checkbox"
           id="toggle"
@@ -77,7 +80,9 @@ const ToggleElementWrap = (props: {
           tabIndex={0}
         >
           <ToggleButtonContainer className={toggleStyles[type].containerStyles}>
-            <ToggleButtonContainer className={toggleStyles[type].toggleStyles}>
+            <ToggleButtonContainer
+              className={`${toggleStyles[type].toggleStyles}`}
+            >
               {withIcon &&
                 (isChecked ? (
                   <ImageElement

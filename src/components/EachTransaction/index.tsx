@@ -174,7 +174,7 @@ const EachTransaction = (props: PropsValues) => {
               {/* @ts-ignore */}
               {(close) => (
                 <AddTransactionMainContainer className="fixed inset-0 w-screen h-screen flex flex-shrink-0 bg-gray-700 bg-opacity-70 backdrop-blur-md">
-                  <AddTransactionContainer className="w-[95vw] md:w-[466px] flex-shrink-0 rounded-xl bg-white m-auto">
+                  <AddTransactionContainer className="w-[90vw] md:w-[42%] lg:w-[32%] flex-shrink-0 rounded-xl bg-white m-auto">
                     <AddTransactionTextContainer className="flex">
                       <HeadingTextContainer className="mt-8 ml-6 mb-5">
                         <AddTransactionHeading className="text-[20px] font-bold leading-28 text-[#333b69]">

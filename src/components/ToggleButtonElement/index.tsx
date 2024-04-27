@@ -52,7 +52,6 @@ const ToggleButtonElement = () => {
           htmlFor="addTransctionType"
         >
           Toggle Size
-          {/* {t("transactionInputs.transactionType")}* */}
         </CheckBoxLabel>
         <SelectType
           className="w-[80vw] md:w-[8vw] h-10 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white pr-22 text-gray-700 font-inter text-base font-normal"

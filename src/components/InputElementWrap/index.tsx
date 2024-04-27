@@ -1,7 +1,6 @@
 import { PropsValues } from "../../types/inputStyles";
 import { observer } from "mobx-react";
 import { useState } from "react";
-import ToggleButtonElement from "../ToggleButtonElement";
 
 import {
   InputElementSubContainer,
@@ -15,7 +14,7 @@ const InputElementWrap = (props: PropsValues) => {
   const {
     leftIcon: LeftIcon,
     rightIcon: RightIcon,
-    hideLabel,
+    label,
     helpText,
     isDisable,
   } = props;
@@ -40,12 +39,10 @@ const InputElementWrap = (props: PropsValues) => {
     <>
       <>
         <Label
-          className={`${
-            hideLabel ? "hidden" : "block"
-          } text-[#334155] font-medium font-inter text-sm leading-5`}
+          className="text-[#334155] font-medium font-inter text-sm leading-5"
           htmlFor="emailId"
         >
-          Email Address
+          {label}
         </Label>
 
         <InputElementSubContainer className="relative flex w-64">
@@ -60,11 +57,11 @@ const InputElementWrap = (props: PropsValues) => {
             onChange={(event) => setInputValue(event.target.value)}
             onBlur={updateErrorMessage}
             onFocus={() => setError(false)}
-            className={`${error && "border-[#F87171] "} ${
+            className={`${error ? "border-[#F87171]" : "border-gray-300"} ${
               LeftIcon && "pl-10"
             }  ${
               RightIcon && "pr-10"
-            }  text-Light-blue-gray-900 font-normal font-inter text-sm leading-5 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-[#2563EB] hover:border-[#94A3B8] disabled:text-[#94A3B8] disabled:bg-[#F1F5F9] disabled:border-[#CBD5E1]`}
+            }  text-Light-blue-gray-900 font-normal font-inter text-sm leading-5 w-full border rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-[#2563EB] hover:border-[#94A3B8] disabled:text-[#94A3B8] disabled:bg-[#F1F5F9] disabled:border-[#CBD5E1]`}
             placeholder="Enter text"
             disabled={isDisable}
           />
@@ -89,7 +86,6 @@ const InputElementWrap = (props: PropsValues) => {
           Help Test
         </Paragraph>
       </>
-      <ToggleButtonElement />
     </>
   );
 };
