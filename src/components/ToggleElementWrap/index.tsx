@@ -13,13 +13,6 @@ import {
   ImageElement,
 } from "./styledComponents";
 
-interface PropsValueTypes {
-  disable: boolean;
-  withIcon: boolean;
-  type: string;
-  label: string;
-}
-
 const ToggleElementWrap = (props: PropsValueTypes) => {
   const { disable, withIcon, type, label } = props;
 

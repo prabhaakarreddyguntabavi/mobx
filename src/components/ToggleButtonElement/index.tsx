@@ -11,9 +11,9 @@ import {
 } from "./styledComponents";
 
 const ToggleButtonElement = () => {
-  const [disable, updateDisable] = useState(false);
-  const [withIcon, updateWithIcon] = useState(false);
-  const [type, updateType] = useState("simple");
+  const [disable, updateDisable] = useState<boolean>(false);
+  const [withIcon, updateWithIcon] = useState<boolean>(false);
+  const [type, updateType] = useState<string>("simple");
 
   return (
     <>

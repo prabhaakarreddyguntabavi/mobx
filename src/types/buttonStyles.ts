@@ -18,11 +18,18 @@ export interface ButtonTypes {
 }
 
 export interface PropsValueTypes {
+  type?: string;
+  disable?: boolean;
+  withIcon?: boolean;
+  label?: string;
+}
+
+export interface ButtonPropsValueTypes {
   type: StylesProperties;
   leftIcon?: React.ElementType;
   rightIcon?: React.ElementType;
-  isButtonDisabled: boolean;
   isLoading: boolean;
+  isButtonDisabled: boolean;
 }
 
 export interface SelectOptions {
