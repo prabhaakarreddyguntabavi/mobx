@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { IoIosClose } from "react-icons/io";
 
 import { SelectOptions } from "../../types/buttonStyles";
 import { TiTick } from "react-icons/ti";
@@ -13,7 +14,7 @@ import {
   Container,
 } from "./styledComponents";
 
-const SearchInputElementWrap = (props: {
+const MultiSelectElementWrap = (props: {
   options: SelectOptions[];
   label: string;
   disable: boolean;
@@ -21,12 +22,8 @@ const SearchInputElementWrap = (props: {
 }) => {
   const { options, label, disable, isError } = props;
 
-  const [selectedOption, setSelectedOption] = useState<SelectOptions>({
-    label: "",
-    value: "",
-  });
+  const [selectedOptions, setSelectedOptions] = useState<SelectOptions[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
   const [searchResult, setSearchResult] = useState<string>("");
 
   useEffect(() => {
@@ -52,9 +49,24 @@ const SearchInputElementWrap = (props: {
   }, []);
 
   const handleOptionClick = (option: SelectOptions) => {
-    setSelectedOption(option);
-    setSearchResult(option.label!);
-    setIsOpen(false);
+    let allOptions = [...selectedOptions, option];
+    if (selectedOptions.includes(option)) {
+      allOptions = selectedOptions.filter(
+        (eachOption) => eachOption.value !== option.value
+      );
+    }
+    setSelectedOptions(allOptions);
+    setSearchResult("");
+  };
+
+  const removeSelectOption = (option: SelectOptions) => {
+    if (selectedOptions.includes(option)) {
+      setSelectedOptions(
+        selectedOptions.filter(
+          (eachOption) => eachOption.value !== option.value
+        )
+      );
+    }
   };
 
   const searchResultDict = options.filter((value) =>
@@ -62,10 +74,21 @@ const SearchInputElementWrap = (props: {
   );
 
   return (
-    <Container className="w-[200px] mt-10 flex flex-col justify-center ml-auto mr-auto">
+    <Container className="w-[200px] mt-10 flex flex-col justify-center ml-auto mr-auto gap-1">
       <Paragraph className="flex font-italic text-[18px] font-normal mb-2 text-[#334155]">
         {label}
       </Paragraph>
+      <Container className="flex flex-wrap gap-2 w-[250px]">
+        {selectedOptions.map((eachOption) => (
+          <button
+            onClick={() => removeSelectOption(eachOption)}
+            className="flex bg-[#DBEAFE] rounded-[6px] py-[2px] px-[6px] items-center gap-1"
+          >
+            <p className="text-[#1E40AF] text-[12px]">{eachOption.label}</p>
+            <IoIosClose color="#1E40AF" />
+          </button>
+        ))}
+      </Container>
 
       <SelectDropdownMainContainer className="w-[200px] flex flex-col justify-center ml-auto mr-auto ">
         <SelectDropdownSubContainer
@@ -111,7 +134,7 @@ const SearchInputElementWrap = (props: {
                 }}
                 key={option.value}
                 className={`flex w-[240px] pl-[6px] pr-[8px] pt-[6px] pb-[8px] ${
-                  selectedOption.value === option.value &&
+                  selectedOptions.includes(option) &&
                   "bg-[#EFF6FF] rounded-[8px]"
                 } hover:bg-[#EFF6FF] hover:rounded-[8px] cursor-pointer`}
               >
@@ -121,7 +144,7 @@ const SearchInputElementWrap = (props: {
                 >
                   {option.label}
                 </Paragraph>
-                {selectedOption.value === option.value && (
+                {selectedOptions.includes(option) && (
                   <TiTick
                     color="#2563EB"
                     className="ml-auto mt-auto mb-auto "
@@ -144,4 +167,4 @@ const SearchInputElementWrap = (props: {
   );
 };
 
-export default SearchInputElementWrap;
+export default MultiSelectElementWrap;

@@ -5,6 +5,7 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 import ToggleButtonElement from "../ToggleButtonElement";
 import CustomSelector from "../SelectElement";
 import SearchInputElement from "../SearchInputElement";
+import MultiSelectElement from "../MultiSelectElement";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
@@ -81,6 +82,9 @@ const InputElement = () => {
             </div>
             <div className="border h-[350px] w-[40%] ">
               <SearchInputElement />
+            </div>
+            <div className="border h-[350px] w-[40%]">
+              <MultiSelectElement />
             </div>
           </InputElementBodySubContainer>
         </InputElementBodyContainer>
