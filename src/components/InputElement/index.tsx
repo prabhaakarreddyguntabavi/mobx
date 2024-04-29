@@ -4,6 +4,7 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 
 import ToggleButtonElement from "../ToggleButtonElement";
 import CustomSelector from "../SelectElement";
+import SearchInputElement from "../SearchInputElement";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
@@ -31,8 +32,8 @@ const InputElement = () => {
       <InputElementBodyMainContainer className=" bg-[#f5f7fa] flex flex-col lg:w-[83%] ">
         <Header />
         <InputElementBodyContainer className=" h-[90vh] flex flex-row w-[90%] m-auto">
-          <InputElementBodySubContainer className="h-[94%] w-[94%] bg-white m-auto  pt-5 border flex">
-            <div className="border h-[350px] w-[40%] mt-10">
+          <InputElementBodySubContainer className="h-[94%] w-[94%] bg-white m-auto  pt-5 border flex flex-wrap overflow-auto">
+            <div className="border h-[180px] w-[40%] mt-10">
               <CheckBoxInputContainer className="inline-flex flex-col items-start mx-6 mb-3">
                 <CheckBoxLabel
                   className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
@@ -72,11 +73,14 @@ const InputElement = () => {
                 />
               </InputElementContainer>
             </div>
-            <div className="border h-[350px] w-[40%] mt-10">
+            <div className="border h-[180px] w-[50%] mt-10">
               <ToggleButtonElement />
             </div>
-            <div className="border h-[350px] w-[40%] mt-10">
+            <div className="border h-[350px] w-[40%]">
               <CustomSelector />
+            </div>
+            <div className="border h-[350px] w-[40%] ">
+              <SearchInputElement />
             </div>
           </InputElementBodySubContainer>
         </InputElementBodyContainer>

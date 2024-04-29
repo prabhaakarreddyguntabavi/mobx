@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { options } from "../../constants/commonConstants";
 
-import SelectElementWrap from "../SelectElementWrap";
-import { ErrorMessage } from "../Header/styledComponents";
+import SearchInputElementWrap from "../SearchInputElementWrap";
+
 import {
   CheckBoxInputContainer,
   CheckBoxLabel,
   CheckBoxInput,
 } from "./styledComponents";
 
-const CustomSelector = () => {
+const SearchInputElement = () => {
   const [disable, updateDisable] = useState<boolean>(false);
   const [isError, updateIsError] = useState<boolean>(false);
 
@@ -43,7 +43,7 @@ const CustomSelector = () => {
           onChange={() => updateIsError(!isError)}
         />
       </CheckBoxInputContainer>
-      <SelectElementWrap
+      <SearchInputElementWrap
         options={options}
         label="Dropdown"
         disable={disable}
@@ -53,4 +53,4 @@ const CustomSelector = () => {
   );
 };
 
-export default CustomSelector;
+export default SearchInputElement;
