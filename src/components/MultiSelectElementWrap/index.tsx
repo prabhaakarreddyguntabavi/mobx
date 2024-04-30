@@ -12,6 +12,7 @@ import {
   SelectDropdownOptionSubContainer,
   Paragraph,
   Container,
+  InputElement,
 } from "./styledComponents";
 
 const MultiSelectElementWrap = (props: {
@@ -81,6 +82,7 @@ const MultiSelectElementWrap = (props: {
       <Container className="flex flex-wrap gap-2 w-[250px]">
         {selectedOptions.map((eachOption) => (
           <button
+            disabled={disable}
             onClick={() => removeSelectOption(eachOption)}
             className="flex bg-[#DBEAFE] rounded-[6px] py-[2px] px-[6px] items-center gap-1"
           >
@@ -92,20 +94,20 @@ const MultiSelectElementWrap = (props: {
 
       <SelectDropdownMainContainer className="w-[200px] flex flex-col justify-center ml-auto mr-auto ">
         <SelectDropdownSubContainer
-          className={`relative flex w-64`}
+          className={`relative flex w-64 `}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <input
+          <InputElement
             type="text"
             value={searchResult}
             placeholder="Select"
-            className={`relative flex w-64 px-[7px] py-[10px] pr-8 justify-between border ${
+            className={`flex w-64 px-[7px] py-[10px] pr-8 justify-between border rounded-[8px] cursor-pointer ${
               isError && "border-[#DC2626] text-[#DC2626]"
-            } rounded-[8px] cursor-pointer hover:border-[#94A3B8] focus:border-[#2563EB] focus:border-solid focus:drop-shadow-[0_1px_2px_0px_rgba(0,0,0,0.08)] focus:shadow disabled:border-[#CBD5E1] disabled:bg-[#F1F5F9] disabled:text-[#94A3B8]`}
+            } hover:border-[#94A3B8] text-Light-blue-gray-900 font-normal font-inter text-sm leading-5 w-full border rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-[#2563EB] active:border-[#2563EB] disabled:border-[#CBD5E1] disabled:bg-[#F1F5F9] disabled:text-[#94A3B8]`}
             onChange={(event) => setSearchResult(event.target.value)}
             disabled={disable}
           />
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <Container className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             {isOpen && !disable ? (
               <FaChevronUp
                 className={`mt-auto mb-auto ${isError && "text-[#DC2626]"}  ${
@@ -119,7 +121,7 @@ const MultiSelectElementWrap = (props: {
                 }`}
               />
             )}
-          </div>
+          </Container>
         </SelectDropdownSubContainer>
         {isOpen && !disable && (
           <SelectDropdownOptionMainContainer

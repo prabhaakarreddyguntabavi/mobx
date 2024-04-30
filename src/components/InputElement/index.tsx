@@ -6,6 +6,7 @@ import ToggleButtonElement from "../ToggleButtonElement";
 import CustomSelector from "../SelectElement";
 import SearchInputElement from "../SearchInputElement";
 import MultiSelectElement from "../MultiSelectElement";
+import BadgeElement from "../BadgeElement";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
@@ -80,11 +81,17 @@ const InputElement = () => {
             <div className="border h-[350px] w-[40%]">
               <CustomSelector />
             </div>
-            <div className="border h-[350px] w-[40%] ">
+            <div className="border h-[350px] w-[50%] ">
               <SearchInputElement />
             </div>
-            <div className="border h-[350px] w-[40%]">
+            <div className="border h-[450px] w-[40%]">
               <MultiSelectElement />
+            </div>
+            <div className="border h-[450px] w-[50%]">
+              <BadgeElement />
+            </div>
+            <div className="border h-[450px] w-[40%]">
+              <BadgeElement />
             </div>
           </InputElementBodySubContainer>
         </InputElementBodyContainer>
