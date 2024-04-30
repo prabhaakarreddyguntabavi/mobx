@@ -8,6 +8,7 @@ import SearchInputElement from "../SearchInputElement";
 import MultiSelectElement from "../MultiSelectElement";
 import BadgeElement from "../BadgeElement";
 import ButtonPopup from "../ButtonPopup";
+import ListViewElement from "../ListViewElement";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
@@ -93,6 +94,9 @@ const InputElement = () => {
             </div>
             <div className="border h-[100px] w-[100%]">
               <ButtonPopup />
+            </div>
+            <div className="border h-[450px] w-[100%]">
+              <ListViewElement />
             </div>
           </InputElementBodySubContainer>
         </InputElementBodyContainer>
