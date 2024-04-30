@@ -7,6 +7,7 @@ import CustomSelector from "../SelectElement";
 import SearchInputElement from "../SearchInputElement";
 import MultiSelectElement from "../MultiSelectElement";
 import BadgeElement from "../BadgeElement";
+import ButtonPopup from "../ButtonPopup";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
@@ -90,8 +91,8 @@ const InputElement = () => {
             <div className="border h-[450px] w-[50%]">
               <BadgeElement />
             </div>
-            <div className="border h-[450px] w-[40%]">
-              <BadgeElement />
+            <div className="border h-[100px] w-[100%]">
+              <ButtonPopup />
             </div>
           </InputElementBodySubContainer>
         </InputElementBodyContainer>
