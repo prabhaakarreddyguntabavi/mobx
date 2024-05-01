@@ -117,7 +117,10 @@ const ListViewElementWrap = (props: PropsValues) => {
                         updateStatus(eachDetails.id, eachOption.value)
                       }
                       id={eachOption.value}
-                      className=" w-[140px] flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-slate-500"
+                      className={`${
+                        eachOption.value === eachDetails.status &&
+                        "bg-[#74B3F1]"
+                      } w-[140px] rounded-lg flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-[#74B3F1]`}
                     >
                       <div
                         id={eachOption.value}

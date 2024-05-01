@@ -25,6 +25,34 @@ const ListViewElement = () => {
       status: "done",
       dueDate: "2 Feb 2022 - 18:00",
     },
+    {
+      id: 3,
+      icon: FaRegSquareCheck,
+      name: "Google Ads Responsive Display",
+      status: "done",
+      dueDate: "2 Feb 2022 - 18:00",
+    },
+    {
+      id: 4,
+      icon: FaRegSquareCheck,
+      name: "Google Ads Responsive Display",
+      status: "done",
+      dueDate: "2 Feb 2022 - 18:00",
+    },
+    {
+      id: 5,
+      icon: FaRegSquareCheck,
+      name: "Google Ads Responsive Display",
+      status: "done",
+      dueDate: "2 Feb 2022 - 18:00",
+    },
+    {
+      id: 6,
+      icon: FaRegSquareCheck,
+      name: "Google Ads Responsive Display",
+      status: "done",
+      dueDate: "2 Feb 2022 - 18:00",
+    },
   ];
 
   return <ListViewElementWrap detailsList={detailsList} />;
