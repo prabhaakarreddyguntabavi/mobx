@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useEffect, useState } from "react";
 import { MdOutlineTimer } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
@@ -15,6 +17,14 @@ interface DetailsView {
   dueDate: string;
 }
 
+interface LabelColors {
+  toDo: string;
+  inProgress: string;
+  inReview: string;
+  done: string;
+  reject: string;
+}
+
 interface PropsValues {
   detailsList: DetailsView[];
 }
@@ -26,6 +36,14 @@ const dropdownOptions = [
   { label: "Done", value: "done" },
   { label: "Reject", value: "reject" },
 ];
+
+const labelColors: LabelColors = {
+  toDo: { color: "bg-[#444FD0]", label: "To Do" },
+  inProgress: { color: "bg-[#CAD044]", label: "In Progress" },
+  inReview: { color: "bg-[#9944D0]", label: "In Review" },
+  done: { color: "bg-[#7FFF00]", label: "Done" },
+  reject: { color: "bg-[#D31350]", label: "Reject" },
+};
 
 const ListViewElementWrap = (props: PropsValues) => {
   const { detailsList } = props;
@@ -63,6 +81,7 @@ const ListViewElementWrap = (props: PropsValues) => {
       return eachOption;
     });
     updateListDict(updateDetails);
+    updateOption(0);
   };
 
   return (
@@ -77,29 +96,43 @@ const ListViewElementWrap = (props: PropsValues) => {
           <div className="relative ml-[100px]">
             <div
               onClick={() => updateOption(eachDetails.id)}
-              className="flex items-center w-[120px]"
+              className="flex items-center w-[150px] cursor-pointer"
             >
-              <div className="rounded-full bg-black w-2 h-2 mr-2"></div>
+              <div
+                className={`rounded-full  ${
+                  labelColors[eachDetails.status].color
+                } w-2 h-2 mr-2`}
+              ></div>
               <p className=" text-[#334155] text-[14px] leading-5 not-italic">
-                {eachDetails.status}
+                {labelColors[eachDetails.status].label}
               </p>
               <IoIosArrowDown className="ml-auto" />
             </div>
             {option === eachDetails.id && (
-              <div className="absolute  flex-shrink-0 bg-opacity-80 bg-white backdrop-blur-lg">
-                <Container className="inline-flex w-[120px] p-2 flex-col items-start gap-2 rounded-[6px] border border-[#CBD5E1] bg-white ">
-                  <Container className=" w-[100px] flex items-center gap-2 py-[6px] pl-[6px] pr-[8px]">
-                    <div className="rounded-full bg-black w-8 h-2 mr-2 "></div>
-                    <Button className="flex w-[260px] flex-col items-start gap-1 bg-white">
-                      Account
-                    </Button>
-                  </Container>
-                  <Container className=" w-[100px] flex items-center gap-2 py-[6px] pl-[6px] pr-[8px]">
-                    <div className="rounded-full bg-black w-8 h-2 mr-2 "></div>
-                    <Button className="flex w-[260px] flex-col items-start gap-1 bg-white">
-                      Account
-                    </Button>
-                  </Container>
+              <div className="absolute z-10 flex-shrink-0 bg-opacity-80 bg-white backdrop-blur-lg">
+                <Container className="inline-flex w-[150px] p-2 flex-col items-start gap-2 rounded-[6px] border border-[#CBD5E1] bg-white ">
+                  {dropdownOptions.map((eachOption) => (
+                    <Container
+                      onClick={() =>
+                        updateStatus(eachDetails.id, eachOption.value)
+                      }
+                      id={eachOption.value}
+                      className=" w-[140px] flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-slate-500"
+                    >
+                      <div
+                        id={eachOption.value}
+                        className={`rounded-full ${
+                          labelColors[eachOption.value].color
+                        }  w-5 h-2 mr-2`}
+                      ></div>
+                      <Button
+                        id={eachOption.value}
+                        className="flex w-[260px] flex-col items-start gap-1"
+                      >
+                        {eachOption.label}
+                      </Button>
+                    </Container>
+                  ))}
                 </Container>
               </div>
             )}

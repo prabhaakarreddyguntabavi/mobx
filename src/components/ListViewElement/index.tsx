@@ -15,14 +15,14 @@ const ListViewElement = () => {
       id: 1,
       icon: FaRegSquareCheck,
       name: "Google Ads Responsive Display",
-      status: "Done",
+      status: "done",
       dueDate: "2 Feb 2022 - 18:00",
     },
     {
       id: 2,
       icon: FaRegSquareCheck,
       name: "Google Ads Responsive Display",
-      status: "Done",
+      status: "done",
       dueDate: "2 Feb 2022 - 18:00",
     },
   ];
