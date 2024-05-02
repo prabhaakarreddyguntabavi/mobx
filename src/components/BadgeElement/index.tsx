@@ -3,7 +3,8 @@
 import { useState } from "react";
 import BadgeElementWrap from "../BadgeElementWrap";
 import { MdOutlineClose } from "react-icons/md";
-import { FaCertificate } from "react-icons/fa6";
+
+import { SelectOptionsDetails } from "../../types/inputStyles";
 
 import {
   CheckBoxInputContainer,
@@ -12,14 +13,6 @@ import {
   SelectType,
   SelectOptions,
 } from "./styledComponents";
-
-interface SelectOptions {
-  neutral: string;
-  success: string;
-  warning: string;
-  information: string;
-  critical: string;
-}
 
 const BadgeElement = () => {
   const [isDot, updateIsDot] = useState<boolean>(false);
@@ -33,7 +26,7 @@ const BadgeElement = () => {
     largeCircle: "py-[4px] px-[12px] rounded-[16px]",
   };
 
-  const badgeType: SelectOptions = {
+  const badgeType: SelectOptionsDetails = {
     neutral: `inline-flex text-[#1E293B] bg-[#F1F5F9] gap-[4px] items-center  ${styleOfTheBadge[badgeStyle]}`,
     success: `inline-flex text-[#065F46] bg-[#D1FAE5] gap-[4px] items-center  ${styleOfTheBadge[badgeStyle]}`,
     warning: `inline-flex text-[#854D0E] bg-[#FEF9C3] gap-[4px] items-center  ${styleOfTheBadge[badgeStyle]}`,
@@ -41,7 +34,7 @@ const BadgeElement = () => {
     critical: `inline-flex text-[#991B1B] bg-[#FEE2E2] gap-[4px] items-center  ${styleOfTheBadge[badgeStyle]}`,
   };
 
-  const dotColors: SelectOptions = {
+  const dotColors: SelectOptionsDetails = {
     neutral: `bg-[#1E293B]`,
     success: `bg-[#065F46]`,
     warning: `bg-[#854D0E]`,

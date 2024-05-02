@@ -1,22 +1,13 @@
+import { BadgePropsValues } from "../../types/inputStyles";
+
 import {
   SelectDropdownMainContainer,
   SelectDropdownSubContainer,
-  SelectDropdownOptionMainContainer,
-  SelectDropdownOptionSubContainer,
   Paragraph,
   Container,
 } from "./styledComponents";
 
-interface PropsValues {
-  typeClassName: string;
-  label: string;
-  isDot: boolean;
-  leftIcon?: React.ElementType;
-  rightIcon?: React.ElementType;
-  dotColors: string;
-}
-
-const BadgeElementWrap = (props: PropsValues) => {
+const BadgeElementWrap = (props: BadgePropsValues) => {
   const {
     typeClassName,
     label,

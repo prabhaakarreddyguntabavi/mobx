@@ -24,6 +24,7 @@ import {
   CheckBoxInputContainer,
   CheckBoxLabel,
   CheckBoxInput,
+  Container,
 } from "./styledComponents";
 
 const InputElement = () => {
@@ -37,7 +38,7 @@ const InputElement = () => {
         <Header />
         <InputElementBodyContainer className=" h-[90vh] flex flex-row w-[90%] m-auto">
           <InputElementBodySubContainer className="h-[94%] w-[94%] bg-white m-auto  pt-5 border flex flex-wrap overflow-auto">
-            <div className="border h-[180px] w-[40%] mt-10">
+            <Container className="border h-[180px] w-[40%] mt-10">
               <CheckBoxInputContainer className="inline-flex flex-col items-start mx-6 mb-3">
                 <CheckBoxLabel
                   className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
@@ -76,28 +77,28 @@ const InputElement = () => {
                   isDisable={isDisable}
                 />
               </InputElementContainer>
-            </div>
-            <div className="border h-[180px] w-[50%] mt-10">
+            </Container>
+            <Container className="border h-[180px] w-[50%] mt-10">
               <ToggleButtonElement />
-            </div>
-            <div className="border h-[350px] w-[40%]">
+            </Container>
+            <Container className="border h-[350px] w-[40%]">
               <CustomSelector />
-            </div>
-            <div className="border h-[350px] w-[50%] ">
+            </Container>
+            <Container className="border h-[350px] w-[50%] ">
               <SearchInputElement />
-            </div>
-            <div className="border h-[450px] w-[40%]">
+            </Container>
+            <Container className="border h-[450px] w-[40%]">
               <MultiSelectElement />
-            </div>
-            <div className="border h-[450px] w-[50%]">
+            </Container>
+            <Container className="border h-[450px] w-[50%]">
               <BadgeElement />
-            </div>
-            <div className="border h-[100px] w-[100%]">
+            </Container>
+            <Container className="border h-[100px] w-[100%]">
               <ButtonPopup />
-            </div>
-            <div className="border h-[450px] w-[100%]">
+            </Container>
+            <Container className="border h-[450px] w-[100%]">
               <ListViewElement />
-            </div>
+            </Container>
           </InputElementBodySubContainer>
         </InputElementBodyContainer>
       </InputElementBodyMainContainer>

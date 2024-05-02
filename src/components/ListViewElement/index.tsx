@@ -1,13 +1,7 @@
 import ListViewElementWrap from "../ListViewElementWrap";
 import { FaRegSquareCheck } from "react-icons/fa6";
 
-interface DetailsView {
-  id: number;
-  icon: React.ElementType;
-  name: string;
-  status: string;
-  dueDate: string;
-}
+import { DetailsView } from "../../types/inputStyles";
 
 const ListViewElement = () => {
   const detailsList: DetailsView[] = [

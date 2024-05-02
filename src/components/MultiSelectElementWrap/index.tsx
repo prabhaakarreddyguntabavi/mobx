@@ -13,6 +13,7 @@ import {
   Paragraph,
   Container,
   InputElement,
+  Button,
 } from "./styledComponents";
 
 const MultiSelectElementWrap = (props: {
@@ -81,14 +82,16 @@ const MultiSelectElementWrap = (props: {
       </Paragraph>
       <Container className="flex flex-wrap gap-2 w-[250px]">
         {selectedOptions.map((eachOption) => (
-          <button
+          <Button
             disabled={disable}
             onClick={() => removeSelectOption(eachOption)}
             className="flex bg-[#DBEAFE] rounded-[6px] py-[2px] px-[6px] items-center gap-1"
           >
-            <p className="text-[#1E40AF] text-[12px]">{eachOption.label}</p>
+            <Paragraph className="text-[#1E40AF] text-[12px]">
+              {eachOption.label}
+            </Paragraph>
             <IoIosClose color="#1E40AF" />
-          </button>
+          </Button>
         ))}
       </Container>
 

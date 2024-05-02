@@ -1,6 +1,6 @@
 //@ts-nocheck
+
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { CiCircleChevDown } from "react-icons/ci";
 import { IoAddCircleOutline } from "react-icons/io5";
 
@@ -26,8 +26,6 @@ import { observer } from "mobx-react";
 import "../../tailwind.css";
 
 const ButtonStyles = (): JSX.Element => {
-  const { t } = useTranslation();
-
   const [buttonSize, updateButtonStyles] = useState<string>("small");
   const [buttonType, updateButtonType] = useState<string>("primary");
   const [isBisDisableButton, updateIsDisableButton] = useState<boolean>(false);
@@ -47,7 +45,6 @@ const ButtonStyles = (): JSX.Element => {
                 htmlFor="addTransctionType"
               >
                 Button Size
-                {/* {t("transactionInputs.transactionType")}* */}
               </ButtonStylesLabel>
               <ButtonStylesType
                 className="w-[80vw] md:w-[8vw] h-10 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white pr-22 text-gray-700 font-inter text-base font-normal"
@@ -67,7 +64,6 @@ const ButtonStyles = (): JSX.Element => {
                 htmlFor="addTransctionType"
               >
                 Disable Button
-                {/* {t("transactionInputs.transactionType")}* */}
               </ButtonStylesLabel>
               <input
                 type="checkbox"
@@ -82,7 +78,6 @@ const ButtonStyles = (): JSX.Element => {
                 htmlFor="addTransctionType"
               >
                 Button Type
-                {/* {t("transactionInputs.transactionType")}* */}
               </ButtonStylesLabel>
               <ButtonStylesType
                 className="w-[80vw] md:w-[8vw] h-10 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white pr-22 text-gray-700 font-inter text-base font-normal"
@@ -112,7 +107,6 @@ const ButtonStyles = (): JSX.Element => {
                 htmlFor="addTransctionType"
               >
                 Is Loading View
-                {/* {t("transactionInputs.transactionType")}* */}
               </ButtonStylesLabel>
               <input
                 type="checkbox"

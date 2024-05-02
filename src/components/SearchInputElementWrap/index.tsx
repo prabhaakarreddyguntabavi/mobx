@@ -11,6 +11,7 @@ import {
   SelectDropdownOptionSubContainer,
   Paragraph,
   Container,
+  InputElement,
 } from "./styledComponents";
 
 const SearchInputElementWrap = (props: {
@@ -72,7 +73,7 @@ const SearchInputElementWrap = (props: {
           className={`relative flex w-64`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <input
+          <InputElement
             type="text"
             value={searchResult}
             placeholder="Select"
@@ -82,7 +83,7 @@ const SearchInputElementWrap = (props: {
             onChange={(event) => setSearchResult(event.target.value)}
             disabled={disable}
           />
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <Container className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             {isOpen && !disable ? (
               <FaChevronUp
                 className={`mt-auto mb-auto ${isError && "text-[#DC2626]"}  ${
@@ -96,7 +97,7 @@ const SearchInputElementWrap = (props: {
                 }`}
               />
             )}
-          </div>
+          </Container>
         </SelectDropdownSubContainer>
         {isOpen && !disable && (
           <SelectDropdownOptionMainContainer

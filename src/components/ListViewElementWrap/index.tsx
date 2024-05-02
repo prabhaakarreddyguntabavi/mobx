@@ -5,29 +5,14 @@ import { MdOutlineTimer } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import { CiUser } from "react-icons/ci";
 
 import { Button, Container, Paragraph } from "./styledComponents";
 
-interface DetailsView {
-  id: number;
-  icon: React.ElementType;
-  name: string;
-  status: string;
-  dueDate: string;
-}
-
-interface LabelColors {
-  toDo: string;
-  inProgress: string;
-  inReview: string;
-  done: string;
-  reject: string;
-}
-
-interface PropsValues {
-  detailsList: DetailsView[];
-}
+import {
+  DetailsView,
+  LabelColors,
+  ListViewPropsValues,
+} from "../../types/inputStyles";
 
 const dropdownOptions = [
   { label: "To Do", value: "toDo" },
@@ -45,7 +30,7 @@ const labelColors: LabelColors = {
   reject: { color: "bg-[#D31350]", label: "Reject" },
 };
 
-const ListViewElementWrap = (props: PropsValues) => {
+const ListViewElementWrap = (props: ListViewPropsValues) => {
   const { detailsList } = props;
 
   const [listDict, updateListDict] = useState<DetailsView[]>(detailsList);
@@ -85,46 +70,46 @@ const ListViewElementWrap = (props: PropsValues) => {
   };
 
   return (
-    <div className="w-full min-h-full bg-[#F1F5F9] p-[50px]">
-      <div className="flex mb-2">
-        <p className=" text-[#334155] ml-[60px] text-[14px] leading-5 not-italic">
+    <Container className="w-full min-h-full bg-[#F1F5F9] p-[50px]">
+      <Container className="flex mb-2">
+        <Paragraph className=" text-[#334155] ml-[60px] text-[14px] leading-5 not-italic">
           Name
-        </p>
-        <p className=" text-[#334155] ml-[260px] text-[14px] leading-5 not-italic">
+        </Paragraph>
+        <Paragraph className=" text-[#334155] ml-[260px] text-[14px] leading-5 not-italic">
           Status
-        </p>
-        <p className=" text-[#334155] ml-[210px] text-[14px] leading-5 not-italic">
+        </Paragraph>
+        <Paragraph className=" text-[#334155] ml-[210px] text-[14px] leading-5 not-italic">
           Due Date
-        </p>
-      </div>
+        </Paragraph>
+      </Container>
       {listDict.map((eachDetails) => (
-        <div className="bg-white h-[48px] flex items-center flex-shrink-0 pl-5 pr-5 rounded-[12px] mb-1">
+        <Container className="bg-white h-[48px] flex items-center flex-shrink-0 pl-5 pr-5 rounded-[12px] mb-1">
           <eachDetails.icon />
-          <p className="ml-[20px] min-w-[200px] max-w-[200px] text-[#334155] text-[14px] leading-5 not-italic text-nowrap overflow-hidden">
+          <Paragraph className="ml-[20px] min-w-[200px] max-w-[200px] text-[#334155] text-[14px] leading-5 not-italic text-nowrap overflow-hidden">
             {eachDetails.name}
-          </p>
+          </Paragraph>
 
-          <div className="relative ml-[100px]">
-            <div
+          <Container className="relative ml-[100px]">
+            <Container
               onClick={() => updateOption(eachDetails.id)}
               className="flex items-center w-[150px] cursor-pointer"
             >
-              <div
+              <Container
                 className={`rounded-full  ${
                   labelColors[eachDetails.status].color
                 } w-2 h-2 mr-2`}
-              ></div>
-              <p className=" text-[#334155] text-[14px] leading-5 not-italic">
+              ></Container>
+              <Paragraph className=" text-[#334155] text-[14px] leading-5 not-italic">
                 {labelColors[eachDetails.status].label}
-              </p>
+              </Paragraph>
               {option === eachDetails.id ? (
                 <IoIosArrowUp className="ml-auto" />
               ) : (
                 <IoIosArrowDown className="ml-auto" />
               )}
-            </div>
+            </Container>
             {option === eachDetails.id && (
-              <div className="absolute z-[1] flex-shrink-0 bg-opacity-80 bg-white backdrop-blur-lg">
+              <Container className="absolute z-[1] flex-shrink-0 bg-opacity-80 bg-white backdrop-blur-lg">
                 <Container className="inline-flex w-[150px] p-2 flex-col items-start gap-2 rounded-[6px] border border-[#CBD5E1] bg-white ">
                   {dropdownOptions.map((eachOption) => (
                     <Container
@@ -137,12 +122,12 @@ const ListViewElementWrap = (props: PropsValues) => {
                         "bg-[#EFF6FF]"
                       } w-[140px] rounded-lg flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-[#EFF6FF]`}
                     >
-                      <div
+                      <Container
                         id={eachOption.value}
                         className={`rounded-full ${
                           labelColors[eachOption.value].color
                         }  w-5 h-2 mr-2`}
-                      ></div>
+                      ></Container>
                       <Button
                         id={eachOption.value}
                         className="flex w-[260px] flex-col items-start gap-1"
@@ -152,18 +137,18 @@ const ListViewElementWrap = (props: PropsValues) => {
                     </Container>
                   ))}
                 </Container>
-              </div>
+              </Container>
             )}
-          </div>
+          </Container>
 
-          <div className="ml-[100px] gap-1 flex items-center text-[#64748B] text-[14px] leading-5 not-italic">
+          <Container className="ml-[100px] gap-1 flex items-center text-[#64748B] text-[14px] leading-5 not-italic">
             <MdOutlineTimer className="w-4 h-4" />
-            <p>{eachDetails.dueDate}</p>
-          </div>
+            <Paragraph>{eachDetails.dueDate}</Paragraph>
+          </Container>
           <BsThreeDots className="ml-auto" />
-        </div>
+        </Container>
       ))}
-    </div>
+    </Container>
   );
 };
 
