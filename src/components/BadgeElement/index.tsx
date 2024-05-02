@@ -1,6 +1,7 @@
 //@ts-nocheck
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import BadgeElementWrap from "../BadgeElementWrap";
 import { MdOutlineClose } from "react-icons/md";
 
@@ -15,6 +16,8 @@ import {
 } from "./styledComponents";
 
 const BadgeElement = () => {
+  const { t } = useTranslation();
+
   const [isDot, updateIsDot] = useState<boolean>(false);
   const [typeClassName, updateTypeClassName] = useState<string>("neutral");
   const [badgeStyle, updateBadgeStyle] = useState<string>("basicRound");
@@ -50,7 +53,7 @@ const BadgeElement = () => {
             className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
             htmlFor="addTransctionType"
           >
-            Is Dot
+            {t("elementsStyles.isDot")}
           </CheckBoxLabel>
           <CheckBoxInput
             type="checkbox"
@@ -64,7 +67,7 @@ const BadgeElement = () => {
             className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
             htmlFor="addTransctionType"
           >
-            Badge Type
+            {t("elementsStyles.badgeType")}
           </CheckBoxLabel>
           <SelectType
             className="w-[80vw] md:w-[8vw] h-10 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white pr-22 text-gray-700 font-inter text-base font-normal"
@@ -73,11 +76,21 @@ const BadgeElement = () => {
             value={typeClassName}
             onChange={(event: any) => updateTypeClassName(event.target.value)}
           >
-            <SelectOptions value="neutral">Neutral</SelectOptions>
-            <SelectOptions value="success">Success</SelectOptions>
-            <SelectOptions value="warning">Warning</SelectOptions>
-            <SelectOptions value="information">Information</SelectOptions>
-            <SelectOptions value="critical">Critical</SelectOptions>
+            <SelectOptions value="neutral">
+              {t("elementsStyles.neutral")}
+            </SelectOptions>
+            <SelectOptions value="success">
+              {t("elementsStyles.success")}
+            </SelectOptions>
+            <SelectOptions value="warning">
+              {t("elementsStyles.warning")}
+            </SelectOptions>
+            <SelectOptions value="information">
+              {t("elementsStyles.information")}
+            </SelectOptions>
+            <SelectOptions value="critical">
+              {t("elementsStyles.critical")}
+            </SelectOptions>
           </SelectType>
         </CheckBoxInputContainer>
         <CheckBoxInputContainer className="inline-flex flex-col items-start mx-6 mb-3 mt-3">
@@ -85,7 +98,7 @@ const BadgeElement = () => {
             className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
             htmlFor="addTransctionType"
           >
-            Badge Border Styles
+            {t("elementsStyles.badgeBorderStyles")}
           </CheckBoxLabel>
           <SelectType
             className="w-[90vw] md:w-[10vw] h-10 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white pr-22 text-gray-700 font-inter text-base font-normal"
@@ -94,10 +107,18 @@ const BadgeElement = () => {
             value={badgeStyle}
             onChange={(event: any) => updateBadgeStyle(event.target.value)}
           >
-            <SelectOptions value="basicRound">Basic Round</SelectOptions>
-            <SelectOptions value="largeRound">Large Round</SelectOptions>
-            <SelectOptions value="basicCircle">Basic Circle</SelectOptions>
-            <SelectOptions value="largeCircle">Large Circle</SelectOptions>
+            <SelectOptions value="basicRound">
+              {t("elementsStyles.basicRound")}
+            </SelectOptions>
+            <SelectOptions value="largeRound">
+              {t("elementsStyles.largeRound")}
+            </SelectOptions>
+            <SelectOptions value="basicCircle">
+              {t("elementsStyles.basicCircle")}
+            </SelectOptions>
+            <SelectOptions value="largeCircle">
+              {t("elementsStyles.largeCircle")}
+            </SelectOptions>
           </SelectType>
         </CheckBoxInputContainer>
       </div>

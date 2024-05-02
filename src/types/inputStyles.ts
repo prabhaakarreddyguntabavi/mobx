@@ -14,12 +14,17 @@ export interface DetailsView {
   dueDate: string;
 }
 
+interface OptionDict {
+  color: string;
+  label: string;
+}
+
 export interface LabelColors {
-  toDo: string;
-  inProgress: string;
-  inReview: string;
-  done: string;
-  reject: string;
+  toDo: OptionDict;
+  inProgress: OptionDict;
+  inReview: OptionDict;
+  done: OptionDict;
+  reject: OptionDict;
 }
 
 export interface ListViewPropsValues {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MdOutlineClose } from "react-icons/md";
 import { CiUser, CiSettings } from "react-icons/ci";
 import {
@@ -17,6 +18,7 @@ import {
 } from "./styledComponents";
 
 const ButtonPopup = () => {
+  const { t } = useTranslation();
   const [isPopupOpen, updateIsPopupOpen] = useState<boolean>(false);
 
   return (
@@ -26,7 +28,7 @@ const ButtonPopup = () => {
           onClick={() => updateIsPopupOpen(!isPopupOpen)}
           className="cursor-pointer p-2 mr-10 justify-center items-center gap-1 rounded-lg text-white text-center font-inter font-medium text-base bg-blue-600"
         >
-          Open Popup
+          {t("elementsStyles.openPopup")}
         </Button>
       </MainContainer>
       {isPopupOpen && (
@@ -37,7 +39,7 @@ const ButtonPopup = () => {
           ></div>
           <Container className="h-2/4 w-full bg-white  p-5 rounded-t-[20px]">
             <Container className="flex items-start">
-              <Paragraph>Prabhakar Testing</Paragraph>
+              <Paragraph>{t("elementsStyles.testing")}</Paragraph>
               <Button
                 onClick={() => updateIsPopupOpen(!isPopupOpen)}
                 className="ml-auto"
@@ -51,7 +53,7 @@ const ButtonPopup = () => {
                 <Container className=" border-b-2 flex items-center gap-2 py-[6px] pl-[12px] pr-[8px]">
                   <CiUser className="h-[20px] w-[20px]" />
                   <Button className="flex w-[260px] flex-col items-start gap-1 bg-white">
-                    Account
+                    {t("elementsStyles.account")}
                   </Button>
 
                   <IoIosArrowForward />
@@ -59,28 +61,28 @@ const ButtonPopup = () => {
                 <Container className=" border-b-2 flex py-[6px] pl-[12px] pr-[8px] gap-2  items-center ">
                   <IoIosNotificationsOutline className="w-[20px] h-[20px]" />
                   <Button className="flex w-[260px] flex-col items-start gap-1 bg-white">
-                    Notifications
+                    {t("elementsStyles.notifications")}
                   </Button>
                   <IoIosArrowForward />
                 </Container>
                 <Container className=" border-b-2 flex py-[6px] pl-[12px] pr-[8px] gap-2  items-center ">
                   <CiSettings className="w-[20px] h-[20px]" />
                   <Button className="flex w-[260px] flex-col items-start gap-1 bg-white">
-                    Settings
+                    {t("elementsStyles.settings")}
                   </Button>
                   <IoIosArrowForward />
                 </Container>
                 <Container className=" border-b-2 flex py-[6px] pl-[12px] pr-[8px] gap-2  items-center ">
                   <IoIosHelpCircleOutline className="w-[20px] h-[20px]" />
                   <Button className="flex w-[260px] flex-col items-start gap-1 bg-white">
-                    Help
+                    {t("elementsStyles.help")}
                   </Button>
                   <IoIosArrowForward />
                 </Container>
                 <Container className=" border-b-1 flex py-[6px] pl-[12px] pr-[8px] gap-2  items-center ">
                   <MdOutlineLogout className="w-[20px] h-[20px]" />
                   <Button className="flex w-[260px] flex-col items-start gap-1 bg-white">
-                    Logout
+                    {t("elementsStyles.logout")}
                   </Button>
                   <IoIosArrowForward />
                 </Container>

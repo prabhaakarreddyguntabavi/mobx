@@ -1,51 +1,41 @@
 //@ts-nocheck
 
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MdOutlineTimer } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-
+import { dropdownOptions, labelColors } from "../../constants/commonConstants";
+import { customDateTimeCustomFormate } from "../../utils/dateTimeFormate";
+import ListViewOptions from "../ListViewOptions";
+import ListViewEditDetails from "../ListViewEditDetails";
 import { Button, Container, Paragraph } from "./styledComponents";
-
-import {
-  DetailsView,
-  LabelColors,
-  ListViewPropsValues,
-} from "../../types/inputStyles";
-
-const dropdownOptions = [
-  { label: "To Do", value: "toDo" },
-  { label: "In Progress", value: "inProgress" },
-  { label: "In Review", value: "inReview" },
-  { label: "Done", value: "done" },
-  { label: "Reject", value: "reject" },
-];
-
-const labelColors: LabelColors = {
-  toDo: { color: "bg-[#0284C7]", label: "To Do" },
-  inProgress: { color: "bg-[#EA580C]", label: "In Progress" },
-  inReview: { color: "bg-[#4F46E5]", label: "In Review" },
-  done: { color: "bg-[#16A34A]", label: "Done" },
-  reject: { color: "bg-[#D31350]", label: "Reject" },
-};
+import { DetailsView, ListViewPropsValues } from "../../types/inputStyles";
 
 const ListViewElementWrap = (props: ListViewPropsValues) => {
   const { detailsList } = props;
 
+  const { t } = useTranslation();
+
   const [listDict, updateListDict] = useState<DetailsView[]>(detailsList);
-  const [option, updateOption] = useState<number>(0);
+  const [listIndex, setListIndex] = useState<number>(-1);
+  const [moreOptionListIndex, setMoreOptionListIndex] = useState<number>(-1);
+  const [isEditDetails, updateIsEditDetails] = useState<number>(-1);
 
   useEffect(() => {
     const handleEsc = (event: any) => {
       if (event.key === "Escape") {
-        updateOption(0);
+        setListIndex(-1);
+        setMoreOptionListIndex(-1);
+        updateIsEditDetails(-1);
       }
     };
 
     const handleMouseDown = (event: any) => {
       if (event.target.id === "") {
-        updateOption(0);
+        setListIndex(-1);
+        setMoreOptionListIndex(-1);
       }
     };
 
@@ -58,6 +48,22 @@ const ListViewElementWrap = (props: ListViewPropsValues) => {
     };
   }, []);
 
+  const updateListIndex = (id: number) => {
+    if (listIndex >= 0) {
+      setListIndex(-1);
+    } else {
+      setListIndex(id);
+    }
+  };
+
+  const updateMoreOptionListIndex = (id: number) => {
+    if (moreOptionListIndex >= 0) {
+      setMoreOptionListIndex(-1);
+    } else {
+      setMoreOptionListIndex(id);
+    }
+  };
+
   const updateStatus = (id: number, statusOption: string) => {
     const updateDetails: DetailsView[] = listDict.map((eachOption) => {
       if (eachOption.id === id) {
@@ -66,88 +72,149 @@ const ListViewElementWrap = (props: ListViewPropsValues) => {
       return eachOption;
     });
     updateListDict(updateDetails);
-    updateOption(0);
+    setListIndex(-1);
+  };
+
+  const updateEditDetails = (listDetails: DetailsView) => {
+    const updateDetails: DetailsView[] = listDict.map((eachOption) => {
+      if (eachOption.id === listDetails.id) {
+        return listDetails;
+      }
+      return eachOption;
+    });
+    updateListDict(updateDetails);
+    updateIsEditDetails(-1);
+  };
+
+  const deleteListDetails = (id: number) => {
+    const updatedDetails = listDict.filter(
+      (eachDetails) => eachDetails.id !== id
+    );
+    updateListDict(updatedDetails);
+    setMoreOptionListIndex(-1);
+  };
+
+  const editDetailsView = () => {
+    const listDetails = listDict.filter(
+      (eachDetails) => eachDetails.id === isEditDetails
+    );
+    return (
+      <ListViewEditDetails
+        listDetails={listDetails[0]}
+        updateEditDetails={updateEditDetails}
+        updateIsEditDetails={updateIsEditDetails}
+      />
+    );
   };
 
   return (
     <Container className="w-full min-h-full bg-[#F1F5F9] p-[50px]">
       <Container className="flex mb-2">
-        <Paragraph className=" text-[#334155] ml-[60px] text-[14px] leading-5 not-italic">
-          Name
+        <Paragraph className=" text-[#334155] w-[90px] ml-[60px] text-[14px] leading-5 not-italic">
+          {t("elementsStyles.name")}
         </Paragraph>
         <Paragraph className=" text-[#334155] ml-[260px] text-[14px] leading-5 not-italic">
-          Status
+          {t("elementsStyles.status")}
         </Paragraph>
         <Paragraph className=" text-[#334155] ml-[210px] text-[14px] leading-5 not-italic">
-          Due Date
+          {t("elementsStyles.dueDate")}
         </Paragraph>
       </Container>
-      {listDict.map((eachDetails) => (
-        <Container className="bg-white h-[48px] flex items-center flex-shrink-0 pl-5 pr-5 rounded-[12px] mb-1">
-          <eachDetails.icon />
-          <Paragraph className="ml-[20px] min-w-[200px] max-w-[200px] text-[#334155] text-[14px] leading-5 not-italic text-nowrap overflow-hidden">
-            {eachDetails.name}
-          </Paragraph>
 
-          <Container className="relative ml-[100px]">
-            <Container
-              onClick={() => updateOption(eachDetails.id)}
-              className="flex items-center w-[150px] cursor-pointer"
-            >
+      {listDict.length > 0 ? (
+        listDict.map((eachDetails) => (
+          <Container className="bg-white h-[48px] flex items-center flex-shrink-0 pl-5 pr-5 rounded-[12px] mb-1 hover:shadow-xl">
+            <eachDetails.icon />
+            <Paragraph className="ml-[20px] min-w-[200px] max-w-[200px] text-[#334155] text-[14px] leading-5 not-italic text-nowrap overflow-hidden">
+              {eachDetails.name}
+            </Paragraph>
+
+            <Container className="relative ml-[100px]">
               <Container
-                className={`rounded-full  ${
-                  labelColors[eachDetails.status].color
-                } w-2 h-2 mr-2`}
-              ></Container>
-              <Paragraph className=" text-[#334155] text-[14px] leading-5 not-italic">
-                {labelColors[eachDetails.status].label}
-              </Paragraph>
-              {option === eachDetails.id ? (
-                <IoIosArrowUp className="ml-auto" />
-              ) : (
-                <IoIosArrowDown className="ml-auto" />
+                id="listIndex"
+                onClick={() => updateListIndex(eachDetails.id)}
+                className="flex items-center w-[150px] cursor-pointer"
+              >
+                <Container
+                  id="listIndexColor"
+                  className={`rounded-full  ${
+                    labelColors[eachDetails.status].color
+                  } w-2 h-2 mr-2`}
+                ></Container>
+                <Paragraph
+                  id="listIndexTest"
+                  className=" text-[#334155] text-[14px] leading-5 not-italic"
+                >
+                  {labelColors[eachDetails.status].label}
+                </Paragraph>
+                {listIndex === eachDetails.id ? (
+                  <IoIosArrowUp className="ml-auto" />
+                ) : (
+                  <IoIosArrowDown className="ml-auto" />
+                )}
+              </Container>
+              {listIndex === eachDetails.id && (
+                <ListViewOptions
+                  dropdownOptions={dropdownOptions}
+                  updateStatus={updateStatus}
+                  eachDetails={eachDetails}
+                  labelColors={labelColors}
+                />
               )}
             </Container>
-            {option === eachDetails.id && (
-              <Container className="absolute z-[1] flex-shrink-0 bg-opacity-80 bg-white backdrop-blur-lg">
-                <Container className="inline-flex w-[150px] p-2 flex-col items-start gap-2 rounded-[6px] border border-[#CBD5E1] bg-white ">
-                  {dropdownOptions.map((eachOption) => (
+
+            <Container className="ml-[100px] gap-1 flex items-center text-[#64748B] text-[14px] leading-5 not-italic">
+              <MdOutlineTimer className="w-4 h-4" />
+              <Paragraph>
+                {customDateTimeCustomFormate(eachDetails.dueDate)}
+              </Paragraph>
+            </Container>
+            <div id="moreOptionsDetails" className="relative ml-auto">
+              <button
+                id="moreOptionsDetails"
+                onClick={() => updateMoreOptionListIndex(eachDetails.id)}
+              >
+                <BsThreeDots id="moreOptionIcon" />
+              </button>
+              {moreOptionListIndex === eachDetails.id && (
+                <Container className="absolute z-[1] flex-shrink-0 bg-opacity-80 bg-white backdrop-blur-lg mt-3">
+                  <Container className="inline-flex w-[85px] p-2 flex-col items-start gap-2 rounded-[6px] border border-[#CBD5E1] bg-white ">
                     <Container
-                      onClick={() =>
-                        updateStatus(eachDetails.id, eachOption.value)
-                      }
-                      id={eachOption.value}
-                      className={`${
-                        eachOption.value === eachDetails.status &&
-                        "bg-[#EFF6FF]"
-                      } w-[140px] rounded-lg flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-[#EFF6FF]`}
+                      id="editListDetails"
+                      className={` w-[70px] rounded-lg flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-[#EFF6FF]`}
                     >
-                      <Container
-                        id={eachOption.value}
-                        className={`rounded-full ${
-                          labelColors[eachOption.value].color
-                        }  w-5 h-2 mr-2`}
-                      ></Container>
                       <Button
-                        id={eachOption.value}
+                        id="editListDetails"
                         className="flex w-[260px] flex-col items-start gap-1"
+                        onClick={() => updateIsEditDetails(eachDetails.id)}
                       >
-                        {eachOption.label}
+                        {t("elementsStyles.edit")}
                       </Button>
                     </Container>
-                  ))}
+                    <Container
+                      id="deleteListDetails"
+                      className={` w-[70px] rounded-lg flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-[#EFF6FF]`}
+                    >
+                      <Button
+                        id="deleteListDetails"
+                        className="flex w-[260px] flex-col items-start gap-1"
+                        onClick={() => deleteListDetails(eachDetails.id)}
+                      >
+                        {t("elementsStyles.delete")}
+                      </Button>
+                    </Container>
+                  </Container>
                 </Container>
-              </Container>
-            )}
+              )}
+            </div>
           </Container>
-
-          <Container className="ml-[100px] gap-1 flex items-center text-[#64748B] text-[14px] leading-5 not-italic">
-            <MdOutlineTimer className="w-4 h-4" />
-            <Paragraph>{eachDetails.dueDate}</Paragraph>
-          </Container>
-          <BsThreeDots className="ml-auto" />
-        </Container>
-      ))}
+        ))
+      ) : (
+        <div className="flex justify-center items-center h-[300px] w-full bg-white">
+          <p>{t("elementsStyles.noDetailsFound")}</p>
+        </div>
+      )}
+      {isEditDetails > 0 && editDetailsView()}
     </Container>
   );
 };

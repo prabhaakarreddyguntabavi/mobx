@@ -1,6 +1,7 @@
 //@ts-nocheck
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { CiCircleChevDown } from "react-icons/ci";
 import { IoAddCircleOutline } from "react-icons/io5";
 
@@ -26,6 +27,8 @@ import { observer } from "mobx-react";
 import "../../tailwind.css";
 
 const ButtonStyles = (): JSX.Element => {
+  const { t } = useTranslation();
+
   const [buttonSize, updateButtonStyles] = useState<string>("small");
   const [buttonType, updateButtonType] = useState<string>("primary");
   const [isBisDisableButton, updateIsDisableButton] = useState<boolean>(false);
@@ -44,7 +47,7 @@ const ButtonStyles = (): JSX.Element => {
                 className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
                 htmlFor="addTransctionType"
               >
-                Button Size
+                {t("elementsStyles.buttonSize")}
               </ButtonStylesLabel>
               <ButtonStylesType
                 className="w-[80vw] md:w-[8vw] h-10 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white pr-22 text-gray-700 font-inter text-base font-normal"
@@ -53,9 +56,15 @@ const ButtonStyles = (): JSX.Element => {
                 value={buttonSize}
                 onChange={(event) => updateButtonStyles(event.target.value)}
               >
-                <ButtonStylesOptions value="small">Small</ButtonStylesOptions>
-                <ButtonStylesOptions value="medium">Medium</ButtonStylesOptions>
-                <ButtonStylesOptions value="large">Large</ButtonStylesOptions>
+                <ButtonStylesOptions value="small">
+                  {t("elementsStyles.small")}
+                </ButtonStylesOptions>
+                <ButtonStylesOptions value="medium">
+                  {t("elementsStyles.medium")}
+                </ButtonStylesOptions>
+                <ButtonStylesOptions value="large">
+                  {t("elementsStyles.large")}
+                </ButtonStylesOptions>
               </ButtonStylesType>
             </ButtonStylesInputContainer>
             <ButtonStylesInputContainer className="inline-flex flex-col items-start mx-6 mb-3">
@@ -63,7 +72,7 @@ const ButtonStyles = (): JSX.Element => {
                 className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
                 htmlFor="addTransctionType"
               >
-                Disable Button
+                {t("elementsStyles.disableButton")}
               </ButtonStylesLabel>
               <input
                 type="checkbox"
@@ -77,7 +86,7 @@ const ButtonStyles = (): JSX.Element => {
                 className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
                 htmlFor="addTransctionType"
               >
-                Button Type
+                {t("elementsStyles.buttonType")}
               </ButtonStylesLabel>
               <ButtonStylesType
                 className="w-[80vw] md:w-[8vw] h-10 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white pr-22 text-gray-700 font-inter text-base font-normal"
@@ -87,17 +96,17 @@ const ButtonStyles = (): JSX.Element => {
                 onChange={(event) => updateButtonType(event.target.value)}
               >
                 <ButtonStylesOptions value="primary">
-                  Primary
+                  {t("elementsStyles.primary")}
                 </ButtonStylesOptions>
                 <ButtonStylesOptions value="neutral">
-                  Neutral
+                  {t("elementsStyles.neutral")}
                 </ButtonStylesOptions>
                 <ButtonStylesOptions value="secondary">
-                  Secondary
+                  {t("elementsStyles.secondary")}
                 </ButtonStylesOptions>
                 <ButtonStylesOptions value="plain">Plain</ButtonStylesOptions>
                 <ButtonStylesOptions value="plain2">
-                  Plain 2
+                  {t("elementsStyles.plain2")}
                 </ButtonStylesOptions>
               </ButtonStylesType>
             </ButtonStylesInputContainer>
@@ -106,7 +115,7 @@ const ButtonStyles = (): JSX.Element => {
                 className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
                 htmlFor="addTransctionType"
               >
-                Is Loading View
+                {t("elementsStyles.isLoadingView")}
               </ButtonStylesLabel>
               <input
                 type="checkbox"

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { SelectOptions } from "../../types/buttonStyles";
@@ -20,6 +21,8 @@ const SelectElementWrap = (props: {
   isError: boolean;
 }) => {
   const { options, label, disable, isError } = props;
+
+  const { t } = useTranslation();
 
   const [selectedOption, setSelectedOption] = useState<SelectOptions>(
     options[0]
@@ -61,7 +64,8 @@ const SelectElementWrap = (props: {
 
       <SelectDropdownMainContainer className="w-[200px] flex flex-col justify-center ml-auto mr-auto ">
         <SelectDropdownSubContainer
-          className={`w-[200px] flex px-[7px] py-[10px] justify-between border ${
+          id="dropdownButton"
+          className={`w-[200px] flex px-[7px] py-[10px] justify-between border font-italic text-[18px] font-normal ${
             disable
               ? "border-[#CBD5E1] bg-[#F1F5F9] text-[#94A3B8]"
               : "text-[#0F172A]"
@@ -70,9 +74,7 @@ const SelectElementWrap = (props: {
           } rounded-[8px] cursor-pointer hover:border-[#94A3B8] focus:border-[#2563EB] focus:border-solid focus:drop-shadow-[0_1px_2px_0px_rgba(0,0,0,0.08)] focus:shadow`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <Paragraph className="flex font-italic text-[18px] font-normal">
-            {selectedOption ? `${selectedOption.label}` : "Select an option"}
-          </Paragraph>
+          {selectedOption ? `${selectedOption.label}` : "Select an option"}
           {isOpen && !disable ? (
             <FaChevronUp className="mt-auto mb-auto" />
           ) : (
@@ -82,7 +84,7 @@ const SelectElementWrap = (props: {
         {isOpen && !disable && (
           <SelectDropdownOptionMainContainer
             id="dropdownOptions"
-            className="flex flex-col items-start gap-[4px] w-[200px] p-[8px] rounded-[8px] border border-solid border-[#CBD5E1] bg-white shadow-[0px 4px 6px -1px]"
+            className="flex flex-col z-[1] items-start gap-[4px] w-[200px] p-[8px] rounded-[8px] border border-solid border-[#CBD5E1] bg-white shadow-[0px 4px 6px -1px]"
           >
             {options.map((option) => (
               <SelectDropdownOptionSubContainer
@@ -114,7 +116,7 @@ const SelectElementWrap = (props: {
         )}
         {isError && (
           <Paragraph className="text-[12px] mt-2 font-400 text-[#DC2626]">
-            Mandatory fields
+            {t("elementsStyles.mandatoryFields")}
           </Paragraph>
         )}
       </SelectDropdownMainContainer>

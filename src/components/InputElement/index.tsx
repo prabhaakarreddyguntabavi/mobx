@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MdOutlineEmail } from "react-icons/md";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 
@@ -28,6 +29,8 @@ import {
 } from "./styledComponents";
 
 const InputElement = () => {
+  const { t } = useTranslation();
+
   const [isDisable, updateIsDisable] = useState<boolean>(false);
   const [helpText, updateHelpText] = useState<boolean>(false);
 
@@ -44,7 +47,7 @@ const InputElement = () => {
                   className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
                   htmlFor="addTransctionType"
                 >
-                  Disable Input
+                  {t("elementsStyles.disableInput")}
                 </CheckBoxLabel>
                 <CheckBoxInput
                   type="checkbox"
@@ -59,7 +62,7 @@ const InputElement = () => {
                   className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
                   htmlFor="addTransctionType"
                 >
-                  Show Help Text
+                  {t("elementsStyles.showHelpText")}
                 </CheckBoxLabel>
                 <CheckBoxInput
                   type="checkbox"

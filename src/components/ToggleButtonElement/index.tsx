@@ -1,5 +1,6 @@
 import { observer } from "mobx-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import ToggleElementWrap from "../ToggleElementWrap";
 import {
   CheckBoxInputContainer,
@@ -11,6 +12,8 @@ import {
 } from "./styledComponents";
 
 const ToggleButtonElement = () => {
+  const { t } = useTranslation();
+
   const [disable, updateDisable] = useState<boolean>(false);
   const [withIcon, updateWithIcon] = useState<boolean>(false);
   const [type, updateType] = useState<string>("simple");
@@ -22,7 +25,7 @@ const ToggleButtonElement = () => {
           className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
           htmlFor="addTransctionType"
         >
-          Disable
+          {t("elementsStyles.disable")}
         </CheckBoxLabel>
         <CheckBoxInput
           type="checkbox"
@@ -36,7 +39,7 @@ const ToggleButtonElement = () => {
           className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
           htmlFor="addTransctionType"
         >
-          With Icon
+          {t("elementsStyles.withIcon")}
         </CheckBoxLabel>
         <CheckBoxInput
           type="checkbox"
@@ -51,7 +54,7 @@ const ToggleButtonElement = () => {
           className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
           htmlFor="addTransctionType"
         >
-          Toggle Size
+          {t("elementsStyles.toggleSize")}
         </CheckBoxLabel>
         <SelectType
           className="w-[80vw] md:w-[8vw] h-10 flex-shrink-0 rounded-lg border border-solid border-gray-300 bg-white pr-22 text-gray-700 font-inter text-base font-normal"
@@ -60,8 +63,12 @@ const ToggleButtonElement = () => {
           value={type}
           onChange={(event: any) => updateType(event.target.value)}
         >
-          <SelectOptions value="simple">Simple</SelectOptions>
-          <SelectOptions value="short">Short</SelectOptions>
+          <SelectOptions value="simple">
+            {t("elementsStyles.simple")}
+          </SelectOptions>
+          <SelectOptions value="short">
+            {t("elementsStyles.short")}
+          </SelectOptions>
         </SelectType>
       </ToggleButtonContainer>
       <ToggleElementWrap

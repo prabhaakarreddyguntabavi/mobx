@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { options } from "../../constants/commonConstants";
 
 import SelectElementWrap from "../SelectElementWrap";
@@ -10,6 +11,8 @@ import {
 } from "./styledComponents";
 
 const CustomSelector = () => {
+  const { t } = useTranslation();
+
   const [disable, updateDisable] = useState<boolean>(false);
   const [isError, updateIsError] = useState<boolean>(false);
 
@@ -20,7 +23,7 @@ const CustomSelector = () => {
           className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
           htmlFor="addTransctionType"
         >
-          Disable
+          {t("elementsStyles.disable")}
         </CheckBoxLabel>
         <CheckBoxInput
           type="checkbox"
@@ -34,7 +37,7 @@ const CustomSelector = () => {
           className="text-[#505887] font-serif text-base not-italic font-normal leading-normal"
           htmlFor="addTransctionType"
         >
-          Is Error Message
+          {t("elementsStyles.isErrorMessage")}
         </CheckBoxLabel>
         <CheckBoxInput
           type="checkbox"

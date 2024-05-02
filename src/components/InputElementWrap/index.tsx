@@ -1,6 +1,7 @@
 import { PropsValues } from "../../types/inputStyles";
 import { observer } from "mobx-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   InputElementSubContainer,
@@ -18,6 +19,8 @@ const InputElementWrap = (props: PropsValues) => {
     helpText,
     isDisable,
   } = props;
+
+  const { t } = useTranslation();
 
   const [inputValue, setInputValue] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
@@ -76,14 +79,14 @@ const InputElementWrap = (props: PropsValues) => {
             isDisable && "hidden"
           } text-[#F87171] font-normal font-inter text-xs leading-4 mt-2`}
         >
-          Please Enter
+          {t("elementsStyles.pleaseEnter")}
         </Paragraph>
         <Paragraph
           className={`${
             helpText ? "block" : "hidden"
           } text-[#334155] font-normal font-inter text-xs leading-4 mt-2`}
         >
-          Help Test
+          {t("elementsStyles.helpTest")}
         </Paragraph>
       </>
     </>

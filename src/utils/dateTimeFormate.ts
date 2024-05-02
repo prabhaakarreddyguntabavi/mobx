@@ -55,3 +55,35 @@ export const dateTimeCustomFormate = (date: string): string => {
 
   return formattedDate;
 };
+
+export const customDateTimeCustomFormate = (date: string): string => {
+  const inputDateString: string = date;
+  const inputDate: Date = new Date(inputDateString);
+
+  const monthNames: string[] = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const year: number = inputDate.getFullYear();
+  const month: string = monthNames[inputDate.getMonth()];
+  const day: number = inputDate.getDate();
+  const hours: number = inputDate.getHours();
+  const minutes: number = inputDate.getMinutes();
+
+  const formattedDate: string = `${day} ${month} ${year} - ${
+    hours % 12
+  }:${minutes}`;
+
+  return formattedDate;
+};

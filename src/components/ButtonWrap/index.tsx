@@ -1,4 +1,5 @@
 import { ButtonStyles } from "./styledComponents";
+import { useTranslation } from "react-i18next";
 import ReactLoading from "react-loading";
 import { ButtonPropsValueTypes } from "../../types/buttonStyles";
 import { observer } from "mobx-react";
@@ -11,6 +12,8 @@ const ButtonWrap = (props: ButtonPropsValueTypes) => {
     isButtonDisabled,
     isLoading,
   } = props;
+
+  const { t } = useTranslation();
 
   return (
     <ButtonStyles
@@ -28,7 +31,7 @@ const ButtonWrap = (props: ButtonPropsValueTypes) => {
       ) : (
         <>
           {LeftIcon && <LeftIcon />}
-          Button
+          {t("elementsStyles.button")}
           {RightIcon && <RightIcon />}
         </>
       )}

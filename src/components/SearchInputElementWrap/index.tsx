@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { SelectOptions } from "../../types/buttonStyles";
@@ -21,6 +22,8 @@ const SearchInputElementWrap = (props: {
   isError: boolean;
 }) => {
   const { options, label, disable, isError } = props;
+
+  const { t } = useTranslation();
 
   const [selectedOption, setSelectedOption] = useState<SelectOptions>({
     label: "",
@@ -70,10 +73,12 @@ const SearchInputElementWrap = (props: {
 
       <SelectDropdownMainContainer className="w-[200px] flex flex-col justify-center ml-auto mr-auto ">
         <SelectDropdownSubContainer
-          className={`relative flex w-64`}
+          id="searchElementContainer"
+          className="relative flex w-64"
           onClick={() => setIsOpen(!isOpen)}
         >
           <InputElement
+            id="searchInputElement"
             type="text"
             value={searchResult}
             placeholder="Select"
@@ -83,7 +88,10 @@ const SearchInputElementWrap = (props: {
             onChange={(event) => setSearchResult(event.target.value)}
             disabled={disable}
           />
-          <Container className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <Container
+            id="searchInputIconElement"
+            className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+          >
             {isOpen && !disable ? (
               <FaChevronUp
                 className={`mt-auto mb-auto ${isError && "text-[#DC2626]"}  ${
@@ -102,7 +110,7 @@ const SearchInputElementWrap = (props: {
         {isOpen && !disable && (
           <SelectDropdownOptionMainContainer
             id="dropdownOptions"
-            className="flex flex-col items-start gap-[4px] w-64 p-[8px] rounded-[8px] border border-solid border-[#CBD5E1] bg-white shadow-[0px 4px 6px -1px]"
+            className="flex flex-col z-[1] items-start gap-[4px] w-64 p-[8px] rounded-[8px] border border-solid border-[#CBD5E1] bg-white shadow-[0px 4px 6px -1px]"
           >
             {searchResultDict.map((option) => (
               <SelectDropdownOptionSubContainer
@@ -131,13 +139,15 @@ const SearchInputElementWrap = (props: {
               </SelectDropdownOptionSubContainer>
             ))}
             {searchResultDict.length === 0 && (
-              <Paragraph className="text-[#94A3B8]">No Result Found</Paragraph>
+              <Paragraph className="text-[#94A3B8]">
+                {t("elementsStyles.noResultFound")}
+              </Paragraph>
             )}
           </SelectDropdownOptionMainContainer>
         )}
         {isError && !disable && (
           <Paragraph className="text-[12px] mt-2 font-400 text-[#DC2626]">
-            Mandatory fields
+            {t("elementsStyles.mandatoryFields")}
           </Paragraph>
         )}
       </SelectDropdownMainContainer>
