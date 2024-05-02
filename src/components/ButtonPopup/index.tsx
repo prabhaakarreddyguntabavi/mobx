@@ -30,7 +30,7 @@ const ButtonPopup = () => {
         </Button>
       </MainContainer>
       {isPopupOpen && (
-        <PopupMainContainer className="flex w-[100%] h-[100%] flex-shrink-0 bg-opacity-80 fixed top-0 left-0 bg-[#475569] backdrop-blur-lg  m-0 justify-end items-end">
+        <PopupMainContainer className="flex w-[100%] h-[100%] z-[1] flex-shrink-0 bg-opacity-80 fixed top-0 left-0 bg-[#475569] backdrop-blur-lg  m-0 justify-end items-end">
           <div
             onClick={() => updateIsPopupOpen(!isPopupOpen)}
             className="absolute inset-x-0 top-0 h-2/4 flex items-center pt-2 "

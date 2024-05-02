@@ -38,10 +38,10 @@ const dropdownOptions = [
 ];
 
 const labelColors: LabelColors = {
-  toDo: { color: "bg-[#444FD0]", label: "To Do" },
-  inProgress: { color: "bg-[#CAD044]", label: "In Progress" },
-  inReview: { color: "bg-[#9944D0]", label: "In Review" },
-  done: { color: "bg-[#7FFF00]", label: "Done" },
+  toDo: { color: "bg-[#0284C7]", label: "To Do" },
+  inProgress: { color: "bg-[#EA580C]", label: "In Progress" },
+  inReview: { color: "bg-[#4F46E5]", label: "In Review" },
+  done: { color: "bg-[#16A34A]", label: "Done" },
   reject: { color: "bg-[#D31350]", label: "Reject" },
 };
 
@@ -86,10 +86,21 @@ const ListViewElementWrap = (props: PropsValues) => {
 
   return (
     <div className="w-full min-h-full bg-[#F1F5F9] p-[50px]">
+      <div className="flex mb-2">
+        <p className=" text-[#334155] ml-[60px] text-[14px] leading-5 not-italic">
+          Name
+        </p>
+        <p className=" text-[#334155] ml-[260px] text-[14px] leading-5 not-italic">
+          Status
+        </p>
+        <p className=" text-[#334155] ml-[210px] text-[14px] leading-5 not-italic">
+          Due Date
+        </p>
+      </div>
       {listDict.map((eachDetails) => (
         <div className="bg-white h-[48px] flex items-center flex-shrink-0 pl-5 pr-5 rounded-[12px] mb-1">
           <eachDetails.icon />
-          <p className="ml-[20px] text-[#334155] text-[14px] leading-5 not-italic">
+          <p className="ml-[20px] min-w-[200px] max-w-[200px] text-[#334155] text-[14px] leading-5 not-italic text-nowrap overflow-hidden">
             {eachDetails.name}
           </p>
 
@@ -106,10 +117,14 @@ const ListViewElementWrap = (props: PropsValues) => {
               <p className=" text-[#334155] text-[14px] leading-5 not-italic">
                 {labelColors[eachDetails.status].label}
               </p>
-              <IoIosArrowDown className="ml-auto" />
+              {option === eachDetails.id ? (
+                <IoIosArrowUp className="ml-auto" />
+              ) : (
+                <IoIosArrowDown className="ml-auto" />
+              )}
             </div>
             {option === eachDetails.id && (
-              <div className="absolute z-10 flex-shrink-0 bg-opacity-80 bg-white backdrop-blur-lg">
+              <div className="absolute z-[1] flex-shrink-0 bg-opacity-80 bg-white backdrop-blur-lg">
                 <Container className="inline-flex w-[150px] p-2 flex-col items-start gap-2 rounded-[6px] border border-[#CBD5E1] bg-white ">
                   {dropdownOptions.map((eachOption) => (
                     <Container
@@ -119,8 +134,8 @@ const ListViewElementWrap = (props: PropsValues) => {
                       id={eachOption.value}
                       className={`${
                         eachOption.value === eachDetails.status &&
-                        "bg-[#74B3F1]"
-                      } w-[140px] rounded-lg flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-[#74B3F1]`}
+                        "bg-[#EFF6FF]"
+                      } w-[140px] rounded-lg flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-[#EFF6FF]`}
                     >
                       <div
                         id={eachOption.value}
