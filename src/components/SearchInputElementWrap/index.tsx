@@ -4,6 +4,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { SelectOptions } from "../../types/buttonStyles";
 import { TiTick } from "react-icons/ti";
+import { FaPlus } from "react-icons/fa6";
 
 import { SearchInputElementWrapProps } from "../../types/inputStyles";
 
@@ -15,6 +16,7 @@ import {
   Paragraph,
   Container,
   InputElement,
+  Button,
 } from "./styledComponents";
 
 const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
@@ -26,6 +28,8 @@ const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
     label: "",
     value: "",
   });
+  const [allOption, setAllOption] = useState<SelectOptions[]>(options);
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const [searchResult, setSearchResult] = useState<string>("");
@@ -58,7 +62,22 @@ const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
     setIsOpen(false);
   };
 
-  const searchResultDict = options.filter((value) =>
+  const searchResultOptions = allOption.filter(
+    (eachOption) =>
+      eachOption.label!.toLowerCase() === searchResult.toLowerCase()
+  );
+
+  const addOption = () => {
+    const newOption: SelectOptions = {
+      label: searchResult,
+      value: searchResult.replace(" ", "").toLocaleLowerCase(),
+    };
+
+    setAllOption([...allOption, newOption]);
+    setSelectedOption(newOption);
+  };
+
+  const searchResultDict = allOption.filter((value) =>
     value.value!.startsWith(searchResult.toLocaleLowerCase())
   );
 
@@ -107,7 +126,7 @@ const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
         {isOpen && !disable && (
           <SelectDropdownOptionMainContainer
             id="dropdownOptions"
-            className="flex flex-col z-[1] items-start gap-[4px] w-64 p-[8px] rounded-[8px] border border-solid border-[#CBD5E1] bg-white shadow-[0px 4px 6px -1px]"
+            className="flex flex-col z-[1] max-h-[20vh] overflow-y-scroll items-start gap-[4px] w-64 p-[8px] rounded-[8px] border border-solid border-[#CBD5E1] bg-white shadow-[0px 4px 6px -1px]"
           >
             {searchResultDict.map((option) => (
               <SelectDropdownOptionSubContainer
@@ -116,7 +135,7 @@ const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
                   handleOptionClick(option);
                 }}
                 key={option.value}
-                className={`flex w-[240px] pl-[6px] pr-[8px] pt-[6px] pb-[8px] ${
+                className={`flex w-[220px] pl-[6px] pr-[8px] pt-[6px] pb-[8px] ${
                   selectedOption.value === option.value &&
                   "bg-[#EFF6FF] rounded-[8px]"
                 } hover:bg-[#EFF6FF] hover:rounded-[8px] cursor-pointer`}
@@ -139,6 +158,33 @@ const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
               <Paragraph className="text-[#94A3B8]">
                 {t("elementsStyles.noResultFound")}
               </Paragraph>
+            )}
+
+            {searchResultOptions.length === 0 && searchResult !== "" && (
+              <>
+                <hr className="border self-stretch" />
+                <Container id="1">
+                  <Button
+                    id="2"
+                    className="text-[#64748B]  overflow-hidden  max-w-[200px] flex items-center "
+                    onClick={() => addOption()}
+                  >
+                    {t("elementsStyles.createNew")}{" "}
+                    <Container
+                      id="3"
+                      className="flex border border-[#2563EB] text-[#2563EB] items-center gap-1 py-1 px-2 ml-1 rounded-[6px]"
+                    >
+                      <Paragraph
+                        id="4"
+                        className=" max-w-[60px] overflow-hidden"
+                      >
+                        {searchResult}
+                      </Paragraph>
+                      <FaPlus id="5" />
+                    </Container>
+                  </Button>
+                </Container>
+              </>
             )}
           </SelectDropdownOptionMainContainer>
         )}

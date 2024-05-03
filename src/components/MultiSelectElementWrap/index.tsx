@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
+import { FaPlus } from "react-icons/fa6";
 
 import { SelectOptions } from "../../types/buttonStyles";
 import { TiTick } from "react-icons/ti";
@@ -28,6 +29,8 @@ const MultiSelectElementWrap = (props: {
   const { t } = useTranslation();
 
   const [selectedOptions, setSelectedOptions] = useState<SelectOptions[]>([]);
+  const [allOptions, setAllOptions] = useState<SelectOptions[]>(options);
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [searchResult, setSearchResult] = useState<string>("");
 
@@ -53,6 +56,21 @@ const MultiSelectElementWrap = (props: {
     };
   }, []);
 
+  const searchResultOptions = allOptions.filter(
+    (eachOption) =>
+      eachOption.label!.toLowerCase() === searchResult.toLowerCase()
+  );
+
+  const addOption = () => {
+    const newOption: SelectOptions = {
+      label: searchResult,
+      value: searchResult.replace(" ", "").toLocaleLowerCase(),
+    };
+
+    setAllOptions([...allOptions, newOption]);
+    setSelectedOptions([...selectedOptions, newOption]);
+  };
+
   const handleOptionClick = (option: SelectOptions) => {
     let allOptions = [...selectedOptions, option];
     if (selectedOptions.includes(option)) {
@@ -74,7 +92,7 @@ const MultiSelectElementWrap = (props: {
     }
   };
 
-  const searchResultDict = options.filter((value) =>
+  const searchResultDict = allOptions.filter((value) =>
     value.value!.startsWith(searchResult.toLocaleLowerCase())
   );
 
@@ -112,7 +130,10 @@ const MultiSelectElementWrap = (props: {
             className={`flex w-64 px-[7px] py-[10px] pr-8 justify-between border rounded-[8px] cursor-pointer ${
               isError && "border-[#DC2626] text-[#DC2626]"
             } hover:border-[#94A3B8] text-Light-blue-gray-900 font-normal font-inter text-sm leading-5 w-full border rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-[#2563EB] active:border-[#2563EB] disabled:border-[#CBD5E1] disabled:bg-[#F1F5F9] disabled:text-[#94A3B8]`}
-            onChange={(event) => setSearchResult(event.target.value)}
+            onChange={(event) => {
+              setSearchResult(event.target.value);
+              setIsOpen(true);
+            }}
             disabled={disable}
           />
           <Container
@@ -169,6 +190,33 @@ const MultiSelectElementWrap = (props: {
               <Paragraph className="text-[#94A3B8]">
                 {t("elementsStyles.noResultFound")}
               </Paragraph>
+            )}
+
+            {searchResultOptions.length === 0 && searchResult !== "" && (
+              <>
+                <hr className="border self-stretch" />
+                <Container id="1">
+                  <Button
+                    id="2"
+                    className="text-[#64748B]  overflow-hidden  max-w-[200px] flex items-center "
+                    onClick={() => addOption()}
+                  >
+                    {t("elementsStyles.createNew")}{" "}
+                    <Container
+                      id="3"
+                      className="flex border border-[#2563EB] text-[#2563EB] items-center gap-1 py-1 px-2 ml-1 rounded-[6px]"
+                    >
+                      <Paragraph
+                        id="4"
+                        className=" max-w-[60px] overflow-hidden"
+                      >
+                        {searchResult}
+                      </Paragraph>
+                      <FaPlus id="5" />
+                    </Container>
+                  </Button>
+                </Container>
+              </>
             )}
           </SelectDropdownOptionMainContainer>
         )}

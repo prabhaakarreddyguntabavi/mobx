@@ -13,3 +13,5 @@ export const SelectDropdownOptionSubContainer = styled.button``;
 export const Paragraph = styled.p``;
 
 export const InputElement = styled.input``;
+
+export const Button = styled.button``;

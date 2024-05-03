@@ -145,6 +145,7 @@ i18n
             short: "Short",
             max30characters: "max 30 characters",
             pleaseFillTheField: "Please Fill The Field",
+            createNew: "Create New",
           },
         },
         // {t("elementsStyles.isLoadingView")}
@@ -281,6 +282,7 @@ i18n
             short: "పొట్టి",
             max30characters: "గరిష్టంగా 30 అక్షరాలు",
             pleaseFillTheField: "దయచేసి ఫీల్డ్‌ని పూరించండి",
+            createNew: "క్రొత్తదాన్ని సృష్టించండి",
           },
         },
       },
@@ -416,6 +418,7 @@ i18n
             short: "छोटा",
             max30characters: "अधिकतम 30 अक्षर",
             pleaseFillTheField: "कृपया फ़ील्ड भरें",
+            createNew: "नया निर्माण",
           },
         },
       },
