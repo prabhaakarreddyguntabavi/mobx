@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Popup from "reactjs-popup";
 import Cookies from "js-cookie";
+import { observer } from "mobx-react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
@@ -43,8 +44,6 @@ import {
 } from "./styledComponents";
 
 import "./index.css";
-import { observer } from "mobx-react";
-import "../../tailwind.css";
 
 const SideBar = (): JSX.Element => {
   const { t } = useTranslation();

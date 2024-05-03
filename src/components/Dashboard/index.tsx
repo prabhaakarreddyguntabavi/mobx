@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { observer } from "mobx-react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import TransactionContext from "../../context/TransactionContext";
 import { setJwtToken } from "../../utils/jwtToken";
@@ -17,10 +18,6 @@ import {
   LastTransaction,
   BarChartContainer,
 } from "./styledComponents";
-import { observer } from "mobx-react";
-
-// import "./styles/tailwind.css";
-import "../../tailwind.css";
 
 const Dashboard = (): JSX.Element => {
   const { t } = useTranslation();

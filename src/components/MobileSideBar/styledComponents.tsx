@@ -7,10 +7,7 @@ interface TextParagraphProps {
 export const SideBarMainContainer = styled.div``;
 export const IconsImage = styled.img``;
 
-export const TransactionIconsImage = styled.img`
-  // width: 25px;
-  // height: 25px;
-`;
+export const TransactionIconsImage = styled.img``;
 
 export const TextParagraph = styled.p<TextParagraphProps>`
   color: ${(props: any) =>

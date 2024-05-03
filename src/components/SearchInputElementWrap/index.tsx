@@ -5,6 +5,8 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { SelectOptions } from "../../types/buttonStyles";
 import { TiTick } from "react-icons/ti";
 
+import { SearchInputElementWrapProps } from "../../types/inputStyles";
+
 import {
   SelectDropdownMainContainer,
   SelectDropdownSubContainer,
@@ -15,12 +17,7 @@ import {
   InputElement,
 } from "./styledComponents";
 
-const SearchInputElementWrap = (props: {
-  options: SelectOptions[];
-  label: string;
-  disable: boolean;
-  isError: boolean;
-}) => {
+const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
   const { options, label, disable, isError } = props;
 
   const { t } = useTranslation();

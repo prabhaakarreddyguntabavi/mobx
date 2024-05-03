@@ -1,10 +1,12 @@
 import Popup from "reactjs-popup";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
-import UpdateTransaction from "../UpdateTransaction";
-import DeleteTransaction from "../DeleteTransaction";
+
 import { PropsValues } from "../../types/transactionsTypes";
 import { dateTimeCustomFormate } from "../../utils/dateTimeFormate";
+
+import UpdateTransaction from "../UpdateTransaction";
+import DeleteTransaction from "../DeleteTransaction";
 
 import {
   DashTransactionContainer,

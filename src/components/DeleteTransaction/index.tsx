@@ -1,5 +1,8 @@
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { observer } from "mobx-react";
+import { DeleteTransactionPropsValue } from "../../types/transactionsTypes";
+import TransactionContext from "../../context/TransactionContext";
 
 import {
   LogoutConformationContainer,
@@ -15,9 +18,6 @@ import {
   CancelLogoutButton,
   YesLogoutButton,
 } from "./styledComponents";
-import TransactionContext from "../../context/TransactionContext";
-import { observer } from "mobx-react";
-import { DeleteTransactionPropsValue } from "../../types/transactionsTypes";
 
 const UpdateTransaction = (props: DeleteTransactionPropsValue): JSX.Element => {
   const { id, close }: DeleteTransactionPropsValue = props;

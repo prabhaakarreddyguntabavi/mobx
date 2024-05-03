@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { DetailsView } from "../../types/inputStyles";
 import { setTimeFormate } from "../../utils/dateTimeFormate";
 import { MdClose } from "react-icons/md";
+import { dropdownOptions } from "../../constants/commonConstants";
+import { ListViewEditProps } from "../../types/inputStyles";
 
 import {
   Container,
@@ -13,13 +14,8 @@ import {
   Button,
   Heading,
   FormContainer,
+  Paragraph,
 } from "./styledComponents";
-
-interface ListViewEditProps {
-  listDetails: DetailsView;
-  updateEditDetails: (listDetails: DetailsView) => void;
-  updateIsEditDetails: (id: number) => void;
-}
 
 const ListViewEditDetails = (props: ListViewEditProps) => {
   const { updateEditDetails, listDetails, updateIsEditDetails } = props;
@@ -29,14 +25,6 @@ const ListViewEditDetails = (props: ListViewEditProps) => {
   const [name, updateName] = useState<string>(listDetails.name);
   const [status, updateStatus] = useState<string>(listDetails.status);
   const [date, updateDate] = useState<string>(listDetails.dueDate);
-
-  const dropdownOptions = [
-    { label: "To Do", value: "toDo" },
-    { label: "In Progress", value: "inProgress" },
-    { label: "In Review", value: "inReview" },
-    { label: "Done", value: "done" },
-    { label: "Reject", value: "reject" },
-  ];
 
   const updateListDetails = () => {
     const listDetail = {
@@ -58,7 +46,7 @@ const ListViewEditDetails = (props: ListViewEditProps) => {
         onSubmit={() => {
           updateListDetails();
         }}
-        className="w-[90vw] pb-[10px] md:w-[42%] lg:w-[32%] flex-shrink-0 rounded-xl bg-white m-auto px-[20px] pt-[10px]"
+        className="w-[90vw] pb-[10px] md:w-[42%] lg:w-[32%] flex-shrink-0 rounded-xl bg-white m-auto px-[20px] pt-[10px] gap-2"
       >
         <Container className="flex">
           <Heading className="text-[25px]">
@@ -75,9 +63,6 @@ const ListViewEditDetails = (props: ListViewEditProps) => {
           >
             {t("elementsStyles.name")}
           </Label>
-          <p className="text-[12px] text-[#505887] font-inter font-normal">
-            (max 30 characters)
-          </p>
           <InputElement
             className="w-[80vw] md:w-[28vw]  h-11 flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
             required
@@ -88,10 +73,16 @@ const ListViewEditDetails = (props: ListViewEditProps) => {
             placeholder="Enter Name"
             maxLength={30}
           />
-          {name.length >= 30 && (
-            <p className="text-[12px] text-red-400 font-inter font-normal">
-              (max 30 characters)
-            </p>
+          {name.length <= 30 && name.length !== 0 && (
+            <Paragraph className="text-[12px] text-black font-inter font-normal">
+              {t("elementsStyles.max30characters")}
+            </Paragraph>
+          )}
+
+          {name.length === 0 && (
+            <Paragraph className="text-[12px] text-red-400 font-inter font-normal">
+              {t("elementsStyles.pleaseFillTheField")}
+            </Paragraph>
           )}
         </Container>
         <Container className="inline-flex flex-col items-start mb-3">
@@ -102,7 +93,7 @@ const ListViewEditDetails = (props: ListViewEditProps) => {
             {t("elementsStyles.status")}
           </Label>
           <SelectElement
-            className="w-[80vw] md:w-[28vw]  h-11 flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white pr-[22px] text-[#718ebf] font-inter text-base"
+            className="w-[80vw] md:w-[28vw]  h-11 flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white pr-[22px] text-[#0f151f] font-inter text-base cursor-pointer "
             required
             id="UpdateType"
             value={status}
@@ -133,12 +124,12 @@ const ListViewEditDetails = (props: ListViewEditProps) => {
             maxLength={30}
           />
         </Container>
-        <button
+        <Button
           className="flex w-[95%] p-2 mb-2 justify-center items-center gap-4 rounded-lg bg-blue-600 border-0 text-white font-inter text-base md:text-lg cursor-pointer"
           type="submit"
         >
           {t("elementsStyles.updateDetails")}
-        </button>
+        </Button>
       </FormContainer>
     </Container>
   );

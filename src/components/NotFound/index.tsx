@@ -1,5 +1,6 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { observer } from "mobx-react";
 
 import {
   NotFoundContainer,
@@ -8,7 +9,6 @@ import {
   NotFoundParagraph,
   BackToHomePage,
 } from "./styledComponents";
-import { observer } from "mobx-react";
 
 const NotFound = (): JSX.Element => {
   const { t } = useTranslation();

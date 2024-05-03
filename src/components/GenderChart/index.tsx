@@ -34,11 +34,11 @@ import {
 
 const GenderChart = (): JSX.Element => {
   const { t } = useTranslation();
+
   const transactionStore = useContext(TransactionContext);
   const { isUserAdmin, userId, totalTransactionDetails } = transactionStore;
 
   const [reRender, updateValue] = useState<string>();
-
   const [apiResponse, setApiResponse] = useState<ApiStatusAndData>({
     status: apiStatusConstants.initial,
     data: [],
@@ -84,6 +84,7 @@ const GenderChart = (): JSX.Element => {
         method: "GET",
         headers: headers,
       };
+
       const response: Response = await fetch(url, options);
       const responseData: OutPutObject = await response.json();
 

@@ -24,6 +24,7 @@ import {
 
 const LoginForm = (): JSX.Element => {
   const { t } = useTranslation();
+
   const transactionStore = useContext(TransactionContext);
   const jwtToken = setJwtToken();
   const { userDict } = transactionStore;

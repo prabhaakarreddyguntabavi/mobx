@@ -12,6 +12,7 @@ import ListViewOptions from "../ListViewOptions";
 import ListViewEditDetails from "../ListViewEditDetails";
 import { Button, Container, Paragraph } from "./styledComponents";
 import { DetailsView, ListViewPropsValues } from "../../types/inputStyles";
+import ListViewMoreOptions from "../ListViewMoreOptions";
 
 const ListViewElementWrap = (props: ListViewPropsValues) => {
   const { detailsList } = props;
@@ -110,13 +111,13 @@ const ListViewElementWrap = (props: ListViewPropsValues) => {
   return (
     <Container className="w-full min-h-full bg-[#F1F5F9] p-[50px]">
       <Container className="flex mb-2">
-        <Paragraph className=" text-[#334155] w-[90px] ml-[60px] text-[14px] leading-5 not-italic">
+        <Paragraph className=" text-[#334155] w-[30.5%] ml-[60px] text-[14px] leading-5 not-italic">
           {t("elementsStyles.name")}
         </Paragraph>
-        <Paragraph className=" text-[#334155] ml-[260px] text-[14px] leading-5 not-italic">
+        <Paragraph className=" text-[#334155] w-[26.5%] text-[14px] leading-5 not-italic">
           {t("elementsStyles.status")}
         </Paragraph>
-        <Paragraph className=" text-[#334155] ml-[210px] text-[14px] leading-5 not-italic">
+        <Paragraph className=" text-[#334155]  text-[14px] leading-5 not-italic">
           {t("elementsStyles.dueDate")}
         </Paragraph>
       </Container>
@@ -169,50 +170,27 @@ const ListViewElementWrap = (props: ListViewPropsValues) => {
                 {customDateTimeCustomFormate(eachDetails.dueDate)}
               </Paragraph>
             </Container>
-            <div id="moreOptionsDetails" className="relative ml-auto">
-              <button
+            <Container id="moreOptionsDetails" className="relative ml-auto">
+              <Button
                 id="moreOptionsDetails"
                 onClick={() => updateMoreOptionListIndex(eachDetails.id)}
               >
                 <BsThreeDots id="moreOptionIcon" />
-              </button>
+              </Button>
               {moreOptionListIndex === eachDetails.id && (
-                <Container className="absolute z-[1] flex-shrink-0 bg-opacity-80 bg-white backdrop-blur-lg mt-3">
-                  <Container className="inline-flex w-[85px] p-2 flex-col items-start gap-2 rounded-[6px] border border-[#CBD5E1] bg-white ">
-                    <Container
-                      id="editListDetails"
-                      className={` w-[70px] rounded-lg flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-[#EFF6FF]`}
-                    >
-                      <Button
-                        id="editListDetails"
-                        className="flex w-[260px] flex-col items-start gap-1"
-                        onClick={() => updateIsEditDetails(eachDetails.id)}
-                      >
-                        {t("elementsStyles.edit")}
-                      </Button>
-                    </Container>
-                    <Container
-                      id="deleteListDetails"
-                      className={` w-[70px] rounded-lg flex items-center gap-2 py-[6px] pl-[6px] pr-[8px] hover:bg-[#EFF6FF]`}
-                    >
-                      <Button
-                        id="deleteListDetails"
-                        className="flex w-[260px] flex-col items-start gap-1"
-                        onClick={() => deleteListDetails(eachDetails.id)}
-                      >
-                        {t("elementsStyles.delete")}
-                      </Button>
-                    </Container>
-                  </Container>
-                </Container>
+                <ListViewMoreOptions
+                  id={eachDetails.id}
+                  updateIsEditDetails={updateIsEditDetails}
+                  deleteListDetails={deleteListDetails}
+                />
               )}
-            </div>
+            </Container>
           </Container>
         ))
       ) : (
-        <div className="flex justify-center items-center h-[300px] w-full bg-white">
-          <p>{t("elementsStyles.noDetailsFound")}</p>
-        </div>
+        <Container className="flex justify-center items-center h-[300px] w-full bg-white">
+          <Paragraph>{t("elementsStyles.noDetailsFound")}</Paragraph>
+        </Container>
       )}
       {isEditDetails > 0 && editDetailsView()}
     </Container>

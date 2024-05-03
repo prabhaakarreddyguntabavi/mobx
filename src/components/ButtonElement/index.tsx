@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { observer } from "mobx-react";
 import { CiCircleChevDown } from "react-icons/ci";
 import { IoAddCircleOutline } from "react-icons/io5";
-
 import { buttonTypes } from "../../utils/buttonStyles";
-
 import ButtonWrap from "../ButtonWrap";
-
 import SideBar from "../SideBar";
 import Header from "../Header";
 
@@ -22,9 +20,6 @@ import {
   ButtonStylesType,
   ButtonStylesOptions,
 } from "./styledComponents";
-import { observer } from "mobx-react";
-
-import "../../tailwind.css";
 
 const ButtonStyles = (): JSX.Element => {
   const { t } = useTranslation();

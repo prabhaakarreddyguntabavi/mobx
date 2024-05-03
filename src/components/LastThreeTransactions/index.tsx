@@ -6,11 +6,11 @@ import { observer } from "mobx-react";
 
 import TransactionContext from "../../context/TransactionContext";
 import { apiStatusConstants } from "../../constants/commonConstants";
+import { UserDetail } from "../../types/usersTypes";
 import {
   ApiStatusAndData,
   TransctionProps,
 } from "../../types/transactionsTypes";
-import { UserDetail } from "../../types/usersTypes";
 
 import FailureCase from "../FailureCase";
 import EachTransaction from "../EachTransaction";
@@ -24,6 +24,7 @@ import {
 
 const TransactionPage = (): JSX.Element => {
   const { t } = useTranslation();
+
   const transactionStore = useContext(TransactionContext);
   const { totalTransactionDetails, userDict, isUserAdmin, userId } =
     transactionStore;

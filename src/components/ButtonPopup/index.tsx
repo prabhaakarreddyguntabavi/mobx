@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MdOutlineClose } from "react-icons/md";
 import { CiUser, CiSettings } from "react-icons/ci";
+import { MdOutlineLogout } from "react-icons/md";
 import {
   IoIosNotificationsOutline,
   IoIosHelpCircleOutline,
   IoIosArrowForward,
 } from "react-icons/io";
-import { MdOutlineLogout } from "react-icons/md";
 
 import {
   Button,
@@ -33,10 +33,10 @@ const ButtonPopup = () => {
       </MainContainer>
       {isPopupOpen && (
         <PopupMainContainer className="flex w-[100%] h-[100%] z-[1] flex-shrink-0 bg-opacity-80 fixed top-0 left-0 bg-[#475569] backdrop-blur-lg  m-0 justify-end items-end">
-          <div
+          <Container
             onClick={() => updateIsPopupOpen(!isPopupOpen)}
             className="absolute inset-x-0 top-0 h-2/4 flex items-center pt-2 "
-          ></div>
+          ></Container>
           <Container className="h-2/4 w-full bg-white  p-5 rounded-t-[20px]">
             <Container className="flex items-start">
               <Paragraph>{t("elementsStyles.testing")}</Paragraph>

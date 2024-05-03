@@ -1,16 +1,8 @@
 // @ts-nocheck
 
+import { ListViewOptionsProps } from "../../types/inputStyles";
+
 import { Button, Container } from "./styledComponents";
-
-import { SelectOptions } from "../../types/buttonStyles";
-import { DetailsView, LabelColors } from "../../types/inputStyles";
-
-interface ListViewOptionsProps {
-  dropdownOptions: SelectOptions[];
-  updateStatus: () => void;
-  eachDetails: DetailsView;
-  labelColors: LabelColors;
-}
 
 const ListViewOptions = (props: ListViewOptionsProps) => {
   const { dropdownOptions, updateStatus, eachDetails, labelColors } = props;
