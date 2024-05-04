@@ -17,6 +17,7 @@ const ReactSelect = () => (
           ...baseStyles,
           borderColor: state.isFocused ? "blue" : "#CBD5E1",
           marginBottom: "20px",
+          padding: "3px 4px",
         }),
         option: (styles, { isSelected }) => {
           return {
@@ -48,6 +49,7 @@ const ReactSelect = () => (
         control: (baseStyles, state) => ({
           ...baseStyles,
           borderColor: state.isFocused ? "blue" : "#CBD5E1",
+          padding: "3px 4px",
         }),
         option: (styles, { isSelected }) => {
           const color = "blue";

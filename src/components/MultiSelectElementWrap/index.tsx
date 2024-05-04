@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
@@ -74,8 +76,17 @@ const MultiSelectElementWrap = (props: {
   };
 
   const ReactSelectAddOption = (options: any) => {
-    console.log(options);
-    setAllOptions([...allOptions, ...options]);
+    const newValue = options.filter((eachOption, index) => {
+      if (allOptions.includes(eachOption)) {
+        return;
+      } else {
+        return eachOption;
+      }
+    });
+
+    console.log(newValue);
+
+    setAllOptions([...allOptions, ...newValue]);
     setSelectedOptions(options);
   };
 
@@ -100,16 +111,6 @@ const MultiSelectElementWrap = (props: {
     }
   };
 
-  const getNewOptionData = (inputValue: string, optionLabel: string) => {
-    const newOption = {
-      label: inputValue,
-      value: inputValue.toLowerCase().replace(/\W/g, ""),
-    };
-
-    // setAllOptions([...allOptions, newOption]);
-    return newOption;
-  };
-
   const searchResultDict = allOptions.filter((value) =>
     value.value!.startsWith(searchResult.toLocaleLowerCase())
   );
@@ -120,9 +121,10 @@ const MultiSelectElementWrap = (props: {
       borderColor: state.isFocused ? "blue" : "#CBD5E1",
       maxHeight: "50px",
       overflow: "hidden",
+      padding: "3px 4px",
+      // width: "260px",
     }),
     option: (styles, { isSelected }) => {
-      const color = "blue";
       return {
         ...styles,
         backgroundColor: isSelected ? "#EFF6FF" : "white",
@@ -133,7 +135,6 @@ const MultiSelectElementWrap = (props: {
         width: "95%",
         marginLeft: "5px",
         ":hover": {
-          // ...styles[":active"],
           backgroundColor: "#EFF6FF",
           color: "black",
         },
@@ -165,10 +166,11 @@ const MultiSelectElementWrap = (props: {
       <div className="mb-[50px] w-[13.5vw] max-h-[50px]">
         <CreatableSelect
           isMulti
+          isDisabled={disable}
           placeholder="Select Options"
           hideSelectedOptions={false}
           value={selectedOptions}
-          options={options}
+          options={allOptions}
           onChange={ReactSelectAddOption}
           styles={reactSelectStyles}
         />

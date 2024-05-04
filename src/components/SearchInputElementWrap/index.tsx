@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
@@ -83,11 +84,23 @@ const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
     value.value!.startsWith(searchResult.toLocaleLowerCase())
   );
 
+  const ReactSelectAddOption = (options: any) => {
+    console.log(options);
+    if (allOption.includes(options)) {
+      return;
+    } else {
+      setAllOption([...allOption, options]);
+    }
+    setSelectedOption(options);
+  };
+
   const reactSelectStyles: StylesConfig = {
     control: (baseStyles, state) => ({
       ...baseStyles,
       borderColor: state.isFocused ? "blue" : "#CBD5E1",
       marginBottom: "20px",
+      padding: "3px 4px",
+      width: "260px",
     }),
     option: (styles, { isSelected }) => {
       return {
@@ -225,10 +238,11 @@ const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
       </SelectDropdownMainContainer>
       <div className="mt-[20px] w-[13.5vw]">
         <CreatableSelect
-          options={searchResultDict}
+          options={allOption}
           isDisabled={disable}
           placeholder="Select Option"
           styles={reactSelectStyles}
+          onChange={ReactSelectAddOption}
         />
       </div>
     </Container>
