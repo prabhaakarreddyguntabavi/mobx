@@ -17,6 +17,8 @@ import {
   InputElement,
   Button,
 } from "./styledComponents";
+import CreatableSelect from "react-select/creatable";
+import { StylesConfig } from "react-select";
 
 const MultiSelectElementWrap = (props: {
   options: SelectOptions[];
@@ -71,6 +73,12 @@ const MultiSelectElementWrap = (props: {
     setSelectedOptions([...selectedOptions, newOption]);
   };
 
+  const ReactSelectAddOption = (options: any) => {
+    console.log(options);
+    setAllOptions([...allOptions, ...options]);
+    setSelectedOptions(options);
+  };
+
   const handleOptionClick = (option: SelectOptions) => {
     let allOptions = [...selectedOptions, option];
     if (selectedOptions.includes(option)) {
@@ -92,12 +100,79 @@ const MultiSelectElementWrap = (props: {
     }
   };
 
+  const getNewOptionData = (inputValue: string, optionLabel: string) => {
+    const newOption = {
+      label: inputValue,
+      value: inputValue.toLowerCase().replace(/\W/g, ""),
+    };
+
+    // setAllOptions([...allOptions, newOption]);
+    return newOption;
+  };
+
   const searchResultDict = allOptions.filter((value) =>
     value.value!.startsWith(searchResult.toLocaleLowerCase())
   );
 
+  const reactSelectStyles: StylesConfig = {
+    control: (baseStyles, state) => ({
+      ...baseStyles,
+      borderColor: state.isFocused ? "blue" : "#CBD5E1",
+      maxHeight: "50px",
+      overflow: "hidden",
+    }),
+    option: (styles, { isSelected }) => {
+      const color = "blue";
+      return {
+        ...styles,
+        backgroundColor: isSelected ? "#EFF6FF" : "white",
+        padding: "5px",
+        margin: "1px",
+        borderRadius: "10px",
+        color: "black",
+        width: "95%",
+        marginLeft: "5px",
+        ":hover": {
+          // ...styles[":active"],
+          backgroundColor: "#EFF6FF",
+          color: "black",
+        },
+      };
+    },
+    multiValue: (styles) => {
+      return {
+        ...styles,
+        backgroundColor: "#DBEAFE",
+        color: "#1E40AF",
+        borderRadius: "6px",
+      };
+    },
+    multiValueLabel: (styles) => ({
+      ...styles,
+      color: "#1E40AF",
+    }),
+    multiValueRemove: (styles) => ({
+      ...styles,
+      ":hover": {
+        backgroundColor: "blue",
+        color: "white",
+      },
+    }),
+  };
+
   return (
     <Container className="w-[200px] mt-10 flex flex-col justify-center ml-auto mr-auto gap-1">
+      <div className="mb-[50px] w-[13.5vw] max-h-[50px]">
+        <CreatableSelect
+          isMulti
+          placeholder="Select Options"
+          hideSelectedOptions={false}
+          value={selectedOptions}
+          options={options}
+          onChange={ReactSelectAddOption}
+          styles={reactSelectStyles}
+        />
+      </div>
       <Paragraph className="flex font-italic text-[18px] font-normal mb-2 text-[#334155]">
         {label}
       </Paragraph>
@@ -158,7 +233,7 @@ const MultiSelectElementWrap = (props: {
         {isOpen && !disable && (
           <SelectDropdownOptionMainContainer
             id="dropdownOptions"
-            className="flex flex-col z-[1] items-start gap-[4px] w-64 p-[8px] rounded-[8px] border border-solid border-[#CBD5E1] bg-white shadow-[0px 4px 6px -1px]"
+            className="flex flex-col z-[1] max-h-[20vh] overflow-y-scroll items-start gap-[4px] w-64 p-[8px] rounded-[8px] border border-solid border-[#CBD5E1] bg-white shadow-[0px 4px 6px -1px]"
           >
             {searchResultDict.map((option) => (
               <SelectDropdownOptionSubContainer
@@ -167,7 +242,7 @@ const MultiSelectElementWrap = (props: {
                   handleOptionClick(option);
                 }}
                 key={option.value}
-                className={`flex w-[240px] pl-[6px] pr-[8px] pt-[6px] pb-[8px] ${
+                className={`flex w-[220px] pl-[6px] pr-[8px] pt-[6px] pb-[8px] ${
                   selectedOptions.includes(option) &&
                   "bg-[#EFF6FF] rounded-[8px]"
                 } hover:bg-[#EFF6FF] hover:rounded-[8px] cursor-pointer`}

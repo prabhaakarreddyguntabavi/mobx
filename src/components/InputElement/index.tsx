@@ -10,6 +10,7 @@ import MultiSelectElement from "../MultiSelectElement";
 import BadgeElement from "../BadgeElement";
 import ButtonPopup from "../ButtonPopup";
 import ListViewElement from "../ListViewElement";
+import ReactSelect from "../ReactSelect";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
@@ -96,8 +97,11 @@ const InputElement = () => {
             <Container className="border h-[450px] w-[50%]">
               <BadgeElement />
             </Container>
-            <Container className="border h-[100px] w-[100%]">
+            <Container className="border h-[450px] w-[40%]">
               <ButtonPopup />
+            </Container>
+            <Container className="border h-[450px] w-[50%]">
+              <ReactSelect />
             </Container>
             <Container className="border h-[450px] w-[100%]">
               <ListViewElement />

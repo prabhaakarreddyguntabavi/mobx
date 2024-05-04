@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import Select, { StylesConfig } from "react-select";
+import CreatableSelect from "react-select/creatable";
 
 import { SelectOptions } from "../../types/buttonStyles";
 import { TiTick } from "react-icons/ti";
@@ -81,12 +83,36 @@ const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
     value.value!.startsWith(searchResult.toLocaleLowerCase())
   );
 
+  const reactSelectStyles: StylesConfig = {
+    control: (baseStyles, state) => ({
+      ...baseStyles,
+      borderColor: state.isFocused ? "blue" : "#CBD5E1",
+      marginBottom: "20px",
+    }),
+    option: (styles, { isSelected }) => {
+      return {
+        ...styles,
+        backgroundColor: isSelected ? "#EFF6FF" : "white",
+        padding: "5px",
+        margin: "1px",
+        borderRadius: "10px",
+        color: "black",
+        width: "95%",
+        marginLeft: "5px",
+        ":hover": {
+          // ...styles[":active"],
+          backgroundColor: "#EFF6FF",
+          color: "black",
+        },
+      };
+    },
+  };
+
   return (
     <Container className="w-[200px] mt-10 flex flex-col justify-center ml-auto mr-auto">
       <Paragraph className="flex font-italic text-[18px] font-normal mb-2 text-[#334155]">
         {label}
       </Paragraph>
-
       <SelectDropdownMainContainer className="w-[200px] flex flex-col justify-center ml-auto mr-auto ">
         <SelectDropdownSubContainer
           id="searchElementContainer"
@@ -101,7 +127,10 @@ const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
             className={`relative flex w-64 px-[7px] py-[10px] pr-8 justify-between border ${
               isError && "border-[#DC2626] text-[#DC2626]"
             } rounded-[8px] cursor-pointer hover:border-[#94A3B8] focus:border-[#2563EB] focus:border-solid focus:drop-shadow-[0_1px_2px_0px_rgba(0,0,0,0.08)] focus:shadow disabled:border-[#CBD5E1] disabled:bg-[#F1F5F9] disabled:text-[#94A3B8]`}
-            onChange={(event) => setSearchResult(event.target.value)}
+            onChange={(event) => {
+              setSearchResult(event.target.value);
+              setIsOpen(true);
+            }}
             disabled={disable}
           />
           <Container
@@ -194,6 +223,14 @@ const SearchInputElementWrap = (props: SearchInputElementWrapProps) => {
           </Paragraph>
         )}
       </SelectDropdownMainContainer>
+      <div className="mt-[20px] w-[13.5vw]">
+        <CreatableSelect
+          options={searchResultDict}
+          isDisabled={disable}
+          placeholder="Select Option"
+          styles={reactSelectStyles}
+        />
+      </div>
     </Container>
   );
 };
