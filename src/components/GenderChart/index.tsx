@@ -208,7 +208,7 @@ const GenderChart = (): JSX.Element => {
             </GraphValuesSetting>
           </GraphHeaderContainer>
           <BarChart
-            width={window.innerWidth * 0.7}
+            width={window.innerWidth * 0.78}
             height={window.innerHeight * 0.3}
             data={last7Transactions}
             margin={{

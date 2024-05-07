@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import Select, { StylesConfig } from "react-select";
+import { StylesConfig } from "react-select";
 import CreatableSelect from "react-select/creatable";
 
 import { SelectOptions } from "../../types/buttonStyles";

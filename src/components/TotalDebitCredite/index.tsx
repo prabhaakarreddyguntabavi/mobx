@@ -86,7 +86,7 @@ const TotalDebitCredit = (): JSX.Element => {
 
     return (
       <>
-        <CreditContainer className="sm:w-[90vw] sm:ml-3 sm:mr-3 md:ml-5 lg:ml-10 md:w-[43%] flex lg:w-[45%] p-2 flex-row items-start gap-2 flex-shrink-0 rounded-2xl bg-white mt-6">
+        <CreditContainer className="w-[93vw] ml-3 mr-3 md:ml-5 lg:ml-10 md:w-[43%] flex lg:w-[45%] p-2 flex-row items-start gap-2 flex-shrink-0 rounded-2xl bg-white mt-6">
           <CreditTextContainer className="inline-flex flex-col items-start gap-[2px] mt-2 ml-3">
             <HeadingAmount className="text-[#16dbaa] font-inter text-3xl font-semibold m-0">
               $ {data[0].sum}
@@ -104,7 +104,7 @@ const TotalDebitCredit = (): JSX.Element => {
           </ImageContainer>
         </CreditContainer>
 
-        <DebitContainer className="sm:w-[90vw] sm:ml-3 sm:mr-3 md:ml-5 lg:ml-10 md:w-[43%] flex lg:w-[45%] p-2 flex-row items-start gap-2 flex-shrink-0 rounded-2xl bg-white mt-6">
+        <DebitContainer className="w-[93vw] ml-3 mr-3 md:ml-5 lg:ml-10 md:w-[43%] flex lg:w-[45%] p-2 flex-row items-start gap-2 flex-shrink-0 rounded-2xl bg-white mt-6">
           <DebitTextContainer className="inline-flex flex-col items-start gap-[2px] mt-2 ml-3">
             <DebitHeadingAmount className="text-[#fe5c73] font-inter text-2xl font-semibold">
               $ {data[1].sum}
@@ -126,7 +126,10 @@ const TotalDebitCredit = (): JSX.Element => {
   };
 
   const renderLoadingView = (): JSX.Element => (
-    <LoadingContainer className="ml-[150px] h-16 " data-testid="loader">
+    <LoadingContainer
+      className="ml-[150px] md:ml-[350px] lg:ml-[610px] h-16"
+      data-testid="loader"
+    >
       <ReactLoading type={"bars"} color={"#000000"} height={50} width={50} />
     </LoadingContainer>
   );
@@ -148,7 +151,7 @@ const TotalDebitCredit = (): JSX.Element => {
   };
 
   return (
-    <AmountDetailsContainer className="sm:flex-col md:flex-row lg:flex-row w-full lg:flex md:flex gap-2 shrink-0 rounded-e-3xl">
+    <AmountDetailsContainer className="sm:p-[10px] sm:flex-col md:flex-row lg:flex-row w-full lg:flex md:flex gap-2 shrink-0 rounded-e-3xl">
       {renderLeaderboard()}
     </AmountDetailsContainer>
   );

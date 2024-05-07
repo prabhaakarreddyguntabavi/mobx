@@ -126,13 +126,13 @@ const TransactionPage = (): JSX.Element => {
               ""
             )}
             <TransactionName
-              className="text-[#343c6a] font-inter text-base font-medium overflow-hidden"
+              className="text-[#343c6a] text-[13px] font-inter md:text-base font-medium overflow-hidden"
               isAdmin={isUserAdmin}
             >
               {t("transactionInputs.transactionName")}
             </TransactionName>
             <TransactionCategory
-              className="ml-[12px] w-[25px] text-[#343c6a] font-inter text-base font-medium"
+              className="hidden md:flex ml-[12px] w-[25px] text-[#343c6a] font-inter text-base font-medium"
               isAdmin={isUserAdmin}
             >
               {t("transactionInputs.category")}
@@ -144,7 +144,7 @@ const TransactionPage = (): JSX.Element => {
               {t("transactionInputs.date")}
             </TransactionDate>
             <TransactionAmount
-              className="text-[#343c6a] font-inter text-base font-medium"
+              className="text-[#343c6a] text-[13px] ml-[20px] md:ml-0 font-inter md:text-base font-medium"
               isAdmin={isUserAdmin}
             >
               {t("transactionInputs.amount")}
@@ -291,7 +291,7 @@ const TransactionPage = (): JSX.Element => {
           </TransactionSelectFilter>
         </SelectFilterConditions>
         <TransactionBodyContainer className="w-full bg-[#f5f7fa] h-[80vh] overflow-auto">
-          <TransactionsContainer className="flex flex-col mt-0 md:w-[94%] h-fit p-[12px] gap-[20px] items-start bg-white rounded-[25px] md:ml-[40px] md:mt-[32px] md:mr-[20px] sm:ml-0 sm:mr-0">
+          <TransactionsContainer className="flex flex-col  ml-3 mr-3 mt-0 md:w-[94%] h-fit p-[12px] gap-[20px] items-start bg-white rounded-[25px] md:ml-[40px] md:mt-[32px] md:mr-[20px]">
             {renderLeaderboard()}
           </TransactionsContainer>
         </TransactionBodyContainer>

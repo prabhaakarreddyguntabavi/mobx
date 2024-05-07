@@ -157,7 +157,7 @@ const ProfileDetails = (): JSX.Element => {
               className="text-[#505887 ] font-inter text-base font-normal"
               htmlFor="userDateOfBirth"
             >
-              {t("profile.dateofBirth")}
+              {t("profile.dateOfBirth")}
             </AddTransactionLabel>
             <AddTransactionNameInput
               className="w-[75vw] md:w-[27vw] h-[18px] border border-solid border-[#dfeaf2] rounded px-4 py-4 bg-white text-[#718ebf] font-inter text-base font-normal"

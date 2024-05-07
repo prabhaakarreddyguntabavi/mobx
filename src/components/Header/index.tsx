@@ -198,7 +198,7 @@ const Header = (): JSX.Element => {
                       <AddTransctionHeading className="text-[20px] font-bold leading-28 text-[#333b69]">
                         {t("transactionInputs.addTransaction")}
                       </AddTransctionHeading>
-                      <AddTransctionParagraph className="w-[270px] text-[#344054] font-normal text-[14px] leading-20 mt-2">
+                      <AddTransctionParagraph className="text-[#344054] font-normal text-[14px] leading-20 mt-2">
                         {t(
                           "transactionInputs.loremipsumdolorsitametconsectetur"
                         )}

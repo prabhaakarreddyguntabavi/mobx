@@ -50,7 +50,7 @@ const Dashboard = (): JSX.Element => {
           <LastTransaction className="ml-[10px] text-[22px] text-[#333b69] Inter text-2xl not-italic font-semibold leading-normal md:ml-10 mt-6 mb-3 ">
             {t(`dashboard.debitCreditOverview`)}
           </LastTransaction>
-          <BarChartContainer className="min-h-[25%] w-[94%] flex-shrink-0 rounded-2xl bg-white lg:ml-[40px] flex flex-col ">
+          <BarChartContainer className="min-h-[25%] w-[94%] ml-3 flex-shrink-0 rounded-2xl bg-white lg:ml-[40px] flex flex-col ">
             <GenderChart />
           </BarChartContainer>
         </BodyContainer>

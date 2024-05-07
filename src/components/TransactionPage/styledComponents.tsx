@@ -45,7 +45,7 @@ export const TransactionName = styled.p<TextParagraphProps>`
   ${(props) => (props.isAdmin ? tw`w-[15vw]` : tw`w-[20.5vw]`)}
 
   @media screen and (max-width: 768px) {
-    ${(props) => (props.isAdmin ? tw`w-[30.5vw]` : tw`w-[30vw]`)}
+    ${(props) => (props.isAdmin ? tw`w-[30.5vw]` : tw`w-[35vw]`)}
   }
 `;
 

@@ -1,6 +1,5 @@
-import React from "react";
 import Select from "react-select";
-import { ButtonSizePadding } from "../../types/buttonStyles";
+import CreatableSelect from "react-select/creatable";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -38,21 +37,27 @@ const ReactSelect = () => (
         },
       }}
     />
-    <Select
+    <CreatableSelect
       isMulti
       options={options}
       hideSelectedOptions={false}
       closeMenuOnSelect={false}
       controlShouldRenderValue={true} // need to show selected options or not
       maxMenuHeight={100}
-      styles={{
+      className="h-5 w-[100%]"
+    />
+  </div>
+);
+
+export default ReactSelect;
+
+/* styles={{
         control: (baseStyles, state) => ({
           ...baseStyles,
           borderColor: state.isFocused ? "blue" : "#CBD5E1",
           padding: "3px 4px",
         }),
         option: (styles, { isSelected }) => {
-          const color = "blue";
           return {
             ...styles,
             backgroundColor: isSelected ? "#EFF6FF" : "white",
@@ -88,9 +93,4 @@ const ReactSelect = () => (
             color: "white",
           },
         }),
-      }}
-    />
-  </div>
-);
-
-export default ReactSelect;
+      }}*/

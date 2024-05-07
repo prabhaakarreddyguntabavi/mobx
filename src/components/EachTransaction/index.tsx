@@ -45,11 +45,12 @@ const EachTransaction = (props: PropsValues) => {
     user,
     isThisLastThreeTransactions,
   } = props;
+
   const { t } = useTranslation();
 
   return (
     <DashTransactionContainer
-      className="w-full flex-shrink-0 ml-1 flex justify-between items-center pl-2 pb-[6px] pt-0"
+      className="w-full flex-shrink-0 ml-1 flex justify-between items-center pl-2 pb-[8px] pt-0"
       length={transactionsData.length - 1 === index}
       key={eachTransaction.id}
     >
@@ -124,17 +125,17 @@ const EachTransaction = (props: PropsValues) => {
         )}
 
         <TextContainer className="sm:w-[30vw]">
-          <TitleParagraph className="w-[15vw] text-gray-700 font-inter text-base font-normal">
+          <TitleParagraph className="w-[15vw] text-xs text-gray-700 font-inter md:text-base font-normal">
             {eachTransaction.transactionName}
           </TitleParagraph>
-          <TransactionParagraphMobile className="flex text-xs mt-5 text-gray-400 font-bold w-20 md:hidden">
+          <TransactionParagraphMobile className="flex text-[10px] mt-1 text-gray-400 font-bold w-20 md:hidden">
             {dateTimeCustomFormate(eachTransaction.date)}
           </TransactionParagraphMobile>
         </TextContainer>
       </UserContainer>
       <CategoryParagraph
         isAdmin={isUserAdmin}
-        className="sm:w-14 text-gray-700 font-inter text-base font-normal overflow-hidden"
+        className="w-14 hidden md:block text-gray-700 font-inter text-base font-normal overflow-hidden"
       >
         {eachTransaction.category}
       </CategoryParagraph>
@@ -174,21 +175,21 @@ const EachTransaction = (props: PropsValues) => {
             >
               {/* @ts-ignore */}
               {(close) => (
-                <AddTransactionMainContainer className="fixed inset-0 w-screen h-screen flex flex-shrink-0 bg-gray-700 bg-opacity-70 backdrop-blur-md">
+                <AddTransactionMainContainer className="fixed inset-0 w-screen h-screen flex flex-shrink-0 bg-[rgba(52,64,84,0.7)] bg-opacity-40 backdrop-blur-md">
                   <AddTransactionContainer className="w-[90vw] md:w-[42%] lg:w-[32%] flex-shrink-0 rounded-xl bg-white m-auto">
                     <AddTransactionTextContainer className="flex">
                       <HeadingTextContainer className="mt-8 ml-6 mb-5">
                         <AddTransactionHeading className="text-[20px] font-bold leading-28 text-[#333b69]">
                           {t("transactionInputs.updateTransaction")}
                         </AddTransactionHeading>
-                        <AddTransactionParagraph className="w-[289px] text-[#344054] font-normal text-[14px] leading-20 mt-2">
+                        <AddTransactionParagraph className=" md:w-[289px] text-[#344054] font-normal text-[14px] leading-20 mt-2">
                           {t(
                             "transactionInputs.youcanupdateyourtransactionhere"
                           )}
                         </AddTransactionParagraph>
                       </HeadingTextContainer>
                       <AddTransactionCloseImage
-                        className="w-[24px] h-[24px] flex-shrink-0 ml-auto mt-[24px] mr-[24px] cursor-pointer"
+                        className="w-[24px] h-[24px] mr-[10px] flex-shrink-0 ml-auto mt-[24px] md:mr-[24px] cursor-pointer"
                         onClick={() => close()}
                         src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706078678/Close_gxeytv.png"
                         alt="close"
@@ -215,7 +216,7 @@ const EachTransaction = (props: PropsValues) => {
             >
               {/* @ts-ignore */}
               {(close) => (
-                <LogoutContainer className="flex w-screen h-screen flex-shrink-0 bg-opacity-70  bg-[#cfcfcf] backdrop-blur-lg  m-0">
+                <LogoutContainer className="flex w-screen h-screen flex-shrink-0 bg-[rgba(52,64,84,0.7)] bg-opacity-40 backdrop-blur-md  pr-[1px]">
                   <DeleteTransaction id={eachTransaction.id!} close={close} />
                 </LogoutContainer>
               )}
