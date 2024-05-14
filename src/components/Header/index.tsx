@@ -152,9 +152,7 @@ const Header = (): JSX.Element => {
             onChange={(event) => i18n.changeLanguage(event.target.value)}
           >
             <DropdownOptions value="en">English</DropdownOptions>
-            <DropdownOptions className="mt-2" value="te">
-              తెలుగు
-            </DropdownOptions>
+            <DropdownOptions value="te">తెలుగు</DropdownOptions>
             <DropdownOptions value="hi">हिंदी</DropdownOptions>
           </LanguageSelectorContainer>
 

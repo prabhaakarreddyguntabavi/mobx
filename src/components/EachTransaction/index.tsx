@@ -54,7 +54,7 @@ const EachTransaction = (props: PropsValues) => {
       length={transactionsData.length - 1 === index}
       key={eachTransaction.id}
     >
-      {isUserAdmin ? (
+      {isUserAdmin && (
         <AdminContainer className="flex items-center w-[30vw] md:w-[20vw]">
           {eachTransaction.type === "credit" ? (
             <CreditDebitImage
@@ -90,14 +90,11 @@ const EachTransaction = (props: PropsValues) => {
             </TitleUserParagraph>
           </UserProfileDetails>
         </AdminContainer>
-      ) : (
-        <></>
       )}
 
-      <UserContainer className="flex items-center w-[30vw] md:w-1/4">
-        {!isUserAdmin ? (
+      <UserContainer className="flex items-center w-[30vw] md:w-[20.5vw]">
+        {!isUserAdmin && (
           <>
-            {" "}
             {eachTransaction.type === "credit" ? (
               <CreditDebitImage
                 isAdmin={isUserAdmin}
@@ -120,8 +117,6 @@ const EachTransaction = (props: PropsValues) => {
               />
             )}
           </>
-        ) : (
-          ""
         )}
 
         <TextContainer className="sm:w-[30vw]">
@@ -159,9 +154,7 @@ const EachTransaction = (props: PropsValues) => {
         </DebitAmount>
       )}
       <EditDeleteContainer className="mr-5 md:w-16" isAdmin={isUserAdmin}>
-        {isUserAdmin ? (
-          ""
-        ) : (
+        {!isUserAdmin && (
           <>
             <Popup
               modal
