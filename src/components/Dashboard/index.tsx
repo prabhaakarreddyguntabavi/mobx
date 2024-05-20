@@ -32,6 +32,7 @@ const Dashboard = (): JSX.Element => {
       navigate("/login");
     }
   }, [jwtToken, navigate]);
+
   if (selectOption !== "DASHBOARD") {
     onChangeSelectOption("DASHBOARD");
   }

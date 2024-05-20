@@ -10,7 +10,10 @@ import MultiSelectElement from "../MultiSelectElement";
 import BadgeElement from "../BadgeElement";
 import ButtonPopup from "../ButtonPopup";
 import ListViewElement from "../ListViewElement";
+import ImageWithTransition from "../Image";
+import ImageColors from "../ImageColors";
 import ReactSelect from "../ReactSelect";
+import Testing from "../Testing";
 
 import SideBar from "../SideBar";
 import Header from "../Header";
@@ -42,6 +45,15 @@ const InputElement = () => {
         <Header />
         <InputElementBodyContainer className=" h-[90vh] flex flex-row w-[90%] m-auto">
           <InputElementBodySubContainer className="h-[94%] w-[94%] bg-white m-auto  pt-5 border flex flex-wrap overflow-auto">
+            <Container className="border h-[950px] w-[100%]">
+              <Testing />
+            </Container>
+            <Container className="border h-[450px] w-[100%]">
+              <ImageWithTransition />
+            </Container>
+            <Container className="border h-[450px] w-[100%]">
+              <ImageColors />
+            </Container>
             <Container className="border h-[180px] w-[40%] mt-10">
               <CheckBoxInputContainer className="inline-flex flex-col items-start mx-6 mb-3">
                 <CheckBoxLabel

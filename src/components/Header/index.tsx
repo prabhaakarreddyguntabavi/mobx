@@ -145,7 +145,7 @@ const Header = (): JSX.Element => {
       <>
         <LanguageContainer className="flex ">
           <LanguageSelectorContainer
-            className="mt-2 mr-2.5 h-8 "
+            className="mt-2 mr-2.5 h-8 rounded-lg bg-[#fff] border-none "
             required
             id="UpdateTransactionType"
             value={i18n.language}

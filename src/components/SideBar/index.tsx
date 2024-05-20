@@ -79,7 +79,7 @@ const SideBar = (): JSX.Element => {
   return (
     <SideBarMainContainer className="hidden w-1/6 h-screen shrink-0 border-r-1 border-[#e2e2e2] md:flex flex-col bg-white">
       <LogoImage
-        className="w-[15vw] inline-flex items-center m-5 "
+        className="w-[15vw] inline-flex items-center m-3 "
         src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705580146/Frame_507_ba197a.png"
         alt="website logo"
       />
@@ -93,9 +93,9 @@ const SideBar = (): JSX.Element => {
             onChangeTransactionOption("ALLTRANSACTION");
           }}
         >
-          <EachTextContainer className="flex h-6 justify-start items-center gap-5 shrink-0">
+          <EachTextContainer className="flex h-6 justify-start items-center gap-3 shrink-0">
             <SelectedContainer
-              className="w-1.5 h-10 shrink-0 "
+              className="w-1.5 h-10 shrink-0 rounded-r-lg"
               selectOption={selectOption === "DASHBOARD"}
             >
               {}
@@ -122,9 +122,9 @@ const SideBar = (): JSX.Element => {
           to="/transaction"
           onClick={() => onChangeSelectOption("TRANSACTIONS")}
         >
-          <EachTextContainer className="flex h-20 justify-start items-center gap-5 shrink-0">
+          <EachTextContainer className="flex h-20 justify-start items-center gap-3 shrink-0">
             <SelectedContainer
-              className="w-1.5 h-10 shrink-0 "
+              className="w-1.5 h-10 shrink-0 rounded-r-lg"
               selectOption={selectOption === "TRANSACTIONS"}
             ></SelectedContainer>
             <TransactionIconsImage
@@ -155,9 +155,9 @@ const SideBar = (): JSX.Element => {
             onChangeTransactionOption("ALLTRANSACTION");
           }}
         >
-          <EachTextContainer className="flex h-6 justify-start items-center gap-5 shrink-0">
+          <EachTextContainer className="flex h-6 justify-start items-center gap-3 shrink-0">
             <SelectedContainer
-              className="w-1.5 h-10 shrink-0 "
+              className="w-1.5 h-10 shrink-0 rounded-r-lg"
               selectOption={selectOption === "PROFILE"}
             ></SelectedContainer>
             <IconsImage

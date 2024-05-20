@@ -102,6 +102,7 @@ const TransactionPage = (): JSX.Element => {
         </>
       );
     }
+
     return (
       <NoTransactionsFountHeading className="m-auto">
         {t("common.noTransactionsFound")}
@@ -136,7 +137,7 @@ const TransactionPage = (): JSX.Element => {
   };
 
   return (
-    <TransactionsContainer className="flex w-[93vw] ml-3 md:h-[17vh] lg:w-[94%] md:ml-10 md:w-[90%] sm:p-0 sm:ml-2 md:p-0 flex-col justify-end items-start gap-3 pt-5 pr-5 pb-3  md:mr-2 rounded-3xl bg-white lg:ml-10">
+    <TransactionsContainer className="flex w-[93vw] ml-2 p-0 pb-2 md:min-h-[17vh] lg:w-[94%] md:ml-10 md:w-[90%] md:p-0 flex-col justify-end items-start gap-3 pt-5 pr-5 md:mr-2 rounded-3xl bg-white lg:ml-10">
       {renderLeaderboard()}
     </TransactionsContainer>
   );

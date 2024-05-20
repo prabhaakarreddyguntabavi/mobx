@@ -150,6 +150,7 @@ const TransactionPage = (): JSX.Element => {
               {t("transactionInputs.amount")}
             </TransactionAmount>
           </HeadingDashTransactionContainer>
+
           {currentItems.map(
             (eachTransaction: TransctionProps, index: number) => {
               let user: UserDetail;
@@ -175,6 +176,7 @@ const TransactionPage = (): JSX.Element => {
               );
             }
           )}
+
           {transactionsData.length > 10 ? (
             <Pagination
               itemsPerPage={itemsPerPage}
