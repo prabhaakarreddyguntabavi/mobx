@@ -181,7 +181,7 @@ const MobileSideBar = (props: { close: () => void }): JSX.Element => {
           </EachTextContainer>
         </Link>
       </TextContainer>
-      <ProfileContainer className="mt-auto flex px-[24px] py-[32px] items-center gap-[10px] self-stretch border-t border-[#eaecf0] pb-[10px]">
+      <ProfileContainer className="mt-auto flex pt-[12px] pr-[6px] pl-[8px] items-center gap-[10px] self-stretch border-t border-[#eaecf0] pb-[10px]">
         <ProfileImageContainer className="flex w-[40px] h-[40px] flex-col justify-center items-center rounded-full bg-cover bg-center bg-no-repeat bg-[#c7c7c7]">
           {loginUser.email !== undefined
             ? loginUser.email[0].toUpperCase()

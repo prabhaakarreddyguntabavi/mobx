@@ -41,6 +41,7 @@ import {
   CancelLogoutButton,
   YesLogoutButton,
   ProfileImageContainerMedium,
+  LogoImage1,
 } from "./styledComponents";
 
 import "./index.css";
@@ -77,12 +78,19 @@ const SideBar = (): JSX.Element => {
   }
 
   return (
-    <SideBarMainContainer className="hidden w-1/6 h-screen shrink-0 border-r-1 border-[#e2e2e2] md:flex flex-col bg-white">
+    <SideBarMainContainer className="hidden max-w-[235px] h-screen shrink-0 border-r-[1px] border-[#e2e2e2] md:flex flex-col bg-white">
       <LogoImage
-        className="w-[15vw] inline-flex items-center m-3 "
+        className="w-[90%] inline-flex items-center m-3 "
         src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705580146/Frame_507_ba197a.png"
         alt="website logo"
       />
+
+<LogoImage1
+        className="w-[80%] inline-flex items-center m-3 "
+        src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1716445233/yhosqlo9ewjk4byyy8wu.png"
+        alt="website logo"
+      />
+      
 
       <TextContainer className="flex flex-col items-start w-2.5 h-[171px] mt-[50px]">
         <Link
@@ -205,7 +213,7 @@ const SideBar = (): JSX.Element => {
               type="button"
             >
               {loginUser.email !== undefined ? (
-                <ProfileImageContainerMedium className="hidden w-40 h-40 flex-col justify-center items-center rounded-full bg-cover bg-center bg-lightgray">
+                <ProfileImageContainerMedium className="items-center justify-center w-10 h-10 flex-col rounded-full bg-cover bg-center bg-[#6e7275] ml-2 mt-10">
                   {loginUser.email[0].toUpperCase()}
                 </ProfileImageContainerMedium>
               ) : (

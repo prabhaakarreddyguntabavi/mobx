@@ -40,7 +40,7 @@ const Dashboard = (): JSX.Element => {
   return (
     <DashboardMainContainer className="w-full h-full bg-[#f5f7fa] flex">
       <SideBar />
-      <BodyMainContainer className=" bg-[#f5f7fa] flex flex-col lg:w-[83%] ">
+      <BodyMainContainer className=" bg-[#f5f7fa] flex flex-col w-[100%] ">
         <Header />
         <BodyContainer className="overflow-y-scroll h-[90vh] flex flex-col w-full ">
           <TotalDebitCredite />

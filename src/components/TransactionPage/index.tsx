@@ -230,9 +230,9 @@ const TransactionPage = (): JSX.Element => {
     navigate("/login");
   }
   return (
-    <TransactionHomePage className="w-full h-full bg-[#f5f7fa] flex">
+    <TransactionHomePage className="w-full h-full bg-[#f5f7fa] flex overflow-hidden">
       <SideBar />
-      <TransactionTotalBodyContainer className="bg-[#f5f7fa] flex flex-col lg:w-5/6 ">
+      <TransactionTotalBodyContainer className="bg-[#f5f7fa] flex flex-col w-[100%] overflow-hidden">
         <Header />
         <SelectFilterConditions className="mb-10 sm:w-full flex items-start gap-[24px] pl-[40px] bg-white">
           <TransactionSelectFilter
@@ -292,7 +292,7 @@ const TransactionPage = (): JSX.Element => {
             ></SelectedCreditContainer>
           </TransactionSelectFilter>
         </SelectFilterConditions>
-        <TransactionBodyContainer className="w-full bg-[#f5f7fa] h-[80vh] overflow-auto">
+        <TransactionBodyContainer className="w-full bg-[#f5f7fa] h-[80vh] overflow-auto overflow-x-hidden">
           <TransactionsContainer className="flex flex-col  ml-3 mr-3 mt-0 md:w-[94%] h-fit p-[12px] gap-[20px] items-start bg-white rounded-[25px] md:ml-[40px] md:mt-[32px] md:mr-[20px]">
             {renderLeaderboard()}
           </TransactionsContainer>

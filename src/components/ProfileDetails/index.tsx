@@ -298,7 +298,7 @@ const ProfileDetails = (): JSX.Element => {
       <ProfileTotalBodyContainer className="w-full h-[100vh]">
         <Header />
         <ProfileDetailsContainer className="bg-[#f5f7fa] pt-[32px] overflow-auto m-auto max-h-[90vh]">
-          <ProfileContainer className="ml-2 md:h-full w-[94%] flex-shrink-0 rounded-lg bg-white md:ml-10 flex flex-col justify-center items-center overflow-auto">
+          <ProfileContainer className="ml-2 md:h-full min-h-[50vh] w-[94%] flex-shrink-0 rounded-lg bg-white md:ml-10 flex flex-col justify-center items-center overflow-auto">
             {renderLeaderboard()}
           </ProfileContainer>
         </ProfileDetailsContainer>

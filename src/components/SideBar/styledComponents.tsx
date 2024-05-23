@@ -22,13 +22,31 @@ export const TransactionIconsImage = styled.img`
 
 export const TextParagraph = styled.p<TextParagraphProps>`
   ${(props) => (props.selectOption ? tw`text-[#2d60ff]` : tw`text-[#17232B]`)}
+  @media screen and (max-width: 1024px) {
+    display:none;
+  }
 `;
 
-export const EachTextContainer = styled.div``;
+export const EachTextContainer = styled.div`
+@media screen and (max-width: 1024px) {
+  width:150%;
+}
+`;
 
 export const TextContainer = styled.div``;
 
-export const LogoImage = styled.img``;
+export const LogoImage = styled.img`
+@media screen and (max-width: 1024px) {
+  display:none;
+}
+`;
+
+export const LogoImage1 = styled.img`
+@media screen and (max-width: 1024px) {
+  display:block;
+}
+display:none;
+`;
 
 export const SelectedContainer = styled.div<TextParagraphProps>`
   // border-radius: 0px 10px 10px 0px;
@@ -37,17 +55,34 @@ export const SelectedContainer = styled.div<TextParagraphProps>`
 
 export const ProfileContainer = styled.div``;
 
-export const ProfileImageContainer = styled.div``;
+export const ProfileImageContainer = styled.div`
+@media screen and (max-width: 1024px) {
+  display:none;
+}
+`;
 
-export const ProfileImageContainerMedium = styled.div``;
+export const ProfileImageContainerMedium = styled.div`
+@media screen and (max-width: 1024px) {
+  display:flex;
+}
+display:none;
+`;
 
 export const ProfileName = styled.h1``;
 
 export const ProfileEmail = styled.p``;
 
-export const ProfileTextContainer = styled.div``;
+export const ProfileTextContainer = styled.div`
+@media screen and (max-width: 1024px) {
+  display:none;
+}
+`;
 
-export const ProfileLogoutImage = styled.img``;
+export const ProfileLogoutImage = styled.img`
+@media screen and (max-width: 1024px) {
+  display:none;
+}
+`;
 
 export const LogoutButton = styled.button``;
 
