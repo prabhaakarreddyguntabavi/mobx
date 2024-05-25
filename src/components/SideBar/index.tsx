@@ -86,8 +86,8 @@ const SideBar = (): JSX.Element => {
       />
 
 <LogoImage1
-        className="hidden w-[80%] inline-flex items-center m-3 "
-        src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1716445233/yhosqlo9ewjk4byyy8wu.png"
+        className="hidden w-[100%] inline-flex items-center m-3 pr-2 ml-1 "
+        src="https://res.cloudinary.com/dwdq2ofjm/image/upload/v1716617460/Frame_2_fae1sx.png"
         alt="website logo"
       />
       

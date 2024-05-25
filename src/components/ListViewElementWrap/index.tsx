@@ -124,7 +124,7 @@ const ListViewElementWrap = (props: ListViewPropsValues) => {
 
       {listDict.length > 0 ? (
         listDict.map((eachDetails) => (
-          <Container className="bg-white h-[48px] flex items-center flex-shrink-0 pl-5 pr-5 rounded-[12px] mb-1 hover:shadow-xl">
+          <Container key={eachDetails.id} className="bg-white h-[48px] flex items-center flex-shrink-0 pl-5 pr-5 rounded-[12px] mb-1 hover:shadow-xl">
             <eachDetails.icon />
             <Paragraph className="ml-[20px] min-w-[200px] max-w-[200px] text-[#334155] text-[14px] leading-5 not-italic text-nowrap overflow-hidden">
               {eachDetails.name}

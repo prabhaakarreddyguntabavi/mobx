@@ -12,6 +12,7 @@ const ListViewOptions = (props: ListViewOptionsProps) => {
       <Container className="inline-flex w-[150px] p-2 flex-col items-start gap-2 rounded-[6px] border border-[#CBD5E1] bg-white ">
         {dropdownOptions.map((eachOption) => (
           <Container
+          key={eachOption.value}
             onClick={() => updateStatus(eachDetails.id, eachOption.value)}
             id={eachOption.value}
             className={`${

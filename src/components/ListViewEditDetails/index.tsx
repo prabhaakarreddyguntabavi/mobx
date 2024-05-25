@@ -100,7 +100,7 @@ const ListViewEditDetails = (props: ListViewEditProps) => {
             onChange={(event) => updateStatus(event.target.value)}
           >
             {dropdownOptions.map((eachStatus) => (
-              <SelectOption value={eachStatus.value}>
+              <SelectOption key={eachStatus.value} value={eachStatus.value}>
                 {eachStatus.label}
               </SelectOption>
             ))}
