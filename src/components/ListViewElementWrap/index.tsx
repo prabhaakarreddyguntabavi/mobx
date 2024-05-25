@@ -129,7 +129,6 @@ const ListViewElementWrap = (props: ListViewPropsValues) => {
             <Paragraph className="ml-[20px] min-w-[200px] max-w-[200px] text-[#334155] text-[14px] leading-5 not-italic text-nowrap overflow-hidden">
               {eachDetails.name}
             </Paragraph>
-
             <Container className="relative ml-[100px]">
               <Container
                 id="listIndex"

@@ -703,8 +703,6 @@ const Testing = () => {
     }
   };
 
-  console.log(recordedVideo);
-
   return (
     <div>
       <button

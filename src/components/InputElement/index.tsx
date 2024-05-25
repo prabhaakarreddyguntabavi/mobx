@@ -41,9 +41,9 @@ const InputElement = () => {
   return (
     <InputElementMainContainer className="w-full h-full bg-[#f5f7fa] flex">
       <SideBar />
-      <InputElementBodyMainContainer className=" bg-[#f5f7fa] flex flex-col lg:w-[83%] ">
+      <InputElementBodyMainContainer className=" bg-[#f5f7fa] flex flex-col lg:w-[100%] ">
         <Header />
-        <InputElementBodyContainer className=" h-[90vh] flex flex-row w-[90%] m-auto">
+        <InputElementBodyContainer className=" h-[90vh] flex flex-row w-[100%] m-auto">
           <InputElementBodySubContainer className="h-[94%] w-[94%] bg-white m-auto  pt-5 border flex flex-wrap overflow-auto">
             <Container className="border h-[950px] w-[100%]">
               <Testing />

@@ -119,7 +119,7 @@ const TransactionPage = (): JSX.Element => {
         <>
           <HeadingDashTransactionContainer className="ml-[5px] w-full sm:h-18 md:h-10 flex-shrink-0 border-b border-gray-300  flex items-center">
             {isUserAdmin ? (
-              <TransactionUserName className="w-[20vw] text-blue-900 font-inter text-lg font-medium">
+              <TransactionUserName className="w-[18vw] text-blue-900 font-inter text-lg font-medium">
                 {t("common.userName")}
               </TransactionUserName>
             ) : (

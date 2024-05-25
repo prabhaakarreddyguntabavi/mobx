@@ -33,7 +33,12 @@ export const EachTextContainer = styled.div`
 }
 `;
 
-export const TextContainer = styled.div``;
+export const TextContainer = styled.div`
+@media screen and (min-width: 1024px) {
+  width:230px;
+}
+width: 7vw;
+`;
 
 export const LogoImage = styled.img`
 @media screen and (max-width: 1024px) {
@@ -45,7 +50,7 @@ export const LogoImage1 = styled.img`
 @media screen and (max-width: 1024px) {
   display:block;
 }
-display:none;
+// display:none;
 `;
 
 export const SelectedContainer = styled.div<TextParagraphProps>`
