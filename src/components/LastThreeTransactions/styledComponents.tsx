@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const TransactionsContainer = styled.div``;
+export const TransactionsContainer = styled.div`
+padding-top:10px;
+`;
 
 export const LoadingContainer = styled.div``;
 
