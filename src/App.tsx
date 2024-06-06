@@ -14,6 +14,7 @@ import { UsersData } from "./stores/UsersDetails";
 import { observer } from "mobx-react";
 import { observe } from "mobx";
 import { UserEmailAndPassword } from "./types/usersTypes";
+import EachTransaction from "./components/TransactionTesting"
 
 import "./tailwind.css";
 
@@ -77,7 +78,7 @@ const App = (): JSX.Element => {
         <Routes>
           <Route path="/login" element={<LoginForm />} />
           <Route path="/" element={<Dashboard />} />
-          <Route path="/transaction" element={<TransactionPage />} />
+          <Route path="/transaction" element={<EachTransaction />} />
           <Route path="/profile" element={<ProfileDetails />} />
           <Route path="/button-styles" element={<ButtonStyles />} />
           <Route path="/input-element" element={<InputElement />} />
