@@ -199,7 +199,7 @@ const UpdateTransaction = (props: {
         </AddTransactionLabel>
         <AddTransactionNameInput
           className="w-[80vw] md:w-[28vw]  h-11 flex-shrink-0 rounded-xl border border-solid border-[#dfeaf2] bg-white p-[16px]"
-          readOnly
+          // readOnly
           required
           type="datetime-local"
           id="updateTransctionDate"

@@ -185,6 +185,67 @@ const SideBar = (): JSX.Element => {
             </TextParagraph>
           </EachTextContainer>
         </Link>
+        <Link
+          className="sidbar-content"
+          to="/button-styles"
+          onClick={() => {
+            onChangeSelectOption("PROFILE");
+            onChangeTransactionOption("ALLTRANSACTION");
+          }}
+        >
+          <EachTextContainer className="flex h-20 justify-start items-center gap-3 shrink-0">
+            <SelectedContainer
+              className="w-1.5 h-10 shrink-0 rounded-r-lg"
+              selectOption={selectOption === "PROFILE"}
+            ></SelectedContainer>
+            <IconsImage
+              className="w-6 h-6"
+              src={
+                selectOption === "PROFILE"
+                  ? "https://png.pngtree.com/element_pic/16/11/06/a459909a69500e714cfb6b442a80e2a1.jpg"
+                  : "https://png.pngtree.com/element_pic/16/11/06/a459909a69500e714cfb6b442a80e2a1.jpg"
+              }
+              alt="profile"
+            />
+            <TextParagraph
+              className="font-inter text-base font-medium text-gray-800"
+              selectOption={selectOption === "PROFILE"}
+            >
+              {/* {t("common.profile")} */}
+              Button Styles
+            </TextParagraph>
+          </EachTextContainer>
+        </Link>
+        <Link
+          className="sidbar-content"
+          to="/input-element"
+          onClick={() => {
+            onChangeSelectOption("PROFILE");
+            onChangeTransactionOption("ALLTRANSACTION");
+          }}
+        >
+          <EachTextContainer className="flex h-6 justify-start items-center gap-3 shrink-0">
+            <SelectedContainer
+              className="w-1.5 h-10 shrink-0 rounded-r-lg"
+              selectOption={selectOption === "PROFILE"}
+            ></SelectedContainer>
+            <IconsImage
+              className="w-6 h-6"
+              src={
+                selectOption === "PROFILE"
+                  ? "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1706070137/user_3_1_1_h8fxdm.png"
+                  : "https://res.cloudinary.com/dwdq2ofjm/image/upload/v1705912309/user_3_1_ikruwf.png"
+              }
+              alt="profile"
+            />
+            <TextParagraph
+              className="font-inter text-base font-medium text-gray-800"
+              selectOption={selectOption === "PROFILE"}
+            >
+              Input Elements{/* {t("common.profile")} */}
+            </TextParagraph>
+          </EachTextContainer>
+        </Link>
       </TextContainer>
       <ProfileContainer className="h-20 mt-auto flex p-[24px 32px 0px 24px] items-center gap-2 self-stretch border-t border-solid border-gray-200">
         {loginUser.email !== undefined ? (
